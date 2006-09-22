@@ -2,9 +2,6 @@
 colo graywh
 set mouse=a
 
-set guifont=Ti92Pluspc:h10
-set guioptions=cgmrLaA
-
 " PHP
 let php_sql_query = 1
 let php_htmlInStrings = 1
