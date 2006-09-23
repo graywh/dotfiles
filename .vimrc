@@ -2,6 +2,12 @@
 colo graywh
 set mouse=a
 
+" Mac OS X Terminal
+map <Esc>[H <Home>
+map <Esc>[F <End>
+imap <Esc>[H <Esc><Home>i
+imap <Esc>[F <Esc><End>i
+
 " PHP
 let php_sql_query = 1
 let php_htmlInStrings = 1
