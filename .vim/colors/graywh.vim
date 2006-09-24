@@ -45,8 +45,10 @@ hi Constant ctermfg=DarkRed guifg=#FF5555
 hi Boolean ctermfg=DarkBlue guifg=#5555FF gui=bold
 hi String ctermfg=DarkMagenta guifg=#FF55FF
 hi link Character String
+hi Identifier ctermfg=DarkYellow guifg=#FFFF55
+hi Function ctermfg=DarkCyan guifg=#55FFFF
 hi Statement ctermfg=DarkBlue guifg=#5555FF gui=none
 hi Operator ctermfg=DarkBlue guifg=#5555FF
 hi PreProc ctermfg=DarkBlue guifg=#5555FF gui=none
 hi Type ctermfg=DarkCyan guifg=#55FFFF gui=none
-hi Special guifg=#FF5555
+hi Special ctermfg=DarkRed guifg=#FF5555
