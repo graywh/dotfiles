@@ -2,6 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
 
@@ -14,23 +17,23 @@ mesg n
 
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then
-    #eval `dircolors -b`
-    alias ls='ls -hFG'
+    eval `dircolors -b`
+    alias ls='ls -hFG --color=always'
     #alias dir='ls -l'
     #alias vdir='ls -C'
 fi
 
 # some more ls aliases
 alias ll='ls -l'
-alias la='ls -A'
+alias la='ls -a'
 #alias dir='ll -A'
-alias lla='ls -lA'
+alias lla='ls -la'
 #alias vnc='vncserver -geometry 1152x864'
 #alias vnckill='vncserver -kill'
 
 # set a fancy prompt
 # red = 31, blue = 34, green = 32, yellow = 33, bold = 1;
-# change color \[\033[***m\]
+# change color \[\033[*;**m\]
 #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 PS1='\[\033[32m\][\u@\h:\[\033[31m\]\w\[\033[32m\]]\n\$\[\033[0m\] '
 

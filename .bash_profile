@@ -5,7 +5,7 @@
 # the default umask is set in /etc/login.defs
 #umask 022
 
-# turn on colors
+# turn on colors (Mac OS X Terminal.app)
 export CLICOLOR=1
 #export LSCOLORS=ExFxCxDxBxegedabagacad
 
