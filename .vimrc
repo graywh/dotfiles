@@ -1,6 +1,7 @@
 " Basic
 colo graywh
 set mouse=a
+syn sync fromstart
 
 " Mac OS X Terminal
 map <Esc>[H <Home>
@@ -50,7 +51,7 @@ set incsearch           " Incremental search
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
 " We know xterm-debian is a color terminal
-if &term =~ "xterm-debian" || &term =~ "xterm-xfree86"
+if &term =~ "xterm-debian" || &term =~ "xterm-xfree86" || &term =~ "xterm-color"
   set t_Co=16
   set t_Sf=[3%dm
   set t_Sb=[4%dm

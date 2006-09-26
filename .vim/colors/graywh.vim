@@ -50,5 +50,5 @@ hi Statement ctermfg=Blue guifg=#5555FF gui=none
 hi Operator ctermfg=Blue guifg=#5555FF
 hi PreProc ctermfg=Blue guifg=#5555FF gui=none
 hi Type ctermfg=Cyan guifg=#55FFFF gui=none
-"hi Identifier ctermfg=Yellow guifg=#FFFF55
+hi Identifier ctermfg=Cyan cterm=none guifg=#55FFFF
 hi Special ctermfg=DarkRed guifg=#FF5555
