@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer:   Will Gray <graywh@gmail.com>
-" Last Change:  2006 Aug 09
+" Last Change:  2006 Sep 25
 
 " Custom GUI colors:
 " Red = #FF5555

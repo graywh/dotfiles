@@ -2,10 +2,10 @@
 " Language:	Python
 " Maintainer:	Dmitry Vasiliev <dima@hlabs.spb.ru>
 " URL:		http://www.hlabs.spb.ru/vim/python.vim
-" Last Change:	$Date: 2006-03-06 13:52:12 +0300 (Пнд, 06 Мар 2006) $
+" Last Change:	$Date: 2006-09-26 15:46:55 +0400 (Втр, 26 Сен 2006) $
 " Filenames:	*.py
-" Version:	2.5.3
-" $Rev: 344 $
+" Version:	2.5.5
+" $Rev: 477 $
 "
 " Based on python.vim (from Vim 6.1 distribution)
 " by Neil Schemenauer <nas@python.ca>
@@ -81,8 +81,9 @@ syn keyword pythonStatement	exec return
 syn keyword pythonStatement	pass print raise
 syn keyword pythonStatement	global assert
 syn keyword pythonStatement	lambda yield
+syn keyword pythonStatement	with
 syn keyword pythonStatement	def class nextgroup=pythonFunction skipwhite
-syn match   pythonFunction	"\h\w*" display contained
+syn match   pythonFunction	"[a-zA-Z_][a-zA-Z0-9_]*" display contained
 syn keyword pythonRepeat	for while
 syn keyword pythonConditional	if elif else
 syn keyword pythonImport	import from as
@@ -168,6 +169,12 @@ if exists("python_highlight_doctests") && python_highlight_doctests != 0
   syn region pythonDocTest2	start="^\s*>>>" end=+"""+he=s-1 end="^\s*$" contained
 endif
 
+" DocStrings
+syn match   pythonDocString +):\n\+\s*"""\_.\{-}"""+hs=s+2 display contains=pythonTodo
+syn match   pythonDocString +):\n\+\s*'''\_.\{-}'''+hs=s+2 display contains=pythonTodo
+syn match   pythonDocString +\%^\n*"""\_.\{-}"""+ display contains=pythonTodo
+syn match   pythonDocString +\%^\n*'''\_.\{-}'''+ display contains=pythonTodo
+
 " Numbers (ints, longs, floats, complex)
 syn match   pythonHexNumber	"\<0[xX]\x\+[lL]\=\>" display
 syn match   pythonHexNumber	"\<0[xX]\>" display
@@ -200,16 +207,17 @@ endif
 
 if exists("python_highlight_exceptions") && python_highlight_exceptions != 0
   " Builtin exceptions and warnings
+  syn keyword pythonExClass	BaseException
   syn keyword pythonExClass	Exception StandardError ArithmeticError
   syn keyword pythonExClass	LookupError EnvironmentError
 
   syn keyword pythonExClass	AssertionError AttributeError EOFError
-  syn keyword pythonExClass	FloatingPointError IOError ImportError
-  syn keyword pythonExClass	IndexError KeyError KeyboardInterrupt
-  syn keyword pythonExClass	MemoryError NameError NotImplementedError
-  syn keyword pythonExClass	OSError OverflowError ReferenceError
-  syn keyword pythonExClass	RuntimeError StopIteration SyntaxError
-  syn keyword pythonExClass	IndentationError TabError
+  syn keyword pythonExClass	FloatingPointError GeneratorExit IOError
+  syn keyword pythonExClass	ImportError IndexError KeyError
+  syn keyword pythonExClass	KeyboardInterrupt MemoryError NameError
+  syn keyword pythonExClass	NotImplementedError OSError OverflowError
+  syn keyword pythonExClass	ReferenceError RuntimeError StopIteration
+  syn keyword pythonExClass	SyntaxError IndentationError TabError
   syn keyword pythonExClass	SystemError SystemExit TypeError
   syn keyword pythonExClass	UnboundLocalError UnicodeError
   syn keyword pythonExClass	UnicodeEncodeError UnicodeDecodeError
@@ -218,7 +226,8 @@ if exists("python_highlight_exceptions") && python_highlight_exceptions != 0
 
   syn keyword pythonExClass	Warning UserWarning DeprecationWarning
   syn keyword pythonExClass	PendingDepricationWarning SyntaxWarning
-  syn keyword pythonExClass	RuntimeWarning FutureWarning
+  syn keyword pythonExClass	RuntimeWarning FutureWarning OverflowWarning
+  syn keyword pythonExClass	ImportWarning UnicodeWarning
 endif
 
 if exists("python_slow_sync") && python_slow_sync != 0
@@ -230,6 +239,7 @@ else
   syn sync match pythonSync grouphere NONE "):$"
   syn sync maxlines=200
 endif
+syn sync linebreaks=1
 
 if version >= 508 || !exists("did_python_syn_inits")
   if version <= 508
@@ -253,6 +263,7 @@ if version >= 508 || !exists("did_python_syn_inits")
   HiLink pythonCoding		Special
   HiLink pythonRun		Special
   HiLink pythonTodo		Todo
+  HiLink pythonDocString    Comment
 
   HiLink pythonError		Error
   HiLink pythonIndentError	Error
