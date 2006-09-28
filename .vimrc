@@ -52,9 +52,9 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 
 " We know xterm-debian is a color terminal
 if &term =~ "xterm-debian" || &term =~ "xterm-xfree86" || &term =~ "xterm-color"
-  set t_Co=16
-  set t_Sf=[3%dm
-  set t_Sb=[4%dm
+    set t_Co=16
+    set t_Sf=[3%dm
+    set t_Sb=[4%dm
 endif
 
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
@@ -66,13 +66,13 @@ syntax on
 " set background=dark
 
 if has("autocmd")
- " Enabled file type detection
- " Use the default filetype settings. If you also want to load indent files
- " to automatically do language-dependent indenting add 'indent' as well.
-  filetype plugin on
+    " Enabled file type detection
+    " Use the default filetype settings. If you also want to load indent files
+    " to automatically do language-dependent indenting add 'indent' as well.
+    filetype plugin on
 endif " has ("autocmd")
 
 " Source a global configuration file if available
 "if filereadable("/etc/vim/vimrc.local")
-"  source /etc/vim/vimrc.local
+"    source /etc/vim/vimrc.local
 "endif
