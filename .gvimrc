@@ -5,7 +5,7 @@ set lines=40
 
 an 10.325 &File.New\ &Tab<Tab>:tabnew   :confirm tabnew<CR>
 
-an 10.355 &File.Save\ A&ll<Tab>:wall     :wall<CR>
+an 10.355 &File.Save\ A&ll<Tab>:wall    :wall<CR>
 
 if has("folding")
     an 1.56 PopUp.Open\ Fold    za
