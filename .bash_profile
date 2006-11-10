@@ -16,9 +16,8 @@ fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d ~/bin ] ; then
-    PATH="~/bin:${PATH}"
+    export PATH="~/bin:${PATH}"
 fi
 
 # include location of MySQL
-PATH="/usr/local/mysql/bin:${PATH}"
-export PATH
+export PATH="${PATH}:/usr/local/mysql/bin"

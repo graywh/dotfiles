@@ -6,8 +6,12 @@ syn sync fromstart
 " Mac OS X Terminal
 map <Esc>[H <Home>
 map <Esc>[F <End>
-imap <Esc>[H <Esc><Home>i
-imap <Esc>[F <Esc><End>i
+imap <Esc>[H <Esc>I
+imap <Esc>[F <Esc>A
+"map <C-D-\> <Home>
+"map <C-D-[> <End>
+"imap <C-D-\> <Esc>I
+"imap <C-D-[> <Esc>A
 
 " PHP
 let php_sql_query = 1
