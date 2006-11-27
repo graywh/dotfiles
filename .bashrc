@@ -36,8 +36,6 @@ fi
 alias ll='ls -lhF'
 alias la='ls -ahF'
 alias lla='ls -lahF'
-#alias vnc='vncserver -geometry 1152x864'
-#alias vnckill='vncserver -kill'
 
 # set a fancy prompt
 # red = 31, green = 32, yellow = 33, blue = 34, bold = 1;
