@@ -25,10 +25,6 @@ if [ "$TERM" != "dumb" ]; then
         export LS_COLORS='no=00:fi=00:di=34:ln=36:pi=40;33:so=35:do=35:bd=40;33;01:cd=40;33:or=40;31:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=32:*.tar=31:*.tgz=31:*.arj=31:*.taz=31:*.lzh=31:*.zip=31:*.z=31:*.Z=31:*.gz=31:*.bz2=31:*.deb=31:*.rpm=31:*.jar=31:*.jpg=35:*.jpeg=35:*.gif=35:*.bmp=35:*.pbm=35:*.pgm=35:*.ppm=35:*.tga=35:*.xbm=35:*.xpm=35:*.tif=35:*.tiff=35:*.png=35:*.mov=35:*.mpg=35:*.mpeg=35:*.avi=35:*.fli=35:*.gl=35:*.dl=35:*.xcf=35:*.xwd=35:*.ogg=35:*.flac=35:*.mpc=35:*.mp3=35:*.wav=35:'
         alias ls='ls -F --color=always'
     }
-    else
-    {
-        export DISPLAY=:0.0
-    }
     fi
 fi
 

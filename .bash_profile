@@ -21,3 +21,8 @@ fi
 
 # include location of MySQL
 export PATH="${PATH}:/usr/local/mysql/bin"
+
+# export X11 Display
+if [ "$OSTYPE" == "darwin8.0" ]; then
+    export DISPLAY=:0.0
+fi
