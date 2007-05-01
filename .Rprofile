@@ -1,2 +1,3 @@
-options(editor = "vim -c\":set ft=r\"")
-options(tab.width = 4)
+#vim:ft=r
+options(editor = 'vim -c":set ft=r"',
+        tab.width = 4)
