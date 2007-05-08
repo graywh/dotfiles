@@ -9,6 +9,8 @@
 export CLICOLOR=1
 #export LSCOLORS=ExFxCxDxBxegedabagacad
 
+export EDITOR="vim"
+
 # include .bashrc if it exists
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc

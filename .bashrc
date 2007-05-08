@@ -3,6 +3,7 @@
 # for examples
 
 # If not running interactively, don't do anything
+# Important for ssh+svn support
 [ -z "$PS1" ] && return
 
 # don't put duplicate lines in the history. See bash(1) for more options
