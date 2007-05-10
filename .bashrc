@@ -30,9 +30,9 @@ if [ "$TERM" != "dumb" ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -lhF'
-alias la='ls -ahF'
-alias lla='ls -lahF'
+alias ll='ls -hlF'
+alias la='ls -AF'
+alias lla='ls -hlAF'
 
 # set a fancy prompt
 # red = 31, green = 32, yellow = 33, blue = 34, bold = 1;
@@ -45,19 +45,19 @@ PS1='\[\033[32m\][\u@\h:\[\033[31m\]\w\[\033[32m\]]\n\$\[\033[0m\] '
 function prompt_command
 {
     # If this is an xterm set the title to user@host:dir
-    case $TERM in
-    xterm*)
-        echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"
-        ;;
-    *)
-        ;;
-    esac
+    #case $TERM in
+    #xterm*)
+    #    echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"
+    #    ;;
+    #*)
+    #    ;;
+    #esac
 
     #  prompt_x is where to position the cursor to write the clock
     let prompt_x=$(tput cols)-10
     #  Move up one; not sure why we need to do this, but without this, I always
     #  got an extra blank line between prompts
-    # tput cuu1
+    #tput cuu1
     tput sc
     tput cup 1 ${prompt_x}
     echo -en "\033[32m[$(date +%H:%M:%S)]"
