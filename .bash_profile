@@ -21,10 +21,11 @@ if [ -d ~/bin ] ; then
     export PATH="~/bin:${PATH}"
 fi
 
-# include location of MySQL
-export PATH="${PATH}:/usr/local/mysql/bin"
-
-# export X11 Display
+# Mac OS X options
 if [ "$OSTYPE" == "darwin8.0" ]; then
+    # export X11 Display
     export DISPLAY=:0.0
+
+    # include location of MySQL
+    export PATH="${PATH}:/usr/local/mysql/bin"
 fi

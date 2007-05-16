@@ -44,19 +44,21 @@ PS1='\[\033[32m\][\u@\h:\[\033[31m\]\w\[\033[32m\]]\n\$\[\033[0m\] '
 # and change the title of the terminal
 function prompt_command
 {
+
     # If this is an xterm set the title to user@host:dir
-    #case $TERM in
-    #xterm*)
-    #    echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"
-    #    ;;
-    #*)
-    #    ;;
-    #esac
+    case $TERM in
+    xterm*)
+        echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"
+        ;;
+    *)
+        ;;
+    esac
 
     #  prompt_x is where to position the cursor to write the clock
     let prompt_x=$(tput cols)-10
     #  Move up one; not sure why we need to do this, but without this, I always
     #  got an extra blank line between prompts
+    # But I did not.
     #tput cuu1
     tput sc
     tput cup 1 ${prompt_x}
@@ -68,9 +70,9 @@ PROMPT_COMMAND=prompt_command
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc).
-#if [ -f /etc/bash_completion ]; then
-#  . /etc/bash_completion
-#fi
+if [ -f /etc/bash_completion ]; then
+  . /etc/bash_completion
+fi
 
 function calc()
 {
