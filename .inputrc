@@ -1,0 +1,9 @@
+set input-meta on
+set output-meta on
+set convert-meta off
+set bell-style none
+set editing-mode emacs
+
+"\e[3~": delete-char
+"\e[A": history-search-backward
+"\e[B": history-search-forward
