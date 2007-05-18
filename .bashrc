@@ -30,9 +30,9 @@ if [ "$TERM" != "dumb" ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -hlFG'
+alias ll='ls -hoF'
 alias la='ls -AF'
-alias lla='ls -hlAFG'
+alias lla='ls -hoAF'
 
 # set a fancy prompt
 # red = 31, green = 32, yellow = 33, blue = 34, bold = 1;
