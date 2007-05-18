@@ -2,19 +2,13 @@
 " Maintainer:   Will Gray <graywh@gmail.com>
 " Last Change:  2006 Sep 25
 
-" Custom GUI colors:
-" Red = #FF5555
-" Yellow = #FFFF55
-" Green = #55FF55
-" Cyan = #55FFFF
-" Blue = #5555FF
-" Magenta = #FF55FF
-" DarkRed = #BB0000
-" DarkYellow = #BBBB00
-" DarkGreen = #00BB00
-" DarkCyan = #00BBBB
-" DarkBlue = #00000BB
-" DarkMagenta = #BB00BB
+" Custom GUI colors
+"     LightRed = #FFCCCC        Red = #FF5555        DarkRed = #BB0000
+"  LightYellow = #FFFF99     Yellow = #FFFF55     DarkYellow = #BBBB00
+"   LightGreen = #66FF99      Green = #55FF55      DarkGreen = #00BB00
+"    LightCyan = #99FFFF       Cyan = #55FFFF       DarkCyan = #00BBBB
+"    LightBlue = #33CCFF       Blue = #5555FF       DarkBlue = #0000BB
+" LightMagenta = #FFCCFF    Magenta = #FF55FF    DarkMagenta = #BB00BB
 
 " This color scheme uses a black background.
 set background=dark

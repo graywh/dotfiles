@@ -24,6 +24,9 @@ let python_highlight_exceptions = 1
 let python_highlight_string_formatting = 1
 let python_highlight_doctests = 1
 
+" Ruby
+"let ruby_fold = 1
+
 " Normally we use vim-extensions. If you want true vi-compatibility
 " remove change the following statements
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
@@ -66,10 +69,5 @@ if has("autocmd")
     " Enabled file type detection
     " Use the default filetype settings. If you also want to load indent files
     " to automatically do language-dependent indenting add 'indent' as well.
-    filetype plugin on
+    filetype plugin indent on
 endif " has ("autocmd")
-
-" Source a global configuration file if available
-"if filereadable("/etc/vim/vimrc.local")
-"    source /etc/vim/vimrc.local
-"endif
