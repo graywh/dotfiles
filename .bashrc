@@ -17,12 +17,13 @@ shopt -s checkwinsize
 mesg n
 
 # enable color support of ls and also add handy aliases
+# 38;5;___m for 256 color support
 if [ "$TERM" != "dumb" ]; then
     alias ls='ls -F'
     
     if [ "$OSTYPE" != "darwin8.0" ]; then
     {
-        export LS_COLORS='no=00:fi=00:di=33:ln=36:pi=40;33:so=35:do=35:bd=40;33;01:cd=40;33:or=40;31:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=32:*.tar=31:*.tgz=31:*.arj=31:*.taz=31:*.lzh=31:*.zip=31:*.z=31:*.Z=31:*.gz=31:*.bz2=31:*.deb=31:*.rpm=31:*.jar=31:*.jpg=35:*.jpeg=35:*.gif=35:*.bmp=35:*.pbm=35:*.pgm=35:*.ppm=35:*.tga=35:*.xbm=35:*.xpm=35:*.tif=35:*.tiff=35:*.png=35:*.mov=35:*.mpg=35:*.mpeg=35:*.avi=35:*.fli=35:*.gl=35:*.dl=35:*.xcf=35:*.xwd=35:*.ogg=35:*.flac=35:*.mpc=35:*.mp3=35:*.wav=35:'
+        export LS_COLORS='no=00:fi=00:di=38;5;12:ln=38;5;14:pi=40;33:so=38;5;13:do=38;5;13:bd=40;33;01:cd=40;33:or=40;38;5;9:su=38;5;15;41:sg=30;43:tw=30;42:ow=38;5;12;42:st=38;5;15;44:ex=38;5;10:*.tar=38;5;9:*.tgz=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lzh=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.Z=38;5;9:*.gz=38;5;9:*.bz2=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.ogg=38;5;13:*.flac=38;5;13:*.mpc=38;5;13:*.mp3=38;5;13:*.wav=38;5;13:'
         alias ls='ls -F --color=always'
     }
     fi
@@ -38,32 +39,26 @@ alias lla='ls -hlAFG'
 # change color \[\033[*;**m\]
 #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 # Color definitions
-Black="$(tput setaf 0)"
-BlackBG="$(tput setab 0)"
-DarkGray="$(tput setaf 8)"
-LightGray="$(tput setaf 7)"
-LightGrayBG="$(tput setab 7)"
-White="$(tput setaf 15)"
-Red="$(tput setaf 9)"
-DarkRed="$(tput setaf 1)"
-RedBG="$(tput setab 1)"
-Green="$(tput setaf 10)"
-DarkGreen="$(tput setaf 2)"
-GreenBG="$(tput setab 2)"
-Yellow="$(tput setaf 11)"
-DarkYellow="$(tput setaf 3)"
-YellowBG="$(tput setab 3)"
-Blue="$(tput setaf 12)"
-DarkBlue="$(tput setaf 4)"
-BlueBG="$(tput setab 4)"
-Magenta="$(tput setaf 13)"
-DarkMagenta="$(tput setaf 5)"
-MagentaBG="$(tput setab 5)"
-Cyan="$(tput setaf 14)"
-DarkCyan="$(tput setaf 6)"
-CyanBG="$(tput setab 6)"
-None="$(tput sgr0)"
-PS1='\[$Green\][\u@\h:\[$Red\]\w\[$Green\]]\n\$\[$None\] '
+#Foreground="[38;5;${n}m"
+#Background="[48;5;${n}m"
+Black="[38;5;0m"
+DarkGray="[38;5;8m"
+LightGray="[38;5;7m"
+White="[38;5;15m"
+Red="[38;5;9m"
+DarkRed="[38;5;1m"
+Green="[38;5;10m"
+DarkGreen="[38;5;2m"
+Yellow="[38;5;11m"
+DarkYellow="[38;5;3m"
+Blue="[38;5;12m"
+DarkBlue="[38;5;4m"
+Magenta="[38;5;13m"
+DarkMagenta="[38;5;5m"
+Cyan="[38;5;14m"
+DarkCyan="[38;5;6m"
+None="[0m"
+PS1='$Green[\u@\h:$Red\w$Green]\n\$$None '
 
 # a function to put the current time in the top-right corner of the terminal
 # and change the title of the terminal
@@ -87,9 +82,7 @@ function prompt_command
     #tput cuu1
     tput sc
     tput cup 1 ${prompt_x}
-    tput setf 10
-    echo -en "[$(date +%H:%M:%S)]"
-    tput sgr0
+    echo -en "$Green[$(date +%H:%M:%S)]$None"
     tput rc
 }
 

@@ -76,3 +76,4 @@ while search("_on_", "W") < 58
 endwhile
 8,57g/^" \w/exec 'hi col_'.expand("<cword>").' ctermfg='.expand("<cword>").' guifg='.expand("<cword>")| exec 'syn keyword col_'.expand("<cword>")." ".expand("<cword>")
 nohlsearch
+setlocal tabstop=8 shiftwidth=8
