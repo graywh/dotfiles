@@ -3,29 +3,30 @@ colo graywh
 set mouse=a
 syn sync fromstart
 
+" Keymaps {{{
 " Mac OS X Terminal
-map <Esc>[H <Home>
-map <Esc>[F <End>
-imap <Esc>[H <Esc>I
-imap <Esc>[F <Esc>A
 "map <C-D-\> <Home>
 "map <C-D-[> <End>
 "imap <C-D-\> <Esc>I
 "imap <C-D-[> <Esc>A
+" }}}
 
-" PHP
+" PHP options {{{
 let php_sql_query = 1
 let php_htmlInStrings = 1
 let php_baselib = 1
+" }}}
 
-" Python
+" Python options {{{
 let python_highlight_builtins = 1
 let python_highlight_exceptions = 1
 let python_highlight_string_formatting = 1
 let python_highlight_doctests = 1
+" }}}
 
-" Ruby
+" Ruby options {{{
 "let ruby_fold = 1
+" }}}
 
 " Normally we use vim-extensions. If you want true vi-compatibility
 " remove change the following statements
@@ -71,3 +72,5 @@ if has("autocmd")
     " to automatically do language-dependent indenting add 'indent' as well.
     filetype plugin indent on
 endif " has ("autocmd")
+
+" vim: fdm=marker

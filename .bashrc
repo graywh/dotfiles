@@ -16,52 +16,80 @@ shopt -s checkwinsize
 # disable messages
 mesg n
 
-# enable color support of ls and also add handy aliases
-# 38;5;___m for 256 color support
+# enable color support of ls {{{
+# 38;5;___ for 256 color support
 if [ "$TERM" != "dumb" ]; then
     alias ls='ls -F'
     
     if [ "$OSTYPE" != "darwin8.0" ]; then
-    {
+        # set LS_COLORS {{{
         export LS_COLORS='no=00:fi=00:di=38;5;12:ln=38;5;14:pi=40;33:so=38;5;13:do=38;5;13:bd=40;33;01:cd=40;33:or=40;38;5;9:su=38;5;15;41:sg=30;43:tw=30;42:ow=38;5;12;42:st=38;5;15;44:ex=38;5;10:*.tar=38;5;9:*.tgz=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lzh=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.Z=38;5;9:*.gz=38;5;9:*.bz2=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.ogg=38;5;13:*.flac=38;5;13:*.mpc=38;5;13:*.mp3=38;5;13:*.wav=38;5;13:'
         alias ls='ls -F --color=always'
-    }
+        # }}}
     fi
 fi
+# }}}
 
+# Aliases {{{
 # some more ls aliases
 alias ll='ls -hoF'
 alias la='ls -AF'
 alias lla='ls -hoAF'
+# }}}
 
-# set a fancy prompt
+# set a fancy prompt {{{
 # red = 31, green = 32, yellow = 33, blue = 34, bold = 1;
 # change color \[\033[*;**m\]
 #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 # Color definitions
-#Foreground="[38;5;${n}m"
-#Background="[48;5;${n}m"
-Black="[38;5;0m"
-DarkGray="[38;5;8m"
-LightGray="[38;5;7m"
-White="[38;5;15m"
-Red="[38;5;9m"
-DarkRed="[38;5;1m"
-Green="[38;5;10m"
-DarkGreen="[38;5;2m"
-Yellow="[38;5;11m"
-DarkYellow="[38;5;3m"
-Blue="[38;5;12m"
-DarkBlue="[38;5;4m"
-Magenta="[38;5;13m"
-DarkMagenta="[38;5;5m"
-Cyan="[38;5;14m"
-DarkCyan="[38;5;6m"
+if [ "$OSTYPE" != "darwin8.0" ]; then
+    # For 256 color term {{{
+    #Foreground="[38;5;${n}m"
+    #Background="[48;5;${n}m"
+    Black="[38;5;0m"
+    DarkGray="[38;5;8m"
+    LightGray="[38;5;7m"
+    White="[38;5;15m"
+    Red="[38;5;9m"
+    DarkRed="[38;5;1m"
+    Green="[38;5;10m"
+    DarkGreen="[38;5;2m"
+    Yellow="[38;5;11m"
+    DarkYellow="[38;5;3m"
+    Blue="[38;5;12m"
+    DarkBlue="[38;5;4m"
+    Magenta="[38;5;13m"
+    DarkMagenta="[38;5;5m"
+    Cyan="[38;5;14m"
+    DarkCyan="[38;5;6m"
+    # }}}
+else
+    # For 8/16 color term {{{
+    Black="[30m"
+    DarkGray="[1;30m"
+    LightGray="[37m"
+    White="[1;37m"
+    DarkRed="[31m"
+    Red="[1;31m"
+    DarkGreen="[32m"
+    Green="[1;32m"
+    DarkYellow="[33m"
+    Yellow="[1;33m"
+    DarkBlue="[34m"
+    Blue="[1;34m"
+    DarkMagenta="[35m"
+    Magenta="[1;35m"
+    DarkCyan="[36m"
+    Cyan="[1;36m"
+    # }}}
+fi
 None="[0m"
 PS1='$Green[\u@\h:$Red\w$Green]\n\$$None '
+# }}}
 
 # a function to put the current time in the top-right corner of the terminal
 # and change the title of the terminal
+# function prompt_command {{{
 function prompt_command
 {
 
@@ -85,6 +113,7 @@ function prompt_command
     echo -en "$Green[$(date +%H:%M:%S)]$None"
     tput rc
 }
+# }}}
 
 PROMPT_COMMAND=prompt_command
 
@@ -98,3 +127,5 @@ function calc()
 {
     echo "$@" | bc -l
 }
+
+# vim: fdm=marker
