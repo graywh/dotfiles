@@ -1,9 +1,29 @@
-*cusomization: -color
 ! --- xterm
+xterm*colorMode: on
 xterm*background: black
-xterm*foreground: white
+xterm*foreground: gray80
+xterm*cursorColor: rgb:33/ff/33
 xterm*scrollBar: false
 xterm*loginShell: true
 xterm*faceName: Monaco
 xterm*faceSize: 12
 xterm*termName: xterm-256color
+! --- xterm colors
+xterm*color0: rgb:00/00/00
+xterm*color1: rgb:cc/00/00
+xterm*color2: rgb:00/cc/00
+xterm*color3: rgb:cc/cc/00
+xterm*color4: rgb:00/00/cc
+xterm*color5: rgb:cc/00/cc
+xterm*color6: rgb:00/cc/cc
+xterm*color7: rgb:cc/cc/cc
+xterm*color8: rgb:66/66/66
+xterm*color9: rgb:ff/33/33
+xterm*color10: rgb:33/ff/33
+xterm*color11: rgb:ff/ff/33
+xterm*color12: rgb:33/33/ff
+xterm*color13: rgb:ff/33/ff
+xterm*color14: rgb:33/ff/ff
+xterm*color15: rgb:ff/ff/ff
+
+! vim: fdm=marker
