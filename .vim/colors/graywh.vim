@@ -3,12 +3,13 @@
 " Last Change:  2007 May 21
 
 " Custom GUI colors {{{
-"     LightRed = #FFCCCC      Red = #FF5555      DarkRed = #BB0000
-"  LightYellow = #FFFF99   Yellow = #FFFF55   DarkYellow = #BBBB00
-"   LightGreen = #66FF99    Green = #55FF55    DarkGreen = #00BB00
-"    LightCyan = #99FFFF     Cyan = #55FFFF     DarkCyan = #00BBBB
-"    LightBlue = #33CCFF     Blue = #5555FF     DarkBlue = #0000BB
-" LightMagenta = #FFCCFF  Magenta = #FF55FF  DarkMagenta = #BB00BB
+" These are what I'm trying to match on the 256-color terminal
+"     LightRed = #FFCCCC      Red = #FF6666      DarkRed = #CC0000
+"  LightYellow = #FFFF99   Yellow = #FFFF66   DarkYellow = #CCCC00
+"   LightGreen = #66FF99    Green = #66FF66    DarkGreen = #00CC00
+"    LightCyan = #99FFFF     Cyan = #66FFFF     DarkCyan = #00CCCC
+"    LightClue = #33CCFF     Clue = #6666FF     DarkClue = #0000CC
+" LightMagenta = #FFCCFF  Magenta = #FF66FF  DarkMagenta = #CC00CC
 " }}}
 
 " This color scheme uses a black background.
@@ -22,51 +23,55 @@ endif
 
 let g:colors_name = "graywh"
 
-if has("gui_running")
-  " For GUI {{{
-  hi Normal     guifg=#BBBBBB guibg=#000000
+" Common {{{1
+" Clear {{{2
+hi clear DiffChange
+" Links {{{2
+hi link Character String
+" }}}1
 
-  hi Directory  guifg=#00BBBB
-  hi DiffText                 guibg=#FFFFBB gui=none
-  hi DiffAdd                  guibg=#BBFFBB
-  hi DiffChange               guibg=bg
-  hi DiffDelete               guibg=#FFBBBB gui=none
+  " For GUI {{{1
+  hi Normal     guifg=#CCCCCC guibg=#000000
+  " Vim {{{2
+  hi Directory  guifg=#00CCCC
+  hi DiffText                 guibg=#FFFFCC gui=none
+  hi DiffAdd                  guibg=#CCFFCC
+  hi DiffDelete               guibg=#FFCCCC gui=none
   hi Folded     guifg=fg                    gui=italic
-  hi FoldColumn guifg=#55FFFF guibg=#555555
-  hi LineNr     guifg=#FFFF55 guibg=#555555
-  hi ErrorMsg   guifg=#FFFFFF guibg=#BB0000
-  hi WarningMsg guifg=#FFFFFF guibg=#BBBB00
-  hi NonText    guifg=#55FFFF               gui=bold
-
-  hi Error      guifg=#FFFFFF guibg=#FF5555
-  hi Comment    guifg=#55FF55               gui=italic
-  hi Constant   guifg=#FF5555
-  hi Boolean    guifg=#5555FF               gui=bold
-  hi String     guifg=#FF55FF
-  hi Function   guifg=#55FFFF
-  hi Statement  guifg=#5555FF               gui=none
-  hi Operator   guifg=#5555FF
-  hi PreProc    guifg=#5555FF               gui=none
-  hi Type       guifg=#55FFFF               gui=none
-  hi Identifier guifg=#55FFFF
-  hi Special    guifg=#FF5555
-  " }}}
-elseif &t_Co == 256
-  " For 256 color terminals {{{
+  hi FoldColumn guifg=#66FFFF guibg=#666666
+  hi LineNr     guifg=#FFFF66 guibg=#666666
+  hi ErrorMsg   guifg=#FFFFFF guibg=#CC0000
+  hi WarningMsg guifg=#FFFFFF guibg=#CCCC00
+  hi NonText    guifg=#66FFFF               gui=bold
+  " Syntax {{{2
+  hi Error      guifg=#FFFFFF guibg=#FF6666
+  hi Comment    guifg=#66FF66               gui=italic
+  hi Constant   guifg=#FF6666
+  hi Boolean    guifg=#6666FF               gui=bold
+  hi String     guifg=#FF66FF
+  hi Function   guifg=#66FFFF
+  hi Statement  guifg=#6666FF               gui=none
+  hi Operator   guifg=#6666FF
+  hi PreProc    guifg=#6666FF               gui=none
+  hi Type       guifg=#66FFFF               gui=none
+  hi Identifier guifg=#66FFFF
+  hi Special    guifg=#FF6666
+  " }}}1
+if &t_Co == 256
+  " For 256 color terminals {{{1
   hi Normal     ctermfg=250 ctermbg=0
-
+  " Vim {{{2
   hi Directory  ctermfg=37
-  hi DiffText                           cterm=inverse
+  hi DiffText               ctermbg=229 cterm=none
   hi DiffAdd                ctermbg=157
-  hi DiffChange             ctermbg=229
   hi DiffDelete ctermfg=fg  ctermbg=217 cterm=none
-  hi Folded     ctermfg=250
-  hi FoldColumn ctermfg=14
-  hi LineNr     ctermfg=227 ctermbg=242
+  hi Folded     ctermfg=225 ctermbg=239
+  hi FoldColumn ctermfg=14  ctermbg=239
+  hi LineNr     ctermfg=226 ctermbg=233
   hi ErrorMsg   ctermfg=15  ctermbg=124
   hi WarningMsg ctermfg=15  ctermbg=142
   hi NonText    ctermfg=87              cterm=bold
-
+  " Syntax {{{2
   hi Error      ctermfg=15  ctermbg=203
   hi Comment    ctermfg=83
   hi Constant   ctermfg=203
@@ -79,21 +84,20 @@ elseif &t_Co == 256
   hi Type       ctermfg=87              cterm=none
   hi Identifier ctermfg=87              cterm=none
   hi Special    ctermfg=203
-  " }}}
+  " }}}1
 else
-  " For 8/16 color terminals {{{
+  " For 8/16 color terminals {{{1
   hi Normal     ctermfg=Gray ctermbg=Black
-
+  " Vim {{{2
   hi Directory  ctermfg=DarkCyan
-  hi DiffText                                     cterm=inverse
+  hi DiffText                                     cterm=none
   hi DiffAdd    ctermfg=Black ctermbg=Green
-  hi DiffChange ctermfg=Black ctermbg=Yellow
   hi DiffDelete ctermfg=Black ctermbg=Red
   hi Folded     ctermfg=Gray
   hi ErrorMsg   ctermfg=White ctermbg=DarkRed
   hi WarningMsg ctermfg=White ctermbg=DarkYellow
   hi NonText    ctermfg=Cyan
-
+  " Syntax {{{2
   hi Error      ctermfg=White ctermbg=Red
   hi Comment    ctermfg=Green
   hi Constant   ctermfg=Red
@@ -104,13 +108,9 @@ else
   hi Operator   ctermfg=Blue
   hi PreProc    ctermfg=Blue
   hi Type       ctermfg=Cyan
-  hi Identifier ctermfg=Cyan                      cterm=none
+  hi Identifier ctermfg=Cyan cterm=none
   hi Special    ctermfg=DarkRed
-  " }}}
+  " }}}1
 endif
-
-" Links {{{
-hi link Character String
-" }}}
 
 " vim: fdm=marker ts=2 sw=2
