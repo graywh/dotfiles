@@ -1,0 +1,10 @@
+[Desktop Entry]
+Cwd=
+Exec=
+Font=
+Icon=konsole
+KeyTab=
+Name=Shell
+Schema=PuTTY Colors.schema
+Term=xterm-256color
+Type=KonsoleApplication
