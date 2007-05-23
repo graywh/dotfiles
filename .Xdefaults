@@ -1,29 +1,30 @@
 ! --- XTerm
-XTerm*colorMode: on
-XTerm*background: black
-XTerm*foreground: gray80
-XTerm*cursorColor: rgb:33/ff/33
-XTerm*scrollBar: false
-XTerm*loginShell: true
-XTerm*faceName: -*-lucida-medium-r-normal-sans-14-*-*-*-*-*-*-*
-XTerm*faceSize: 12
-XTerm*termName: xterm-256color
+XTerm*TermName: xterm-256color
+XTerm*Toolbar: false
+XTerm*Background: rgb:00/00/00
+XTerm*ColorMode: on
+XTerm*CursorColor: rgb:33/ff/33
+!XTerm*faceName: -*-lucida-medium-r-normal-sans-14-*-*-*-*-*-*-*
+XTerm*FaceSize: 14
+XTerm*Foreground: rgb:cc/cc/cc
+XTerm*LoginShell: true
+XTerm*ScrollBar: false
 ! --- XTerm colors
-XTerm*color0: rgb:00/00/00
-XTerm*color1: rgb:cc/00/00
-XTerm*color2: rgb:00/cc/00
-XTerm*color3: rgb:cc/cc/00
-XTerm*color4: rgb:00/00/cc
-XTerm*color5: rgb:cc/00/cc
-XTerm*color6: rgb:00/cc/cc
-XTerm*color7: rgb:cc/cc/cc
-XTerm*color8: rgb:66/66/66
-XTerm*color9: rgb:ff/33/33
-XTerm*color10: rgb:33/ff/33
-XTerm*color11: rgb:ff/ff/33
-XTerm*color12: rgb:33/33/ff
-XTerm*color13: rgb:ff/33/ff
-XTerm*color14: rgb:33/ff/ff
-XTerm*color15: rgb:ff/ff/ff
+XTerm*Color0: rgb:00/00/00
+XTerm*Color1: rgb:cc/00/00
+XTerm*Color2: rgb:00/cc/00
+XTerm*Color3: rgb:cc/cc/00
+XTerm*Color4: rgb:00/00/cc
+XTerm*Color5: rgb:cc/00/cc
+XTerm*Color6: rgb:00/cc/cc
+XTerm*Color7: rgb:cc/cc/cc
+XTerm*Color8: rgb:66/66/66
+XTerm*Color9: rgb:ff/66/66
+XTerm*Color10: rgb:66/ff/66
+XTerm*Color11: rgb:ff/ff/66
+XTerm*Color12: rgb:66/66/ff
+XTerm*Color13: rgb:ff/66/ff
+XTerm*Color14: rgb:66/ff/ff
+XTerm*Color15: rgb:ff/ff/ff
 
 ! vim: fdm=marker
