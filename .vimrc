@@ -51,6 +51,9 @@ let python_highlight_doctests = 1
 " }}}
 
 " Keymap {{{
+" Show the syntax highlighting groups for the item under the cursor
+"
+map  <F10>  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 " Mac OS X Terminal {{{
 "map <Esc>[H <Home>
 "map <Esc>[F <End>
