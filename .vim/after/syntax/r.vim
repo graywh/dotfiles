@@ -1,2 +1,2 @@
-syn keyword rBoolean F T
-syn match rArrow /->\{1,2}/
+syntax keyword rBoolean F T
+syntax match rArrow /->\{1,2}/
