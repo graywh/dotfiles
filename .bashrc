@@ -32,9 +32,9 @@ fi
 
 # Aliases {{{
 # some more ls aliases
-alias ll='ls -hoF'
+alias ll='ls -hlF'
 alias la='ls -AF'
-alias lla='ls -hoAF'
+alias lla='ls -hlAF'
 # }}}
 
 # set a fancy prompt {{{
