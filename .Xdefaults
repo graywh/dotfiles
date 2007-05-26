@@ -1,30 +1,48 @@
 ! --- XTerm
-XTerm*TermName: xterm-256color
-XTerm*Toolbar: false
-XTerm*Background: rgb:00/00/00
-XTerm*ColorMode: on
-XTerm*CursorColor: rgb:33/ff/33
-!XTerm*faceName: -*-lucida-medium-r-normal-sans-14-*-*-*-*-*-*-*
-XTerm*FaceSize: 14
-XTerm*Foreground: rgb:cc/cc/cc
-XTerm*LoginShell: true
-XTerm*ScrollBar: false
-! --- XTerm colors
-XTerm*Color0: rgb:00/00/00
-XTerm*Color1: rgb:cc/00/00
-XTerm*Color2: rgb:00/cc/00
-XTerm*Color3: rgb:cc/cc/00
-XTerm*Color4: rgb:00/00/cc
-XTerm*Color5: rgb:cc/00/cc
-XTerm*Color6: rgb:00/cc/cc
-XTerm*Color7: rgb:cc/cc/cc
-XTerm*Color8: rgb:66/66/66
-XTerm*Color9: rgb:ff/66/66
-XTerm*Color10: rgb:66/ff/66
-XTerm*Color11: rgb:ff/ff/66
-XTerm*Color12: rgb:66/66/ff
-XTerm*Color13: rgb:ff/66/ff
-XTerm*Color14: rgb:66/ff/ff
-XTerm*Color15: rgb:ff/ff/ff
+XTerm*termName: xterm-256color
+XTerm*toolBar: false
+XTerm*faceName: Monaco:antialias=false
+XTerm*faceSize: 12
+XTerm*loginShell: true
+XTerm*scrollBar: true
+XTerm*rightScrollBar: true
+! --- XTerm*VT100
+XTerm*VT100.geometry: 80x36
+! --- XTerm*VT100 keybindings
+XTerm*VT100.translations: #override \n\
+    <Key>BackSpace: string(0x7F) \n\
+    <Key>Delete: string("[3~") \n\
+    <Key>Home: string("[1~") \n\
+    <Key>End: string("[4~") \n\
+    Shift<Key>Up: scroll-back(1,line) \n\
+    Shift<Key>Down: scroll-forw(1,line) \n\
+    <Key>F1: spawn-new-terminal("")
+XTerm*VT100.scrollbar.translations: #override \n\
+    <Btn5Down>: StartScroll(Forward) \n\
+    <Btn1Down>: StartScroll(Continuous) MoveThumb() NotifyThumb() \n\
+    <Btn4Down>: StartScroll(Backward) \n\
+    <Btn1Motion>: MoveThumb() NotifyThumb() \n\
+    <BtnUp>: NotifyScroll(Proportional) EndScroll()
+! --- XTerm*VT100 colors
+XTerm*VT100.colorMode: on
+XTerm*VT100.background: rgb:00/00/00
+XTerm*VT100.foreground: rgb:cc/cc/cc
+XTerm*VT100.cursorColor: rgb:33/ff/33
+XTerm*VT100.color0: rgb:00/00/00
+XTerm*VT100.color1: rgb:cc/00/00
+XTerm*VT100.color2: rgb:00/cc/00
+XTerm*VT100.color3: rgb:cc/cc/00
+XTerm*VT100.color4: rgb:00/00/cc
+XTerm*VT100.color5: rgb:cc/00/cc
+XTerm*VT100.color6: rgb:00/cc/cc
+XTerm*VT100.color7: rgb:cc/cc/cc
+XTerm*VT100.color8: rgb:66/66/66
+XTerm*VT100.color9: rgb:ff/66/66
+XTerm*VT100.color10: rgb:66/ff/66
+XTerm*VT100.color11: rgb:ff/ff/66
+XTerm*VT100.color12: rgb:66/66/ff
+XTerm*VT100.color13: rgb:ff/66/ff
+XTerm*VT100.color14: rgb:66/ff/ff
+XTerm*VT100.color15: rgb:ff/ff/ff
 
 ! vim: fdm=marker
