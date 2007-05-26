@@ -1,7 +1,7 @@
 " vimrc
 " Author: Will Gray <graywh@gmail.com>
 
-" Editor {{{
+" Editor {{{1
 set mouse=a             "     - Use the mouse for all modes
 set nocompatible	    " cp  - Use Vim defaults instead of 100% vi compatibility
 set backspace=indent,eol,start
@@ -25,46 +25,6 @@ set showmatch           " sm  - Show matching brackets.
 "set ignorecase         " ic  - Do case insensitive matching
 set incsearch           " is  - Incremental search
 "set autowrite          " aw  - Automatically save before commands like :next and :make
-" }}}
- 
-" Syntax {{{
-colorscheme graywh
-syntax sync fromstart
-syntax on
-
-" PHP {{{
-let php_sql_query = 1
-let php_htmlInStrings = 1
-let php_baselib = 1
-" }}}
-
-" Python {{{
-let python_highlight_builtins = 1
-let python_highlight_exceptions = 1
-let python_highlight_string_formatting = 1
-let python_highlight_doctests = 1
-" }}}
-
-" Ruby {{{
-"let ruby_fold = 1
-" }}}
-" }}}
-
-" Keymap {{{
-" Show the syntax highlighting groups for the item under the cursor
-"
-map  <F10>  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-" Mac OS X Terminal {{{
-"map <Esc>[H <Home>
-"map <Esc>[F <End>
-"imap <Esc>[H <Esc>I
-"imap <Esc>[F <Esc>A
-"map <C-D-\> <Home>
-"map <C-D-[> <End>
-"imap <C-D-\> <Esc>I
-"imap <C-D-[> <Esc>A
-" }}}
-" }}}
 
 " Suffixes that get lower priority when doing tab completion for filenames.
 " These are files we are not likely to want to edit or read.
@@ -76,5 +36,38 @@ if has("autocmd")
   " to automatically do language-dependent indenting add 'indent' as well.
   filetype plugin indent on
 endif " has ("autocmd")
+" }}}1
+ 
+" Syntax {{{1
+colorscheme graywh
+syntax sync fromstart
+syntax on
+" PHP {{{2
+let php_sql_query = 1
+let php_htmlInStrings = 1
+let php_baselib = 1
+" Python {{{2
+let python_highlight_builtins = 1
+let python_highlight_exceptions = 1
+let python_highlight_string_formatting = 1
+let python_highlight_doctests = 1
+" Ruby {{{2
+"let ruby_fold = 1
+" }}}1
+
+" Keymap {{{1
+" Show the syntax highlighting groups for the item under the cursor
+"
+map  <F10>  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+" Mac OS X Terminal {{{2
+"map <Esc>[H <Home>
+"map <Esc>[F <End>
+"imap <Esc>[H <Esc>I
+"imap <Esc>[F <Esc>A
+"map <C-D-\> <Home>
+"map <C-D-[> <End>
+"imap <C-D-\> <Esc>I
+"imap <C-D-[> <Esc>A
+" }}}1
 
 " vim: ts=2 sw=2 fdm=marker

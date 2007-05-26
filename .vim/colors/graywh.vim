@@ -2,7 +2,7 @@
 " Maintainer:   Will Gray <graywh@gmail.com>
 " Last Change:  2007 May 21
 
-" Favorite colors {{{
+" Favorite colors {{{1
 " I prefer to use a terminal with color levels of [00, 33, 66, 99, CC, FF]
 " and have used color codes to reflect that.
 "     LightRed= FFCCCC 224      Red= FF6666       DarkRed= CC0000
@@ -11,7 +11,7 @@
 "    LightCyan= CCFFFF 195     Cyan= 66FFFF      DarkCyan= 00CCCC
 "    LightBlue= 99CCFF 153     Blue= 6666FF      DarkBlue= 0000CC
 " LightMagenta= FFCCFF 225  Magenta= FF66FF   DarkMagenta= CC00CC
-" }}}
+" }}}1
 
 " This color scheme uses a black background.
 set background=dark
