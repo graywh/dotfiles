@@ -98,7 +98,7 @@ else
   hi Folded     ctermfg=Gray     ctermbg=DarkGray
   hi FoldColum  ctermfg=Cyan     ctermbg=DarkGray
   hi LineNr     ctermfg=Yellow   ctermbg=DarkGray
-  hi SignColumn 
+  hi SignColumn ctermfg=Cyan     ctermbg=DarkGray
   hi ErrorMsg   ctermfg=White    ctermbg=DarkRed
   hi WarningMsg ctermfg=White    ctermbg=DarkYellow
   hi NonText    ctermfg=Cyan
