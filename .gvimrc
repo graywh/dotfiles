@@ -6,8 +6,8 @@ if has("win32") || has("macunix")
   set guifont=Monaco:h14
 else
   set guifont=Monaco\ 11
-endif
-set guioptions=cgmrLaA
+endif       
+set guioptions=aAegLmrv
 set columns=85
 set lines=40
 " }}}1

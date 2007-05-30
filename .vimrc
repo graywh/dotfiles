@@ -3,7 +3,7 @@
 
 " Editor {{{1
 set mouse=a             "     - Use the mouse for all modes
-set nocompatible	    " cp  - Use Vim defaults instead of 100% vi compatibility
+set nocompatible        " cp  - Use Vim defaults instead of 100% vi compatibility
 set backspace=indent,eol,start
                         " bs  - more powerful backspacing
 set shiftwidth=4        " sw  - use 4 spaces for each level of indention
@@ -14,7 +14,7 @@ set smarttab            " sta - delete expanded tabs
 "set linebreak          " lbr - Don't wrap words by default
 set textwidth=0         " tw  - Don't wrap lines by default
 set viminfo='20,\"50    " vi  - read/write a .viminfo file, don't store more than
-						"       50 lines of registers
+                        "       50 lines of registers
 set history=50          " hi  - keep 50 lines of command line history
 set ruler               " ru  - show the cursor position all the time
 set number              " nu  - show line numbers
@@ -57,7 +57,6 @@ let python_highlight_doctests = 1
 
 " Keymap {{{1
 " Show the syntax highlighting groups for the item under the cursor
-"
 map  <F10>  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 " Mac OS X Terminal {{{2
 "map <Esc>[H <Home>
