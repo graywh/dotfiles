@@ -15,6 +15,8 @@ highlight link pythonDocString Comment
 " }}}1
 
 " Re-define some groups {{{1
+" #! line {{{2
+syn match pythonRun "\%^#!.*$" nextgroup=pythonDocString skipnl
 " Classes {{{2
 syntax keyword pythonClass class nextgroup=pythonType skipwhite
 syntax match pythonType "[a-zA-Z_][a-zA-Z0-9_]*" display contained nextgroup=pythonClassInherit
