@@ -37,9 +37,11 @@ fi
 alias ll='ls -hlF'
 alias la='ls -AF'
 alias lla='ls -hlAF'
+# for better man page formatting
+alias man='man -H'
 # }}}
 
-# set a fancy prompt {{{
+# Set a fancy prompt {{{
 # red = 31, green = 32, yellow = 33, blue = 34, bold = 1;
 # change color \[\033[*;**m\]
 #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
