@@ -117,5 +117,3 @@ else
   hi Special    ctermfg=DarkRed
   " }}}1
 endif
-
-" vim: fdm=marker ts=2 sw=2
