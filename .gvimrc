@@ -29,5 +29,3 @@ endif
 "omap <D-n> <Esc><D-n>
 "vmap <D-n> <Esc><D-n>v
 " }}}1
-
-" vim: ts=2 sw=2 fdm=marker

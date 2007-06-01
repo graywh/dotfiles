@@ -11,8 +11,9 @@ set tabstop=4           " ts  - show tabs as 4 spaces
 set autoindent          " ai  - always set autoindenting on
 set expandtab           " et  - always expand tabs to spaces
 set smarttab            " sta - delete expanded tabs
-"set linebreak          " lbr - Don't wrap words by default
-set textwidth=0         " tw  - Don't wrap lines by default
+set wrap                "     - Wrap lines by default
+set linebreak           " lbr - Don't wrap words by default
+set textwidth=0         " tw  - Don't break lines by default
 set viminfo='20,\"50    " vi  - read/write a .viminfo file, don't store more than
                         "       50 lines of registers
 set history=50          " hi  - keep 50 lines of command line history
@@ -56,6 +57,16 @@ let python_highlight_doctests = 1
 " }}}1
 
 " Keymap {{{1
+" Shift-arrow display navigation
+map <S-Up> g<Up>
+map <S-Down> g<Down>
+imap <S-Up> <C-O>g<Up>
+imap <S-Down> <C-O>g<Down>
+" Shift-home/end display navigation
+map <S-Home> g<Home>
+map <S-End> g<End>
+imap <S-Home> <C-O>g<Home>
+imap <S-End> <C-O>g<End>
 " Show the syntax highlighting groups for the item under the cursor
 map  <F10>  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 " Mac OS X Terminal {{{2
@@ -68,5 +79,3 @@ map  <F10>  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> tra
 "imap <C-D-\> <Esc>I
 "imap <C-D-[> <Esc>A
 " }}}1
-
-" vim: ts=2 sw=2 fdm=marker
