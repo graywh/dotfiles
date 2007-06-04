@@ -2,7 +2,9 @@
 " Author: Will Gray <graywh@gmail.com>
 
 " Editor {{{1
-if has("win32") || has("macunix")
+if has("win32")
+  set guifont=Monaco:h10
+elseif has("macunix")
   set guifont=Monaco:h14
 else
   set guifont=Monaco\ 11
