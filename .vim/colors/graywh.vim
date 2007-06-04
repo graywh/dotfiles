@@ -37,8 +37,8 @@ hi link Character String
   hi Directory  guifg=#009999
   hi DiffText                 guibg=#FFFFCC gui=none
   hi DiffAdd                  guibg=#CCFFCC
-  hi DiffDelete               guibg=#FF9999 gui=none
-  hi Folded     guifg=fg      guibg=#474747 gui=italic
+  hi DiffDelete guifg=fg      guibg=#FF9999 gui=none
+  hi Folded     guifg=#FFCCFF guibg=#474747 gui=italic
   hi FoldColumn guifg=#66FFFF guibg=#474747
   hi LineNr     guifg=#CCCC99 guibg=#141414
   hi ErrorMsg   guifg=#FFFFFF guibg=#CC0000
