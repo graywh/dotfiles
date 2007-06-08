@@ -57,18 +57,23 @@ let python_highlight_doctests = 1
 " }}}1
 
 " Keymap {{{1
+" Ctrl-Tab navigation
+noremap <silent> <C-Tab> :tabnext<CR>
+noremap <silent> <C-S-Tab> :tabprevious<CR>
+inoremap <silent> <C-Tab> <Esc>:tabnext<CR>
+inoremap <silent> <C-S-Tab> <Esc>:tabprevious<CR>
 " Shift-arrow display navigation
-map <S-Up> g<Up>
-map <S-Down> g<Down>
-imap <S-Up> <C-O>g<Up>
-imap <S-Down> <C-O>g<Down>
+noremap <S-Up> g<Up>
+noremap <S-Down> g<Down>
+inoremap <S-Up> <C-O>g<Up>
+inoremap <S-Down> <C-O>g<Down>
 " Shift-home/end display navigation
-map <S-Home> g<Home>
-map <S-End> g<End>
-imap <S-Home> <C-O>g<Home>
-imap <S-End> <C-O>g<End>
+noremap <S-Home> g<Home>
+noremap <S-End> g<End>
+inoremap <S-Home> <C-O>g<Home>
+inoremap <S-End> <C-O>g<End>
 " Show the syntax highlighting groups for the item under the cursor
-map  <F10>  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+noremap  <F10>  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 " Mac OS X Terminal {{{2
 "map <Esc>[H <Home>
 "map <Esc>[F <End>
