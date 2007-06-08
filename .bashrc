@@ -18,7 +18,7 @@ fi
 export EDITOR=vim
 
 # use vim as my pager
-export PAGER="/bin/sh -c \"col -b | view -u ~/.vimrc_man -\""
+export PAGER="/bin/sh -c \"col -b | view -c 'set ft=man' -\""
 
 # Override default setting of en_US.utf8
 export LANG=en_US
@@ -46,6 +46,11 @@ shopt -s checkwinsize
 
 # disable messages
 mesg n
+
+# use ^? for backspace so ^H can be used for other things
+if tty --quiet; then
+    stty erase '^?'
+fi
 
 # enable color support of ls {{{1
 # 38;5;___ for 256 color support
