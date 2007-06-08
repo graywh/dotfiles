@@ -79,8 +79,8 @@ alias lla='ls -hlAF'
 # red = 31, green = 32, yellow = 33, blue = 34, bold = 1;
 # change color \[\033[*;**m\]
 #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-# Color definitions
-if [ "$OSTYPE" != "darwin8.0" ]; then
+# Color definitions {{{
+if [ `tput colors` == 256 ]; then
     # For 256 color term {{{
     #Foreground="[38;5;${n}m"
     #Background="[48;5;${n}m"
@@ -122,8 +122,8 @@ else
     # }}}
 fi
 None="[0m"
-PS1='$Green[\u@\h:$Red\w$Green]\n\$$None '
 # }}}
+PS1='$Green[\u@\h:$Red\w$Green]\n\$$None '
 
 # a function to put the current time in the top-right corner of the terminal
 # and change the title of the terminal
@@ -154,6 +154,7 @@ function prompt_command
 # }}}
 
 PROMPT_COMMAND=prompt_command
+#}}}
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc).
