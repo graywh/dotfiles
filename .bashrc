@@ -11,7 +11,13 @@
 if [ -d ~/bin ] ; then
     export PATH="~/bin:${PATH}"
 fi
-# }}}
+
+# Mac OS X options {{{2
+if [ "$OSTYPE" == "darwin8.0" ]; then
+    # include location of MySQL
+    export PATH="${PATH}:/usr/local/mysql/bin"
+fi
+# }}}1
 
 # Environment variables {{{1
 # use a sensible editor
@@ -34,9 +40,6 @@ if [ "$OSTYPE" == "darwin8.0" ]; then
 
     # export X11 Display (for Terminal.app)
     export DISPLAY=:0.0
-
-    # include location of MySQL
-    export PATH="${PATH}:/usr/local/mysql/bin"
 fi
 # }}}1
 
@@ -166,5 +169,3 @@ function calc()
 {
     echo "$@" | bc -l
 }
-
-# vim: fdm=marker
