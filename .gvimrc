@@ -12,18 +12,14 @@ endif
 set guioptions=aAegLmrv
 set columns=85
 set lines=40
+set showtabline=1
 " }}}1
 
 " Menu {{{1
 " File {{{2
-anoremenu 10.325 &File.New\ &Tab<Tab>:tabnew   :confirm tabnew<CR>
-anoremenu 10.355 &File.Save\ A&ll<Tab>:wall    :wall<CR>
-" Context {{{2
-if has("folding")
-  anoremenu 1.56 PopUp.Open\ Fold    zo
-  anoremenu 1.56 PopUp.Close\ Fold   zc
-  anoremenu 1.56 PopUp.-SEP101-      <Nop>
-endif
+anoremenu 10.325 &File.New\ &Tab<Tab>:tabnew    :confirm tabnew<CR>
+anoremenu 10.325 &File.D&uplicate\ Tab<Tab>:tab\ sp    :confirm tab sp<CR>
+anoremenu 10.355 &File.Sav&e\ All<Tab>:wall    :wall<CR>
 " }}}1
 
 " Keymap {{{1

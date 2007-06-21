@@ -26,6 +26,9 @@ export EDITOR=vim
 # use vim as my pager
 export PAGER="/bin/sh -c \"col -b | view -c 'set ft=man' -\""
 
+# use firefox when available
+export BROWSER=firefox
+
 # Override default setting of en_US.utf8
 export LANG=en_US
 
@@ -74,6 +77,7 @@ fi
 # Aliases {{{1
 # some more ls aliases
 alias ll='ls -hlF'
+alias l.='ls -d .*'
 alias la='ls -AF'
 alias lla='ls -hlAF'
 # }}}
@@ -169,3 +173,5 @@ function calc()
 {
     echo "$@" | bc -l
 }
+
+# vim: fdm=marker
