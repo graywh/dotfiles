@@ -14,8 +14,11 @@ set smarttab            " sta - delete expanded tabs
 set wrap                "     - Wrap lines by default
 set linebreak           " lbr - Don't wrap words by default
 set textwidth=0         " tw  - Don't break lines by default
-set viminfo='20,\"50    " vi  - read/write a .viminfo file, don't store more than
-                        "       50 lines of registers
+set viminfo=!,'20,<50   " vi  - read/write a .viminfo file
+set viminfo^=!          "       remember some global variables
+set viminfo^='20        "       remember 20 previously edited files (required)
+set viminfo^=<50        "       remember up to 50 lines of registers
+set viminfo^=h          "       don't restore the hlsearch highlighting
 set history=50          " hi  - keep 50 lines of command line history
 set ruler               " ru  - show the cursor position all the time
 set number              " nu  - show line numbers
