@@ -54,7 +54,7 @@ shopt -s checkwinsize
 mesg n
 
 # use ^? for backspace so ^H can be used for other things
-if tty --quiet; then
+if tty -s; then
     stty erase '^?'
 fi
 
