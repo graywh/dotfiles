@@ -76,7 +76,7 @@ noremap <S-End> g<End>
 inoremap <S-Home> <C-O>g<Home>
 inoremap <S-End> <C-O>g<End>
 " Show the syntax highlighting groups for the item under the cursor
-noremap  <F10>  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+noremap  <F10>  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . "> trans<" . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 " Mac OS X Terminal {{{2
 "map <Esc>[H <Home>
 "map <Esc>[F <End>
