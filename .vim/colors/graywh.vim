@@ -52,7 +52,7 @@ hi link Character String
   hi String     guifg=#FF66FF
   hi Function   guifg=#66FFFF
   hi Statement  guifg=#6699FF               gui=none
-  hi Operator   guifg=#6666FF
+  hi Operator   guifg=#6699FF
   hi PreProc    guifg=#3366FF               gui=none
   hi Type       guifg=#66FFFF               gui=none
   hi Identifier guifg=#66FFFF
@@ -81,7 +81,7 @@ if &t_Co == 256
   hi String     ctermfg=213
   hi Function   ctermfg=123
   hi Statement  ctermfg=111             cterm=none
-  hi Operator   ctermfg=105
+  hi Operator   ctermfg=111
   hi PreProc    ctermfg=69              cterm=none
   hi Type       ctermfg=123             cterm=none
   hi Identifier ctermfg=123             cterm=none
