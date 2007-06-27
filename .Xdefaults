@@ -41,7 +41,7 @@ XTerm.toolBar: false
 *VT100.color9: rgb:ff/66/66
 *VT100.color10: rgb:66/ff/66
 *VT100.color11: rgb:ff/ff/66
-*VT100.color12: rgb:66/66/ff
+*VT100.color12: rgb:33/66/ff
 *VT100.color13: rgb:ff/66/ff
 *VT100.color14: rgb:66/ff/ff
 *VT100.color15: rgb:ff/ff/ff

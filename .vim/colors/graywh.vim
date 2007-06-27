@@ -45,17 +45,17 @@ hi link Character String
   hi WarningMsg guifg=#FFFFFF guibg=#CCCC00
   hi NonText    guifg=#66FFFF               gui=bold
   " Syntax {{{2
-  hi Error      guifg=#FFFFFF guibg=#FF6666
+  hi Error      guifg=#FFFFFF guibg=#FF3333
   hi Comment    guifg=#66FF66               gui=italic
   hi Constant   guifg=#FF6666
-  hi Boolean    guifg=#6666FF               gui=bold
+  hi Boolean    guifg=#0033FF               gui=bold
   hi String     guifg=#FF66FF
-  hi Function   guifg=#66FFFF
+  hi Function   guifg=#99CCFF
   hi Statement  guifg=#6699FF               gui=none
-  hi Operator   guifg=#6699FF
-  hi PreProc    guifg=#3366FF               gui=none
-  hi Type       guifg=#66FFFF               gui=none
-  hi Identifier guifg=#66FFFF
+  hi Operator   guifg=#FF9966
+  hi PreProc    guifg=#33FFFF               gui=none
+  hi Type       guifg=#FFFF99               gui=none
+  hi Identifier guifg=#99FFFF
   hi Special    guifg=#FF3333
   " }}}1
 if &t_Co == 256
@@ -77,14 +77,14 @@ if &t_Co == 256
   hi Error      ctermfg=231 ctermbg=203
   hi Comment    ctermfg=120
   hi Constant   ctermfg=210
-  hi Boolean    ctermfg=105             cterm=bold
+  hi Boolean    ctermfg=27              cterm=bold
   hi String     ctermfg=213
-  hi Function   ctermfg=123
+  hi Function   ctermfg=153
   hi Statement  ctermfg=111             cterm=none
-  hi Operator   ctermfg=111
-  hi PreProc    ctermfg=69              cterm=none
-  hi Type       ctermfg=123             cterm=none
-  hi Identifier ctermfg=123             cterm=none
+  hi Operator   ctermfg=216
+  hi PreProc    ctermfg=87              cterm=none
+  hi Type       ctermfg=229             cterm=none
+  hi Identifier ctermfg=159             cterm=none
   hi Special    ctermfg=203
   " }}}1
 else
