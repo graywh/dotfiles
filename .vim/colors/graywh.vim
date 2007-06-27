@@ -32,7 +32,7 @@ hi link Character String
 " }}}1
 
   " For GUI {{{1
-  hi Normal     guifg=#CCCCCC guibg=#000000
+  hi Normal     guifg=#CCCCCC guibg=#151515
   " Vim {{{2
   hi Directory  guifg=#009999
   hi DiffText                 guibg=#FFFFCC gui=none
@@ -51,16 +51,16 @@ hi link Character String
   hi Boolean    guifg=#6666FF               gui=bold
   hi String     guifg=#FF66FF
   hi Function   guifg=#66FFFF
-  hi Statement  guifg=#6666FF               gui=none
+  hi Statement  guifg=#6699FF               gui=none
   hi Operator   guifg=#6666FF
-  hi PreProc    guifg=#6666FF               gui=none
+  hi PreProc    guifg=#3366FF               gui=none
   hi Type       guifg=#66FFFF               gui=none
   hi Identifier guifg=#66FFFF
   hi Special    guifg=#FF3333
   " }}}1
 if &t_Co == 256
   " For 256 color terminals {{{1
-  hi Normal     ctermfg=251 ctermbg=16
+  hi Normal     ctermfg=251 ctermbg=233
   " Vim {{{2
   hi Directory  ctermfg=37
   hi DiffText               ctermbg=230 cterm=none
@@ -80,9 +80,9 @@ if &t_Co == 256
   hi Boolean    ctermfg=105             cterm=bold
   hi String     ctermfg=213
   hi Function   ctermfg=123
-  hi Statement  ctermfg=105             cterm=none
+  hi Statement  ctermfg=111             cterm=none
   hi Operator   ctermfg=105
-  hi PreProc    ctermfg=105             cterm=none
+  hi PreProc    ctermfg=69              cterm=none
   hi Type       ctermfg=123             cterm=none
   hi Identifier ctermfg=123             cterm=none
   hi Special    ctermfg=203

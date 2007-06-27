@@ -26,7 +26,7 @@ XTerm.toolBar: false
     <BtnUp>: NotifyScroll(Proportional) EndScroll()
 ! --- *VT100 colors
 *VT100.colorMode: on
-*VT100.background: rgb:00/00/00
+*VT100.background: rgb:14/14/14
 *VT100.foreground: rgb:cc/cc/cc
 *VT100.cursorColor: rgb:33/ff/33
 *VT100.color0: rgb:00/00/00
