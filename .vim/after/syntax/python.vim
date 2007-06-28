@@ -5,6 +5,10 @@ syntax keyword pythonSelf self
 highlight link pythonSelf Constant
 " }}}1
 
+" Add some operators {{{1
+syn keyword pythonOperator + - / % = :
+" }}}1
+
 " Add DocString highlighting {{{1
 syn region pythonDocString start=/"""/ end=/"""/ keepend contains=pythonDocTest2,pythonTodo contained 
 syn region pythonDocString start=/'''/ end=/'''/ keepend contains=pythonDocTest,pythonTodo contained

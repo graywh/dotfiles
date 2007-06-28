@@ -32,7 +32,7 @@ hi link Character String
 " }}}1
 
   " For GUI {{{1
-  hi Normal     guifg=#CCCCCC guibg=#151515
+  hi Normal     guifg=#CCCCCC guibg=#1E1E1E
   " Vim {{{2
   hi Directory  guifg=#009999
   hi DiffText                 guibg=#FFFFCC gui=none
@@ -40,16 +40,17 @@ hi link Character String
   hi DiffDelete guifg=fg      guibg=#FF9999 gui=none
   hi Folded     guifg=#FFCCFF guibg=#474747 gui=italic
   hi FoldColumn guifg=#66FFFF guibg=#474747
-  hi LineNr     guifg=#CCCC99 guibg=#141414
+  hi LineNr     guifg=#CCCC99 guibg=#282828
   hi ErrorMsg   guifg=#FFFFFF guibg=#CC0000
   hi WarningMsg guifg=#FFFFFF guibg=#CCCC00
   hi NonText    guifg=#66FFFF               gui=bold
+  hi Title      guifg=#FF99FF               gui=bold
   " Syntax {{{2
   hi Error      guifg=#FFFFFF guibg=#FF3333
-  hi Comment    guifg=#66FF66               gui=italic
-  hi Constant   guifg=#FF6666
-  hi Boolean    guifg=#0033FF               gui=bold
-  hi String     guifg=#FF66FF
+  hi Comment    guifg=#99FF99               gui=italic
+  hi Constant   guifg=#FF9999
+  hi Boolean    guifg=#3366FF               gui=bold
+  hi String     guifg=#FF99FF
   hi Function   guifg=#99CCFF
   hi Statement  guifg=#6699FF               gui=none
   hi Operator   guifg=#FF9966
@@ -60,7 +61,7 @@ hi link Character String
   " }}}1
 if &t_Co == 256
   " For 256 color terminals {{{1
-  hi Normal     ctermfg=251 ctermbg=233
+  hi Normal     ctermfg=251 ctermbg=234
   " Vim {{{2
   hi Directory  ctermfg=37
   hi DiffText               ctermbg=230 cterm=none
@@ -68,24 +69,25 @@ if &t_Co == 256
   hi DiffDelete ctermfg=fg  ctermbg=217 cterm=none
   hi Folded     ctermfg=225 ctermbg=238
   hi FoldColumn ctermfg=123 ctermbg=238
-  hi LineNr     ctermfg=187 ctermbg=233
-  hi SignColumn ctermfg=123 ctermbg=233
+  hi LineNr     ctermfg=187 ctermbg=235
+  hi SignColumn ctermfg=123 ctermbg=235
   hi ErrorMsg   ctermfg=231 ctermbg=160
   hi WarningMsg ctermfg=231 ctermbg=184
   hi NonText    ctermfg=123             cterm=bold
+  hi Title      ctermfg=219
   " Syntax {{{2
-  hi Error      ctermfg=231 ctermbg=203
-  hi Comment    ctermfg=120
-  hi Constant   ctermfg=210
-  hi Boolean    ctermfg=27              cterm=bold
-  hi String     ctermfg=213
+  hi Error      ctermfg=231 ctermbg=210
+  hi Comment    ctermfg=157
+  hi Constant   ctermfg=217
+  hi Boolean    ctermfg=69              cterm=bold
+  hi String     ctermfg=219
   hi Function   ctermfg=153
   hi Statement  ctermfg=111             cterm=none
   hi Operator   ctermfg=216
   hi PreProc    ctermfg=87              cterm=none
   hi Type       ctermfg=229             cterm=none
   hi Identifier ctermfg=159             cterm=none
-  hi Special    ctermfg=203
+  hi Special    ctermfg=210
   " }}}1
 else
   " For 8/16 color terminals {{{1
@@ -102,8 +104,9 @@ else
   hi ErrorMsg   ctermfg=White    ctermbg=DarkRed
   hi WarningMsg ctermfg=White    ctermbg=DarkYellow
   hi NonText    ctermfg=Cyan
+  hi Title      ctermfg=DarkMagenta
   " Syntax {{{2
-  hi Error      ctermfg=White     ctermbg=Red
+  hi Error      ctermfg=White    ctermbg=Red
   hi Comment    ctermfg=Green
   hi Constant   ctermfg=Red
   hi Boolean    ctermfg=Blue
