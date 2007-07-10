@@ -1,2 +1,2 @@
-setlocal tabstop=2
-setlocal shiftwidth=2
+setlocal tabstop=2            " The Ruby way
+setlocal shiftwidth=2         " The Ruby way
