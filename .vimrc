@@ -2,33 +2,33 @@
 " Author: Will Gray <graywh@gmail.com>
 
 " Editor {{{1
-set mouse=a             "     - Use the mouse for all modes
-set nocompatible        " cp  - Use Vim defaults instead of 100% vi compatibility
-set backspace=indent,eol,start
-                        " bs  - more powerful backspacing
-set shiftwidth=4        " sw  - use 4 spaces for each level of indention
-set tabstop=4           " ts  - show tabs as 4 spaces
-set autoindent          " ai  - always set autoindenting on
-set expandtab           " et  - always expand tabs to spaces
-set smarttab            " sta - delete expanded tabs
-set wrap                "     - Wrap lines by default
-set linebreak           " lbr - Don't wrap words by default
-set textwidth=0         " tw  - Don't break lines by default
-set viminfo=!,'20,<50   " vi  - read/write a .viminfo file
-set viminfo^=!          "       remember some global variables
-set viminfo^='20        "       remember 20 previously edited files (required)
-set viminfo^=<50        "       remember up to 50 lines of registers
-set viminfo^=h          "       don't restore the hlsearch highlighting
-set history=50          " hi  - keep 50 lines of command line history
-set ruler               " ru  - show the cursor position all the time
-set number              " nu  - show line numbers
-set foldcolumn=1        " fdc - show top-level fold sections
-set hidden              " hid - allow hiding changed buffers without override or warning
-set showcmd             " sc  - Show (partial) command in status line.
-set showmatch           " sm  - Show matching brackets.
-"set ignorecase         " ic  - Do case insensitive matching
-set incsearch           " is  - Incremental search
-"set autowrite          " aw  - Automatically save before commands like :next and :make
+set autoindent                " ai  - Always set autoindenting on
+"set autowrite                " aw  - Automatically save before commands like :next and :make
+set backspace=2               " bs  - More powerful backspacing
+set nocompatible              " cp  - Use Vim defaults instead of 100% vi compatibility
+set expandtab                 " et  - Always expand tabs to spaces
+set fileformats=unix,mac,dos  " ffs - End-of-line character
+set foldcolumn=1              " fdc - Show top-level fold sections
+set hidden                    " hid - Allow hiding changed buffers without override or warning
+set history=50                " hi  - Keep 50 lines of command line history
+"set ignorecase               " ic  - Do case insensitive matching
+set incsearch                 " is  - Incremental search
+set linebreak                 " lbr - Don't wrap words by default
+set mouse=a                   "     - Use the mouse for all modes
+set number                    " nu  - Show line numbers
+set ruler                     " ru  - Show the cursor position all the time
+set shiftwidth=4              " sw  - Use 4 spaces for each level of indention
+set showcmd                   " sc  - Show (partial) command in status line.
+set showmatch                 " sm  - Show matching brackets.
+set smarttab                  " sta - Delete expanded tabs
+set tabstop=4                 " ts  - Show tabs as 4 spaces
+set textwidth=0               " tw  - Don't break lines by default
+set viminfo=                  " vi  - Read/write a .viminfo file
+set viminfo^='20              "       Remember 20 previously edited files (required)
+set viminfo^=<50              "       Remember up to 50 lines of registers
+set viminfo^=!                "       Remember some global variables
+set viminfo^=h                "       Don't restore the hlsearch highlighting
+set wrap                      "     - Wrap lines by default
 
 " Suffixes that get lower priority when doing tab completion for filenames.
 " These are files we are not likely to want to edit or read.
