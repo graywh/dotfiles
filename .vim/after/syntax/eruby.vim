@@ -1,3 +1,3 @@
-hi link htmlEndTag htmlTag
-hi link htmlTag Operator
-hi link eRubyExpression Function
+highlight link htmlEndTag htmlTag
+highlight link htmlTag Operator
+syntax keyword Function containedin=eRubyExpression h 
