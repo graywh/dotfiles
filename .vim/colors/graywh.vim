@@ -87,7 +87,7 @@ if &t_Co == 256
   hi PreProc    ctermfg=87              cterm=none
   hi Type       ctermfg=229             cterm=none
   hi Identifier ctermfg=159             cterm=none
-  hi Special    ctermfg=210
+  hi Special    ctermfg=203
   " }}}1
 else
   " For 8/16 color terminals {{{1

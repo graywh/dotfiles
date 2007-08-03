@@ -74,7 +74,7 @@ if &t_Co == 256
   hi ErrorMsg   ctermfg=16  ctermbg=87 
   hi WarningMsg ctermfg=16  ctermbg=63 
   hi NonText    ctermfg=124             cterm=bold
-  hi Title      ctermfg=
+  hi Title      ctermfg=28
   " Syntax {{{2
   hi Error      ctermfg=16  ctermbg=37 
   hi Comment    ctermfg=90 
@@ -87,7 +87,7 @@ if &t_Co == 256
   hi PreProc    ctermfg=160              cterm=none
   hi Type       ctermfg=18              cterm=none
   hi Identifier ctermfg=88              cterm=none
-  hi Special    ctermfg=37 
+  hi Special    ctermfg=44 
   " }}}1
 else
   " For 8/16 color terminals {{{1
