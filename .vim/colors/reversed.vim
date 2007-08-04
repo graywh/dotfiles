@@ -45,6 +45,7 @@ hi link Character String
   hi WarningMsg guifg=#000000 guibg=#3333FF
   hi NonText    guifg=#990000               gui=bold
   hi Title      guifg=#006600               gui=bold
+  hi Visual                                 gui=reverse
   " Syntax {{{2
   hi Error      guifg=#000000 guibg=#00CCCC
   hi Comment    guifg=#660066               gui=italic
