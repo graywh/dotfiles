@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: SAS
-" Maintainer:  Will Gray
-" Last Change: 2007 Aug 22
+" Maintainer:  Will Gray <graywh@gmail.com>
+" Last Change: 2007 Aug 28
 " 
 " This is a modification of the version that ships with Vim
 " and maintained by James Kidd <james.kidd@covance.com>.
@@ -21,20 +21,20 @@ syn case ignore
 syn region sasString start=+"+  skip=+\\\\\|\\"+  end=+"+
 syn region sasString start=+'+  skip=+\\\\\|\\"+  end=+'+
 
-" Want region from 'cards;' to ';' to be captured (Bob Heckel)
+" Want region from 'cards;' to ';' to be captured
 syn region sasCards  start="^\s*CARDS.*" end="^\s*;\s*$"
 syn region sasCards  start="^\s*DATALINES.*" end="^\s*;\s*$"
 
 syn match sasNumber  "-\=\<\d*\.\=[0-9_]\>"
 
 syn region sasComment  start="/\*"  end="\*/" contains=sasTodo
-" Ignore misleading //JCL SYNTAX... (Bob Heckel)
+" Ignore misleading //JCL SYNTAX...
 syn region sasComment  start="[^/][^/]/\*"  end="\*/" contains=sasTodo
 
-" Allow highlighting of embedded TODOs (Bob Heckel)
+" Allow highlighting of embedded TODOs
 syn match sasComment "^\s*\*.*;" contains=sasTodo
 
-" Allow highlighting of embedded TODOs (Bob Heckel)
+" Allow highlighting of embedded TODOs
 syn match sasComment ";\s*\*.*;"hs=s+1 contains=sasTodo
 
 " Handle macro comments too (Bob Heckel).
@@ -44,9 +44,6 @@ syn match sasComment "^\s*%*\*.*;" contains=sasTodo
 " defines the color scheme. Begin region with ampersand and end with
 " any non-word character offset by -1; put ampersand in the skip list
 " just in case it is used to concatenate macro variable values.
-
-" Thanks to Ronald Höllwarth for this fix to an intra-versioning
-" problem with this little feature
 if version < 600
   syn region sasMacroVar  start="\&" skip="[_&]" end="\W"he=e-1
 else    " for the older Vim's just do it their way ...
@@ -54,7 +51,7 @@ else    " for the older Vim's just do it their way ...
 endif
 
 
-" I dont think specific PROCs need to be listed if use this line (Bob Heckel).
+" I dont think specific PROCs need to be listed if use this line
 syn match sasProc   "^\s*PROC \w\+"
 syn keyword sasStep    RUN QUIT DATA
 
@@ -156,10 +153,10 @@ syn keyword sasLogMsg   NOTE
 syn keyword sasWarnMsg  WARNING
 syn keyword sasErrMsg   ERROR
 
-" Always contained in a comment (Bob Heckel)
+" Always contained in a comment
 syn keyword sasTodo  TODO TBD FIXME contained
 
-" These don't fit anywhere else (Bob Heckel).
+" These don't fit anywhere else
 syn match sasUnderscore "_NULL_"
 syn match sasUnderscore "_INFILE_"
 syn match sasUnderscore "_N_"
