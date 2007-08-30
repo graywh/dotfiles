@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: SAS
 " Maintainer:  Will Gray <graywh@gmail.com>
-" Last Change: 2007 Aug 28
+" Last Change: 2007 Aug 30
 " 
 " This is a modification of the version that ships with Vim
 " and maintained by James Kidd <james.kidd@covance.com>.
@@ -17,9 +17,10 @@ endif
 let b:current_syntax = "sas"
 
 syn case ignore
+syn sync ccomment sasComment
 
-syn region sasString start=+"+  skip=+\\\\\|\\"+  end=+"+
-syn region sasString start=+'+  skip=+\\\\\|\\"+  end=+'+
+syn region sasString start=+"+  skip=+\\\\\|\\"+  end=+"+ contains=sasMacroVar
+syn region sasString start=+'+  skip=+\\\\\|\\'+  end=+'+
 
 " Want region from 'cards;' to ';' to be captured
 syn region sasCards  start="^\s*CARDS.*" end="^\s*;\s*$"
@@ -27,18 +28,11 @@ syn region sasCards  start="^\s*DATALINES.*" end="^\s*;\s*$"
 
 syn match sasNumber  "-\=\<\d*\.\=[0-9_]\>"
 
+syn region sasComment start="*" end=";" contains=sasTodo
+" Handle macro comments too.
+syn region sasComment start="%*\*" end=";" contains=sasTodo
+" /* ... */ style overrides * ... ;
 syn region sasComment  start="/\*"  end="\*/" contains=sasTodo
-" Ignore misleading //JCL SYNTAX...
-syn region sasComment  start="[^/][^/]/\*"  end="\*/" contains=sasTodo
-
-" Allow highlighting of embedded TODOs
-syn match sasComment "^\s*\*.*;" contains=sasTodo
-
-" Allow highlighting of embedded TODOs
-syn match sasComment ";\s*\*.*;"hs=s+1 contains=sasTodo
-
-" Handle macro comments too (Bob Heckel).
-syn match sasComment "^\s*%*\*.*;" contains=sasTodo
 
 " This line defines macro variables in code.  HiLink at end of file
 " defines the color scheme. Begin region with ampersand and end with
@@ -82,24 +76,10 @@ syn keyword sasStatement  NULL ON OR ORDER PRIMARY REFERENCES
 syn keyword sasStatement  RESET RESTRICT SELECT SET TABLE
 syn keyword sasStatement  UNIQUE UPDATE VALIDATE VIEW WHERE
 
+syn match sasStatement  "FOOTNOTE\d"
+syn match sasStatement  "TITLE\d"
 
-syn match sasStatement  "FOOTNOTE\d" "TITLE\d"
-
-syn match sasMacro  "%BQUOTE" "%NRBQUOTE" "%CMPRES" "%QCMPRES"
-syn match sasMacro  "%COMPSTOR" "%DATATYP" "%DISPLAY" "%DO"
-syn match sasMacro  "%ELSE" "%END" "%EVAL" "%GLOBAL"
-syn match sasMacro  "%GOTO" "%IF" "%INDEX" "%INPUT"
-syn match sasMacro  "%KEYDEF" "%LABEL" "%LEFT" "%LENGTH"
-syn match sasMacro  "%LET" "%LOCAL" "%LOWCASE" "%MACRO"
-syn match sasMacro  "%MEND" "%NRBQUOTE" "%NRQUOTE" "%NRSTR"
-syn match sasMacro  "%PUT" "%QCMPRES" "%QLEFT" "%QLOWCASE"
-syn match sasMacro  "%QSCAN" "%QSUBSTR" "%QSYSFUNC" "%QTRIM"
-syn match sasMacro  "%QUOTE" "%QUPCASE" "%SCAN" "%STR"
-syn match sasMacro  "%SUBSTR" "%SUPERQ" "%SYSCALL" "%SYSEVALF"
-syn match sasMacro  "%SYSEXEC" "%SYSFUNC" "%SYSGET" "%SYSLPUT"
-syn match sasMacro  "%SYSPROD" "%SYSRC" "%SYSRPUT" "%THEN"
-syn match sasMacro  "%TO" "%TRIM" "%UNQUOTE" "%UNTIL"
-syn match sasMacro  "%UPCASE" "%VERIFY" "%WHILE" "%WINDOW"
+syn match sasMacro  /%\w*/
 
 " SAS Functions
 
@@ -154,16 +134,11 @@ syn keyword sasWarnMsg  WARNING
 syn keyword sasErrMsg   ERROR
 
 " Always contained in a comment
-syn keyword sasTodo  TODO TBD FIXME contained
+syn keyword sasTodo  TODO TBD FIXME containedin=sasComment
 
 " These don't fit anywhere else
-syn match sasUnderscore "_NULL_"
-syn match sasUnderscore "_INFILE_"
-syn match sasUnderscore "_N_"
-syn match sasUnderscore "_WEBOUT_"
-syn match sasUnderscore "_NUMERIC_"
-syn match sasUnderscore "_CHARACTER_"
-syn match sasUnderscore "_ALL_"
+syn keyword sasUnderscore _ALL_ _AUTOMATIC_ _CHARACTER_ _INFILE_ _NAME_
+syn keyword sasUnderscore _NULL_ _NUMERIC_ _N_ _USER_ _WEBOUT_
 
 " End of SAS Functions
 
@@ -179,7 +154,7 @@ if version >= 508 || !exists("did_sas_syntax_inits")
 
   HiLink  sasComment      Comment
   HiLink  sasConditional  Conditional
-  HiLink  sasStep         Section
+  HiLink  sasStep         Keyword
   HiLink  sasFunction     Function
   HiLink  sasMacro        Macro
   HiLink  sasMacroVar     Identifier
@@ -192,7 +167,7 @@ if version >= 508 || !exists("did_sas_syntax_inits")
   HiLink  sasWarnMsg      Todo
   HiLink  sasLogMsg       Debug
   HiLink  sasCards        Type
-  HiLink  sasUnderscore   Underlined
+  HiLink  sasUnderscore   Special
 
   delcommand HiLink
 endif
