@@ -3,11 +3,11 @@
 " TWiki syntax file
 "
 " Language:        TWiki
-" Version:     $Id: twiki.vim,v 1.5 2006/03/03 08:44:25 rat Exp $
+" Last Change: Mon Sep 18 13:08:38 UTC 2006
 " Maintainer:  Rainer Thierfelder <rainer{AT}rainers-welt{DOT}de>
 " Additions:   Eric Haarbauer <ehaar{DOT}com{AT}grithix{DOT}dyndns{DOT}org>
 " License:     GPL (http://www.gnu.org/licenses/gpl.txt)
-"    Copyright (C) 2004  Rainer Thierfelder
+"    Copyright (C) 2004-2006  Rainer Thierfelder
 "
 "    This program is free software; you can redistribute it and/or modify
 "    it under the terms of the GNU General Public License as published by
@@ -42,7 +42,13 @@
 "     fold level of two until the next heading marker in the file.  If not
 "     set, the option defaults to off.
 "
+"   g:Twiki_SourceHTMLSyntax
+"     This Variable, if set to a non-zero value, enalbes sourcing of
+"     HTLM-Syntax
+"
 " TODO
+"   g:Twiki_Functions
+"     If set, some (usefull) functions will be set
 "
 "============================================================================
 " Initialization:    {{{1
@@ -96,5 +102,17 @@ if exists("g:Twiki_FoldAtHeadings") &&
     endfunction " Twiki_GetFoldValue()
 endif " Twiki_FoldAtHeadings
 
+" Functions : {{{1
+if exists("g:Twiki_Functions") &&
+ \ g:Twiki_Functions != 0
+
+    " function {{{2
+    " TODO
+endif
+
+" Mapings : {{{1
+if exists("g:Twiki_Mapings") &&
+      \ g:Twiki_Mapings != 0
+endif
 " Autoconfigure vim indentation settings
 " vim:fdm=marker

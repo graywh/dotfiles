@@ -3,11 +3,12 @@
 " TWiki syntax file
 "
 " Language:    TWiki
-" Version:     $Id: twiki.vim,v 1.6 2006/03/03 08:44:25 rat Exp $
+" Last Change: Wed Nov 22 16:14:41 UTC 2006
 " Maintainer:  Rainer Thierfelder <rainer{AT}rainers-welt{DOT}de>
 " Additions:   Eric Haarbauer <ehaar{DOT}com{AT}grithix{DOT}dyndns{DOT}org>
+"              Antonio Terceiro <terceiro{AT}users{DOT}sourceforge{DOT}net>
 " License:     GPL (http://www.gnu.org/licenses/gpl.txt)
-"    Copyright (C) 2004  Rainer Thierfelder
+"    Copyright (C) 2004-2006  Rainer Thierfelder
 "
 "    This program is free software; you can redistribute it and/or modify
 "    it under the terms of the GNU General Public License as published by
@@ -36,6 +37,10 @@ if !exists("main_syntax")
   let main_syntax = 'twiki'
 endif
 
+if exists("g:Twiki_SourceHTMLSyntax") && g:Twiki_SourceHTMLSyntax != 0
+  source $VIMRUNTIME/syntax/html.vim 
+endif
+
 " Don't use standard HiLink, it will not work with included syntax files
 if version < 508
   command! -nargs=+ TwikiHiLink   highlight link <args>
@@ -53,7 +58,11 @@ syntax match twikiSeparator    "^---\+"
 syntax match twikiBulletedList "^\(   \)\+\*\ze "
 syntax match twikiOrderedList  "^\(   \)\+1\ze "
 
-syntax match twikiVariable "\([^!]\|^\)\zs%\w\+%"
+syntax match twikiSimpleVariable "\([^!]\|^\)\zs%\w\+%"
+syntax match twikiVariableParam contained "[a-z0-9]*="
+syntax region twikiVariableValue start="\"" skip="\\\"" end="\"" contains=twikiSimpleVariable,twikiVariable
+syntax region twikiVariable start="\([^!]\|^\)\zs%\w\+{" end="}%"
+    \ contains=twikiVariableParam,twikiVariableValue,TwikiHiLink,twikiSimpleVariable,twikiVariable
 syntax match twikiTag      "<\w\+>"
 
 syntax match twikiDelimiter "|"
@@ -61,11 +70,14 @@ syntax match twikiDelimiter "|"
 syntax region twikiComment  start="<!--" end="-->"
 syntax region twikiVerbatim matchgroup=twikiTag
     \ start="<verbatim>" end="</verbatim>"
+syntax region twikiPre matchgroup=twikiTag contains=twikiVariable,twikiSimpleVariable
+    \ start="<pre>" end="</pre>"
 
 syntax region twikiHeading matchgroup=twikiHeadingMarker oneline
     \ start="^---+\+" end="$"
 
-let s:wikiWord = '\u[a-z0-9]\+\(\u[a-z0-9]\+\)\+'
+"let s:wikiWord = '\(\w\+\.\)\?\u[a-z0-9]\+\(\u[a-z0-9]\+\)\+'
+let s:wikiWord = '\u\+[a-z0-9]\+\(\u\+[a-z0-9]\+\)\+'
 
 execute 'syntax match twikiAnchor +^#'.s:wikiWord.'\ze\(\>\|_\)+'
 execute 'syntax match twikiWord +\(\s\|^\)\zs\(\u\l\+\.\)\='.s:wikiWord.'\(#'.s:wikiWord.'\)\=\ze\(\>\|_\)+'
@@ -103,11 +115,14 @@ call s:TwikiCreateEmphasis('__', 'BoldItalic')
 TwikiHiLink twikiHeading       String
 TwikiHiLink twikiHeadingMarker Operator
 TwikiHiLink twikiVariable      PreProc
+TwikiHiLink twikiVariableParam Type
+TwikiHiLink twikiVariableValue String
 TwikiHiLink twikiTag           PreProc
 TwikiHiLink twikiComment       Comment
 TwikiHiLink twikiWord          Tag
 TwikiHiLink twikiAnchor        PreProc
 TwikiHiLink twikiVerbatim      Constant
+TwikiHiLink twikiPre           Constant
 TwikiHiLink twikiBulletedList  Operator
 TwikiHiLink twikiOrderedList   Operator
 
