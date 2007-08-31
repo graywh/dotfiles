@@ -46,10 +46,10 @@ syn include @rTop syntax/r.vim
 
 syn cluster brewRegions contains=brewOneLiner,brewBlock,brewExpression,brewComment
 
-" exe 'syn region  brewOneLiner    matchgroup=brewDelimiter  start="^%\{1,'.b:brew_nest_level.'\}%\@!"  end="$"  contains=@rTop         containedin=ALLBUT,@brewRegions  keepend oneline'
+exe 'syn region  brewOneLiner    matchgroup=brewDelimiter  start="^%\{1,'.b:brew_nest_level.'\}%\@!"     end="$"  contains=@rTop         containedin=ALLBUT,@brewRegions  keepend oneline'
 exe 'syn region  brewBlock       matchgroup=brewDelimiter  start="<%\{1,'.b:brew_nest_level.'\}%\@!-\="  end="-\=%>"  contains=@rTop         containedin=ALLBUT,@brewRegions'
-exe 'syn region  brewExpression  matchgroup=brewDelimiter  start="<%\{1,'.b:brew_nest_level.'\}="  end="-\=%>"  contains=@rTop         containedin=ALLBUT,@brewRegions'
-exe 'syn region  brewComment     matchgroup=brewDelimiter  start="<%\{1,'.b:brew_nest_level.'\}#"  end="-\=%>"  contains=rTodo,@Spell  containedin=ALLBUT,@brewRegions  keepend'
+exe 'syn region  brewExpression  matchgroup=brewDelimiter  start="<%\{1,'.b:brew_nest_level.'\}="        end="-\=%>"  contains=@rTop         containedin=ALLBUT,@brewRegions'
+exe 'syn region  brewComment     matchgroup=brewDelimiter  start="<%\{1,'.b:brew_nest_level.'\}#"        end="-\=%>"  contains=rTodo,@Spell  containedin=ALLBUT,@brewRegions  keepend'
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
