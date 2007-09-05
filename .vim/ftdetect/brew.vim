@@ -1,2 +1,2 @@
 " Brew
-autocmd BufNewFile,BufRead *.brew			set filetype=brew
+autocmd BufNewFile,BufRead *.brew			setfiletype brew
