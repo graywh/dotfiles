@@ -62,14 +62,10 @@ function! GetDirLevel(lnum)
     return 0
   endif
   let level = stridx(line, '|--') / &ts + 1
-  if line =~ "/"
-    let nline = substitute(getline(a:lnum + 1), "\|\\?\t", repeat(" ", &ts), "g")
-    let nlevel = stridx(nline, '|--') / &ts + 1
-    if nlevel == level + 1
-      return ">" . level
-    else
-      return level - 1
-    end
+  let nline = substitute(getline(a:lnum + 1), "\|\\?\t", repeat(" ", &ts), "g")
+  let nlevel = stridx(nline, '|--') / &ts + 1
+  if nlevel == level + 1
+    return ">" . level
   else
     return level - 1
   endif
