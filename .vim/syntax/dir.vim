@@ -11,11 +11,11 @@
 " |-- root/
 " |   |-- doc/
 " |   |   |-- notes.txt
-" |   |   |-- manual.pdf
+" |   |   `-- manual.pdf
 " |   |-- src/
 " |       |-- foo.c
-" |       |-- bar.c
-" |-- root2/
+" |       `-- bar.c
+" |-- root2
 "     |-- x/
 "     |-- y/
 " # vim: ft=dir
@@ -30,6 +30,7 @@ endif
 syntax match dirFile "--\s\+[0-9A-Za-z-_. ]\+"hs=s+3 contained
 syntax match dirDirectory "--\s\+[0-9A-Za-z-_. ]\{-}/"hs=s+3,he=e-1 contained
 syntax match dirMarkup "|" nextgroup=dirMarkup skipwhite
+syntax match dirMarkup "`" nextgroup=dirMarkup skipwhite
 syntax match dirMarkup "--\s\+.\+" contains=dirFile,dirComment
 syntax region dirMarkup start="--" end="/$" end="/\s" contains=dirDirectory keepend oneline
 
@@ -61,9 +62,9 @@ function! GetDirLevel(lnum)
   if strlen(line) == 0
     return 0
   endif
-  let level = stridx(line, '|--') / &ts + 1
+  let level = (stridx(line, '--') - 1) / &ts + 1
   let nline = substitute(getline(a:lnum + 1), "\|\\?\t", repeat(" ", &ts), "g")
-  let nlevel = stridx(nline, '|--') / &ts + 1
+  let nlevel = (stridx(nline, '--') - 1) / &ts + 1
   if nlevel == level + 1
     return ">" . level
   else
