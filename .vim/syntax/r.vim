@@ -101,7 +101,7 @@ if version >= 508 || !exists("did_r_syn_inits")
   HiLink rRepeat          Repeat
   HiLink rIdentifier      Identifier
   HiLink rFunction        Function
-  HiLink rArrow           Statement 
+  HiLink rArrow           Operator
   HiLink rType            Type
   HiLink rDelimiter       Delimiter
   HiLink rStringDelimiter Delimiter
