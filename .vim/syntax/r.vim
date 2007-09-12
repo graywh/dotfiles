@@ -61,14 +61,18 @@ syn keyword rConstant LETTERS letters month.ab month.name pi
 syn keyword rConstant NULL
 syn keyword rBoolean  FALSE TRUE
 syn keyword rNumber   NA
+
+" Operators
 syn match rArrow /<\{1,2}-/
 syn match rArrow /->\{1,2}/
+syn match rOperator "[-+=/\*|&^:$]"
+syn match rOperator "\%(%\*%\|%%\|%/%\)"
 
 " Type
 syn keyword rType array category character complex double function integer list logical matrix numeric vector data.frame 
 
 " Special
-syn match rDelimiter /[,;:$]/
+syn match rDelimiter /[,;]/
 
 " Error
 syn region rParenRegion matchgroup=rParenDelimiter start=/(/ end=/)/ transparent contains=ALLBUT,rError,rBraceError,rCurlyError
@@ -102,6 +106,7 @@ if version >= 508 || !exists("did_r_syn_inits")
   HiLink rIdentifier      Identifier
   HiLink rFunction        Function
   HiLink rArrow           Operator
+  HiLink rOperator        Operator
   HiLink rType            Type
   HiLink rDelimiter       Delimiter
   HiLink rStringDelimiter Delimiter
