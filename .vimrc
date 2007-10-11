@@ -14,6 +14,7 @@ set history=50                " hi  - Keep 50 lines of command line history
 "set ignorecase               " ic  - Do case insensitive matching
 set incsearch                 " is  - Incremental search
 set linebreak                 " lbr - Don't wrap words by default
+set modeline                  " ml  - Let files set their own options
 set mouse=a                   "     - Use the mouse for all modes
 set number                    " nu  - Show line numbers
 set ruler                     " ru  - Show the cursor position all the time
