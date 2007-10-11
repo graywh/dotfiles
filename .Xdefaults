@@ -3,7 +3,7 @@ XTerm.termName: xterm-256color
 XTerm.toolBar: false
 ! --- *VT100
 *VT100.geometry: 85x36
-*VT100.faceName: Monaco:antialias=false
+*VT100.faceName: Monaco
 *VT100.faceSize: 12
 *VT100.loginShell: true
 *VT100.scrollBar: true
