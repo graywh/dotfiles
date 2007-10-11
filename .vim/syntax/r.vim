@@ -49,7 +49,7 @@ syn match rIdentifier /\a\k*/
 " identifier with leading period, one or more digits, and at least one non-digit keyword character
 syn match rIdentifier /\.\d*\K\k*/
 
-syn match rFunction /\a\k*(/me=e-1 nextgroup=rParenRegion
+syn match rFunction /\k\+(/me=e-1 nextgroup=rParenRegion
 
 " Statement
 syn keyword rStatement   break next return
@@ -65,8 +65,8 @@ syn keyword rNumber   NA
 " Operators
 syn match rArrow /<\{1,2}-/
 syn match rArrow /->\{1,2}/
-syn match rOperator "[-+=/\*|&^:$]"
-syn match rOperator "\%(%\*%\|%%\|%/%\)"
+syn match rOperator "[-+=/\*|&^:$!<>@]"
+syn match rOperator "%\%(\*\|/\|o\|in\|\)%"
 
 " Type
 syn keyword rType array category character complex double function integer list logical matrix numeric vector data.frame 

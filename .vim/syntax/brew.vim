@@ -67,6 +67,7 @@ if version >= 508 || !exists("did_brew_syntax_inits")
 
   delcommand HiLink
 endif
+
 let b:current_syntax = 'brew'
 
 if main_syntax == 'brew'
