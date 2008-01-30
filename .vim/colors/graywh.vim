@@ -34,6 +34,7 @@ hi link Character String
   " For GUI {{{1
   hi Normal     guifg=#CCCCCC guibg=#1E1E1E
   " Vim {{{2
+  hi CursorLine               guibg=#323232
   hi Directory  guifg=#009999
   hi DiffText                 guibg=#FFFFCC gui=none
   hi DiffAdd                  guibg=#CCFFCC

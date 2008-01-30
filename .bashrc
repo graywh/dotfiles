@@ -169,6 +169,11 @@ if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
 
+# include the local system modifications
+if [ -f ~/.bashrc_local ]; then
+  . ~/.bashrc_local
+fi
+
 function calc()
 {
     echo "$@" | bc -l
