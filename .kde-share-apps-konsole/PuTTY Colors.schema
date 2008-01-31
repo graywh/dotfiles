@@ -23,11 +23,11 @@ color  8   0 204 204  0 0 # 8 - Color 6 (cyan)
 color  9 204 204 204  0 0 # 9 - Color 7 (white)
 color 10 255 255 255  0 1 # 10 - Foreground Intensive Color
 color 11  51  51  51  1 0 # 11 - Background Intensive Color
-color 12  51  51  51  0 0 # 12 - Color 0 Intensive (gray)
+color 12 102 102 102  0 0 # 12 - Color 0 Intensive (gray)
 color 13 255 102 102  0 0 # 13 - Color 1 Intensive (light red)
 color 14 102 255 102  0 0 # 14 - Color 2 Intensive (light green)
 color 15 255 255 102  0 0 # 15 - Color 3 Intensive (light yellow)
-color 16 102 102 255  0 0 # 16 - Color 4 Intensive (light blue)
+color 16  51 102 255  0 0 # 16 - Color 4 Intensive (light blue)
 color 17 255 102 255  0 0 # 17 - Color 5 Intensive (light magenta)
 color 18 102 255 255  0 0 # 18 - Color 6 Intensive (light cyan)
 color 19 255 255 255  0 0 # 19 - Color 7 Intensive (white)

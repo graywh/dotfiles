@@ -1,0 +1,42 @@
+[1]
+ActiveSession=0
+Args0=/bin/bash
+AutoResizeTabs=false
+Cwd0=$HOME
+DefaultSession=shell.desktop
+DynamicTabHide=false
+Encoding0=0
+EncodingName=Default
+Fullscreen=false
+Height 1600=906
+History0=1000
+HistoryEnabled0=true
+Icon0=konsole
+KeyTab0=default
+MasterMode0=false
+MonitorActivity0=false
+MonitorSilence0=false
+Pgm0=/bin/bash
+Schema0=PuTTY Colors.schema
+SessionFont0=Monaco,14,-1,0,50,0,0,0,0,0
+TabColor0=0,0,0
+TabViewMode=0
+Term0=xterm
+Title0=Shell
+Width 2400=1029
+bellmode=0
+class=konsole-mainwindow#1
+defaultfont=Monaco,14,-1,0,50,0,0,0,0,0
+history=1000
+historyenabled=true
+keytab=default
+numSes=1
+schema=PuTTY Colors.schema
+scrollbar=2
+tabbar=2
+
+[WindowProperties1]
+ClassName=Konsole
+Height 1600=906
+ObjectName=konsole-mainwindow#1
+Width 2400=1029
