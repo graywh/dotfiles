@@ -13,11 +13,11 @@ set hidden                    " hid - Allow hiding changed buffers without overr
 set history=50                " hi  - Keep 50 lines of command line history
 "set ignorecase               " ic  - Do case insensitive matching
 set incsearch                 " is  - Incremental search
+set laststatus=2              " ls  - Always display the statusline
 set linebreak                 " lbr - Don't wrap words by default
 set modeline                  " ml  - Let files set their own options
 set mouse=a                   "     - Use the mouse for all modes
 set number                    " nu  - Show line numbers
-set ruler                     " ru  - Show the cursor position all the time
 set shiftwidth=4              " sw  - Use 4 spaces for each level of indention
 set showcmd                   " sc  - Show (partial) command in status line.
 set showmatch                 " sm  - Show matching brackets.
@@ -30,6 +30,17 @@ set viminfo^=<50              "       Remember up to 50 lines of registers
 set viminfo^=!                "       Remember some global variables
 set viminfo^=h                "       Don't restore the hlsearch highlighting
 set wrap                      "     - Wrap lines by default
+
+" Status line (includes 'set ruler')
+" - buffer number (4 columns)
+" - relative filename & path (truncatable)
+" - [Help] flag
+" - [Preview] flag
+" - modified [+] or not modifiable [-] flag
+" - read-only flag [RO]
+" - filetype
+" - 'set ruler' default (line, column [virtual column]     percent)
+set statusline=%4(%n%)\ %<%f\ %h%w%m%r%=%y\ %-14.(%l,%c%V%)\ %P
 
 " Suffixes that get lower priority when doing tab completion for filenames.
 " These are files we are not likely to want to edit or read.
