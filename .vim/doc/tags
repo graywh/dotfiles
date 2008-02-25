@@ -56,7 +56,6 @@ rails-:Rails	rails.txt	/*rails-:Rails*
 rails-:Rake	rails.txt	/*rails-:Rake*
 rails-:Rake!	rails.txt	/*rails-:Rake!*
 rails-:Rapi	rails.txt	/*rails-:Rapi*
-rails-:Rbreakpointer	rails.txt	/*rails-:Rbreakpointer*
 rails-:Rcd	rails.txt	/*rails-:Rcd*
 rails-:Rcommand	rails.txt	/*rails-:Rcommand*
 rails-:Rconsole	rails.txt	/*rails-:Rconsole*
@@ -135,8 +134,10 @@ rails-options	rails.txt	/*rails-options*
 rails-partials	rails.txt	/*rails-partials*
 rails-plugin-author	rails.txt	/*rails-plugin-author*
 rails-project	rails.txt	/*rails-project*
+rails-rails-integration	rails.txt	/*rails-rails-integration*
 rails-refactoring	rails.txt	/*rails-refactoring*
 rails-related	rails.txt	/*rails-related*
+rails-rspec	rails.txt	/*rails-rspec*
 rails-screen	rails.txt	/*rails-screen*
 rails-scripts	rails.txt	/*rails-scripts*
 rails-slow	rails.txt	/*rails-slow*
@@ -150,4 +151,6 @@ rails-syntax-keywords	rails.txt	/*rails-syntax-keywords*
 rails-syntax-strings	rails.txt	/*rails-syntax-strings*
 rails-syntax-yaml	rails.txt	/*rails-syntax-yaml*
 rails-tabs	rails.txt	/*rails-tabs*
+rails-template-types	rails.txt	/*rails-template-types*
+rails-vim-integration	rails.txt	/*rails-vim-integration*
 rails.txt	rails.txt	/*rails.txt*

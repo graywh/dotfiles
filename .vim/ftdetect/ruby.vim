@@ -1,14 +1,14 @@
 " Ruby
-au BufNewFile,BufRead *.rb,*.rbw,*.gem,*.gemspec	set filetype=ruby
+autocmd BufNewFile,BufRead *.rb,*.rbw,*.gem,*.gemspec	setfiletype ruby
 
 " Ruby on Rails
-au BufNewFile,BufRead *.builder,*.rxml,*.rjs		set filetype=ruby
+autocmd BufNewFile,BufRead *.builder,*.rxml,*.rjs		setfiletype ruby
 
 " Rakefile
-au BufNewFile,BufRead [rR]akefile,*.rake		set filetype=ruby
+autocmd BufNewFile,BufRead [rR]akefile,*.rake		setfiletype ruby
 
 " Rantfile
-au BufNewFile,BufRead [rR]antfile,*.rant		set filetype=ruby
+autocmd BufNewFile,BufRead [rR]antfile,*.rant		setfiletype ruby
 
 " eRuby
-au BufNewFile,BufRead *.erb,*.rhtml			set filetype=eruby
+autocmd BufNewFile,BufRead *.erb,*.rhtml			setfiletype eruby

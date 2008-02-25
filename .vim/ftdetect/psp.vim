@@ -1,1 +1,1 @@
-au BufNewFile,BufRead *.psp     setf psp
+autocmd BufNewFile,BufRead *.psp     setfiletype psp
