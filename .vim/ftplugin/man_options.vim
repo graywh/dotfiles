@@ -2,6 +2,7 @@
 " Options {{{1
 set foldcolumn=0              " Hide the fold column
 set hlsearch                  " Highlight all search matches
+set laststatus=0              " Hide the statusline
 set nolist                    " Hide non-printable characters
 set nomodifiable              " Don't allow modification
 set nomodified                " So Vim doesn't complain on exiting

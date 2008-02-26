@@ -1,1 +1,1 @@
-autocmd User Rails/README Rcd
+autocmd User Rails/README Rlcd
