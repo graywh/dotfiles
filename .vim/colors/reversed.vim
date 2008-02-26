@@ -13,7 +13,7 @@
 " LightMagenta= FFCCFF 225  Magenta= FF66FF   DarkMagenta= CC00CC
 " }}}1
 
-" This color scheme uses a black background.
+" This color scheme uses a light background.
 set background=light
 
 " First remove all existing highlighting.
@@ -34,6 +34,7 @@ hi link Character String
   " For GUI {{{1
   hi Normal     guifg=#333333 guibg=#E1E1E1
   " Vim {{{2
+  hi CursorLine               guibg=#CDCDCD
   hi Directory  guifg=#FF6666
   hi DiffText                 guibg=#000033 gui=none
   hi DiffAdd                  guibg=#330033
