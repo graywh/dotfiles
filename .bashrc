@@ -80,6 +80,7 @@ alias ll='ls -hlF'
 alias l.='ls -d .*'
 alias la='ls -AF'
 alias lla='ls -hlAF'
+alias ll.='ls -dl .*'
 # }}}
 
 # Set a fancy prompt {{{
@@ -130,14 +131,13 @@ else
 fi
 None="[0m"
 # }}}
-PS1='$Green[\u@\h:$Red\w$Green]\n\$$None '
+PS1='$Green[\u@\h:$Red\w$Yellow$(git_branch)$Green]\n\$$None '
 
 # a function to put the current time in the top-right corner of the terminal
 # and change the title of the terminal
 # function prompt_command {{{
 function prompt_command
 {
-
     # If this is an xterm set the title to user@host:dir
     case $TERM in
     xterm*)
@@ -161,7 +161,7 @@ function prompt_command
 # }}}
 
 PROMPT_COMMAND=prompt_command
-#}}}
+# }}}
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc).
@@ -174,9 +174,19 @@ if [ -f ~/.bashrc_local ]; then
   . ~/.bashrc_local
 fi
 
+# Functions {{{
 function calc()
 {
     echo "$@" | bc -l
 }
+
+function git_branch
+{
+    command git branch &> /dev/null
+    if [ $? -eq 0 ]; then
+        echo " ($(git branch | grep '^*' | sed s/\*\ //))"
+    fi
+}
+# }}}
 
 # vim: fdm=marker
