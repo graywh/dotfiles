@@ -184,7 +184,7 @@ function git_branch
 {
     command git branch &> /dev/null
     if [ $? -eq 0 ]; then
-        echo " ($(git branch | grep '^*' | sed s/\*\ //))"
+        echo " $(git branch | grep '^*' | sed s/\*\ //)"
     fi
 }
 # }}}
