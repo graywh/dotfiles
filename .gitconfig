@@ -1,0 +1,26 @@
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+
+[color]
+    branch = auto
+    diff = false
+    interactive = auto
+    pager = false
+    status = auto
+
+[core]
+    editor = vim
+    pager = view -
+    excludesfile = ~/.gitignore
+
+[diff]
+    rename = copy
+
+[help]
+    browser = dillo
+
+[user]
+    name = Will Gray
+    email = graywh@gmail.com

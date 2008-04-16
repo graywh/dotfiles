@@ -1,0 +1,9 @@
+# Subversion
+.svn
+
+# Vim
+*.swp
+
+# OS X
+.DS_Store
+.Trashes
