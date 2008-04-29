@@ -98,8 +98,8 @@ let python_highlight_doctests = 1
 " Ctrl-Tab navigation
 noremap <silent> <C-Tab> :tabnext<CR>
 noremap <silent> <C-S-Tab> :tabprevious<CR>
-inoremap <silent> <C-Tab> <Esc>:tabnext<CR>
-inoremap <silent> <C-S-Tab> <Esc>:tabprevious<CR>
+inoremap <silent> <C-Tab> <C-O>:tabnext<CR>
+inoremap <silent> <C-S-Tab> <C-O>:tabprevious<CR>
 " Shift-arrow display navigation
 noremap <S-Up> g<Up>
 noremap <S-Down> g<Down>
