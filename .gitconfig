@@ -2,6 +2,7 @@
     co = checkout
     ci = commit
     st = status
+    br = branch
 
 [color]
     branch = auto

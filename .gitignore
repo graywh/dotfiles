@@ -3,6 +3,7 @@
 
 # Vim
 *.swp
+*.swo
 
 # OS X
 .DS_Store
