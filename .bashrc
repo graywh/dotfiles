@@ -148,15 +148,15 @@ function prompt_command
     esac
 
     #  prompt_x is where to position the cursor to write the clock
-    let prompt_x=$(tput cols)-10
+    #let prompt_x=$(tput cols)-10
     #  Move up one; not sure why we need to do this, but without this, I always
     #  got an extra blank line between prompts
     # But I did not.
     #tput cuu1
-    tput sc
-    tput cup 1 ${prompt_x}
-    echo -en "$Green[$(date +%H:%M:%S)]$None"
-    tput rc
+    #tput sc
+    #tput cup 1 ${prompt_x}
+    #echo -en "$Green[$(date +%H:%M:%S)]$None"
+    #tput rc
 }
 # }}}
 
