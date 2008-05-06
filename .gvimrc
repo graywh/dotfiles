@@ -23,6 +23,8 @@ anoremenu 10.355 &File.Sav&e\ All<Tab>:wall    :wall<CR>
 " }}}1
 
 " Keymap {{{1
+nmap <X2Mouse> <C-I>
+nmap <X1Mouse> <C-O>
 "nmap <D-n> * :confirm tabnew<CR>
 "omap <D-n> <Esc><D-n>
 "vmap <D-n> <Esc><D-n>v
