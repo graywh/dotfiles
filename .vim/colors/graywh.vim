@@ -34,8 +34,8 @@ hi link Character String
   " For GUI {{{1
   hi Normal     guifg=#CCCCCC guibg=#1E1E1E
   " Vim {{{2
-  hi CursorColumn             guibg=#323232
-  hi CursorLine               guibg=#323232
+  hi CursorColumn             guibg=#333333
+  hi CursorLine               guibg=#333333
   hi Directory  guifg=#009999
   hi DiffText                 guibg=#FFFFCC gui=none
   hi DiffAdd                  guibg=#CCFFCC
@@ -66,6 +66,8 @@ if &t_Co == 256
   " For 256 color terminals {{{1
   hi Normal     ctermfg=251 ctermbg=234
   " Vim {{{2
+  hi CursorColumn           ctermbg=236
+  hi CursorLine             ctermbg=236 cterm=none
   hi Directory  ctermfg=37
   hi DiffText               ctermbg=230 cterm=none
   hi DiffAdd                ctermbg=194
