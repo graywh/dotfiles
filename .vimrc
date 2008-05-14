@@ -36,9 +36,10 @@ set showcmd                     " sc  - Show (partial) command in status line
 set showmatch                   " sm  - Show matching brackets.
 set smartcase                   " scs - Search case-insensitive unless...
 set smarttab                    " sta - Delete expanded tabs
+set softtabstop=4               " sts - Indenting w/ tab gets us 4 spaces (useful w/ expandtab)
 set splitbelow                  " sb  - New window goes below
 set splitright                  " spr - New windows goes right
-set tabstop=4                   " ts  - Show tabs as 4 spaces
+set tabstop=8                   " ts  - Show tabs as 8 spaces
 set textwidth=0                 " tw  - Don't break lines by default
 if version >= 700
   set viminfo=                  " vi  - Read/write a .viminfo file
