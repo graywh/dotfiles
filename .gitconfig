@@ -14,7 +14,7 @@
 [core]
     editor = vim
     pager = view -
-    excludesfile = ~/.gitignore
+    excludesfile = /home/graywh/.gitignore
 
 [diff]
     rename = copy

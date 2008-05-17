@@ -1,9 +1,8 @@
 # Subversion
-.svn
+.svn/
 
 # Vim
-*.swp
-*.swo
+*.sw[op]
 
 # OS X
 .DS_Store
