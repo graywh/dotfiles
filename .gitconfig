@@ -1,27 +1,29 @@
 [alias]
-    co = checkout
-    ci = commit
-    st = status
-    br = branch
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
 
 [color]
-    branch = auto
-    diff = false
-    interactive = auto
-    pager = false
-    status = auto
+	branch = auto
+	diff = false
+	interactive = auto
+	pager = false
+	status = auto
 
 [core]
-    editor = vim
-    pager = view -
-    excludesfile = /home/graywh/.gitignore
+	editor = vim
+	pager = view -
+	excludesfile = /home/graywh/.gitignore
 
 [diff]
-    rename = copy
+	rename = copy
 
 [help]
-    browser = dillo
+	browser = dillo
 
 [user]
-    name = Will Gray
-    email = graywh@gmail.com
+	name = Will Gray
+	email = graywh@gmail.com
+[gui]
+	fontdiff = -family Monaco -size 10 -weight normal -slant roman -underline 0 -overstrike 0
