@@ -5,7 +5,8 @@
 set nocompatible                " cp  - Vim is better than Vi
 set autoindent                  " ai  - Always set autoindenting on
 "set autowrite                  " aw  - Automatically save before commands like :next and :make
-set backspace=2                 " bs  - More powerful backspacing
+set backspace=indent,eol,start  " bs  - More powerful backspacing
+"set backspace=2                " bs  - More powerful backspacing
 "set backup                     " bk  - Make a backup of the file
 set nocompatible                " cp  - Use Vim defaults instead of 100% vi compatibility
 set expandtab                   " et  - Always expand tabs to spaces
