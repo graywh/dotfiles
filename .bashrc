@@ -29,11 +29,10 @@ export PAGER="/bin/sh -c \"col -b | view -c 'set ft=man' -\""
 # use firefox when available
 export BROWSER=firefox
 
+export PYTHONSTARTUP=~/.pythonrc.py
+
 # Override default setting of en_US.utf8
 export LANG=en_US
-
-# don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
 
 # Mac OS X options {{{2
 if [ "$OSTYPE" == "darwin8.0" ]; then
@@ -46,17 +45,19 @@ if [ "$OSTYPE" == "darwin8.0" ]; then
 fi
 # }}}1
 
+# Bash Options {{{1
+# don't put duplicate lines in the history. See bash(1) for more options
+export HISTCONTROL=ignoredups
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
-
-# disable messages
-mesg n
 
 # use ^? for backspace so ^H can be used for other things
 if tty -s; then
     stty erase '^?'
 fi
+# }}}1
 
 # enable color support of ls {{{1
 # 38;5;___ for 256 color support
