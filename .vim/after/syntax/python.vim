@@ -5,8 +5,12 @@ syntax keyword pythonSelf self
 highlight link pythonSelf Constant
 " }}}1
 
+" Remove some keywords {{{1
+syntax keyword pythonNot all any help
+" }}}1
+
 " Add some operators {{{1
-syn keyword pythonOperator + - / % = :
+syn keyword pythonOperator + - * / ** % < > <= >= == !=
 " }}}1
 
 " Add DocString highlighting {{{1
