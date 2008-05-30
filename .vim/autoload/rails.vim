@@ -13,17 +13,10 @@
 if &cp || exists("g:autoloaded_rails")
   finish
 endif
-let g:autoloaded_rails = '1.257'
+let g:autoloaded_rails = '2.0'
 
 let s:cpo_save = &cpo
 set cpo&vim
-
-" Apparently, the nesting level within Vim when the Ruby interface is
-" initialized determines how much stack space Ruby gets.  In previous
-" versions of rails.vim, sporadic stack overflows occured when omnicomplete
-" was used.  This was apparently due to rails.vim having first initialized
-" ruby deep in a nested function call.
-silent! ruby nil
 
 " Utility Functions {{{1
 
@@ -171,7 +164,7 @@ function! s:rubyeval(ruby,...)
   endif
 endfunction
 
-function! s:railseval(ruby)
+function! s:railseval(ruby,...)
   if a:0 > 0
     let def = a:1
   else
@@ -301,7 +294,7 @@ function! s:format(...)
   return format
 endfunction
 
-let s:view_types = 'rhtml,erb,rxml,builder,rjs,mab,liquid,haml,dryml'
+let s:view_types = 'rhtml,erb,rxml,builder,rjs,mab,liquid,haml,dryml,mn'
 
 function! s:viewspattern()
   return '\%('.s:gsub(s:view_types,',','\\|').'\)'
@@ -2795,6 +2788,8 @@ function! s:Extract(bang,...) range abort
     let renderstr = "page << ".s:sub(renderstr,"render ","render(").")"
   elseif ext == "haml"
     let renderstr = "= ".renderstr
+  elseif ext == "mn"
+    let renderstr = "_".renderstr
   endif
   let buf = @@
   silent exe range."yank"
@@ -3047,7 +3042,7 @@ function! s:helpermethods()
         \."hidden_field hidden_field_tag highlight "
         \."image_path image_submit_tag image_tag input "
         \."javascript_cdata_section javascript_include_tag javascript_path javascript_tag "
-        \."label link_to link_to_function link_to_if link_to_remote link_to_unless link_to_unless_current "
+        \."label label_tag link_to link_to_function link_to_if link_to_remote link_to_unless link_to_unless_current "
         \."mail_to markdown "
         \."number_to_currency number_to_human_size number_to_percentage number_to_phone number_with_delimiter number_with_precision "
         \."observe_field observe_form option_groups_from_collection_for_select options_for_select options_from_collection_for_select "
@@ -3921,7 +3916,7 @@ function! s:Abbrev(bang,...) abort
     return s:error("Rabbrev: invalid arguments")
   endif
   let rhs = a:2
-  silent! call s:unabbrev(lhs)
+  call s:unabbrev(lhs,1)
   if lhs =~ '($'
     let b:rails_abbreviations = b:rails_abbreviations . lhs . "\t" . rhs . "" . (a:0 > 2 ? "\t".a:3 : ""). "\n"
     let llhs = s:sub(lhs,'\($','')
@@ -3949,14 +3944,16 @@ function! s:Abbrev(bang,...) abort
   let b:rails_abbreviations = b:rails_abbreviations . lhs . "\t" . rhs . "\n"
 endfunction
 
-function! s:unabbrev(abbr)
+function! s:unabbrev(abbr,...)
   let abbr = s:sub(a:abbr,'%(::|\(|\[)$','')
   let pat  = s:sub(abbr,'\\','\\\\')
   if !exists("b:rails_abbreviations")
     let b:rails_abbreviations = "\n"
   endif
   let b:rails_abbreviations = substitute(b:rails_abbreviations,'\V\C\n'.pat.'\(\t\|::\t\|(\t\|[\t\)\.\{-\}\n','\n','')
-  exe "iunabbrev <buffer> ".abbr
+  if a:0 == 0 || a:1 == 0
+    exe "iunabbrev <buffer> ".abbr
+  endif
 endfunction
 
 " }}}1
