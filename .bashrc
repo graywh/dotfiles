@@ -63,8 +63,7 @@ fi
 # 38;5;___ for 256 color support
 if [ "$TERM" != "dumb" ]; then
     if [ "$OSTYPE" == "darwin8.0" ]; then
-        export CLICOLOR=1
-        alias ls='ls -F'
+        alias ls='ls -FG'
     else
         # set LS_COLORS {{{2
         export LS_COLORS='no=00:fi=00:di=38;5;12:ln=38;5;14:pi=40;33:so=38;5;13:do=38;5;13:bd=40;33;01:cd=40;33:or=40;38;5;9:su=38;5;15;41:sg=30;43:tw=30;42:ow=38;5;12;42:st=38;5;15;44:ex=38;5;10:*.tar=38;5;9:*.tgz=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lzh=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.Z=38;5;9:*.gz=38;5;9:*.bz2=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.ogg=38;5;13:*.flac=38;5;13:*.mpc=38;5;13:*.mp3=38;5;13:*.wav=38;5;13:'
@@ -76,11 +75,11 @@ fi
 
 # Aliases {{{1
 # some more ls aliases
-alias ll='ls -hlF'
-alias l.='ls -d .*'
-alias la='ls -AF'
-alias lla='ls -hlAF'
-alias ll.='ls -dl .*'
+alias la='ls -A'
+alias l.='ls -d .*' # make better
+alias ll='ls -hl'
+alias lla='ll -A'
+alias ll.='ll -d .*' # make better
 # }}}
 
 # Set a fancy prompt {{{
