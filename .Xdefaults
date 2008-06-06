@@ -7,7 +7,7 @@ XTerm.toolBar: false
 *VT100.faceSize: 12
 *VT100.loginShell: true
 *VT100.scrollBar: true
-*VT100.saveLines: 500
+*VT100.saveLines: 1000
 *VT100.rightScrollBar: true
 *VT100.ttyModes: erase ^?
 ! --- *VT100 keybindings
