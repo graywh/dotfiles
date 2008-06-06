@@ -24,7 +24,7 @@ fi
 export EDITOR=vim
 
 # use vim as my pager
-export PAGER="/bin/sh -c \"col -b | view -c 'set ft=man' -\""
+export MANPAGER="/bin/sh -c \"col -b | view -c 'set ft=man' -\""
 
 # use firefox when available
 export BROWSER=firefox
@@ -48,7 +48,9 @@ fi
 # Bash Options {{{1
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
+# }}}1
 
+# Terminal stuff {{{1
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -179,7 +181,7 @@ function calc()
     echo "$@" | bc -l
 }
 
-function git_branch
+function git_branch()
 {
     command git branch &> /dev/null
     if [ $? -eq 0 ]; then

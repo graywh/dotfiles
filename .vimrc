@@ -82,18 +82,22 @@ syntax sync fromstart
 syntax on
 " }}}1
 
-" Plugin Options {{{1
-" PHP {{{2
+" Plugins {{{1
+runtime! macros/matchit.vim
+
+" Options {{{2
+" PHP {{{3
 let php_sql_query = 1
 let php_htmlInStrings = 1
 let php_baselib = 1
-" Python {{{2
+" Python {{{3
 let python_highlight_builtins = 1
 let python_highlight_exceptions = 1
 let python_highlight_string_formatting = 1
 let python_highlight_doctests = 1
-" Ruby {{{2
+" Ruby {{{3
 "let ruby_fold = 1
+" }}}3
 " }}}1
 
 " Keymap {{{1
