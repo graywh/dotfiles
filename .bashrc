@@ -9,7 +9,7 @@
 # Path {{{
 # set PATH so it includes user's private bin if it exists
 if [ -d ~/bin ] ; then
-    export PATH="~/bin:${PATH}"
+    export PATH="${PATH}:~/bin"
 fi
 
 # Mac OS X options {{{2
@@ -176,17 +176,12 @@ if [ -f ~/.bashrc_local ]; then
 fi
 
 # Functions {{{
-function calc()
-{
+function calc() {
     echo "$@" | bc -l
 }
 
-function git_branch()
-{
-    command git branch &> /dev/null
-    if [ $? -eq 0 ]; then
-        echo " $(git branch | grep '^*' | sed s/\*\ //)"
-    fi
+function git_branch() {
+    git name-rev HEAD 2> /dev/null | sed s/^HEAD//
 }
 # }}}
 
