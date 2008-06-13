@@ -2,13 +2,13 @@
 " Author: Will Gray <graywh@gmail.com>
 
 " Settings {{{1
+set all&                        "       Set everything to the default
 set nocompatible                " cp  - Vim is better than Vi
 set autoindent                  " ai  - Always set autoindenting on
 "set autowrite                  " aw  - Automatically save before commands like :next and :make
 set backspace=indent,eol,start  " bs  - More powerful backspacing
 "set backspace=2                " bs  - More powerful backspacing
 "set backup                     " bk  - Make a backup of the file
-set nocompatible                " cp  - Use Vim defaults instead of 100% vi compatibility
 set expandtab                   " et  - Always expand tabs to spaces
 set fileformats=unix,mac,dos    " ffs - End-of-line character
 set foldcolumn=1                " fdc - Show top-level fold sections
@@ -17,7 +17,7 @@ set history=50                  " hi  - Keep 50 lines of command line history
 "set ignorecase                 " ic  - Do case insensitive matching
 set incsearch                   " is  - Incremental search
 set laststatus=2                " ls  - Always display the statusline
-set linebreak                   " lbr - Don't wrap words by default
+set linebreak                   " lbr - Don't wrap words
 if version >= 700
   set listchars=eol:$           "       Settings for list mode
   set listchars+=tab:>-         "       Display tabs as >---
@@ -41,7 +41,7 @@ set softtabstop=4               " sts - Indenting w/ tab gets us 4 spaces (usefu
 set splitbelow                  " sb  - New window goes below
 set splitright                  " spr - New windows goes right
 set tabstop=8                   " ts  - Show tabs as 8 spaces
-set textwidth=0                 " tw  - Don't break lines by default
+set textwidth=0                 " tw  - Don't break lines
 if version >= 700
   set viminfo=                  " vi  - Read/write a .viminfo file
   set viminfo^='20              "       Remember 20 previously edited files (required)
@@ -53,7 +53,7 @@ set virtualedit=block           " ve  - Allow selection anywhere
 set wildmenu                    "     - Use a menu to show tab-completions
 set wildmode=longest:full,full  " wim - Better tab-completion
 set winaltkeys=no               " wak - Don't use ALT to access the menu
-set wrap                        "     - Wrap lines by default
+set wrap                        "     - Wrap lines
 
 " Status line (includes 'set ruler')
 " - buffer number (4 columns)
@@ -98,7 +98,9 @@ let python_highlight_doctests = 1
 " Ruby {{{3
 "let ruby_fold = 1
 " }}}3
-" }}}1
+
+" Commands {{{1
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
 " Keymap {{{1
 " Ctrl-Tab navigation
