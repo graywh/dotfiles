@@ -132,7 +132,7 @@ else
 fi
 None="[0m"
 # }}}
-PS1='$Green[\u@\h:$Red\w$Yellow$(git_branch)$Green]\n\$$None '
+PS1='$Green[\u@\h:$Red\w$Yellow$(__git_ps1 " %s")$Green]\n\$$None '
 
 # a function to put the current time in the top-right corner of the terminal
 # and change the title of the terminal
@@ -181,7 +181,10 @@ function calc() {
 }
 
 function git_branch() {
-    git name-rev HEAD 2> /dev/null | sed s/^HEAD//
+    base_dir=$(git-rev-parse --show-cdup 2>/dev/null) || return 1
+    ref=$(git-symbolic-ref -q HEAD || git-name-rev --name-only HEAD 2>/dev/null)
+    ref=${ref#refs/heads/}
+    echo " $ref"
 }
 # }}}
 
