@@ -80,7 +80,6 @@ endif
 colorscheme graywh
 syntax sync fromstart
 syntax on
-" }}}1
 
 " Plugins {{{1
 runtime! macros/matchit.vim
@@ -104,10 +103,10 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | d
 
 " Keymap {{{1
 " Ctrl-Tab navigation
-noremap <silent> <C-Tab> :tabnext<CR>
-noremap <silent> <C-S-Tab> :tabprevious<CR>
-inoremap <silent> <C-Tab> <C-O>:tabnext<CR>
-inoremap <silent> <C-S-Tab> <C-O>:tabprevious<CR>
+noremap <C-Tab> gt<CR>
+noremap <C-S-Tab> gT<CR>
+inoremap <C-Tab> <C-O>gt<CR>
+inoremap <C-S-Tab> <C-O>gT<CR>
 " Shift-arrow display navigation
 noremap <S-Up> g<Up>
 noremap <S-Down> g<Down>
@@ -123,10 +122,10 @@ noremap  <F8>  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . "> 
 " Mac OS X Terminal {{{2
 "map <Esc>[H <Home>
 "map <Esc>[F <End>
-"imap <Esc>[H <Esc>I
-"imap <Esc>[F <Esc>A
+"imap <Esc>[H <C-O><Home>
+"imap <Esc>[F <C-O><End>
 "map <C-D-\> <Home>
 "map <C-D-[> <End>
-"imap <C-D-\> <Esc>I
-"imap <C-D-[> <Esc>A
+"imap <C-D-\> <C-O><Home>
+"imap <C-D-[> <C-O><End>
 " }}}1
