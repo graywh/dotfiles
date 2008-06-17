@@ -141,7 +141,7 @@ function prompt_command
 {
     # If this is an xterm set the title to user@host:dir
     case $TERM in
-    xterm*|gnome-*|putty)
+    xterm*|gnome*|konsole*|putty*)
         echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"
         ;;
     *)
