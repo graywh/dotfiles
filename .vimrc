@@ -54,6 +54,7 @@ set wildmenu                    "     - Use a menu to show tab-completions
 set wildmode=longest:full,full  " wim - Better tab-completion
 set winaltkeys=no               " wak - Don't use ALT to access the menu
 set wrap                        "     - Wrap lines
+set wrapmargin                  " wm  - Don't break lines
 
 " Status line (includes 'set ruler')
 " - buffer number (4 columns)
