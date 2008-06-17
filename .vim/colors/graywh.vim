@@ -45,7 +45,7 @@ hi link Character String
   hi LineNr     guifg=#CCCC99 guibg=#282828
   hi ErrorMsg   guifg=#FFFFFF guibg=#CC0000
   hi WarningMsg guifg=#FFFFFF guibg=#CCCC00
-  hi NonText    guifg=#66FFFF               gui=bold
+  hi NonText    guifg=#66FFFF guibg=#282828 gui=bold
   hi Title      guifg=#FF99FF               gui=bold
   hi Visual                                 gui=reverse
   " Syntax {{{2
@@ -78,7 +78,7 @@ if &t_Co == 256
   hi SignColumn ctermfg=123 ctermbg=235
   hi ErrorMsg   ctermfg=231 ctermbg=160
   hi WarningMsg ctermfg=231 ctermbg=184
-  hi NonText    ctermfg=123             cterm=bold
+  hi NonText    ctermfg=123 ctermbg=235 cterm=bold
   hi Title      ctermfg=219
   " Syntax {{{2
   hi Error      ctermfg=231 ctermbg=210
@@ -96,19 +96,19 @@ if &t_Co == 256
   " }}}1
 else
   " For 8/16 color terminals {{{1
-  hi Normal     ctermfg=Gray     ctermbg=Black
+  hi Normal     ctermfg=Gray        ctermbg=Black
   " Vim {{{2
   hi Directory  ctermfg=DarkCyan
-  hi DiffText   ctermfg=Black    ctermbg=Yellow      cterm=none
-  hi DiffAdd    ctermfg=Black    ctermbg=Green
-  hi DiffDelete ctermfg=Black    ctermbg=Red
-  hi Folded     ctermfg=Gray     ctermbg=DarkGray
-  hi FoldColum  ctermfg=Cyan     ctermbg=DarkGray
-  hi LineNr     ctermfg=Yellow   ctermbg=DarkGray
-  hi SignColumn ctermfg=Cyan     ctermbg=DarkGray
-  hi ErrorMsg   ctermfg=White    ctermbg=DarkRed
-  hi WarningMsg ctermfg=White    ctermbg=DarkYellow
-  hi NonText    ctermfg=Cyan
+  hi DiffText   ctermfg=Black       ctermbg=Yellow      cterm=none
+  hi DiffAdd    ctermfg=Black       ctermbg=Green
+  hi DiffDelete ctermfg=Black       ctermbg=Red
+  hi Folded     ctermfg=Gray        ctermbg=DarkGray
+  hi FoldColum  ctermfg=Cyan        ctermbg=DarkGray
+  hi LineNr     ctermfg=Yellow      ctermbg=DarkGray
+  hi SignColumn ctermfg=Cyan        ctermbg=DarkGray
+  hi ErrorMsg   ctermfg=White       ctermbg=DarkRed
+  hi WarningMsg ctermfg=White       ctermbg=DarkYellow
+  hi NonText    ctermfg=Cyan        ctermbg=DarkGray
   hi Title      ctermfg=DarkMagenta
   " Syntax {{{2
   hi Error      ctermfg=White    ctermbg=Red
