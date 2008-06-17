@@ -8,8 +8,6 @@ setlocal nomodifiable              " Don't allow modification
 setlocal nomodified                " So Vim doesn't complain on exiting
 setlocal nonumber                  " Hide the line number column
 setlocal noruler                   " Hide the ruler line
-setlocal shiftwidth=8              " For the best display
-setlocal tabstop=8                 " For the best display
 setlocal viminfo=                  " Don't save marks, history, and such
 " Key mappings {{{1
 noremap q :q<CR>              " Easily exit
