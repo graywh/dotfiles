@@ -10,6 +10,7 @@ XTerm.toolBar: false
 *VT100.saveLines: 1000
 *VT100.rightScrollBar: true
 *VT100.ttyModes: erase ^?
+*VT100.underline: true
 ! --- *VT100 keybindings
 *VT100.translations: #override \n\
     <Key>Delete: string("[3~") \n\
