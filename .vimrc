@@ -86,6 +86,7 @@ syntax on
 runtime! macros/matchit.vim
 
 " Options {{{2
+let g:tex_flavor = "latex" " Use LaTeX as the TeX flavor
 " PHP {{{3
 let php_sql_query = 1
 let php_htmlInStrings = 1
@@ -103,6 +104,8 @@ let python_highlight_doctests = 1
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
 " Keymap {{{1
+" Autocomplete
+inoremap <C-space> <C-r>=pumvisible() ? "\<lt>C-e>" : "\<lt>C-x>\<lt>C-o>"<CR>
 " Ctrl-Tab navigation
 noremap <C-Tab> gt<CR>
 noremap <C-S-Tab> gT<CR>
