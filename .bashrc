@@ -34,7 +34,8 @@ if [ "$PS1" ]; then
     # red = 31, blue = 34, green = 32, yellow = 33, bold = 1;
     # change color \[\033[***m\]
     #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[1;32m\][\u@\h:\[\033[1;31m\]\w\[\033[1;32m\]]\n\$\[\033[0m\] '
+    PS1='\[\033[1;32m\][\u@\h:\[\033[1;31m\]\w\[\033[1;32m\]]\n\$\[\033[0m\] '
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[1;32m\][\u@\h:\[\033[1;31m\]\w\[\033[1;32m\]]\n\$\[\033[0m\] '
 
     function prompt_command {
         # If this is an xterm set the title to user@host:dir
@@ -64,4 +65,8 @@ if [ "$PS1" ]; then
     #if [ -f /etc/bash_completion ]; then
     #  . /etc/bash_completion
     #fi
+
+    function calc() {
+        echo "$@" | bc -l
+    }
 fi
