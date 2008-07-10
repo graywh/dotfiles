@@ -106,17 +106,10 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | d
 " Keymap {{{1
 " Autocomplete
 inoremap <C-space> <C-r>=pumvisible() ? "\<lt>C-e>" : "\<lt>C-x>\<lt>C-o>"<CR>
-" Ctrl-Tab navigation
-noremap <C-Tab> gt<CR>
-noremap <C-S-Tab> gT<CR>
-inoremap <C-Tab> <C-O>gt<CR>
-inoremap <C-S-Tab> <C-O>gT<CR>
-" Shift-arrow display navigation
-noremap <S-Up> g<Up>
-noremap <S-Down> g<Down>
-inoremap <S-Up> <C-O>g<Up>
-inoremap <S-Down> <C-O>g<Down>
-" Shift-home/end display navigation
+" Add new line indented here
+noremap <Leader>o :let ospaces=virtcol(".")-1<CR>o<Esc>:exe "norm ".ospaces."i "<CR>:.retab!<CR>A
+noremap <Leader>O :let ospaces=virtcol(".")-1<CR>O<Esc>:exe "norm ".ospaces."i "<CR>:.retab!<CR>A
+" Shift-home/end visual/display navigation
 noremap <S-Home> g<Home>
 noremap <S-End> g<End>
 inoremap <S-Home> <C-O>g<Home>
