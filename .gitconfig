@@ -1,29 +1,28 @@
 [alias]
 	co = checkout
 	ci = commit
-	st = status
+	st = !git --no-pager status
 	br = branch
-
 [color]
 	branch = auto
 	diff = false
 	interactive = auto
 	pager = false
 	status = auto
-
 [core]
 	editor = vim
 	pager = view -
 	excludesfile = /home/graywh/.gitignore
-
 [diff]
 	rename = copy
-
 [help]
 	browser = dillo
-
 [user]
 	name = Will Gray
 	email = graywh@gmail.com
 [gui]
 	fontdiff = -family Monaco -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+[diff "ruby"]
+	funcname = ^ *\\(\\(class\\|module\\|def\\) .*\\)
+[diff "python"]
+	funcname = ^ *\\(\\(class\\|def\\) .*\\)
