@@ -9,15 +9,14 @@
 # Path {{{
 # set PATH so it includes user's private bin if it exists
 if [ -d ~/bin ] ; then
-    export PATH="${PATH}:~/bin"
+    export PATH="$PATH:~/bin"
 fi
 
 # Mac OS X options {{{2
 if [ "$OSTYPE" == "darwin8.0" ]; then
     # include location of MySQL
-    export PATH="${PATH}:/usr/local/mysql/bin"
+    export PATH="$PATH:/usr/local/mysql/bin"
 fi
-# }}}1
 
 # Environment variables {{{1
 # use a sensible editor
@@ -43,12 +42,10 @@ if [ "$OSTYPE" == "darwin8.0" ]; then
     # export X11 Display (for Terminal.app)
     export DISPLAY=:0.0
 fi
-# }}}1
 
 # Bash Options {{{1
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
-# }}}1
 
 # Terminal stuff {{{1
 # check the window size after each command and, if necessary,
@@ -59,7 +56,6 @@ shopt -s checkwinsize
 if tty -s; then
     stty erase '^?'
 fi
-# }}}1
 
 # enable color support of ls {{{1
 # 38;5;___ for 256 color support
@@ -73,7 +69,6 @@ if [ "$TERM" != "dumb" ]; then
         alias ls='ls -F --color=auto'
     fi
 fi
-# }}}
 
 # Aliases {{{1
 # some more ls aliases
@@ -82,13 +77,12 @@ alias l.='ls -d .*' # make better
 alias ll='ls -hl'
 alias lla='ll -A'
 alias ll.='ll -d .*' # make better
-# }}}
 
-# Set a fancy prompt {{{
+# Set a fancy prompt {{{1
 # red = 31, green = 32, yellow = 33, blue = 34, bold = 1;
 # change color \[\033[*;**m\]
 #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-# Color definitions {{{
+# Color definitions {{{2
 if [ `tput colors` == 256 ]; then
     # For 256 color term {{{
     #Foreground="[38;5;${n}m"
@@ -131,12 +125,12 @@ else
     # }}}
 fi
 None="[0m"
-# }}}
+# }}}2
 PS1='$Green[\u@\h:$Red\w$Yellow$(__git_ps1 " %s")$Green]\n\$$None '
 
 # a function to put the current time in the top-right corner of the terminal
 # and change the title of the terminal
-# function prompt_command {{{
+# function prompt_command {{{2
 function prompt_command
 {
     # If this is an xterm set the title to user@host:dir
@@ -159,11 +153,11 @@ function prompt_command
     #echo -en "$Green[$(date +%H:%M:%S)]$None"
     #tput rc
 }
-# }}}
+# }}}2
 
 PROMPT_COMMAND=prompt_command
-# }}}
 
+# Load other bash configurations {{{1
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc).
 if [ -f /etc/bash_completion ]; then
@@ -175,7 +169,7 @@ if [ -f ~/.bashrc_local ]; then
   . ~/.bashrc_local
 fi
 
-# Functions {{{
+# Functions {{{1
 function calc() {
     echo "$@" | bc -l
 }
@@ -186,6 +180,6 @@ function git_branch() {
     ref=${ref#refs/heads/}
     echo " $ref"
 }
-# }}}
+# }}}1
 
 # vim: fdm=marker
