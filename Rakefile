@@ -1,3 +1,5 @@
+# TODO add options for cp, ln, and ln -s
+# TODO find sensible meaning and use for "force"
 require 'fileutils'
 include FileUtils
 
@@ -5,7 +7,8 @@ Home = ENV["HOME"]
 Externals = "externals"
 Base = "base"
 Local = "local/#{`uname -n`.sub("\n","")}"
-$dry_run = false
+
+$noop = false
 
 def check_install(srcdir)
   srcdir = File.expand_path(File.join(File.dirname(__FILE__), srcdir))
@@ -15,7 +18,7 @@ def check_install(srcdir)
 
     if File.exist?(destfile)
       next if File.directory?(destfile)
-      next if File.symlink?(destfile) and File.readlink(destfile) == srcfile
+      next if File.identical?(destfile, srcfile)
       #next if compare_file(srcfile, destfile)
       if compare_file(srcfile, destfile)
         do_install(srcfile, destfile)
@@ -43,15 +46,17 @@ end
 
 def do_install(srcfile, destfile)
   if File.directory?(srcfile)
-    mkdir_p(destfile, :verbose => true, :noop => $dry_run)
+    mkdir_p(destfile, :verbose => true, :noop => $noop)
   else
-    ln_sf(srcfile, destfile, :verbose => true, :noop => $dry_run)
+    ln(srcfile, destfile, :verbose => true, :noop => $noop)
   end
 end
 
-desc "Don't actually do anything"
+task :default => ["dryrun", "init", "install"]
+
+desc "Make install:base, externals:merge no-act"
 task :dryrun do
-  $dry_run = true
+  $noop = true
 end
 
 desc "Install all files"
@@ -69,12 +74,32 @@ namespace :install do
   end
 end
 
-desc "Update master branch"
+desc "Initialize"
+task :init => ["externals:init"] do
+  system "git checkout -b local"
+end
+
+desc "Add files to be tracked"
+task :add, :file do |t, args|
+  raise "no file" unless args.file
+  srcfile = args.file
+  destfile = args.file.sub(Home, base)
+end
+
+desc "Update master and rebase"
 task :update do
-  branch = `git branch | grep "^*" | sed 's/\* //'`.sub("\n", "")
   system "git checkout master"
   system "git pull"
-  system "git checkout #{branch}"
+  system "git checkout local"
+  system "git rebase master"
+end
+
+desc "Cherry pick commits for master"
+task :cherry, :rev do |t, args|
+  raise "no revision" unless args.rev
+  system "git checkout master"
+  system "git cherry-pick #{args.rev}"
+  system "git checkout local"
   system "git rebase master"
 end
 
@@ -114,9 +139,9 @@ namespace :externals do
         srcbase = srcfile.sub(%r!^#{srcdir}/!, "")
         destfile = File.join(destdir, srcbase)
         if File.directory?(srcfile)
-          mkdir_p(destfile, :verbose => true) unless File.exist?(destfile)
+          mkdir_p(destfile, :verbose => true, :noop => $noop) unless File.exist?(destfile)
         else
-          cp(srcfile, destfile, :verbose => true)
+          cp(srcfile, destfile, :verbose => true, :noop => $noop)
         end
       end
     end
