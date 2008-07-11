@@ -1,54 +1,85 @@
-# TODO add options for cp, ln, and ln -s
 # TODO find sensible meaning and use for "force"
 require 'fileutils'
-include FileUtils
 
 Home = ENV["HOME"]
 Externals = "externals"
 Base = "base"
-Local = "local/#{`uname -n`.sub("\n","")}"
+# :copy, :symlink
+InstallMethod = :symlink
 
 $noop = false
+$force = false
 
 def check_install(srcdir)
   srcdir = File.expand_path(File.join(File.dirname(__FILE__), srcdir))
+  all = false
   Dir["#{srcdir}/**/*"].each do |srcfile| 
-    srcbase = srcfile.sub(%r!^#{srcdir}/!, ".")
-    destfile = File.join(Home, srcbase)
-
-    if File.exist?(destfile)
+    destfile = name_switch(srcfile, srcdir, ".", Home)
+    if File.exist?(destfile) and not all
       next if File.directory?(destfile)
-      next if File.identical?(destfile, srcfile)
-      #next if compare_file(srcfile, destfile)
-      if compare_file(srcfile, destfile)
-        do_install(srcfile, destfile)
-      else
-        begin
-          print "#{destfile} exists; overwrite? [Ynd] "
-          choice = $stdin.gets.chomp
-          case choice 
-          when '', 'y'
-            do_install(srcfile, destfile)
-          when 'n'
-          when 'd'
-            system "diff -u #{destfile} #{srcfile} | less -S"
-            choice = nil
-          else
-            choice = nil
-          end
-        end while choice.nil?
-      end
+      next if same_file?(destfile, srcfile)
+      begin
+        print "#{destfile} exists; overwrite? [Ynaqd] "
+        choice = $stdin.gets.chomp
+        case choice 
+        when '', 'y'
+          do_install(srcfile, destfile)
+        when 'n'
+        when 'a'
+          all = true
+          do_install(srcfile, destfile)
+        when 'q'
+          return
+        when 'd'
+          system "diff -u #{destfile} #{srcfile} | less -S"
+          choice = nil
+        else
+          choice = nil
+        end
+      end while choice.nil?
     else
       do_install(srcfile, destfile)
     end
   end
 end
 
+def name_switch(srcfile, srcdir, replacement, destdir)
+  srcbase = srcfile.sub(%r!^#{srcdir}/!, replacement)
+  return File.join(destdir, srcbase)
+end
+
+def same_file?(srcfile, destfile)
+  case InstallMethod
+  when :copy
+    return FileUtils.identical?(srcfile, destfile)
+  when :symlink
+    return File.identical?(srcfile, destfile)
+  end
+end
+
 def do_install(srcfile, destfile)
   if File.directory?(srcfile)
-    mkdir_p(destfile, :verbose => true, :noop => $noop)
+    FileUtils.mkdir_p(destfile, :verbose => true, :noop => $noop)
   else
-    ln(srcfile, destfile, :verbose => true, :noop => $noop)
+    case InstallMethod
+    when :copy
+      FileUtils.cp(srcfile, destfile, :verbose => true, :noop => $noop)
+    when :symlink
+      FileUtils.ln_sf(srcfile, destfile, :verbose => true, :noop => $noop)
+    end
+  end
+end
+
+def do_merge(srcdir, destdir)
+  Dir["#{srcdir}/**/*"].each do |srcfile|
+    next if %w{README Rakefile ChangeLog CONTRIBUTORS FAQ INSTALL NEWS bin vim-ruby-install.rb}.include?(File.basename(srcfile))
+
+    destfile = name_switch(srcfile, srcdir, "", destdir)
+    if File.directory?(srcfile)
+      FileUtils.mkdir_p(destfile, :verbose => true, :noop => $noop) unless File.exist?(destfile)
+    else
+      FileUtils.cp(srcfile, destfile, :verbose => true, :noop => $noop)
+    end
   end
 end
 
@@ -60,18 +91,8 @@ task :dryrun do
 end
 
 desc "Install all files"
-task :install => ["install:base", "install:local"]
-
-namespace :install do
-  desc "Install base files"
-  task :base do
-    check_install(Base)
-  end
-
-  desc "Install system-specific files"
-  task :local do
-    check_install(Local)
-  end
+task :install do
+  check_install(Base)
 end
 
 desc "Initialize"
@@ -79,11 +100,29 @@ task :init => ["externals:init"] do
   system "git checkout -b local"
 end
 
+namespace :init do
+  desc "Switch main tracking branch to origin/master"
+  task :master do
+    system "git branch --track master origin/master"
+    system "git checkout master"
+    system "git branch -D local"
+    system "git checkout -b local"
+  end
+end
+
 desc "Add files to be tracked"
 task :add, :file do |t, args|
   raise "no file" unless args.file
   srcfile = args.file
-  destfile = args.file.sub(Home, base)
+  destfile = name_switch(srcfile, "#{Home}/.", "", Base)
+  FileUtils.mkdir_p(File.dirname(destfile), :verbose => true, :noop => $noop)
+  case InstallMethod
+  when :copy
+    FileUtils.cp(srcfile, destfile, :verbose => true, :noop => $noop)
+  when :symlink
+    FileUtils.mv(srcfile, destfile, :verbose => true, :noop => $noop)
+    FileUtils.ln_sf(srcfile, destfile, :verbose => true, :noop => $noop)
+  end
 end
 
 desc "Update master and rebase"
@@ -132,19 +171,6 @@ namespace :externals do
 
   desc "Merge externals files"
   task :merge => [:update] do
-    def do_merge(srcdir, destdir)
-      Dir["#{srcdir}/**/*"].each do |srcfile|
-        next if %w{README Rakefile ChangeLog CONTRIBUTORS FAQ INSTALL NEWS bin vim-ruby-install.rb}.include?(File.basename(srcfile))
-
-        srcbase = srcfile.sub(%r!^#{srcdir}/!, "")
-        destfile = File.join(destdir, srcbase)
-        if File.directory?(srcfile)
-          mkdir_p(destfile, :verbose => true, :noop => $noop) unless File.exist?(destfile)
-        else
-          cp(srcfile, destfile, :verbose => true, :noop => $noop)
-        end
-      end
-    end
     %w{vim-rails vim-surround vim-speeddating vim-git vim-ruby}.each do |name|
       puts "=== #{name} ==="
       do_merge("#{Externals}/#{name}", "#{Base}/vim")
