@@ -83,7 +83,7 @@ def do_merge(srcdir, destdir)
   end
 end
 
-task :default => ["dryrun", "init", "install"]
+task :default => ["dryrun", "install"]
 
 desc "Make install:base, externals:merge no-act"
 task :dryrun do
