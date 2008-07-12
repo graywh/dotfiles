@@ -11,11 +11,19 @@
 if [ -d ~/bin ] ; then
     export PATH="$PATH:~/bin"
 fi
+if [ -d /opt/local/bin ] ; then
+    export PATH="/opt/local/bin:$PATH"
+fi
+if [ -d /opt/local/sbin ] ; then
+    export PATH="/opt/local/sbin:$PATH"
+fi
 
 # Mac OS X options {{{2
 if [ "$OSTYPE" == "darwin8.0" ]; then
-    # include location of MySQL
-    export PATH="$PATH:/usr/local/mysql/bin"
+    if [ -d /usr/local/mysql/bin ] ; then
+        # include location of MySQL
+        export PATH="$PATH:/usr/local/mysql/bin"
+    fi
 fi
 
 # Environment variables {{{1
