@@ -81,10 +81,25 @@ fi
 # Aliases {{{1
 # some more ls aliases
 alias la='ls -A'
-alias l.='ls -d .*' # make better
+#alias l.='ls -d .*' # make better
 alias ll='ls -hl'
 alias lla='ll -A'
-alias ll.='ll -d .*' # make better
+#alias ll.='ll -d .*' # make better
+
+function l.() {
+    olddir="$PWD"
+    cd $1
+    ls -d .*
+    cd "$olddir"
+    unset olddir
+}
+function ll.() {
+    olddir="$PWD"
+    cd $1
+    ls -dhl .*
+    cd "$olddir"
+    unset olddir
+}
 
 # Set a fancy prompt {{{1
 # red = 31, green = 32, yellow = 33, blue = 34, bold = 1;
