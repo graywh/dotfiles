@@ -5,7 +5,7 @@ Home = ENV["HOME"]
 Externals = "externals"
 Base = "base"
 # :copy, :symlink
-InstallMethod = :symlink
+InstallMethod = :copy
 
 $noop = false
 $force = false
@@ -44,8 +44,7 @@ def check_install(srcdir)
 end
 
 def name_switch(srcfile, srcdir, replacement, destdir)
-  srcbase = srcfile.sub(%r!^#{srcdir}/!, replacement)
-  return File.join(destdir, srcbase)
+  return File.join(destdir, srcfile.sub(%r!^#{srcdir}!, replacement))
 end
 
 def same_file?(srcfile, destfile)
@@ -110,6 +109,14 @@ namespace :init do
   end
 end
 
+desc "Show differences"
+task :diff do
+  Dir["#{Base}/**/*"].each do |srcfile| 
+    destfile = name_switch(srcfile, "#{Base}/", ".", Home)
+    ### Finish this
+  end
+end
+
 desc "Add files to be tracked"
 task :add, :file do |t, args|
   raise "no file" unless args.file
@@ -121,7 +128,7 @@ task :add, :file do |t, args|
     FileUtils.cp(srcfile, destfile, :verbose => true, :noop => $noop)
   when :symlink
     FileUtils.mv(srcfile, destfile, :verbose => true, :noop => $noop)
-    FileUtils.ln_sf(srcfile, destfile, :verbose => true, :noop => $noop)
+    FileUtils.ln_sf(destfile, srcfile, :verbose => true, :noop => $noop)
   end
 end
 
@@ -149,24 +156,32 @@ namespace :externals do
   end
 
   desc "Update externals" 
-  task :update do
-    system "git submodule update"
+  task :update => ["externals:update:git"]
 
-    # fetch gems
-    #require 'rubygems/installer'
-    #%w{vim-ruby}.each do |name|
-    #  system "rm -fr externals/#{name}*"
-    #  version = all = Gem::Requirement.default
-    #  dep = Gem::Dependency.new name, version
-    #  specs_and_sources = Gem::SpecFetcher.fetcher.fetch dep, all
-    #  specs_and_sources.sort_by { |spec,| spec.version }
-    #  spec, source_uri = specs_and_sources.last
-    #  gem_file_name = "#{spec.full_name}.gem"
+  namespace :update do
+    desc "Git submodules"
+    task :git do
+      system "git submodule update"
+    end
 
-    #  system "wget #{source_uri}/gems/#{gem_file_name} -O externals/#{name}.gem"
-    #  Gem::Installer.new("externals/#{name}.gem").unpack("externals/#{name}")
-    #  rm "externals/#{name}.gem"
-    #end
+    desc "Ruby gems"
+    task :gems do
+      # fetch gems
+      require 'rubygems/installer'
+      %w{vim-ruby}.each do |name|
+        system "rm -fr externals/#{name}*"
+        version = all = Gem::Requirement.default
+        dep = Gem::Dependency.new name, version
+        specs_and_sources = Gem::SpecFetcher.fetcher.fetch dep, all
+        specs_and_sources.sort_by { |spec,| spec.version }
+        spec, source_uri = specs_and_sources.last
+        gem_file_name = "#{spec.full_name}.gem"
+
+        system "wget #{source_uri}/gems/#{gem_file_name} -O externals/#{name}.gem"
+        Gem::Installer.new("externals/#{name}.gem").unpack("externals/#{name}")
+        rm "externals/#{name}.gem"
+      end
+    end
   end
 
   desc "Merge externals files"
