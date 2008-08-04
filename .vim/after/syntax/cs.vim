@@ -1,3 +1,6 @@
+" Some people just don't understand
+syn include @csXml syntax/xml.vim
+
 syn match  csIdentifier "@\w*"
 
 "syn region csBlock start="{" end="}" transparent fold
