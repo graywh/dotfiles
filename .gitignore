@@ -1,8 +1,6 @@
 /*
 !externals/
 !Rakefile
-!./
-!../
 !.bash_profile
 !.bashrc
 !.git/
@@ -12,10 +10,10 @@
 !.gitmodules
 !.gvimrc
 !.inputrc
-!.kde-share-apps-konsole/
+!.kde/share/apps/konsole
 !.pythonrc.py
 !.Rprofile
-!.subversion-config
+!.subversion/config
 !.vim/
 !.vimrc
 !.Xresources
