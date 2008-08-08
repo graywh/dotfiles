@@ -9,6 +9,8 @@ set autoindent                  " ai  - Always set autoindenting on
 set backspace=indent,eol,start  " bs  - More powerful backspacing
 "set backspace=2                " bs  - More powerful backspacing
 "set backup                     " bk  - Make a backup of the file
+set completeopt=longest         " cot - Start with longest part
+set completeopt+=menu,preview   "     - then show a menu
 set expandtab                   " et  - Always expand tabs to spaces
 set fileformats=unix,mac,dos    " ffs - End-of-line character
 set foldcolumn=1                " fdc - Show top-level fold sections
@@ -44,19 +46,19 @@ set tabstop=8                   " ts  - Show tabs as 8 spaces
 set textwidth=0                 " tw  - Don't break lines
 if version >= 700
   set viminfo=                  " vi  - Read/write a .viminfo file
-  set viminfo^='20              "       Remember 20 previously edited files (required)
-  set viminfo^=<50              "       Remember up to 50 lines of registers
-  set viminfo^=!                "       Remember some global variables
-  set viminfo^=h                "       Don't restore the hlsearch highlighting
+  set viminfo+='20              "       Remember 20 previously edited files (required)
+  set viminfo+=<50              "       Remember up to 50 lines of registers
+  set viminfo+=!                "       Remember some global variables
+  set viminfo+=h                "       Don't restore the hlsearch highlighting
 end
 set virtualedit=block           " ve  - Allow selection anywhere
 set wildmenu                    "     - Use a menu to show tab-completions
-set wildmode=longest:full,full  " wim - Better tab-completion
+set wildmode=longest:full,full  " wim - Complete longest, tab through matches
 set winaltkeys=no               " wak - Don't use ALT to access the menu
 set wrap                        "     - Wrap lines
 set wrapmargin=0                " wm  - Don't break lines
 
-" Status line (includes 'set ruler')
+" Status line (includes 'set ruler' info)
 " - buffer number (4 columns)
 " - relative filename & path (truncatable)
 " - [Help] flag
@@ -64,7 +66,7 @@ set wrapmargin=0                " wm  - Don't break lines
 " - modified [+] or not modifiable [-] flag
 " - read-only flag [RO]
 " - filetype
-" - 'set ruler' default (line, column [virtual column]     percent)
+" - 'set ruler' defaults: line, column [virtual column]     percent
 set statusline=%4(%n%)\ %<%f\ %h%w%m%r%=%y\ %-14.(%l,%c%V%)\ %P
 
 " Suffixes that get lower priority when doing tab completion for filenames.
