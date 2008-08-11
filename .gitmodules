@@ -1,12 +1,12 @@
-[submodule "externals/vim-git"]
-	path = externals/vim-git
+[submodule ".dotfiles/externals/vim-git"]
+	path = .dotfiles/externals/vim-git
 	url = git://git.tpope.net/git/vim-git.git
-[submodule "externals/vim-rails"]
-	path = externals/vim-rails
+[submodule ".dotfiles/externals/vim-rails"]
+	path = .dotfiles/externals/vim-rails
 	url = git://git.tpope.net/git/vim-rails.git
-[submodule "externals/vim-speeddating"]
-	path = externals/vim-speeddating
+[submodule ".dotfiles/externals/vim-speeddating"]
+	path = .dotfiles/externals/vim-speeddating
 	url = git://git.tpope.net/git/vim-speeddating.git
-[submodule "externals/vim-surround"]
-	path = externals/vim-surround
+[submodule ".dotfiles/externals/vim-surround"]
+	path = .dotfiles/externals/vim-surround
 	url = git://git.tpope.net/git/vim-surround.git

@@ -1,6 +1,5 @@
 /*
-!externals/
-!Rakefile
+!.dotfiles/
 !.bash_profile
 !.bashrc
 !.git/
@@ -17,4 +16,3 @@
 !.vim/
 !.vimrc
 !.Xresources
-externals/*
