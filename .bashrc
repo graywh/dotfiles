@@ -149,7 +149,7 @@ else
 fi
 None="[0m"
 # }}}2
-PS1='$Green[\u@\h:$Red\w$Yellow$(__git_ps1 " %s")$Green]\n\$$None '
+PS1='$Green[\u@\h:$Red\w$Yellow$(___git_ps1)$Green]\n\$$None '
 
 # a function to put the current time in the top-right corner of the terminal
 # and change the title of the terminal
@@ -203,6 +203,27 @@ function ___git_branch() {
     ref=${ref#refs/heads/}
     echo " $ref"
 }
+
+function ___git_ps1() { # reference __git_ps1
+    local g=$(git rev-parse --git-dir 2>/dev/null)
+    if [ -n $g ] ; then
+        if [ $g == ".git" ] ; then
+            __git_ps1 " %s"
+        fi
+        g=${g#$HOME/}
+        if [ $g == ".git" ] ; then
+            local p=$(git rev-parse --show-prefix 2>/dev/null)
+            case $p in
+            .dotfiles/*|.vim/*)
+                __git_ps1 " %s"
+                ;;
+            esac
+        else
+            __git_ps1 " %s"
+        fi
+    fi
+}
+
 # }}}1
 
 # vim: fdm=marker
