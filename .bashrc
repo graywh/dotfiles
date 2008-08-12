@@ -8,13 +8,13 @@
 
 # Path {{{
 # set PATH so it includes user's private bin if it exists
-if [ -d ~/bin ] ; then
+if [ -d "~/bin" ] ; then
     export PATH="$PATH:~/bin"
 fi
-if [ -d /opt/local/bin ] ; then
+if [ -d "/opt/local/bin" ] ; then
     export PATH="/opt/local/bin:$PATH"
 fi
-if [ -d /opt/local/sbin ] ; then
+if [ -d "/opt/local/sbin" ] ; then
     export PATH="/opt/local/sbin:$PATH"
 fi
 
@@ -61,11 +61,11 @@ export HISTCONTROL=ignoredups
 shopt -s checkwinsize
 
 # use ^? for backspace so ^H can be used for other things
-if tty -s; then
+if [ -s tty ] ; then
     stty erase '^?'
 fi
 
-# enable color support of ls {{{1
+# Enable color support of ls {{{1
 # 38;5;___ for 256 color support
 if [ "$TERM" != "dumb" ]; then
     if [ "$OSTYPE" == "darwin8.0" ]; then
@@ -183,12 +183,12 @@ PROMPT_COMMAND=prompt_command
 # Load other bash configurations {{{1
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc).
-if [ -f /etc/bash_completion ]; then
+if [ -f "/etc/bash_completion" ]; then
   . /etc/bash_completion
 fi
 
 # include the local system modifications
-if [ -f ~/.bashrc_local ]; then
+if [ -f "~/.bashrc_local" ]; then
   . ~/.bashrc_local
 fi
 
@@ -197,9 +197,9 @@ function calc() {
     echo "$@" | bc -l
 }
 
-function git_branch() {
-    base_dir=$(git-rev-parse --show-cdup 2>/dev/null) || return 1
-    ref=$(git-symbolic-ref -q HEAD || git-name-rev --name-only HEAD 2>/dev/null)
+function ___git_branch() {
+    local base_dir=$(git rev-parse --show-cdup 2>/dev/null) || return 1
+    local ref=$(git-symbolic-ref -q HEAD || git-name-rev --name-only HEAD 2>/dev/null)
     ref=${ref#refs/heads/}
     echo " $ref"
 }
