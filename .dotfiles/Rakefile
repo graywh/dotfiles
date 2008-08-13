@@ -60,7 +60,12 @@ namespace :externals do
   namespace :update do
     desc "Git submodules"
     task :git do
-      system("git submodule update")
+      %w{vim-rails vim-surround vim-speeddating vim-git}.each do |name|
+        system("cd #{Externals}/#{name}")
+        system("git checkout master")
+        system("git pull")
+        system("cd ../..")
+      end
     end
 
     desc "Ruby gems"
@@ -84,14 +89,24 @@ namespace :externals do
   end
 
   desc "Merge externals files"
-  task :merge => [:update] do
-    %w{vim-rails vim-surround vim-speeddating vim-git}.each do |name|
-      puts "=== #{name} ==="
-      FileUtils.cp_r("#{Externals}/#{name}/.", "../.vim", :noop => $noop)
+  task :merge
+
+  namespace :merge do
+    desc "Plain copy"
+    task :plain do
+      %w{vim-rails vim-surround vim-speeddating vim-git}.each do |name|
+        puts "=== #{name} ==="
+        #FileUtils.cp_r("#{Externals}/#{name}/.", "../.vim", :noop => $noop)
+      end
     end
-    %w{vim-ruby}.each do |name|
-      puts "=== #{name} ==="
-      system("#{Externals}/#{name}/bin/#{name}-install.rb -d ../.vim")
+
+    desc "Install script"
+    task :install do
+      # Use installation script
+      %w{vim-ruby}.each do |name|
+        puts "=== #{name} ==="
+        system("#{Externals}/#{name}/bin/#{name}-install.rb -d ../.vim")
+      end
     end
   end
 end
