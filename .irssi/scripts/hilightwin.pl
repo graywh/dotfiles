@@ -16,7 +16,7 @@ $VERSION = "0.01";
 sub sig_printtext {
   my ($dest, $text, $stripped) = @_;
 
-  if (($dest->{level} & (MSGLEVEL_HILIGHT|MSGLEVEL_MSGS)) &&
+  if (($dest->{level} & (MSGLEVEL_HILIGHT)) &&
       ($dest->{level} & MSGLEVEL_NOHILIGHT) == 0) {
     $window = Irssi::window_find_name('hilight');
 
