@@ -206,12 +206,12 @@ function ___git_branch() {
 
 function ___git_ps1() { # reference __git_ps1
     local g=$(git rev-parse --git-dir 2>/dev/null)
-    if [ -n $g ] ; then
-        if [ $g == ".git" ] ; then
+    if [ -n "$g" ] ; then
+        if [ "$g" == ".git" ] ; then
             __git_ps1 " %s"
         fi
         g=${g#$HOME/}
-        if [ $g == ".git" ] ; then
+        if [ "$g" == ".git" ] ; then
             local p=$(git rev-parse --show-prefix 2>/dev/null)
             case $p in
             .dotfiles/*|.vim/*)
