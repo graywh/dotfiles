@@ -17,9 +17,7 @@ task :install do
 end
 
 desc "Initialize"
-task :init => ["externals:init"] do
-  system("git checkout -b local")
-end
+task :init => ["init:master"]
 
 namespace :init do
   desc "Switch main tracking branch to origin/master"
