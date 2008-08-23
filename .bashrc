@@ -61,9 +61,7 @@ export HISTCONTROL=ignoredups
 shopt -s checkwinsize
 
 # use ^? for backspace so ^H can be used for other things
-if [ -s tty ] ; then
-    stty erase '^?'
-fi
+tty -s && stty erase 
 
 # Enable color support of ls {{{1
 # 38;5;___ for 256 color support
