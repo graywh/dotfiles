@@ -1,0 +1,45 @@
+startup_message off
+chdir
+
+# don't do multiple logins
+deflogin off
+
+# use a tabline
+hardstatus alwayslastline
+#hardstatus string '%{= kK}[%L=%=%{w}%-Lw%>%40=%{r}(%{W}%n*%f%t%{r})%{w}%+Lw%L<%-019=%{K}][%{G}%D %d %M %0c%{K}]'
+hardstatus string '%{= kK}[ %L=%{w}%-Lw%50L>%{r}(%{W}%n%f*%t%{r})%{w}%+Lw%-025<%L=                                                                                                                                                                                         %{K}][%D %d %M %Y %0c]%>%<'
+
+# viking's
+#hardstatus string '%{= kg}[ %{G}%H %{g}] %L=%=%{w}%-Lw%L>%45=%{r}(%{W}%n*%f%t%{r})%{w}%+Lw%-016= %{g}[ %{B}%m/%d %{W}%0c %{g}]'
+
+# other hardstatus attempts
+#hardstatus string "%{= Km}%-Lw%{= KW}%50>%n%f* %t%{= Km}%+Lw%< %{= KG}%-=%D %d %M %Y %c%{-}"
+#hardstatus string '%{= kw}%+30= %L>%-w%{r}(%{W}%n*%f%t%{r})%{w} %+w%L>%-20= %{g}[ %{B}%m/%d %{W}%c %{g}]'
+
+# http://osdir.com/ml/gnu.screen/2002-09/msg00071.html
+#hardstatus string '%{= kK}-(%H)--[%L=%-Lw%50L>%n%f*%t%+Lw%-026<]%L=-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------(%D %d %M %Y %0c)-%>%<'
+
+# use ^S for commands and ^S^S to get ^S
+escape 
+
+bindkey -k k2 screen
+bindkey -k k3 screen -t vim vim
+bindkey -k k5 prev
+bindkey -k k6 next
+
+# terminfo and termcap for nice 256 color terminal
+# use bright colors for bold
+attrcolor b ".I"
+attrcolor i "-b"
+# use the alternate buffer
+altscreen on
+# tell screen how to set colors. AB = background, AF = foreground
+#termcapinfo xterm-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+# erase background with current bg color
+defbce on
+
+defscrollback 1000
+
+term "screen-256color"
+#term "xterm-256color"
+#term xterm

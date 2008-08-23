@@ -13,6 +13,7 @@
 !.kde/share/apps/konsole
 !.pythonrc.py
 !.Rprofile
+!.screenrc
 !.subversion/config
 !.vim/
 !.vimrc
