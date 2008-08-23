@@ -292,3 +292,8 @@ abstracts = {
   # hilight with specified color, $0 = color, $1 = text
   sb_act_hilight_color = "$0$1-%n";
 };
+formats = {
+  "fe-common/irc/notifylist" = {
+    notify_join = "= {nick $0} [$1@$2] [{hilight $3}] has joined $4";
+  };
+};

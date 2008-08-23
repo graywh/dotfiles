@@ -228,4 +228,7 @@ mainwindows = {
   2 = { first_line = "6"; lines = "18"; };
 };
 ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
-notifies = { crookshanks = { }; };
+notifies = {
+  crookshanks = { ircnets = ( "fn" ); };
+  biagidp = { ircnets = ( "fn" ); };
+};
