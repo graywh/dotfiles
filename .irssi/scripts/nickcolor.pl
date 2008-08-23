@@ -135,13 +135,13 @@ sub cmd_color {
       delete ($saved_colors{$nick});
     }
   } elsif ($op eq "list") {
-    Irssi::print ("\nSaved Colors:");
+    Irssi::print ("Saved Colors:");
     foreach my $nick (keys %saved_colors) {
       Irssi::print (chr (3) . "$saved_colors{$nick}$nick" .
-		    chr (3) . "1 ($saved_colors{$nick})");
+		    chr (3) . "15 ($saved_colors{$nick})");
     }
   } elsif ($op eq "preview") {
-    Irssi::print ("\nAvailable colors:");
+    Irssi::print ("Available colors:");
     foreach my $i (1..16) {
       Irssi::print (chr (3) . "$i" . "Color #$i");
     }
