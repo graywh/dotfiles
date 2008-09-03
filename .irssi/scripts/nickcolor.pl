@@ -28,6 +28,7 @@ sub load_colors {
     # I don't know why this is necessary only inside of irssi
     my @lines = split "\n";
     foreach my $line (@lines) {
+      next if $line =~ m|^\#|;
       my($nick, $color) = split ":", $line;
       $saved_colors{$nick} = $color;
     }
@@ -90,19 +91,45 @@ sub sig_public {
   return if not $nickrec;
   my $nickmode = $nickrec->{op} ? "@" : $nickrec->{voice} ? "+" : "";
 
-  # Has the user assigned this nick a color?
-  my $color = $saved_colors{$nick};
+  # hack by wu - recognize people better
+  my $basenick = $nick;
 
-  # Have -we- already assigned this nick a color?
-  if (!$color) {
-    $color = $session_colors{$nick};
+  # ignore text in {} when matching nick for color
+  $basenick =~ s|\{.*\}.*$||;
+  # ignore extra underscores in names
+  $basenick =~ s|_+$||;
+  # ignore text after pipe - the latest craze?
+  $basenick =~ s,\|.*$,,;
+  # ignore case
+  $basenick = lc( $basenick );
+
+  my $color;
+
+  # Hacked by wu - check the nick, then the basenick, then look for a 'default'
+  for my $name ( $nick, $basenick, 'default' )
+  {
+      if ( $session_colors{ $name } )
+      {
+	  # Has a color been assigned for this nick?
+	  $color = $session_colors{ $name };
+      }
+      elsif ( $saved_colors{ $name } )
+      {
+	  # Is there a saved color for this nick?
+	  $color = $saved_colors{ $name };
+      }
+
+      last if $color;
+  }
+  
+  unless ( $color )
+  {
+      # If no color found, pick a random new color for this nick
+      $color = simple_hash( $nick );
   }
 
-  # Let's assign this nick a color
-  if (!$color) {
-    $color = simple_hash $nick;
-    $session_colors{$nick} = $color;
-  }
+  # Stash the color for this nick
+  $session_colors{$nick} = $color;
 
   $color = "0".$color if ($color < 10);
   $server->command('/^format pubmsg {pubmsgnick $2 {pubnick '.chr(3).$color.'$0}}$1');
