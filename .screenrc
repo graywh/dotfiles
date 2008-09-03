@@ -1,11 +1,21 @@
-startup_message off
-chdir
+# OPTIONS {{{1
+altscreen on # let programs use the alternate buffer
+#attrcolor b ".I" # use bright colors for bold
+#attrcolor i "-b" # don't use bold w/ bright colors
+#attrcolor b "-b" # disallow all bold
+autodetach on # detach on HANGUP
+chdir # start from $HOME
+defbce on # erase background with current bg color
+defescape  # use ^_ for commands and ^_^_ to get ^_ (^_ == ^7)
+escape  # use ^_ for commands and ^_^_ to get ^_ (^_ == ^7)
+deflogin off # don't do multiple logins
+defscrollback 2048 # scrollback buffer
+nethack off # don't show stupid messages
+startup_message off # no startup message
+vbell off # don't use visual bell
 
-# don't do multiple logins
-deflogin off
-
-# use a tabline
-hardstatus alwayslastline
+# HARDSTATUS {{{1
+hardstatus alwayslastline # always use a tabline
 #hardstatus string '%{= kK}[%L=%=%{w}%-Lw%>%40=%{r}(%{W}%n*%f%t%{r})%{w}%+Lw%L<%-019=%{K}][%{G}%D %d %M %0c%{K}]'
 hardstatus string '%{= kK}[ %L=%{w}%-Lw%50L>%{r}(%{W}%n%f*%t%{r})%{w}%+Lw%-025<%L=                                                                                                                                                                                         %{K}][%D %d %M %Y %0c]%>%<'
 
@@ -19,27 +29,27 @@ hardstatus string '%{= kK}[ %L=%{w}%-Lw%50L>%{r}(%{W}%n%f*%t%{r})%{w}%+Lw%-025<%
 # http://osdir.com/ml/gnu.screen/2002-09/msg00071.html
 #hardstatus string '%{= kK}-(%H)--[%L=%-Lw%50L>%n%f*%t%+Lw%-026<]%L=-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------(%D %d %M %Y %0c)-%>%<'
 
-# use ^S for commands and ^S^S to get ^S
-escape 
+# using xterm titlebar for hstatus
+#hardstatus off
+#termcapinfo xterm*|rxvt|gnome-terminal|konsole|kterm|Eterm 'hs:ts=\E]0;:fs=\007'
+#defhstatus "screen ^E (^Et) | $USER@^EH"
 
-bindkey -k k2 screen
-bindkey -k k3 screen -t vim vim
-bindkey -k k5 prev
-bindkey -k k6 next
+# F KEY BINDINGS {{{1
+bindkey -k k2 screen # F2 - new screen
+#bindkey -k k3 detach # F3 - detach
+bindkey -k k4 copy # F4 - start copy/scrollback mode
+bindkey -k k5 prev # F5 - previous screen
+bindkey -k k6 next # F6 - next screen
 
-# terminfo and termcap for nice 256 color terminal
-# use bright colors for bold
-attrcolor b ".I"
-attrcolor i "-b"
-# use the alternate buffer
-altscreen on
+# TERMCAP {{{1
 # tell screen how to set colors. AB = background, AF = foreground
-#termcapinfo xterm-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
-# erase background with current bg color
-defbce on
+#termcapinfo xterm-256color|gnome-terminal|konsole "Co#256:AB=\E[4%p1%dm:AF=\E[3%p1%dm"
+#termcapinfo xterm-256color|gnome-terminal|konsole "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
+#termcapinfo xterm-256color|gnome-terminal|konsole "Co#256:AB=\E[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48;5;%p1%d%;m:AF=\E[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38;5;%p1%d%;m"
 
-defscrollback 1000
+termcapinfo xterm*|rxvt*|kterm*|Eterm*|pterm*|konsole*|gnome-terminal* "hs:ts=\E]0;:fs=\007:ds=\E]0;\007"
+
+# disable the alternate screen for screen itself--switching screen tabs messes things up
+#termcapinfo xterm*|rxvt*|kterm*|Eterm*|pterm*|konsole*|gnome-terminal* "ti@:te@"
 
 term "screen-256color"
-#term "xterm-256color"
-#term xterm
