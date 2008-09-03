@@ -30,10 +30,10 @@ noremap <C-S-Tab> gT
 inoremap <C-Tab> <C-O>gt
 inoremap <C-S-Tab> <C-O>gT
 " Shift-arrow visual/display navigation
-noremap <S-Up> g<Up>
-noremap <S-Down> g<Down>
-inoremap <S-Up> <C-O>g<Up>
-inoremap <S-Down> <C-O>g<Down>
+"noremap <S-Up> g<Up>
+"noremap <S-Down> g<Down>
+"inoremap <S-Up> <C-O>g<Up>
+"inoremap <S-Down> <C-O>g<Down>
 " Mac OS X {{{2
 "nmap <D-n> * :confirm tabnew<CR>
 "omap <D-n> <Esc><D-n>

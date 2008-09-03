@@ -21,10 +21,10 @@ set incsearch                   " is  - Incremental search
 set laststatus=2                " ls  - Always display the statusline
 set linebreak                   " lbr - Don't wrap words
 if version >= 700
-  set listchars=eol:$           "       Settings for list mode
-  set listchars+=tab:>-         "       Display tabs as >---
+  set listchars=eol:¶           "       Settings for list mode
+  set listchars+=tab:>·         "       Display tabs as >···
   set listchars+=nbsp:+         "       Display non-breaking space as +
-  set listchars+=trail:-        "       Display trailing space as -
+  set listchars+=trail:·        "       Display trailing space as ·
   set listchars+=extends:>      "       Use > to show more to the right
   set listchars+=precedes:<     "       Use < to show more to the left
 end
@@ -109,16 +109,20 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | d
 " Autocomplete
 inoremap <C-space> <C-r>=pumvisible() ? "\<lt>C-e>" : "\<lt>C-x>\<lt>C-o>"<CR>
 " Add new line indented here
-noremap <Leader>o :let ospaces=virtcol(".")-1<CR>o<Esc>:exe "norm ".ospaces."i "<CR>:.retab!<CR>A
-noremap <Leader>O :let ospaces=virtcol(".")-1<CR>O<Esc>:exe "norm ".ospaces."i "<CR>:.retab!<CR>A
+nnoremap <Leader>o :let ospaces=virtcol(".")-1<CR>o<Esc>:exe "norm ".ospaces."i "<CR>:.retab!<CR>A
+nnoremap <Leader>O :let ospaces=virtcol(".")-1<CR>O<Esc>:exe "norm ".ospaces."i "<CR>:.retab!<CR>A
+" Change to different capitalization
+"nnoremap <Leader>sc ciw<C-r>=substitute(@", '_\(\w\)', '\u\1', 'g')<CR><Esc>
+"nnoremap <Leader>sp ciw<C-r>=substitute(@", '_\(\w\)', '\u\1', 'g')<CR><Esc>bgUl
+"nnoremap <Leader>cs ciw<C-r>=substitute(@", '[a-z]\zs\([A-Z]\)', '_\l\1', 'g')<CR><Esc>bgul
 " Shift-home/end visual/display navigation
 noremap <S-Home> g<Home>
 noremap <S-End> g<End>
 inoremap <S-Home> <C-O>g<Home>
 inoremap <S-End> <C-O>g<End>
 " Show the syntax highlighting groups for the item under the cursor
-noremap  <F8>  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . "> trans<" . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-" Mac OS X Terminal {{{2
+nnoremap  <F8>  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . "> trans<" . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+" Mac OS X Terminal.app {{{2
 "map <Esc>[H <Home>
 "map <Esc>[F <End>
 "imap <Esc>[H <C-O><Home>
@@ -127,4 +131,9 @@ noremap  <F8>  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . "> 
 "map <C-D-[> <End>
 "imap <C-D-\> <C-O><Home>
 "imap <C-D-[> <C-O><End>
+" Terminal Stuff {{{1
+" Let Vim know what screen can do
+if &term =~ "screen"
+  set ttymouse=xterm2
+endif
 " }}}1
