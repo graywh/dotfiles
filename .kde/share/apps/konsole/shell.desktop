@@ -6,5 +6,5 @@ Icon=konsole
 KeyTab=
 Name=Shell
 Schema=PuTTY Colors.schema
-Term=xterm-256color
+Term=konsole-256color
 Type=KonsoleApplication
