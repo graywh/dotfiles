@@ -83,6 +83,7 @@ alias la='ls -A'
 alias ll='ls -hl'
 alias lla='ll -A'
 #alias ll.='ll -d .*' # make better
+alias Irssi='___xtermtitle "Irssi";screen -c ~/.screenrc-irssi -S irssi'
 
 function l.() {
     olddir="$PWD"
@@ -100,54 +101,49 @@ function ll.() {
 }
 
 # Set a fancy prompt {{{1
-# red = 31, green = 32, yellow = 33, blue = 34, bold = 1;
-# change color \[\033[*;**m\]
-#PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 # Color definitions {{{2
-if [ `tput colors` == 256 ]; then
-    # For 256 color term {{{
-    #Foreground="[38;5;${n}m"
-    #Background="[48;5;${n}m"
-    Black="[38;5;0m"
-    DarkGray="[38;5;8m"
-    LightGray="[38;5;7m"
-    White="[38;5;15m"
-    Red="[38;5;9m"
-    DarkRed="[38;5;1m"
-    Green="[38;5;10m"
-    DarkGreen="[38;5;2m"
-    Yellow="[38;5;11m"
-    DarkYellow="[38;5;3m"
-    Blue="[38;5;12m"
-    DarkBlue="[38;5;4m"
-    Magenta="[38;5;13m"
-    DarkMagenta="[38;5;5m"
-    Cyan="[38;5;14m"
-    DarkCyan="[38;5;6m"
+if [ "`tput colors`" -ge 16 ]; then
+    # For 16+ color term {{{
+    Black="$(tput setaf 0)"
+    DarkGray="$(tput setaf 8)"
+    LightGray="$(tput setaf 7)"
+    White="$(tput setaf 15)"
+    Red="$(tput setaf 9)"
+    DarkRed="$(tput setaf 1)"
+    Green="$(tput setaf 10)"
+    DarkGreen="$(tput setaf 2)"
+    Yellow="$(tput setaf 11)"
+    DarkYellow="$(tput setaf 3)"
+    Blue="$(tput setaf 12)"
+    DarkBlue="$(tput setaf 4)"
+    Magenta="$(tput setaf 13)"
+    DarkMagenta="$(tput setaf 5)"
+    Cyan="$(tput setaf 14)"
+    DarkCyan="$(tput setaf 6)"
     # }}}
 else
-    # For 8/16 color term {{{
-    Black="[30m"
-    DarkGray="[1;30m"
-    LightGray="[37m"
-    White="[1;37m"
-    Red="[31m"
-    BoldRed="[1;31m"
-    Green="[32m"
-    BoldGreen="[1;32m"
-    Yellow="[33m"
-    BoldYellow="[1;33m"
-    Blue="[34m"
-    BoldBlue="[1;34m"
-    Magenta="[35m"
-    BoldMagenta="[1;35m"
-    Cyan="[36m"
-    BoldCyan="[1;36m"
+    # For 8 color term {{{
+    Black="$(tput setaf 0)"
+    DarkGray="$(tput setaf 0;tput bold)"
+    LightGray="$(tput setaf 7)"
+    White="$(tput setaf 7;tput bold)"
+    Red="$(tput setaf 1;tput bold)"
+    DarkRed="$(tput setaf 1)"
+    Green="$(tput setaf 2;tput bold)"
+    DarkGreen="$(tput setaf 2)"
+    Yellow="$(tput setaf 3;tput bold)"
+    DarkYellow="$(tput setaf 3)"
+    Blue="$(tput setaf 4;tput bold)"
+    DarkBlue="$(tput setaf 4)"
+    Magenta="$(tput setaf 5;tput bold)"
+    DarkMagenta="$(tput setaf 5)"
+    Cyan="$(tput setaf 6;tput bold)"
+    DarkCyan="$(tput setaf 6)"
     # }}}
 fi
-None="[0m"
+None="$(tput sgr0)"
 # }}}2
-PS1='$Green[\u@\h:$Red\w$Yellow$(___git_ps1)$Green]\n\$$None '
+PS1="$Green[\u@\h:$Red\w$Yellow\$(___git_ps1)$Green]\n\$$None "
 
 # a function to put the current time in the top-right corner of the terminal
 # and change the title of the terminal
@@ -220,6 +216,10 @@ function ___git_ps1() { # reference __git_ps1
             __git_ps1 " %s"
         fi
     fi
+}
+
+function ___xtermtitle() {
+    echo -ne "\033]0;$1\007"
 }
 
 # }}}1
