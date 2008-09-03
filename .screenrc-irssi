@@ -1,0 +1,8 @@
+# vim: ft=screen
+source .screenrc
+attrcolor b ".I"
+attrcolor i "-b"
+hardstatus alwaysignore
+defhstatus "irssi"
+sessionname irssi
+screen irssi
