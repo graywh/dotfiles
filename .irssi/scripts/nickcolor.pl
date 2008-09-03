@@ -19,7 +19,7 @@ Irssi::theme_register([
 
 my %saved_colors;
 my %session_colors = {};
-my @colors = qw/3 5 6 7 10 15/;
+my @colors = qw/3 5 6 7 8 9 11 12 13/;
 
 sub load_colors {
   open COLORS, "$ENV{HOME}/.irssi/saved_colors";
@@ -143,7 +143,7 @@ sub cmd_color {
   } elsif ($op eq "preview") {
     Irssi::print ("Available colors:");
     foreach my $i (1..16) {
-      Irssi::print (chr (3) . "$i" . "Color #$i");
+      Irssi::print (chr (3) . "$i" . "Color #$i " . chr(3) . "15,$i ");
     }
   }
 }
