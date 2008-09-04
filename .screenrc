@@ -16,27 +16,39 @@ vbell off # don't use visual bell
 
 # HARDSTATUS {{{1
 hardstatus alwayslastline # always use a tabline
-#hardstatus string '%{= kK}[%L=%=%{w}%-Lw%>%40=%{r}(%{W}%n*%f%t%{r})%{w}%+Lw%L<%-019=%{K}][%{G}%D %d %M %0c%{K}]'
-hardstatus string '%{= kK}[ %L=%{w}%-Lw%50L>%{r}(%{W}%n%f*%t%{r})%{w}%+Lw%-025<%L=                                                                                                                                                                                         %{K}][%D %d %M %Y %0c]%>%<'
+#hardstatus string "%{= kK}[%L=%=%{w}%-Lw%>%40=%{r}(%{W}%n*%f%t%{r})%{w}%+Lw%L<%-019=%{K}][%{G}%D %d %M %0c%{K}]"
+hardstatus string "%{= kK}[ %L=%{w}%-Lw%50L>%{r}(%{W}%n%f*%t%{r})%{w}%+Lw%-025<%L=                                                                                                                                                                                         %{K}][%D %d %M %Y %0c]%>%<"
 
 # viking's
-#hardstatus string '%{= kg}[ %{G}%H %{g}] %L=%=%{w}%-Lw%L>%45=%{r}(%{W}%n*%f%t%{r})%{w}%+Lw%-016= %{g}[ %{B}%m/%d %{W}%0c %{g}]'
+#hardstatus string "%{= kg}[ %{G}%H %{g}] %L=%=%{w}%-Lw%L>%45=%{r}(%{W}%n*%f%t%{r})%{w}%+Lw%-016= %{g}[ %{B}%m/%d %{W}%0c %{g}]"
 
 # other hardstatus attempts
 #hardstatus string "%{= Km}%-Lw%{= KW}%50>%n%f* %t%{= Km}%+Lw%< %{= KG}%-=%D %d %M %Y %c%{-}"
-#hardstatus string '%{= kw}%+30= %L>%-w%{r}(%{W}%n*%f%t%{r})%{w} %+w%L>%-20= %{g}[ %{B}%m/%d %{W}%c %{g}]'
+#hardstatus string "%{= kw}%+30= %L>%-w%{r}(%{W}%n*%f%t%{r})%{w} %+w%L>%-20= %{g}[ %{B}%m/%d %{W}%c %{g}]"
 
 # http://osdir.com/ml/gnu.screen/2002-09/msg00071.html
-#hardstatus string '%{= kK}-(%H)--[%L=%-Lw%50L>%n%f*%t%+Lw%-026<]%L=-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------(%D %d %M %Y %0c)-%>%<'
+#hardstatus string "%{= kK}-(%H)--[%L=%-Lw%50L>%n%f*%t%+Lw%-026<]%L=-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------(%D %d %M %Y %0c)-%>%<"
 
 # using xterm titlebar for hstatus
 #hardstatus off
-#termcapinfo xterm*|rxvt|gnome-terminal|konsole|kterm|Eterm 'hs:ts=\E]0;:fs=\007'
+#termcapinfo xterm*|rxvt|gnome-terminal|konsole|kterm|Eterm "hs:ts=\E]0;:fs=\007"
 #defhstatus "screen ^E (^Et) | $USER@^EH"
 
-# F KEY BINDINGS {{{1
+# KEY BINDINGS {{{1
+# defaults that Debian "kindly" removed
+bind \\
+bind ^\ quit
+bind K quit
+# region navigation similar to Vim
+bind w focus
+bind j focus down
+bind k focus up
+bind t focus top
+bind b focus bottom
+
 bindkey -k k2 screen # F2 - new screen
 #bindkey -k k3 detach # F3 - detach
+#bindkey -k k3 focus # F3 - change regions
 bindkey -k k4 copy # F4 - start copy/scrollback mode
 bindkey -k k5 prev # F5 - previous screen
 bindkey -k k6 next # F6 - next screen
