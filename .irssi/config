@@ -133,6 +133,7 @@ statusbar = {
         user = { };
         window = { };
         window_empty = { };
+        usercount = { };
         lag = { priority = "-1"; };
         act = { priority = "10"; };
         xmpp_composing = { };
@@ -206,6 +207,8 @@ settings = {
     window_history = "yes";
     beep_when_away = "no";
     windows_auto_renumber = "no";
+    show_nickmode_empty = "no";
+    show_names_on_join = "no";
   };
   "xmpp/core" = {
     xmpp_set_nick_as_username = "yes";
