@@ -40,10 +40,12 @@ end
 desc "Cherry pick commits for master"
 task :cherry, :rev do |t, args|
   raise "no revision" unless args.rev
+  system("git stash save")
   system("git checkout master")
   system("git cherry-pick #{args.rev}")
   system("git checkout local")
   system("git rebase master")
+  system("git --no-pager stash pop")
 end
 
 namespace :externals do
