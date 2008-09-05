@@ -34,6 +34,11 @@ inoremap <C-S-Tab> <C-O>gT
 "noremap <S-Down> g<Down>
 "inoremap <S-Up> <C-O>g<Up>
 "inoremap <S-Down> <C-O>g<Down>
+" Shift-home/end visual/display navigation
+"noremap <S-Home> g<Home>
+"noremap <S-End> g<End>
+"inoremap <S-Home> <C-O>g<Home>
+"inoremap <S-End> <C-O>g<End>
 " Mac OS X {{{2
 "nmap <D-n> * :confirm tabnew<CR>
 "omap <D-n> <Esc><D-n>

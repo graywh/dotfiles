@@ -115,11 +115,6 @@ nnoremap <Leader>O :let ospaces=virtcol(".")-1<CR>O<Esc>:exe "norm ".ospaces."i 
 "nnoremap <Leader>sc ciw<C-r>=substitute(@", '_\(\w\)', '\u\1', 'g')<CR><Esc>
 "nnoremap <Leader>sp ciw<C-r>=substitute(@", '_\(\w\)', '\u\1', 'g')<CR><Esc>bgUl
 "nnoremap <Leader>cs ciw<C-r>=substitute(@", '[a-z]\zs\([A-Z]\)', '_\l\1', 'g')<CR><Esc>bgul
-" Shift-home/end visual/display navigation
-noremap <S-Home> g<Home>
-noremap <S-End> g<End>
-inoremap <S-Home> <C-O>g<Home>
-inoremap <S-End> <C-O>g<End>
 " Show the syntax highlighting groups for the item under the cursor
 nnoremap  <F8>  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . "> trans<" . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 " Mac OS X Terminal.app {{{2
