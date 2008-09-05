@@ -25,8 +25,8 @@ if version >= 700
   set listchars+=tab:>·         "       Display tabs as >···
   set listchars+=nbsp:+         "       Display non-breaking space as +
   set listchars+=trail:·        "       Display trailing space as ·
-  set listchars+=extends:>      "       Use > to show more to the right
-  set listchars+=precedes:<     "       Use < to show more to the left
+  set listchars+=extends:»      "       Use » to show more to the right
+  set listchars+=precedes:«     "       Use « to show more to the left
 end
 set modeline                    " ml  - Let files set their own options
 set mouse=a                     "     - Use the mouse for all modes
