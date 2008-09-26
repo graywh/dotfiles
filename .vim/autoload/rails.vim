@@ -206,21 +206,21 @@ function! s:endof(lnum)
   return 0
 endfunction
 
-function! s:lastmethodline(...)
-  if a:0
-    let line = a:1
-  else
-    let line = line(".")
-  endif
-  while line > 0 && getline(line) !~ &l:define
+function! s:lastopeningline(pattern,limit,...)
+  let line = a:0 ? a:1 : line(".")
+  while line > a:limit && getline(line) !~ a:pattern
     let line = line - 1
   endwhile
   let lend = s:endof(line)
-  if lend < 0 || lend >= (a:0 ? a:1 : line("."))
+  if line > a:limit && lend >= (a:0 ? a:1 : line("."))
     return line
   else
-    return 0
+    return -1
   endif
+endfunction
+
+function! s:lastmethodline(...)
+  return s:lastopeningline(&l:define,0,a:0 ? a:1 : line("."))
 endfunction
 
 function! s:lastmethod()
@@ -233,21 +233,7 @@ function! s:lastmethod()
 endfunction
 
 function! s:lastrespondtoline(...)
-  let mline = s:lastmethodline()
-  if a:0
-    let line = a:1
-  else
-    let line = line(".")
-  endif
-  while line > mline && getline(line) !~ '\C^\s*respond_to\s*\%(\<do\)\s*|\zs\h\k*\ze|'
-    let line = line - 1
-  endwhile
-  let lend = s:endof(line)
-  if lend >= (a:0 ? a:1 : line("."))
-    return line
-  else
-    return -1
-  endif
+  return s:lastopeningline('\C^\s*respond_to\s*\%(\<do\)\s*|\zs\h\k*\ze|',s:lastmethodline(), a:0 ? a:1 : line("."))
 endfunction
 
 function! s:lastformat()
@@ -950,8 +936,10 @@ function! s:Rake(bang,arg)
       make
     endif
   elseif t =~ '^spec\>'
-    if RailsFilePath() =~# '\<test/test_helper\.rb$'
+    if RailsFilePath() =~# '\<spec/spec_helper\.rb$'
       make spec SPEC_OPTS=
+    elseif search('\C^\s*\(describe\|context\)\>','bWnc') > search('\C^end\>','bWn')
+      exe 'make spec SPEC="%:p" SPEC_OPTS=--line='.line('.')
     else
       make spec SPEC="%:p" SPEC_OPTS=
     endif
@@ -1353,13 +1341,10 @@ endfunction
 " Navigation {{{1
 
 function! s:BufNavCommands()
-  " TODO: completion
-  "silent exe "command! -bar -buffer -nargs=? Rcd :cd ".s:ra()."/<args>"
-  "silent exe "command! -bar -buffer -nargs=? Rlcd :lcd ".s:ra()."/<args>"
-  command!   -buffer -bar -nargs=? Rcd   :cd `=RailsRoot().'/'.<q-args>`
-  command!   -buffer -bar -nargs=? Rlcd :lcd `=RailsRoot().'/'.<q-args>`
   " Vim 6.2 chokes on script local completion functions (e.g., s:FindList).
   " :Rcommand! is a thin wrapper arround :command! which works around this
+  Rcommand!   -buffer -bar -nargs=? -complete=custom,s:DirList Rcd   :cd `=RailsRoot().'/'.<q-args>`
+  Rcommand!   -buffer -bar -nargs=? -complete=custom,s:DirList Rlcd :lcd `=RailsRoot().'/'.<q-args>`
   Rcommand!   -buffer -bar -nargs=* -count=1 -complete=custom,s:FindList Rfind       :call s:Find(<bang>0,<count>,'' ,<f-args>)
   Rcommand!   -buffer -bar -nargs=* -count=1 -complete=custom,s:FindList REfind      :call s:Find(<bang>0,<count>,'E',<f-args>)
   Rcommand!   -buffer -bar -nargs=* -count=1 -complete=custom,s:FindList RSfind      :call s:Find(<bang>0,<count>,'S',<f-args>)
@@ -1470,6 +1455,12 @@ endfunction
 
 function! s:EditList(ArgLead, CmdLine, CursorPos)
   return s:relglob("",a:ArgLead."*[^~]")
+endfunction
+
+function! s:DirList(ArgLead, CmdLine, CursorPos)
+  let all = "\n".s:relglob("",a:ArgLead."*")."\n"
+  let dirs = s:gsub(all,"[^\n]*[^/]\n",'')
+  return s:compact(dirs)
 endfunction
 
 function! RailsIncludeexpr()
@@ -1869,7 +1860,7 @@ function! s:viewList(A,L,P)
   let c = s:controller(1)
   let top = s:relglob("app/views/",a:A."*[^~]")
   if c != ''
-    let local = s:relglob("app/views/".c."/",a:A."*.*[^~]")
+    let local = s:relglob("app/views/".c."/",a:A.(a:A =~ '\.' ? '' : '*.')."*[^~]")
     if local != ''
       return local."\n".top
     endif
@@ -3158,6 +3149,7 @@ function! s:BufSyntax()
         syn keyword rubyRailsTestMethod violated pending
         if t !~ '^spec-model\>'
           syn match   rubyRailsTestControllerMethod  '\.\@<!\<\%(get\|post\|put\|delete\|head\|process\|assigns\)\>'
+          syn keyword rubyRailsTestControllerMethod  integrate_views
           syn keyword rubyRailsMethod params request response session flash
         endif
       endif
