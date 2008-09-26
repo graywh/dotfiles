@@ -74,6 +74,7 @@ if &t_Co == 256
   hi DiffDelete ctermfg=fg  ctermbg=30  cterm=none
   hi Folded     ctermfg=22  ctermbg=249
   hi FoldColumn ctermfg=124 ctermbg=249
+  hi Ignore     ctermfg=bg
   hi LineNr     ctermfg=60  ctermbg=252
   hi SignColumn ctermfg=124 ctermbg=252
   hi ErrorMsg   ctermfg=16  ctermbg=87 
@@ -84,12 +85,12 @@ if &t_Co == 256
   hi Error      ctermfg=16  ctermbg=37 
   hi Comment    ctermfg=90 
   hi Constant   ctermfg=30 
-  hi Boolean    ctermfg=178              cterm=bold
+  hi Boolean    ctermfg=178             cterm=bold
   hi String     ctermfg=28 
   hi Function   ctermfg=94 
   hi Statement  ctermfg=136             cterm=none
   hi Operator   ctermfg=31 
-  hi PreProc    ctermfg=160              cterm=none
+  hi PreProc    ctermfg=160             cterm=none
   hi Type       ctermfg=18              cterm=none
   hi Identifier ctermfg=88              cterm=none
   hi Special    ctermfg=44 
@@ -99,19 +100,20 @@ else
   hi Normal     ctermfg=DarkGray     ctermbg=White
   " Vim {{{2
   hi Directory  ctermfg=DarkRed 
-  hi DiffText   ctermfg=White    ctermbg=Blue        cterm=none
-  hi DiffAdd    ctermfg=White    ctermbg=Magenta
-  hi DiffDelete ctermfg=White    ctermbg=Cyan
+  hi DiffText   ctermfg=White        ctermbg=Blue        cterm=none
+  hi DiffAdd    ctermfg=White        ctermbg=Magenta
+  hi DiffDelete ctermfg=White        ctermbg=Cyan
   hi Folded     ctermfg=DarkGray     ctermbg=LightGray
-  hi FoldColum  ctermfg=Red      ctermbg=LightGray
-  hi LineNr     ctermfg=Blue     ctermbg=LightGray
-  hi SignColumn ctermfg=Red      ctermbg=LightGray
-  hi ErrorMsg   ctermfg=Black    ctermbg=DarkCyan
-  hi WarningMsg ctermfg=Black    ctermbg=DarkBlue  
+  hi FoldColum  ctermfg=Red          ctermbg=LightGray
+  hi Ignore     ctermfg=bg
+  hi LineNr     ctermfg=Blue         ctermbg=LightGray
+  hi SignColumn ctermfg=Red          ctermbg=LightGray
+  hi ErrorMsg   ctermfg=Black        ctermbg=DarkCyan
+  hi WarningMsg ctermfg=Black        ctermbg=DarkBlue  
   hi NonText    ctermfg=Red 
   hi Title      ctermfg=DarkGreen  
   " Syntax {{{2
-  hi Error      ctermfg=Black    ctermbg=Cyan
+  hi Error      ctermfg=Black        ctermbg=Cyan
   hi Comment    ctermfg=Magenta
   hi Constant   ctermfg=Cyan
   hi Boolean    ctermfg=Yellow

@@ -74,6 +74,7 @@ if &t_Co == 256
   hi DiffDelete ctermfg=fg  ctermbg=217 cterm=none
   hi Folded     ctermfg=225 ctermbg=238
   hi FoldColumn ctermfg=123 ctermbg=238
+  hi Ignore     ctermfg=bg
   hi LineNr     ctermfg=187 ctermbg=235
   hi SignColumn ctermfg=123 ctermbg=235
   hi ErrorMsg   ctermfg=231 ctermbg=160
@@ -104,6 +105,7 @@ else
   hi DiffDelete ctermfg=Black       ctermbg=Red
   hi Folded     ctermfg=Gray        ctermbg=DarkGray
   hi FoldColum  ctermfg=Cyan        ctermbg=DarkGray
+  hi Ignore     ctermfg=bg
   hi LineNr     ctermfg=Yellow      ctermbg=DarkGray
   hi SignColumn ctermfg=Cyan        ctermbg=DarkGray
   hi ErrorMsg   ctermfg=White       ctermbg=DarkRed
