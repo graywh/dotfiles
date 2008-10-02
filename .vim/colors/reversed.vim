@@ -104,7 +104,7 @@ else
   hi DiffAdd    ctermfg=White        ctermbg=Magenta
   hi DiffDelete ctermfg=White        ctermbg=Cyan
   hi Folded     ctermfg=DarkGray     ctermbg=LightGray
-  hi FoldColum  ctermfg=Red          ctermbg=LightGray
+  hi FoldColumn ctermfg=Red          ctermbg=LightGray
   hi Ignore     ctermfg=bg
   hi LineNr     ctermfg=Blue         ctermbg=LightGray
   hi SignColumn ctermfg=Red          ctermbg=LightGray
