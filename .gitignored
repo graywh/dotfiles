@@ -3,6 +3,7 @@
 
 # Vim
 *.sw[op]
+Session.vim
 
 # OS X
 .DS_Store

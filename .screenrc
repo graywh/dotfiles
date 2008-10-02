@@ -45,6 +45,7 @@ bind j focus down
 bind k focus up
 bind t focus top
 bind b focus bottom
+bind o only
 
 bindkey -k k2 screen # F2 - new screen
 #bindkey -k k3 detach # F3 - detach

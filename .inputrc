@@ -12,9 +12,11 @@ set keymap vi-insert
 "\e[2~": quoted-insert
 "\e[3~": delete-char
 "\e[4~": end-of-line
-"\e[5~": beginning-of-history
-"\e[6~": end-of-history
 "\e[A": history-search-backward
+"": history-search-backward
 "\e[B": history-search-forward
+"": history-search-forward
 "\e[C": forward-char
 "\e[D": backward-char
+"": kill-line
+"": kill-whole-line

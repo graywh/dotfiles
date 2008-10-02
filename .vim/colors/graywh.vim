@@ -113,7 +113,7 @@ else
   hi NonText    ctermfg=Cyan        ctermbg=DarkGray
   hi Title      ctermfg=DarkMagenta
   " Syntax {{{2
-  hi Error      ctermfg=White    ctermbg=Red
+  hi Error      ctermfg=White       ctermbg=Red
   hi Comment    ctermfg=Green
   hi Constant   ctermfg=Red
   hi Boolean    ctermfg=Blue

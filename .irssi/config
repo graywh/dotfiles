@@ -214,7 +214,7 @@ settings = {
     xmpp_set_nick_as_username = "yes";
     roster_show_offline = "no";
   };
-  "irc/core" = { alternate_nick = "_graywh_"; };
+  "irc/core" = { alternate_nick = "graywh_"; };
 };
 hilights = ( { text = "graywh"; nick = "yes"; word = "yes"; } );
 windows = {
