@@ -2,62 +2,58 @@
 " Author: Will Gray <graywh@gmail.com>
 
 " Settings {{{1
-set all&                        "       Set everything to the default
-set nocompatible                " cp  - Vim is better than Vi
-set autoindent                  " ai  - Always set autoindenting on
-"set autowrite                  " aw  - Automatically save before commands like :next and :make
-set backspace=indent,eol,start  " bs  - More powerful backspacing
-"set backspace=2                " bs  - More powerful backspacing
-"set backup                     " bk  - Make a backup of the file
-set completeopt=longest         " cot - Start with longest part
-set completeopt+=menu,preview   "     - then show a menu
-set expandtab                   " et  - Always expand tabs to spaces
-set fileformats=unix,mac,dos    " ffs - End-of-line character
-set foldcolumn=1                " fdc - Show top-level fold sections
-set hidden                      " hid - Allow hiding changed buffers without override or warning
-set history=50                  " hi  - Keep 50 lines of command line history
-"set ignorecase                 " ic  - Do case insensitive matching
-set incsearch                   " is  - Incremental search
-set laststatus=2                " ls  - Always display the statusline
-set linebreak                   " lbr - Don't wrap words
+set all&                        " Set everything to the default
+set nocompatible                " Vim is better than Vi
+set autoindent                  " Always set autoindenting on
+set backspace=indent,eol,start  " More powerful backspacing
+set completeopt=longest         " Start with longest part
+set completeopt+=menu,preview   " then show a menu
+set expandtab                   " Always expand tabs to spaces
+set fileformats=unix,mac,dos    " End-of-line character
+set foldcolumn=1                " Show top-level fold sections
+set hidden                      " Allow hiding changed buffers without override or warning
+set history=50                  " Keep 50 lines of command line history
+set incsearch                   " Incremental search
+set laststatus=2                " Always display the statusline
+set linebreak                   " Don't wrap words
 if version >= 700
-  set listchars=eol:¶           "       Settings for list mode
-  set listchars+=tab:>·         "       Display tabs as >···
-  set listchars+=nbsp:+         "       Display non-breaking space as +
-  set listchars+=trail:·        "       Display trailing space as ·
-  set listchars+=extends:»      "       Use » to show more to the right
-  set listchars+=precedes:«     "       Use « to show more to the left
+  set listchars=eol:¶           " Settings for list mode
+  set listchars+=tab:>·         " Display tabs as >···
+  set listchars+=nbsp:+         " Display non-breaking space as +
+  set listchars+=trail:·        " Display trailing space as ·
+  set listchars+=extends:»      " Use » to show more to the right
+  set listchars+=precedes:«     " Use « to show more to the left
 end
-set modeline                    " ml  - Let files set their own options
-set mouse=a                     "     - Use the mouse for all modes
-set mousehide                   " mh  - Hide the mouse while typing
-set mousemodel=popup_setpos     "     - Reposition the cursor on right-click
-set number                      " nu  - Show line numbers
-set scrolloff=1                 " so  - Leave a line next to window edge
-set shiftwidth=4                " sw  - Use 4 spaces for each level of indention
-set showcmd                     " sc  - Show (partial) command in status line
-set showmatch                   " sm  - Show matching brackets.
-set sidescrolloff=10            "     - Leave some characters next to window edge (w/ nowrap)
-set smartcase                   " scs - Search case-insensitive unless...
-set smarttab                    " sta - Delete expanded tabs
-set softtabstop=4               " sts - Indenting w/ tab gets us 4 spaces (useful w/ expandtab)
-set splitbelow                  " sb  - New window goes below
-set splitright                  " spr - New windows goes right
-set tabstop=8                   " ts  - Show tabs as 8 spaces
-set textwidth=0                 " tw  - Don't break lines
+set modeline                    " Let files set their own options
+set mouse=a                     " Use the mouse for all modes
+set mousehide                   " Hide the mouse while typing
+set mousemodel=popup_setpos     " Reposition the cursor on right-click
+set number                      " Show line numbers
+set scrolloff=1                 " Leave a line next to window edge
+set shiftwidth=4                " Use 4 spaces for each level of indention
+set showcmd                     " Show (partial) command in status line
+set showmatch                   " Show matching brackets.
+set sidescrolloff=10            " Leave some characters next to window edge (w/ nowrap)
+set smartcase                   " Search case-insensitive unless...
+set smarttab                    " Delete expanded tabs
+set softtabstop=4               " Indenting w/ tab gets us 4 spaces (useful w/ expandtab)
+set splitbelow                  " New window goes below
+set splitright                  " New windows goes right
+set tabstop=8                   " Show tabs as 8 spaces
+set textwidth=0                 " Don't break lines
 if version >= 700
-  set viminfo=                  " vi  - Read/write a .viminfo file
-  set viminfo+='20              "       Remember 20 previously edited files (required)
-  set viminfo+=<50              "       Remember up to 50 lines of registers
-  set viminfo+=!                "       Remember some global variables
-  set viminfo+=h                "       Don't restore the hlsearch highlighting
+  set viminfo=                  " Read/write a .viminfo file
+  set viminfo+='20              " Remember 20 previously edited files (required)
+  set viminfo+=<50              " Remember up to 50 lines of registers
+  set viminfo+=!                " Remember some global variables
+  set viminfo+=h                " Don't restore the hlsearch highlighting
 end
-set virtualedit=block           " ve  - Allow selection anywhere
-set wildmenu                    "     - Use a menu to show tab-completions
-set wildmode=longest:full,full  " wim - Complete longest, tab through matches
-set winaltkeys=no               " wak - Don't use ALT to access the menu
-set wrap                        "     - Wrap lines
-set wrapmargin=0                " wm  - Don't break lines
+set virtualedit=block           " Allow selection anywhere
+set wildmenu                    " Use a menu to show tab-completions
+set wildmode=longest:full,full  " Complete longest, tab through matches
+set winaltkeys=no               " Don't use ALT to access the menu
+set wrap                        " Wrap lines
+set wrapmargin=0                " Don't break lines
 
 " Status line (includes 'set ruler' info)
 " - buffer number (4 columns)
@@ -133,7 +129,7 @@ nnoremap <Leader>O :let ospaces=virtcol(".")-1<CR>O<Esc>:exe "norm ".ospaces."i 
 "nnoremap <Leader>cs ciw<C-r>=substitute(@", '[a-z]\zs\([A-Z]\)', '_\l\1', 'g')<CR><Esc>bgul
 
 " Show the syntax highlighting groups for the item under the cursor
-nnoremap  <F8>  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . "> trans<" . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+nnoremap <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . "> trans<" . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 nnoremap <F7> :call ShowSynStack()<CR>
 
 " Mac OS X Terminal.app {{{2
