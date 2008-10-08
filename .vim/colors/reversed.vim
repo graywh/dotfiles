@@ -45,7 +45,8 @@ hi link Character String
   hi LineNr     guifg=#333366 guibg=#D7D7D7
   hi ErrorMsg   guifg=#000000 guibg=#33FFFF
   hi WarningMsg guifg=#000000 guibg=#3333FF
-  hi NonText    guifg=#990000               gui=bold
+  hi NonText    guifg=#990000               gui=none
+  hi SpecialKey guifg=#990000               gui=none
   hi Title      guifg=#006600               gui=bold
   hi Visual                                 gui=reverse
   " Syntax {{{2
@@ -79,7 +80,8 @@ if &t_Co == 256
   hi SignColumn ctermfg=124 ctermbg=252
   hi ErrorMsg   ctermfg=16  ctermbg=87 
   hi WarningMsg ctermfg=16  ctermbg=63 
-  hi NonText    ctermfg=124             cterm=bold
+  hi NonText    ctermfg=124             cterm=none
+  hi SpecialKey ctermfg=124             cterm=none
   hi Title      ctermfg=28
   " Syntax {{{2
   hi Error      ctermfg=16  ctermbg=37 
@@ -111,6 +113,7 @@ else
   hi ErrorMsg   ctermfg=Black        ctermbg=DarkCyan
   hi WarningMsg ctermfg=Black        ctermbg=DarkBlue  
   hi NonText    ctermfg=Red 
+  hi SpecialKey ctermfg=Red 
   hi Title      ctermfg=DarkGreen  
   " Syntax {{{2
   hi Error      ctermfg=Black        ctermbg=Cyan
