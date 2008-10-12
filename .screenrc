@@ -16,8 +16,8 @@ vbell off # don't use visual bell
 
 # HARDSTATUS {{{1
 hardstatus alwayslastline # always use a tabline
-#hardstatus string "%{= kK}[%L=%=%{w}%-Lw%>%40=%{r}(%{W}%n*%f%t%{r})%{w}%+Lw%L<%-019=%{K}][%{G}%D %d %M %0c%{K}]"
-hardstatus string "%{= kK}[ %L=%{w}%-Lw%50L>%{r}(%{W}%n%f*%t%{r})%{w}%+Lw%-025<%L=                                                                                                                                                                                         %{K}][%D %d %M %Y %0c]%>%<"
+#hardstatus string "%{= kK}[%L=%=%-Lw%>%40=%{r}(%{w}%n*%f%t%{r})%{K}%+Lw%L<%-019=][%D %d %M %0c]"
+hardstatus string "%{= kK}[%L=%-Lw%50L>%{r}(%{w}%n%f*%t%{r})%{K}%+Lw%-019<%L=                                                                                                                                                                                         ][%D %d %M %0c]%>%<"
 
 # viking's
 #hardstatus string "%{= kg}[ %{G}%H %{g}] %L=%=%{w}%-Lw%L>%45=%{r}(%{W}%n*%f%t%{r})%{w}%+Lw%-016= %{g}[ %{B}%m/%d %{W}%0c %{g}]"
