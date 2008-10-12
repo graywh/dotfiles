@@ -273,12 +273,12 @@ alias la='ls -A'
 alias ll='ls -hl'
 alias lla='ll -A'
 #alias ll.='ll -d .*' # make better
-alias xtermIrssi='xterm +sb -T Irssi -geometry 100x25 -e "screen -c ~/.screenrc-irssi -S irssi"'
-alias xtermIrssiR='xterm +sb -T Irssi -geometry 100x25 -e "screen -r irssi"'
-alias xtermIrssiX='xterm +sb -T Irssi -geometry 100x25 -e "screen -x irssi"'
-alias Irssi='___xtermtitle "Irssi";screen -c ~/.screenrc-irssi -S irssi'
-alias IrssiR='___xtermtitle "Irssi";screen -r irssi'
-alias IrssiX='___xtermtitle "Irssi";screen -x irssi'
+alias XtermIrssi='xterm +sb -T Irssi -geometry 100x25 -e "screen -c ~/.screenrc-irssi"'
+alias XtermIrssiR='xterm +sb -T Irssi -geometry 100x25 -e "screen -r irssi"'
+alias XtermIrssiX='xterm +sb -T Irssi -geometry 100x25 -e "screen -x irssi"'
+alias Irssi='resize -s 25 100;___xtermtitle "Irssi";screen -c ~/.screenrc-irssi'
+alias IrssiR='resize -s 25 100;___xtermtitle "Irssi";screen -r irssi'
+alias IrssiX='resize -s 25 100;___xtermtitle "Irssi";screen -x irssi'
 
 function l.() {
     olddir=$PWD
