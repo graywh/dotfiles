@@ -1,56 +1,62 @@
 " space.vim - Smart Space key
 " Author:       Henrik Öhman <spiiphNOSPAM@hotmail.com>
-" $Revision$
+" Version:      1.1 (2008-10-14)
 "
 " Licensed under the same terms as Vim itself.
-
+"
 " ============================================================================
 
 " Set this variable to disable smart space
-"let g:space_no_mappings = 1
+"
+"   let g:loaded_space = 1
+"
 
-if !exists("g:space_no_mappings") || !g:space_no_mappings
-    nmap <silent> <Space>   :call <SID>do_space(0, 0)<CR>
-    nmap <silent> <S-Space> :call <SID>do_space(1, 0)<CR>
-    nmap <silent> <BS>      :call <SID>do_space(1, 0)<CR>
-    vmap <silent> <Space>   :<C-u>call <SID>do_space(0, 1)<CR>
-    vmap <silent> <BS>      :<C-u>call <SID>do_space(1, 1)<CR>
-
-    nnoremap <silent> f :call <SID>setup_space("char")<CR>f
-    nnoremap <silent> F :call <SID>setup_space("char")<CR>F
-    nnoremap <silent> t :call <SID>setup_space("char")<CR>t
-    nnoremap <silent> T :call <SID>setup_space("char")<CR>T
-    nnoremap <silent> ; :call <SID>setup_space("char")<CR>;
-    nnoremap <silent> , :call <SID>setup_space("char")<CR>,
-
-    vnoremap <silent> f :<C-u>call <SID>setup_space("char")<CR>gvf
-    vnoremap <silent> F :<C-u>call <SID>setup_space("char")<CR>gvF
-    vnoremap <silent> t :<C-u>call <SID>setup_space("char")<CR>gvt
-    vnoremap <silent> T :<C-u>call <SID>setup_space("char")<CR>gvT
-    vnoremap <silent> ; :<C-u>call <SID>setup_space("char")<CR>gv;
-    vnoremap <silent> , :<C-u>call <SID>setup_space("char")<CR>gv,
-
-    nnoremap <silent> * :call <SID>setup_space("search")<CR>*
-    nnoremap <silent> # :call <SID>setup_space("search")<CR>#
-    nnoremap          / :call <SID>setup_space("search")<CR>/
-    nnoremap          ? :call <SID>setup_space("search")<CR>?
-    nnoremap <silent> n :call <SID>setup_space("search")<CR>n
-    nnoremap <silent> N :call <SID>setup_space("search")<CR>N
-
-    vnoremap <silent> * :<C-u>call <SID>setup_space("search")<CR>gv*
-    vnoremap <silent> # :<C-u>call <SID>setup_space("search")<CR>gv#
-    vnoremap          / :<C-u>call <SID>setup_space("search")<CR>gv/
-    vnoremap          ? :<C-u>call <SID>setup_space("search")<CR>gv?
-    vnoremap <silent> n :<C-u>call <SID>setup_space("search")<CR>gvn
-    vnoremap <silent> N :<C-u>call <SID>setup_space("search")<CR>gvN
-
-    nnoremap <silent> ]c :call <SID>setup_space("diff")<CR>]c
-    nnoremap <silent> [c :call <SID>setup_space("diff")<CR>[c
-    vnoremap <silent> ]c :<C-u>call <SID>setup_space("diff")<CR>gv]c
-    vnoremap <silent> [c :<C-u>call <SID>setup_space("diff")<CR>gv[c
-
-    cnoremap <CR> <C-\>e<SID>parse_cmd_line()<CR><CR>
+if exists("g:loaded_space")
+    finish
 endif
+let g:loaded_space = 1
+
+nmap <silent> <Space>   :call <SID>do_space(0, 0)<CR>
+nmap <silent> <S-Space> :call <SID>do_space(1, 0)<CR>
+nmap <silent> <BS>      :call <SID>do_space(1, 0)<CR>
+vmap <silent> <Space>   :<C-u>call <SID>do_space(0, 1)<CR>
+vmap <silent> <BS>      :<C-u>call <SID>do_space(1, 1)<CR>
+
+nnoremap <silent> f :call <SID>setup_space("char")<CR>f
+nnoremap <silent> F :call <SID>setup_space("char")<CR>F
+nnoremap <silent> t :call <SID>setup_space("char")<CR>t
+nnoremap <silent> T :call <SID>setup_space("char")<CR>T
+nnoremap <silent> ; :call <SID>setup_space("char")<CR>;
+nnoremap <silent> , :call <SID>setup_space("char")<CR>,
+
+vnoremap <silent> f :<C-u>call <SID>setup_space("char")<CR>gvf
+vnoremap <silent> F :<C-u>call <SID>setup_space("char")<CR>gvF
+vnoremap <silent> t :<C-u>call <SID>setup_space("char")<CR>gvt
+vnoremap <silent> T :<C-u>call <SID>setup_space("char")<CR>gvT
+vnoremap <silent> ; :<C-u>call <SID>setup_space("char")<CR>gv;
+vnoremap <silent> , :<C-u>call <SID>setup_space("char")<CR>gv,
+
+nnoremap <silent> * :call <SID>setup_space("search")<CR>*
+nnoremap <silent> # :call <SID>setup_space("search")<CR>#
+nnoremap          / :call <SID>setup_space("search")<CR>/
+nnoremap          ? :call <SID>setup_space("search")<CR>?
+nnoremap <silent> n :call <SID>setup_space("search")<CR>n
+nnoremap <silent> N :call <SID>setup_space("search")<CR>N
+
+vnoremap <silent> * :<C-u>call <SID>setup_space("search")<CR>gv*
+vnoremap <silent> # :<C-u>call <SID>setup_space("search")<CR>gv#
+vnoremap          / :<C-u>call <SID>setup_space("search")<CR>gv/
+vnoremap          ? :<C-u>call <SID>setup_space("search")<CR>gv?
+vnoremap <silent> n :<C-u>call <SID>setup_space("search")<CR>gvn
+vnoremap <silent> N :<C-u>call <SID>setup_space("search")<CR>gvN
+
+nnoremap <silent> ]c :call <SID>setup_space("diff")<CR>]c
+nnoremap <silent> [c :call <SID>setup_space("diff")<CR>[c
+vnoremap <silent> ]c :<C-u>call <SID>setup_space("diff")<CR>gv]c
+vnoremap <silent> [c :<C-u>call <SID>setup_space("diff")<CR>gv[c
+
+cnoremap <expr> <CR> (getcmdtype() == ':' && 
+      \ <SID>parse_cmd_line() ?  "\<CR>" : "\<CR>")
 
 command! SpaceRemoveMappings call <SID>remove_space_mappings()
 function! s:remove_space_mappings()
