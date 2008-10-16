@@ -136,8 +136,8 @@ statusbar = {
         usercount = { };
         lag = { priority = "-1"; };
         act = { priority = "10"; };
-        xmpp_composing = { };
         more = { priority = "-1"; alignment = "right"; };
+        xmpp_composing = { };
         barend = { priority = "100"; alignment = "right"; };
       };
     };
@@ -215,6 +215,7 @@ settings = {
     roster_show_offline = "no";
   };
   "irc/core" = { alternate_nick = "graywh_"; };
+  "perl/core/scripts" = { usercount_show_zero = "no"; };
 };
 hilights = ( { text = "graywh"; nick = "yes"; word = "yes"; } );
 windows = {
