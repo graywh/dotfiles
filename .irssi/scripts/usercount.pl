@@ -84,9 +84,10 @@ sub usercount {
     $format .= '@'.$ops.' ' if (defined $ops);
     $format .= '%%'.$halfops.' ' if (defined $halfops);
     $format .= "+$voices " if (defined $voices);
-    $format .= "$normal " if (defined $normal);
+    #$format .= "$normal " if (defined $normal);
     $format =~ s/ $//;
     $format .= ")}";
+    $format =~ s/ \(\)}$/}/;
   }
 
   $item->default_handler($get_size_only, $format, undef, 1);

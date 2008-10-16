@@ -133,11 +133,11 @@ statusbar = {
         user = { };
         window = { };
         window_empty = { };
-        usercount = { };
         lag = { priority = "-1"; };
         act = { priority = "10"; };
         more = { priority = "-1"; alignment = "right"; };
-        xmpp_composing = { };
+        xmpp_composing = { alignment = "right"; };
+        usercount = { alignment = "right"; };
         barend = { priority = "100"; alignment = "right"; };
       };
     };
