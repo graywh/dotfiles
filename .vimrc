@@ -28,6 +28,7 @@ set modeline                    " Let files set their own options
 set mouse=a                     " Use the mouse for all modes
 set mousehide                   " Hide the mouse while typing
 set mousemodel=popup_setpos     " Reposition the cursor on right-click
+set nrformats=hex,octal,alpha   " Recognize hexadecimal, octal, and characters for ctrl-x/c
 set number                      " Show line numbers
 set scrolloff=1                 " Leave a line next to window edge
 set shiftwidth=4                " Use 4 spaces for each level of indention
@@ -39,21 +40,19 @@ set smarttab                    " Delete expanded tabs
 set softtabstop=4               " Indenting w/ tab gets us 4 spaces (useful w/ expandtab)
 set splitbelow                  " New window goes below
 set splitright                  " New windows goes right
-set tabstop=8                   " Show tabs as 8 spaces
 set textwidth=0                 " Don't break lines
-if version >= 700
+"if version >= 700
   set viminfo=                  " Read/write a .viminfo file
-  set viminfo+='20              " Remember 20 previously edited files (required)
-  set viminfo+=<50              " Remember up to 50 lines of registers
+  set viminfo+='20              " Remember 20 previously edited files' marks (required)
   set viminfo+=!                " Remember some global variables
   set viminfo+=h                " Don't restore the hlsearch highlighting
-end
+"end
 set virtualedit=block           " Allow selection anywhere
 set wildmenu                    " Use a menu to show tab-completions
 set wildmode=longest:full,full  " Complete longest, tab through matches
 set winaltkeys=no               " Don't use ALT to access the menu
-set wrap                        " Wrap lines
-set wrapmargin=0                " Don't break lines
+set wrap                        " Wrap long lines
+set wrapmargin=0                " Don't break lines based on window size
 
 " Status line (includes 'set ruler' info)
 " - buffer number (4 columns)
