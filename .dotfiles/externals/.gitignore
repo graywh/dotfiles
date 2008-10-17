@@ -1,6 +1,7 @@
 /*
 !.gitignore
 !vim-git
+!vim-haml
 !vim-rails
 !vim-speeddating
 !vim-surround

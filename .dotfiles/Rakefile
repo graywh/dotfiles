@@ -60,7 +60,7 @@ namespace :externals do
   namespace :update do
     desc "Git submodules"
     task :git do
-      %w{vim-rails vim-surround vim-speeddating vim-git}.each do |name|
+      %w{vim-rails vim-surround vim-speeddating vim-git vim-haml}.each do |name|
         system("cd #{Externals}/#{name}")
         system("git checkout master")
         system("git pull")
@@ -94,7 +94,7 @@ namespace :externals do
   namespace :merge do
     desc "Plain copy"
     task :plain do
-      %w{vim-rails vim-surround vim-speeddating vim-git}.each do |name|
+      %w{vim-haml vim-rails vim-surround vim-speeddating vim-git}.each do |name|
         puts "=== #{name} ==="
         #FileUtils.cp_r("#{Externals}/#{name}/.", "../.vim", :noop => $noop)
       end
