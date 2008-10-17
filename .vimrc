@@ -55,7 +55,7 @@ set wrap                        " Wrap long lines
 set wrapmargin=0                " Don't break lines based on window size
 
 " Status line (includes 'set ruler' info)
-" - buffer number (4 columns)
+" - buffer number (4 columns, lines up with the line numbers most of the time)
 " - relative filename & path (truncatable)
 " - [Help] flag
 " - [Preview] flag
@@ -78,7 +78,7 @@ endif
 
 colorscheme graywh
 syntax sync fromstart
-syntax on
+syntax enable
 
 " Plugins {{{1
 runtime! macros/matchit.vim
