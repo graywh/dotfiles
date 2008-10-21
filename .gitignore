@@ -18,4 +18,5 @@
 !.subversion/config
 !.vim/
 !.vimrc
+!.Xmodmap
 !.Xresources
