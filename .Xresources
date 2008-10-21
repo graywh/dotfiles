@@ -6,7 +6,7 @@ XTerm.toolBar: false
 *VT100.boldMode: true
 *VT100.colorMode: true
 *VT100.geometry: 85x36
-*VT100.faceName: Monaco
+*VT100.faceName: Leonine\ Sans\ Mono
 *VT100.faceSize: 12
 *VT100.loginShell: false
 *VT100.scrollBar: true
@@ -16,10 +16,10 @@ XTerm.toolBar: false
 *VT100.underline: true
 ! --- *VT100 keybindings
 *VT100.translations: #override \n\
-    <Key>Delete: string("[3~") \n\
     <Key>BackSpace: string(0x7F) \n\
-    <Key>Home: string("[1~") \n\
-    <Key>End: string("[4~") \n\
+    <Key>Delete: string(0x1b) string("[3~") \n\
+    <Key>Home: string(0x1b) string("[1~") \n\
+    <Key>End: string(0x1b) string("[4~") \n\
     Shift<Key>Up: scroll-back(1,line) \n\
     Shift<Key>Down: scroll-forw(1,line) \n\
     <Key>F1: spawn-new-terminal("")
