@@ -29,7 +29,7 @@ unlet b:current_syntax
 syn case match
 
 " Include Java syntax
-syn include @pspPython <sfile>:p:h/python.vim
+syn include @pspPython syntax/python.vim
 
 syn region pspScriptlet matchgroup=pspTag start=/<%/  keepend end=/%>/ contains=@pspPython
 syn region pspComment                     start=/<%--/        end=/--%>/

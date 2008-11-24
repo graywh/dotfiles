@@ -16,13 +16,13 @@ set history=50                  " Keep 50 lines of command line history
 set incsearch                   " Incremental search
 set laststatus=2                " Always display the statusline
 set linebreak                   " Don't wrap words
-if version >= 700
-  set listchars=eol:¶           " Settings for list mode
-  set listchars+=tab:>·         " Display tabs as >···
-  set listchars+=nbsp:+         " Display non-breaking space as +
-  set listchars+=trail:·        " Display trailing space as ·
-  set listchars+=extends:»      " Use » to show more to the right
-  set listchars+=precedes:«     " Use « to show more to the left
+if version >= 700               " Settings for list mode
+  set listchars=eol:¶
+  set listchars+=tab:>·
+  set listchars+=nbsp:+
+  set listchars+=trail:·
+  set listchars+=extends:»
+  set listchars+=precedes:«
 end
 set modeline                    " Let files set their own options
 set mouse=a                     " Use the mouse for all modes
@@ -36,7 +36,6 @@ set showcmd                     " Show (partial) command in status line
 set showmatch                   " Show matching brackets.
 set sidescrolloff=10            " Leave some characters next to window edge (w/ nowrap)
 set smartcase                   " Search case-insensitive unless...
-set smarttab                    " Delete expanded tabs
 set softtabstop=4               " Indenting w/ tab gets us 4 spaces (useful w/ expandtab)
 set splitbelow                  " New window goes below
 set splitright                  " New windows goes right
@@ -47,7 +46,8 @@ set textwidth=0                 " Don't break lines
   set viminfo+=!                " Remember some global variables
   set viminfo+=h                " Don't restore the hlsearch highlighting
 "end
-set virtualedit=block           " Allow selection anywhere
+set virtualedit=block           " Allow block selection anywhere
+set virtualedit+=onemore        " Allow cursor to be on the newline
 set wildmenu                    " Use a menu to show tab-completions
 set wildmode=longest:full,full  " Complete longest, tab through matches
 set winaltkeys=no               " Don't use ALT to access the menu

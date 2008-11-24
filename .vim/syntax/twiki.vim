@@ -38,7 +38,7 @@ if !exists("main_syntax")
 endif
 
 if exists("g:Twiki_SourceHTMLSyntax") && g:Twiki_SourceHTMLSyntax != 0
-  source $VIMRUNTIME/syntax/html.vim 
+  runtime! syntax/html.vim
 endif
 
 " Don't use standard HiLink, it will not work with included syntax files

@@ -1,6 +1,6 @@
 "============================================================================
 "
-" TWiki syntax file
+" TWiki ftplugin file
 "
 " Language:        TWiki
 " Last Change: Mon Sep 18 13:08:38 UTC 2006
