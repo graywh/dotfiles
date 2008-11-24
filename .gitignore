@@ -2,6 +2,7 @@
 !.dotfiles/
 !.bash_profile
 !.bashrc
+!.dircolors
 !.git/
 !.gitconfig
 !.gitignore

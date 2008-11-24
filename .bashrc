@@ -193,6 +193,7 @@ then
     then
         alias ls='ls -FG'
     else
+        eval `dircolors -b $HOME/.dircolors`
         # set LS_COLORS {{{2
         # Color definitions {{{3
         lsBlack="${Black//[/}"
