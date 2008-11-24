@@ -18,6 +18,7 @@ XTerm.toolBar: false
 *VT100.translations: #override \n\
     <Key>BackSpace: string(0x7F) \n\
     <Key>Delete: string(0x1b) string("[3~") \n\
+    <Key>Insert: string(0x1b) string("[2~") \n\
     <Key>Home: string(0x1b) string("[1~") \n\
     <Key>End: string(0x1b) string("[4~") \n\
     Shift<Key>Up: scroll-back(1,line) \n\
