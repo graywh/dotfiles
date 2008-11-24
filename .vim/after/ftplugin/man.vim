@@ -10,5 +10,5 @@ setlocal nonumber                  " Hide the line number column
 setlocal noruler                   " Hide the ruler line
 setlocal viminfo=                  " Don't save marks, history, and such
 " Key mappings {{{1
-noremap q :q<CR>              " Easily exit
+noremap q :q<CR>
 " }}}1
