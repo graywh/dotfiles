@@ -37,9 +37,9 @@ hi link Character String
   hi CursorColumn             guibg=#CCCCCC
   hi CursorLine               guibg=#CCCCCC
   hi Directory  guifg=#FF6666
-  hi DiffText                 guibg=#000033 gui=none
-  hi DiffAdd                  guibg=#330033
-  hi DiffDelete guifg=fg      guibg=#006666 gui=none
+  hi DiffText                 guibg=#CCCCD7 gui=none
+  hi DiffAdd                  guibg=#D7CCD7
+  hi DiffDelete guifg=fg      guibg=#CCD7D7 gui=none
   hi Folded     guifg=#003300 guibg=#B8B8B8 gui=italic
   hi FoldColumn guifg=#990000 guibg=#B8B8B8
   hi LineNr     guifg=#333366 guibg=#D7D7D7
@@ -70,9 +70,9 @@ if &t_Co == 256
   hi CursorColumn           ctermbg=251
   hi CursorLine             ctermbg=251 cterm=none
   hi Directory  ctermfg=210
-  hi DiffText               ctermbg=17  cterm=none
-  hi DiffAdd                ctermbg=53 
-  hi DiffDelete ctermfg=fg  ctermbg=30  cterm=none
+  hi DiffText               ctermbg=189 cterm=none
+  hi DiffAdd                ctermbg=225
+  hi DiffDelete ctermfg=fg  ctermbg=195 cterm=none
   hi Folded     ctermfg=22  ctermbg=249
   hi FoldColumn ctermfg=124 ctermbg=249
   hi Ignore     ctermfg=bg
