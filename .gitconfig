@@ -21,8 +21,9 @@
 	name = Will Gray
 	email = graywh@gmail.com
 [gui]
-	fontdiff = -family Monaco -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family Leonine\\ Sans\\ Mono -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+	spellingdictionary = none
 [diff "ruby"]
-	funcname = ^ *\\(\\(class\\|module\\|def\\) .*\\)
+	funcname = ^\\s*\\(\\(class\\|module\\|def\\|describe\\) .*\\)
 [diff "python"]
-	funcname = ^ *\\(\\(class\\|def\\) .*\\)
+	funcname = ^\\s*\\(\\(class\\|def\\) .*\\)
