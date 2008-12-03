@@ -1,26 +1,27 @@
-! --- XTerm
+! vim: fdm=marker
+! --- XTerm {{{1
 XTerm.termName: xterm-256color
 XTerm.toolBar: false
-! --- *VT100
+! --- *VT100 {{{1
 *VT100.boldColors: false
 *VT100.boldMode: true
 *VT100.colorMode: true
-*VT100.geometry: 85x36
+*VT100.eightBitControl: false
+*VT100.eightBitInput: false
+*VT100.eightBitOutput: true
 *VT100.faceName: Leonine\ Sans\ Mono
 *VT100.faceSize: 12
+*VT100.geometry: 85x36
 *VT100.loginShell: false
 *VT100.scrollBar: true
 *VT100.saveLines: 2048
 *VT100.rightScrollBar: true
 *VT100.ttyModes: erase ^?
 *VT100.underline: true
-! --- *VT100 keybindings
+*VT100.utf8: 1
+! --- *VT100 keybindings {{{2
 *VT100.translations: #override \n\
     <Key>BackSpace: string(0x7F) \n\
-    <Key>Delete: string(0x1b) string("[3~") \n\
-    <Key>Insert: string(0x1b) string("[2~") \n\
-    <Key>Home: string(0x1b) string("[1~") \n\
-    <Key>End: string(0x1b) string("[4~") \n\
     Shift<Key>Up: scroll-back(1,line) \n\
     Shift<Key>Down: scroll-forw(1,line) \n\
     <Key>F1: spawn-new-terminal("")
@@ -30,7 +31,7 @@ XTerm.toolBar: false
     <Btn4Down>: StartScroll(Backward) \n\
     <Btn1Motion>: MoveThumb() NotifyThumb() \n\
     <BtnUp>: NotifyScroll(Proportional) EndScroll()
-! --- *VT100 colors
+! --- *VT100 colors {{{2
 *VT100.background: rgb:14/14/14
 *VT100.foreground: rgb:cc/cc/cc
 *VT100.cursorColor: rgb:33/ff/33
@@ -290,3 +291,4 @@ XTerm.toolBar: false
 *VT100.color253: rgb:e0/e0/e0
 *VT100.color254: rgb:ea/ea/ea
 *VT100.color255: rgb:f4/f4/f4
+! }}}
