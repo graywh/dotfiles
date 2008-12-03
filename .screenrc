@@ -66,3 +66,6 @@ termcapinfo xterm*|rxvt*|kterm*|Eterm*|pterm*|konsole*|gnome-terminal* "hs:ts=\E
 #termcapinfo xterm*|rxvt*|kterm*|Eterm*|pterm*|konsole*|gnome-terminal* "ti@:te@"
 
 term "screen-256color"
+# }}}1
+
+# vim: fdm=marker
