@@ -1,3 +1,5 @@
+# Converted to zsh prompt theme by bash2zshprompt, written by <adam@spiers.net>
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -9,7 +11,7 @@
 # Terminal stuff {{{1
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+#shopt -s checkwinsize
 
 # use ^? for backspace so ^H can be used for other things
 tty -s && stty erase 
@@ -17,7 +19,7 @@ tty -s && stty erase 
 if [[ "${COLORTERM}" == "gnome-terminal" ]]; then
     export TERM="gnome-256color"
 fi
-
+# }}}1
 # Environment {{{1
 # Path {{{2
 # set PATH so it includes user's private bin if it exists
@@ -70,13 +72,21 @@ if [[ "${OSTYPE}" == "darwin8.0" ]]; then
     #export DISPLAY=:0.0
 fi
 
-# Bash Options {{{1
+# Zsh Options {{{1
 # don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
+HISTCONTROL=ignoredups
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+setopt HIST_IGNORE_DUPS HIST_IGNORE_SPACE APPEND_HISTORY EXTENDED_HISTORY
 
+setopt BASH_AUTO_LIST NO_AUTO_MENU NO_ALWAYS_LAST_PROMPT
+setopt PROMPT_SUBST
+bindkey -v
+# }}}1
 # Set a fancy prompt {{{1
 # Color definitions {{{2
-if (( "`tput colors`" >= 16 )); then
+if [[ "`tput colors`" -ge 16 ]]; then
     # For 16+ color term {{{
     Black="$(tput setaf 0)"
     DarkGray="$(tput setaf 8)"
@@ -148,16 +158,17 @@ else
     # }}}
 fi
 None="$(tput sgr0)"
-#}}}2
-PS1="${Green}[\u@\h:${Red}\w${Yellow}\$(___git_ps1)${Green}]\n${None}\$ "
+# }}}2
+PS1="${Green}[%n@%m:${Red}%~${Yellow}\$(___git_ps1)${Green}]
+${None}%# "
 
 # a function to put the current time in the top-right corner of the terminal
 # and change the title of the terminal
-function prompt_command { #{{{2
+function precmd { #{{{2
     # If this is an xterm set the title to user@host:dir
     case $TERM in
     xterm*|gnome*|konsole*|putty*)
-        echo -ne "\e]0;${USER}@${HOSTNAME}: ${PWD}\a"
+        print -Pn "\e]0;%n@%m: %~\a"
         ;;
     *)
         ;;
@@ -174,8 +185,6 @@ function prompt_command { #{{{2
     #echo -en "${Green}[$(date +%H:%M:%S)]${None}"
     #tput rc
 }
-
-PROMPT_COMMAND=prompt_command
 
 # Enable color support of ls {{{1
 if [[ "${TERM}" != "dumb" ]]; then
@@ -201,14 +210,14 @@ alias Irssi='resize -s 25 100;___xtermtitle "Irssi";screen -c ~/.screenrc-irssi'
 alias IrssiR='resize -s 25 100;___xtermtitle "Irssi";screen -r irssi'
 alias IrssiX='resize -s 25 100;___xtermtitle "Irssi";screen -x irssi'
 
-function l.() {
+function l. {
     olddir=$PWD
     cd $1
     ls -d .*
     cd $olddir
     unset olddir
 }
-function ll.() {
+function ll. {
     olddir=$PWD
     cd $1
     ls -dhl .*
@@ -219,14 +228,14 @@ function ll.() {
 # Load other bash configurations {{{1
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc).
-if [[ -f "/etc/bash_completion" ]]; then
-  . /etc/bash_completion
-fi
+#if [[ -f "/etc/bash_completion" ]]; then
+#  . /etc/bash_completion
+#fi
 
 # include the local system modifications
-if [[ -f "~/.bashrc_local" ]]; then
-  . ~/.bashrc_local
-fi
+#if [[ -f "~/.bashrc_local" ]]; then
+#  . ~/.bashrc_local
+#fi
 
 # Functions {{{1
 function calc {
@@ -261,7 +270,7 @@ function ___git_ps1 { # reference __git_ps1
 }
 
 function ___xtermtitle {
-    echo -ne "\e]0;${1}\a"
+    print -Pn "\e]0;${1}\a"
 }
 
 #}}}1
