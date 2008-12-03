@@ -191,7 +191,7 @@ if [[ "${TERM}" != "dumb" ]]; then
     if [[ "${OSTYPE}" == "darwin8.0" ]]; then
         alias ls='ls -FG'
     else
-        eval `dircolors -b $HOME/.dircolors`
+        eval $(dircolors -b $HOME/.dircolors-$(tput colors))
         alias ls='ls -F --color=auto'
     fi
 fi

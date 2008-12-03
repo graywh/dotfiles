@@ -3,7 +3,9 @@
 !.bash_profile
 !.bashrc
 !.dircolors
-!.git/
+!.dircolors-8
+!.dircolors-16
+!.dircolors-256
 !.gitconfig
 !.gitignore
 !.gitignored
