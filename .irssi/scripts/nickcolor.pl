@@ -19,7 +19,7 @@ Irssi::theme_register([
 
 my %saved_colors;
 my %session_colors = {};
-my @colors = qw/3 5 6 7 8 9 11 12 13/;
+my @colors = qw/3 4 5 6 7 8 9 12 13/;
 
 sub load_colors {
   open COLORS, "$ENV{HOME}/.irssi/saved_colors";
@@ -98,6 +98,7 @@ sub sig_public {
   $basenick =~ s|\{.*\}.*$||;
   # ignore extra underscores in names
   $basenick =~ s|_+$||;
+  $basenick =~ s|^_+||;
   # ignore text after pipe - the latest craze?
   $basenick =~ s,\|.*$,,;
   # ignore case
@@ -108,15 +109,15 @@ sub sig_public {
   # Hacked by wu - check the nick, then the basenick, then look for a 'default'
   for my $name ( $nick, $basenick, 'default' )
   {
-      if ( $session_colors{ $name } )
-      {
-	  # Has a color been assigned for this nick?
-	  $color = $session_colors{ $name };
-      }
-      elsif ( $saved_colors{ $name } )
+      if ( $saved_colors{ $name } )
       {
 	  # Is there a saved color for this nick?
 	  $color = $saved_colors{ $name };
+      }
+      elsif ( $session_colors{ $name } )
+      {
+	  # Has a color been assigned for this nick?
+	  $color = $session_colors{ $name };
       }
 
       last if $color;
