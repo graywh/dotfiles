@@ -209,6 +209,7 @@ settings = {
     windows_auto_renumber = "no";
     show_nickmode_empty = "no";
     show_names_on_join = "no";
+    hilight_color = "%W";
   };
   "xmpp/core" = {
     xmpp_set_nick_as_username = "yes";
@@ -217,7 +218,7 @@ settings = {
   "irc/core" = { alternate_nick = "graywh_"; };
   "perl/core/scripts" = { usercount_show_zero = "no"; };
 };
-hilights = ( { text = "graywh"; nick = "yes"; word = "yes"; } );
+hilights = ( { text = "graywh"; nick = "yes"; } );
 windows = {
   1 = { name = "hilight"; sticky = "yes"; };
   2 = {
