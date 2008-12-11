@@ -17,12 +17,12 @@ set incsearch                   " Incremental search
 set laststatus=2                " Always display the statusline
 set linebreak                   " Don't wrap words
 if version >= 700               " Settings for list mode
-  set listchars=eol:¶
-  set listchars+=tab:>·
+  set listchars=eol:Â¶
+  set listchars+=tab:>Â·
   set listchars+=nbsp:+
-  set listchars+=trail:·
-  set listchars+=extends:»
-  set listchars+=precedes:«
+  set listchars+=trail:Â·
+  set listchars+=extends:Â»
+  set listchars+=precedes:Â«
 end
 set modeline                    " Let files set their own options
 set mouse=a                     " Use the mouse for all modes
@@ -69,7 +69,7 @@ set statusline=%4(%n%)\ %<%f\ %h%w%m%r%=%y\ %-14.(%l,%c%V%)\ %P
 " These are files we are not likely to want to edit or read.
 set suffixes=.bak,~,.swp,.swo,.o,.d,.info,.aux,.log,.dvi,.pdf,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.pyc,.pyd
 
-if has("autocmd")
+if has('autocmd')
   " Enabled file type detection
   " Use the default filetype settings. If you also want to load indent files
   " to automatically do language-dependent indenting add 'indent' as well.
@@ -84,7 +84,7 @@ syntax enable
 runtime! macros/matchit.vim
 
 " Options {{{2
-let g:tex_flavor = "latex" " Use LaTeX as the TeX flavor
+let g:tex_flavor = 'latex' " Use LaTeX as the TeX flavor
 " PHP {{{3
 let php_sql_query = 1
 let php_htmlInStrings = 1
@@ -116,11 +116,11 @@ endfunction
 
 " Keymap {{{1
 " Autocomplete
-inoremap <C-space> <C-r>=pumvisible() ? "\<lt>C-e>" : "\<lt>C-x>\<lt>C-o>"<CR>
+inoremap <C-space> <C-r>=pumvisible() ? '\<lt>C-e>' : '\<lt>C-x>\<lt>C-o>'<CR>
 
 " Add new line indented here
-nnoremap <Leader>o :let ospaces=virtcol(".")-1<CR>o<Esc>:exe "norm ".ospaces."i "<CR>:.retab!<CR>A
-nnoremap <Leader>O :let ospaces=virtcol(".")-1<CR>O<Esc>:exe "norm ".ospaces."i "<CR>:.retab!<CR>A
+nnoremap <Leader>o :let ospaces=virtcol('.')-1<CR>o<Esc>:exe 'norm '.ospaces.'i '<CR>:.retab!<CR>A
+nnoremap <Leader>O :let ospaces=virtcol('.')-1<CR>O<Esc>:exe 'norm '.ospaces.'i '<CR>:.retab!<CR>A
 
 " Change to different capitalization
 "nnoremap <Leader>sc ciw<C-r>=substitute(@", '_\(\w\)', '\u\1', 'g')<CR><Esc>
@@ -128,7 +128,7 @@ nnoremap <Leader>O :let ospaces=virtcol(".")-1<CR>O<Esc>:exe "norm ".ospaces."i 
 "nnoremap <Leader>cs ciw<C-r>=substitute(@", '[a-z]\zs\([A-Z]\)', '_\l\1', 'g')<CR><Esc>bgul
 
 " Show the syntax highlighting groups for the item under the cursor
-nnoremap <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . "> trans<" . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+nnoremap <F8> :echo 'hi<' . synIDattr(synID(line('.'),col('.'),1),'name') . '> trans<' . synIDattr(synID(line('.'),col('.'),0),'name') . '> lo<' . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name') . '>'<CR>
 nnoremap <F7> :call ShowSynStack()<CR>
 
 " Mac OS X Terminal.app {{{2

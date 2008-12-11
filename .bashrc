@@ -57,8 +57,8 @@ export BROWSER=firefox
 
 export PYTHONSTARTUP=~/.pythonrc.py
 
-# Override default setting of en_US.utf8
-export LANG=en_US
+# Use unicode
+export LC_ALL=en_US.UTF-8
 
 # Mac OS X options {{{2
 if [[ "${OSTYPE}" == "darwin8.0" ]]; then

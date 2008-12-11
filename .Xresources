@@ -8,8 +8,8 @@ XTerm.toolBar: false
 *VT100.eightBitControl: false
 *VT100.eightBitInput: false
 *VT100.eightBitOutput: true
-*VT100.faceName: Leonine\ Sans\ Mono
-*VT100.faceSize: 12
+*VT100.faceName: DejaVu\ Sans\ Mono
+*VT100.faceSize: 13
 *VT100.geometry: 85x36
 *VT100.loginShell: false
 *VT100.scrollBar: true

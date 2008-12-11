@@ -7,7 +7,7 @@ if has("win32")
 elseif has("macunix")
   set guifont=Monaco:h14
 else
-  set guifont=Leonine\ Sans\ Mono\ 12
+  set guifont=DejaVu\ Sans\ Mono\ 13
 endif       
 set guioptions=aAegLmrv
 set columns=85
