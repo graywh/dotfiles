@@ -13,65 +13,10 @@
 # update the values of LINES and COLUMNS.
 #shopt -s checkwinsize
 
-# use ^? for backspace so ^H can be used for other things
-tty -s && stty erase 
-
 if [[ "${COLORTERM}" == "gnome-terminal" ]]; then
     export TERM="gnome-256color"
 fi
 # }}}1
-# Environment {{{1
-# Path {{{2
-# set PATH so it includes user's private bin if it exists
-if [[ -d "~/bin" ]]; then
-    PATH="${PATH}:~/bin"
-fi
-if [[ -d "/opt/local/bin" ]]; then
-    PATH="/opt/local/bin:${PATH}"
-fi
-if [[ -d "/opt/local/sbin" ]]; then
-    PATH="/opt/local/sbin:${PATH}"
-fi
-if [[ -d "/var/lib/gems/1.8/bin" ]]; then
-    PATH="/var/lib/gems/1.8/bin:${PATH}"
-fi
-
-# Mac OS X options {{{3
-if [[ "${OSTYPE}" == "darwin8.0" ]]; then
-    if [[ -d "/usr/local/mysql/bin" ]]; then
-        # include location of MySQL
-        PATH="${PATH}:/usr/local/mysql/bin"
-    fi
-fi
-#}}}3
-
-export PATH
-#}}}2
-
-# use a sensible editor
-export EDITOR=vim
-
-# use vim as my pager
-export MANPAGER="/bin/sh -c \"col -b | view -c 'set ft=man' -\""
-
-# use firefox when available
-export BROWSER=firefox
-
-export PYTHONSTARTUP=~/.pythonrc.py
-
-# Override default setting of en_US.utf8
-export LANG=en_US
-
-# Mac OS X options {{{2
-if [[ "${OSTYPE}" == "darwin8.0" ]]; then
-    # turn on colors
-    export CLICOLOR=1
-    #export LSCOLORS=ExFxCxDxBxegedabagacad
-
-    # export X11 Display (for Terminal.app)
-    #export DISPLAY=:0.0
-fi
-
 # Zsh Options {{{1
 # don't put duplicate lines in the history. See bash(1) for more options
 HISTCONTROL=ignoredups
@@ -203,9 +148,9 @@ alias la='ls -A'
 alias ll='ls -hl'
 alias lla='ll -A'
 #alias ll.='ll -d .*' # make better
-alias XtermIrssi='xterm +sb -T Irssi -geometry 100x25 -fa Monaco -e "screen -c ~/.screenrc-irssi"'
-alias XtermIrssiR='xterm +sb -T Irssi -geometry 100x25 -fa Monaco -e "screen -r irssi"'
-alias XtermIrssiX='xterm +sb -T Irssi -geometry 100x25 -fa Monaco -e "screen -x irssi"'
+alias XtermIrssi='xterm +sb -T Irssi -geometry 100x25 -fa Monaco -fs 12 -e "screen -c ~/.screenrc-irssi"'
+alias XtermIrssiR='xterm +sb -T Irssi -geometry 100x25 -fa Monaco -fs 12 -e "screen -r irssi"'
+alias XtermIrssiX='xterm +sb -T Irssi -geometry 100x25 -fa Monaco -fs 12 -e "screen -x irssi"'
 alias Irssi='resize -s 25 100;___xtermtitle "Irssi";screen -c ~/.screenrc-irssi'
 alias IrssiR='resize -s 25 100;___xtermtitle "Irssi";screen -r irssi'
 alias IrssiX='resize -s 25 100;___xtermtitle "Irssi";screen -x irssi'
@@ -224,18 +169,6 @@ function ll. {
     cd $olddir
     unset olddir
 }
-
-# Load other bash configurations {{{1
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc).
-#if [[ -f "/etc/bash_completion" ]]; then
-#  . /etc/bash_completion
-#fi
-
-# include the local system modifications
-#if [[ -f "~/.bashrc_local" ]]; then
-#  . ~/.bashrc_local
-#fi
 
 # Functions {{{1
 function calc {
