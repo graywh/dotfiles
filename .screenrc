@@ -6,6 +6,7 @@ altscreen on # let programs use the alternate buffer
 autodetach on # detach on HANGUP
 chdir # start from $HOME
 defbce on # erase background with current bg color
+defencoding UTF-8
 defescape  # use ^_ for commands and ^_^_ to get ^_ (^_ == ^7)
 escape  # use ^_ for commands and ^_^_ to get ^_ (^_ == ^7)
 deflogin off # don't do multiple logins
