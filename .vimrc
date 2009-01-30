@@ -13,39 +13,47 @@ set fileformats=unix,mac,dos    " End-of-line character
 set foldcolumn=1                " Show top-level fold sections
 set hidden                      " Allow hiding changed buffers without override or warning
 set history=50                  " Keep 50 lines of command line history
+set ignorecase                  " Ignore case when searching
 set incsearch                   " Incremental search
 set laststatus=2                " Always display the statusline
 set linebreak                   " Don't wrap words
-if version >= 700               " Settings for list mode
-  set listchars=eol:¶
+set list
+set listchars=                  " Settings for list mode
+if &enc =~ '^u\(tf\|cs\)'
+  "set listchars+=eol:¶
   set listchars+=tab:>·
   set listchars+=nbsp:+
   set listchars+=trail:·
   set listchars+=extends:»
   set listchars+=precedes:«
+else
+  "set listchars+=eol:$
+  set listchars+=tab:>-
+  set listchars+=nbsp:+
+  set listchars+=trail:.
+  set listchars+=extends:>
+  set listchars+=precedes:<
 end
 set modeline                    " Let files set their own options
 set mouse=a                     " Use the mouse for all modes
 set mousehide                   " Hide the mouse while typing
 set mousemodel=popup_setpos     " Reposition the cursor on right-click
-set nrformats=hex,octal,alpha   " Recognize hexadecimal, octal, and characters for ctrl-x/c
+set nrformats=hex,octal,alpha   " Recognize hexadecimal, octal, and characters for ctrl-a/x
 set number                      " Show line numbers
 set scrolloff=1                 " Leave a line next to window edge
 set shiftwidth=4                " Use 4 spaces for each level of indention
 set showcmd                     " Show (partial) command in status line
 set showmatch                   " Show matching brackets.
 set sidescrolloff=10            " Leave some characters next to window edge (w/ nowrap)
-set smartcase                   " Search case-insensitive unless...
-set softtabstop=4               " Indenting w/ tab gets us 4 spaces (useful w/ expandtab)
+set smartcase                   " Search case-insensitive mostly
 set splitbelow                  " New window goes below
 set splitright                  " New windows goes right
 set textwidth=0                 " Don't break lines
-"if version >= 700
-  set viminfo=                  " Read/write a .viminfo file
-  set viminfo+='20              " Remember 20 previously edited files' marks (required)
-  set viminfo+=!                " Remember some global variables
-  set viminfo+=h                " Don't restore the hlsearch highlighting
-"end
+set vb t_vb=                    " Disable visual and audible bell
+set viminfo=                    " Read/write a .viminfo file
+set viminfo+='20                " Remember 20 previously edited files' marks (required)
+set viminfo+=!                  " Remember some global variables
+set viminfo+=h                  " Don't restore the hlsearch highlighting
 set virtualedit=block           " Allow block selection anywhere
 set virtualedit+=onemore        " Allow cursor to be on the newline
 set wildmenu                    " Use a menu to show tab-completions
@@ -54,31 +62,18 @@ set winaltkeys=no               " Don't use ALT to access the menu
 set wrap                        " Wrap long lines
 set wrapmargin=0                " Don't break lines based on window size
 
-" Status line (includes 'set ruler' info)
-" - buffer number (4 columns, lines up with the line numbers most of the time)
-" - relative filename & path (truncatable)
-" - [Help] flag
-" - [Preview] flag
-" - modified [+] or not modifiable [-] flag
-" - read-only flag [RO]
-" - filetype
-" - 'set ruler' defaults: line, column [virtual column]     percent
-set statusline=%4(%n%)\ %<%f\ %h%w%m%r%=%y\ %-14.(%l,%c%V%)\ %P
-
 " Suffixes that get lower priority when doing tab completion for filenames.
 " These are files we are not likely to want to edit or read.
 set suffixes=.bak,~,.swp,.swo,.o,.d,.info,.aux,.log,.dvi,.pdf,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.pyc,.pyd
 
-if has('autocmd')
-  " Enabled file type detection
-  " Use the default filetype settings. If you also want to load indent files
-  " to automatically do language-dependent indenting add 'indent' as well.
-  filetype plugin indent on
-endif
+" Enabled file type detection
+" Use the default filetype settings. If you also want to load indent files
+" to automatically do language-dependent indenting add 'indent' as well.
+filetype plugin indent on
 
 colorscheme graywh
-syntax sync fromstart
 syntax enable
+syntax sync fromstart
 
 " Plugins {{{1
 runtime! macros/matchit.vim
