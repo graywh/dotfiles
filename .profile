@@ -30,28 +30,32 @@ fi
 export PATH
 #}}}2
 
-# don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
-
 # use a sensible editor
-export EDITOR=vim
+EDITOR=vim
+export EDITOR
 
 # use vim as my pager
-export MANPAGER="/bin/sh -c \"col -b | view -c 'set ft=man' -\""
+MANPAGER="/bin/sh -c \"col -b | view -c 'set ft=man' -\""
+export MANPAGER
 
 # use firefox when available
-export BROWSER=firefox
+BROWSER=firefox
+export BROWSER
 
-export PYTHONSTARTUP=${HOME}/.pythonrc.py
+PYTHONSTARTUP=${HOME}/.pythonrc.py
+export PYTHONSTARTUP
 
 # use Unicode
-export LC_ALL=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+export LC_ALL
 
 # Mac OS X options {{{2
 if [[ "${OSTYPE}" == "darwin8.0" ]]; then
     # turn on colors
-    export CLICOLOR=1
-    #export LSCOLORS=ExFxCxDxBxegedabagacad
+    CLICOLOR=1
+    export CLICOLOR
+    #LSCOLORS=ExFxCxDxBxegedabagacad
+    #export LSCOLORS
 fi
 #}}}2
 

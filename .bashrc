@@ -7,13 +7,21 @@
 [[ -z "${PS1}" ]] && return
 
 # Terminal stuff {{{1
+if [[ "${COLORTERM}" == "gnome-terminal" ]]; then
+    export TERM="gnome-256color"
+fi
+
+# Bash Options {{{1
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-if [[ "${COLORTERM}" == "gnome-terminal" ]]; then
-    export TERM="gnome-256color"
-fi
+# append to the history file
+shopt -s histappend
+
+# don't put duplicate lines in the history. See bash(1) for more options
+export HISTCONTROL=ignoredups
 
 # Set a fancy prompt {{{1
 # Color definitions {{{2
