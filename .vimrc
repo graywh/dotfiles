@@ -142,8 +142,17 @@ nnoremap <F7> :call ShowSynStack()<CR>
 "imap <C-D-[> <C-O><End>
 
 " Terminal Stuff {{{1
-" Let Vim know what screen can do
-if &term =~ '\(screen\|putty\)'
+" screen can use the mouse just as well
+if &term =~ 'screen' && $XTERM_VERSION =~'\cxterm'
   set ttymouse=xterm2
 endif
-
+" change the screen title
+if &term =~ 'screen' && $XTERM_VERSION =~'\cxterm'
+  let &t_ts="\<Esc>]0;"
+  let &t_fs="\x7"
+endif
+" change the xterm cursor color for insert mode
+if &term =~ 'xterm' || $XTERM_VERSION =~ '\cxterm'
+  let &t_SI="\<Esc>]12;purple\x7"
+  let &t_EI="\<Esc>]12;green\x7"
+endif
