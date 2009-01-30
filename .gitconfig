@@ -1,3 +1,6 @@
+[user]
+	name = Will Gray
+	email = graywh@gmail.com
 [alias]
 	co = checkout
 	ci = commit
@@ -13,17 +16,18 @@
 	editor = vim
 	pager = view -
 	excludesfile = /home/graywh/.gitignored
+[pager]
+	status = false
+[status]
+	relativePaths = true
 [diff]
 	rename = copy
-[help]
-	browser = dillo
-[user]
-	name = Will Gray
-	email = graywh@gmail.com
-[gui]
-	fontdiff = -family Leonine\\ Sans\\ Mono -size 12 -weight normal -slant roman -underline 0 -overstrike 0
-	spellingdictionary = none
 [diff "ruby"]
 	funcname = ^\\s*\\(\\(class\\|module\\|def\\|describe\\) .*\\)
 [diff "python"]
 	funcname = ^\\s*\\(\\(class\\|def\\) .*\\)
+[help]
+	browser = dillo
+[gui]
+	fontdiff = -family Deja\\ Vu\\ Sans\\ Mono -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+	spellingdictionary = none
