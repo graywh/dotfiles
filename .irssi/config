@@ -194,7 +194,7 @@ settings = {
     user_name = "graywh";
     nick = "graywh";
     timestamp_format = "%H:%M";
-    log_timestamp = "%H:%M:%S";
+    log_timestamp = "%H:%M:%S ";
   };
   "fe-text" = { actlist_sort = "refnum"; };
   "fe-common/core" = {
@@ -210,6 +210,8 @@ settings = {
     show_nickmode_empty = "no";
     show_names_on_join = "no";
     hilight_color = "%W";
+    autolog_path = "~/.irssi/logs/$tag/$0/%Y-%m.log";
+    autolog = "yes";
   };
   "xmpp/core" = {
     xmpp_set_nick_as_username = "yes";
@@ -236,3 +238,4 @@ notifies = {
   crookshanks = { ircnets = ( "fn" ); };
   biagidp = { ircnets = ( "fn" ); };
 };
+logs = { };
