@@ -1,8 +1,7 @@
 source .screenrc
-attrcolor b ".I"
-attrcolor i "-b"
-hardstatus alwaysignore
-defhstatus "irssi"
+caption splitonly
+hardstatus string "irssi"
+attrcolor b "-b .I"
 sessionname irssi
 screen irssi
 

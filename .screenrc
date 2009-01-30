@@ -1,45 +1,42 @@
 # OPTIONS {{{1
 altscreen on # let programs use the alternate buffer
-#attrcolor b ".I" # use bright colors for bold
-#attrcolor i "-b" # don't use bold w/ bright colors
-#attrcolor b "-b" # disallow all bold
 autodetach on # detach on HANGUP
-chdir # start from $HOME
 defbce on # erase background with current bg color
-defencoding UTF-8
 defescape  # use ^_ for commands and ^_^_ to get ^_ (^_ == ^7)
-escape  # use ^_ for commands and ^_^_ to get ^_ (^_ == ^7)
+defhstatus ""
 deflogin off # don't do multiple logins
 defscrollback 2048 # scrollback buffer
+defutf8 on # use UTF-8 because we can
+escape  # use ^_ for commands and ^_^_ to get ^_ (^_ == ^7)
+# http://osdir.com/ml/gnu.screen.user/2006-06/msg00001.html
+hardstatus off
+hardstatus message
+hardstatus string "* %?%h%:%t%?"
 nethack off # don't show stupid messages
 startup_message off # no startup message
+term "screen-256color"
 vbell off # don't use visual bell
 
-# HARDSTATUS {{{1
-hardstatus alwayslastline # always use a tabline
-#hardstatus string "%{= kK}[%L=%=%-Lw%>%40=%{r}(%{w}%n*%f%t%{r})%{K}%+Lw%L<%-019=][%D %d %M %0c]"
-hardstatus string "%{= kK}[%L=%-Lw%50L>%{r}(%{w}%n%f*%t%{r})%{K}%+Lw%-019<%L=                                                                                                                                                                                         ][%D %d %M %0c]%>%<"
+# CAPTION {{{1
+caption always
+caption string "%{= kK}[%L=%-Lw%50L>%{r}(%{w}%n%f*%t%{r})%{K}%+Lw%-019<%L=                                                                                                                                                                                         ][%D %d %M %0c]%>%<"
+#caption string "%{= kK}[%L=%=%-Lw%>%40=%{r}(%{w}%n*%f%t%{r})%{K}%+Lw%L<%-019=][%D %d %M %0c]"
 
 # viking's
-#hardstatus string "%{= kg}[ %{G}%H %{g}] %L=%=%{w}%-Lw%L>%45=%{r}(%{W}%n*%f%t%{r})%{w}%+Lw%-016= %{g}[ %{B}%m/%d %{W}%0c %{g}]"
+#caption string "%{= kg}[ %{G}%H %{g}] %L=%=%{w}%-Lw%L>%45=%{r}(%{W}%n*%f%t%{r})%{w}%+Lw%-016= %{g}[ %{B}%m/%d %{W}%0c %{g}]"
 
-# other hardstatus attempts
-#hardstatus string "%{= Km}%-Lw%{= KW}%50>%n%f* %t%{= Km}%+Lw%< %{= KG}%-=%D %d %M %Y %c%{-}"
-#hardstatus string "%{= kw}%+30= %L>%-w%{r}(%{W}%n*%f%t%{r})%{w} %+w%L>%-20= %{g}[ %{B}%m/%d %{W}%c %{g}]"
+# other caption attempts
+#caption string "%{= Km}%-Lw%{= KW}%50>%n%f* %t%{= Km}%+Lw%< %{= KG}%-=%D %d %M %Y %c%{-}"
+#caption string "%{= kw}%+30= %L>%-w%{r}(%{W}%n*%f%t%{r})%{w} %+w%L>%-20= %{g}[ %{B}%m/%d %{W}%c %{g}]"
 
 # http://osdir.com/ml/gnu.screen/2002-09/msg00071.html
-#hardstatus string "%{= kK}-(%H)--[%L=%-Lw%50L>%n%f*%t%+Lw%-026<]%L=-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------(%D %d %M %Y %0c)-%>%<"
-
-# using xterm titlebar for hstatus
-#hardstatus off
-#termcapinfo xterm*|rxvt|gnome-terminal|konsole|kterm|Eterm "hs:ts=\E]0;:fs=\007"
-#defhstatus "screen ^E (^Et) | $USER@^EH"
+#caption string "%{= kK}-(%H)--[%L=%-Lw%50L>%n%f*%t%+Lw%-026<]%L=-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------(%D %d %M %Y %0c)-%>%<"
 
 # KEY BINDINGS {{{1
 # defaults that Debian "kindly" removed
 bind \\
 bind ^\ quit
-bind K quit
+
 # region navigation similar to Vim
 bind w focus
 bind j focus down
@@ -48,25 +45,20 @@ bind t focus top
 bind b focus bottom
 bind o only
 
-bindkey -k k2 screen # F2 - new screen
-#bindkey -k k3 detach # F3 - detach
-#bindkey -k k3 focus # F3 - change regions
 bindkey -k k4 copy # F4 - start copy/scrollback mode
-bindkey -k k5 prev # F5 - previous screen
-bindkey -k k6 next # F6 - next screen
 
-# TERMCAP {{{1
+# TERMCAP/TERMINFO {{{1
+# tell screen that it can change the title of xterm-alikes
+#termcapinfo screen*|xterm*|konsole*|gnome*|putty* "hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007"
+
 # tell screen how to set colors. AB = background, AF = foreground
-#termcapinfo xterm-256color|gnome-terminal|konsole "Co#256:AB=\E[4%p1%dm:AF=\E[3%p1%dm"
-#termcapinfo xterm-256color|gnome-terminal|konsole "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
-#termcapinfo xterm-256color|gnome-terminal|konsole "Co#256:AB=\E[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48;5;%p1%d%;m:AF=\E[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38;5;%p1%d%;m"
+#termcapinfo screen*|xterm*|konsole*|gnome*|putty* "Co#256:AB=\E[48;5;%p1%dm:AF=\E[38;5;%p1%dm"
 
-termcapinfo xterm*|rxvt*|kterm*|Eterm*|pterm*|konsole*|gnome-terminal* "hs:ts=\E]0;:fs=\007:ds=\E]0;\007"
-
-# disable the alternate screen for screen itself--switching screen tabs messes things up
-#termcapinfo xterm*|rxvt*|kterm*|Eterm*|pterm*|konsole*|gnome-terminal* "ti@:te@"
-
-term "screen-256color"
+# ENVIRONMENT{{{1
+#unsetenv DISPLAY
+#unsetenv SESSION_MANAGER
+#unsetenv SSH_AGEND_PID
+#unsetenv SSH_AUTH_SOCK
 # }}}1
 
 # vim: fdm=marker
