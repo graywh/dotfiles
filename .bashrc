@@ -118,13 +118,15 @@ function prompt_command { #{{{2
 
 PROMPT_COMMAND=prompt_command
 
-# Enable color support of ls {{{1
+# Enable color support of ls and others {{{1
 if [[ "${TERM}" != "dumb" ]]; then
-    if [[ "${OSTYPE}" == "darwin8.0" ]]; then
-        alias ls='ls -FG'
-    else
+    if [[ -x /usr/bin/dircolors ]]; then
         eval $(dircolors -b $HOME/.dircolors-$(tput colors))
         alias ls='ls -F --color=auto'
+        alias grep='grep --color=auto'
+        alias egrep='egrep --color=auto'
+    elif [[ "${OSTYPE}" =~ "darwin" ]]; then
+        alias ls='ls -FG'
     fi
 fi
 
