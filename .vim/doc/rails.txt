@@ -139,16 +139,19 @@ actually edit a file from a Rails application.
 			rake).  However, in some contexts, if {targets} are
 			omitted, :Rake defaults to something sensible (like
 			db:migrate in a migration, or your current test).
-			The optional range defaults to the current line and
-			affects the execution in some situations (like only
-			running the test method containing that line in a
-			test).  One can use :0Rake to override any line
-			specific behaviors (e.g., run the full test file).
+			In tests (and specs), giving a line argument runs only
+			the test method (or example) at that line.  Use :.Rake
+			to run the test method at the cursor position.  Use
+			:.Rake inside a self.up or self.down method in a
+			migration to run the db:migrate:up or db:migrate:down
+			task for that particular migration.
 
 						*rails-:Rake!*
 :[range]Rake! {targets}	Called with a bang, :Rake will use an alternate
 			'errorformat' which attempts to parse the full stack
-			backtrace.
+			backtrace.  For purely informative rake tasks (stats,
+			routes, notes, etc), the preview pane is opened with
+			the full output of the command.
 
 						*rails-:Rcd*
 :Rcd [{directory}]	|:cd| to /path/to/railsapp/{directory}.
@@ -167,7 +170,10 @@ actually edit a file from a Rails application.
 			|:help| rails.
 
 						*rails-:Redit*
-:Redit {file}		Edit {file}, relative to the application root.
+:Redit {file}		Edit {file}, relative to the application root.  Append
+			:line or #method to jump within the file, as in
+			:Redit app/controllers/users_controller.rb:12 or
+			:Redit app/models/user.rb#activate .
 
 						*rails-:Rlog*
 :Rlog [{logfile}]	Split window and open {logfile} ($RAILS_ENV or
@@ -331,15 +337,17 @@ For the less common cases, a more deliberate set of commands are provided.
 Each of the following takes an optional argument (with tab completion) but
 defaults to a reasonable guess that follows Rails conventions.  For example,
 when editing app/models/employee.rb, :Rcontroller will default to
-app/controllers/employees_controller.rb.  The controller and model options,
-ideally set from  |rails-modelines|,  can override the mapping from model
-related files to controller related files (Rset controller=hiring) and vice
-versa (Rset model=employee).  See |rails-:Rset|.
+app/controllers/employees_controller.rb.  The controller and model options
+can override the mapping from model related files to controller related files
+(Rset controller=hiring) and vice versa (Rset model=employee).  See
+|rails-:Rset|.
 
 Each of the following commands has variants for splitting, vertical splitting
 and opening in a new tab.  For :Rmodel, those variants would be :RSmodel,
 :RVmodel, and :RTmodel.  There is also :REmodel which is a synonym for :Rmodel
-(future versions might allow customization of the behavior of :Rmodel).
+(future versions might allow customization of the behavior of :Rmodel).  They
+also allow for jumping to methods or line numbers using the same syntax as
+|:Redit|.
 
 
 Model Navigation Commands ~
@@ -347,8 +355,7 @@ Model Navigation Commands ~
 The default for model navigation commands is the current model, if it can be
 determined.  For example, test/unit/post_test.rb would have a current model
 of post.  Otherwise, if a controller name can be determined, said controller
-name will be singularized and used.  To override this, use a command or
-modeline like: >
+name will be singularized and used.  To override this, use a command like: >
 	Rset model=comment
 
 :Rmodel						|rails-:Rmodel|
@@ -364,10 +371,9 @@ modeline like: >
 :Rmigration [{pattern}]	If {pattern} is a number, find the migration for that
 			particular set of digits, zero-padding if necessary.
 			Otherwise, find the newest migration containing the
-			given pattern.  The pattern defaults to the current
-			model name, pluralized.  So when editing the Post
-			model, :Rmigration with no arguments might find
-			create_posts.rb, or add_date_to_posts.rb.
+			given pattern.  Omitting the pattern selects the
+			latest migration.  Give a numeric argument of 0 to edit
+			db/schema.rb.
 
 						*rails-:Robserver*
 :Robserver [{name}]	Find the observer with a name like
@@ -396,7 +402,7 @@ The default for controller navigation commands is the current controller, if
 it can be determined.  For example, test/functional/blog_test.rb would have a
 current controller of blog.  Otherwise, if a model name can be determined,
 said model name will be pluralized and used.  To override this, use a command
-or modeline like: >
+like: >
 	Rset controller=blog
 
 :Rcontroller					|rails-:Rcontroller|
@@ -445,6 +451,9 @@ The following commands are not clearly associated with models or controllers.
 :Rplugin					|rails-:Rplugin|
 :Rlib						|rails-:Rlib|
 :Rtask						|rails-:Rtask|
+:Rmetal						|rails-:Rmetal|
+:Renvironment					|rails-:Renvironment|
+:Rinitializer					|rails-:Rinitializer|
 :Rintegrationtest				|rails-:Rintegrationtest|
 :Rspec						|rails-:Rspec|
 
@@ -475,14 +484,25 @@ The following commands are not clearly associated with models or controllers.
 			argument is given, either the current plugin's
 			Rakefile or the application Rakefile will be edited.
 
+						*rails-:Rmetal*
+:Renvironment [{name}]  Edit the app/metal file specified.  With no argument,
+			defaults to editing config/boot.rb.
+
+						*rails-:Renvironment*
+:Renvironment [{name}]  Edit the config/environments file specified.  With no
+			argument, defaults to editing config/environment.rb.
+
+						*rails-:Rinitializer*
+:Rinitializer [{name}]  Edit the config/initializers file specified.  With no
+			argument, defaults to editing config/routes.rb.
+
 						*rails-:Rintegrationtest*
 :Rintegrationtest [{name}]
 			Edit the integration test specified.  With no
 			argument, defaults to editing test/test_helper.rb.
 
 						*rails-:Rspec*
-:Rspec [{name}]
-			Edit the given spec.  With no argument, defaults to
+:Rspec [{name}]		Edit the given spec.  With no argument, defaults to
 			editing spec/spec_helper.rb (If you want to jump to
 			the spec for the given file, use |:A| instead).  This
 			command is only defined if there is a spec folder in
@@ -666,34 +686,24 @@ place) are also covered in this section.
 			a new project, with appropriate directories (app,
 			etc., but not vendor).
 
-						*rails-:Rproject!*
-:Rproject! [{file}]	Same as :Rproject, only delete existing project if it
-			exists and recreate it.  The logic to delete the old
-			project is convoluted and possibly erroneous; report
-			any problems to the |rails-plugin-author|.  A handy
-			mapping might look something like: >
-		autocmd User Rails map <buffer> <F6> :Rproject!|silent w<CR>
-<			As a bonus, this command organizes views into separate
-			directories for easier navigation.  The downside of
-			this is that you will have to regenerate your project
-			each time you add another view directory (which is why
-			this command recreates your project each time!).
-
 						*rails-:Rdbext* *rails-dbext*
 :Rdbext [{environment}] This command is only provided when the |dbext| plugin
 			is installed.  Loads the {environment} configuration
 			(defaults to $RAILS_ENV or development) from
 			config/database.yml and uses it to configure dbext.
-			The configuration is cached until a different Rails
-			application is edited.  This command is called for you
-			automatically when |g:rails_dbext| is set (default on
-			non-Windows systems).
+			The configuration is cached on a per application
+			basis.  With dbext versions 8.00 and newer, this
+			command is called automatically when needed.  For
+			older versions, it is called automatically when
+			rails.vim loads if |g:rails_dbext| is set (which it is
+			by default).
 
 						*rails-:Rdbext!*
 :Rdbext! [{environment}]
 			Load the database configuration as above, and then
 			attempt a CREATE DATABASE for it.  This is primarily
-			useful for demonstrations.
+			useful for demonstrations, and has been largely
+			superseded by |:Rake| db:create.
 
 						*rails-surround*
 The |surround| plugin available from vim.org enables adding and removing
@@ -801,7 +811,7 @@ Rabbrev pa[ params		pa.inspect		params.inspect
 Rabbrev AR:: ActionRecord	AR::Base		ActiveRecord::Base
 Rabbrev :a :action\ =>\		render :a<Tab>		render :action => 
 
-In short, :: expands on :, ( expands on (, and [ expands on both . and [.
+In short, ( expands on (, :: expands on . and :, and [ expands on . and [.
 These trailing punctuation marks are NOT part of the final abbreviation, and
 you cannot have two mappings that differ only by punctuation.
 
@@ -810,11 +820,11 @@ an abbreviation ending with "(", you may define where to insert the
 parenthesis by splitting the expansion into two parts (divided by an unescaped
 space).
 
-Many abbreviations abbreviations are provided by default: use :Rabbrev to list
-them.  They vary depending on the type of file (models have different
-abbreviations than controllers).  There is one "smart" abbreviation, :c, which
-expands to ":controller => ", ":collection => ", or ":conditions => "
-depending on context.
+Many abbreviations are provided by default: use :Rabbrev to list them.  They
+vary depending on the type of file (models have different abbreviations than
+controllers).  There is one "smart" abbreviation, :c, which expands to
+":controller => ", ":collection => ", or ":conditions => " depending on
+context.
 
 ==============================================================================
 SYNTAX HIGHLIGHTING				*rails-syntax*
@@ -835,7 +845,7 @@ they all link by default to railsMethod.
 If you feel a method has been wrongfully omitted, submit it to the
 |rails-plugin-author|.
 
-					*rails-@params* *rails-syntax-deprecated*
+				*rails-@params* *rails-syntax-deprecated*
 Certain deprecated syntax (like @params and render_text) is highlighted as an
 error.  If you trigger this highlighting, generally it means you need to
 update your code.
@@ -863,11 +873,11 @@ syntax group is used.  The list of assertions can be refreshed with
 						*rails-syntax-strings*
 In the following line of code, the "?" in the conditions clause and the "ASC"
 in the order clause will be highlighted: >
-  Post.find(:all, :conditions => ["body like ?","%e%"] :order => "title ASC")
+  Post.find(:all, :conditions => ["body like ?","%e%"], :order => "title ASC")
 <
-A string literal using %Q<> delimiters will have its contents highlighted as
-HTML.  This is sometimes useful when writing helpers. >
-  link = %Q<<a href="http://www.vim.org">Vim</a>>
+A string literal using %Q<> or %<> delimiters will have its contents
+highlighted as HTML.  This is sometimes useful when writing helpers. >
+  link = %<<a href="http://www.vim.org">Vim</a>>
 <
 						*rails-syntax-yaml*
 YAML syntax highlighting has been extended to highlight eRuby, which can be
@@ -958,9 +968,9 @@ sourced in the |sandbox| for security reasons.
 			called directly, from an autocommand, or from
 			config/rails.vim.
 
-Options may be set set in one of four scopes, which my be indicated by an
+Options may be set in one of four scopes, which may be indicated by an
 optional prefix.  These scopes determine how broadly an option will apply.
-Generally, the default scope is sufficient
+Generally, the default scope is sufficient.
 
 Scope	Description ~
 a:	All files in one Rails application

@@ -14,7 +14,6 @@ g:rails_mappings	rails.txt	/*g:rails_mappings*
 g:rails_menu	rails.txt	/*g:rails_menu*
 g:rails_modelines	rails.txt	/*g:rails_modelines*
 g:rails_statusline	rails.txt	/*g:rails_statusline*
-g:rails_subversion	rails.txt	/*g:rails_subversion*
 g:rails_syntax	rails.txt	/*g:rails_syntax*
 g:rails_tabstop	rails.txt	/*g:rails_tabstop*
 g:rails_url	rails.txt	/*g:rails_url*
@@ -71,12 +70,14 @@ rails-:Rdestroy	rails.txt	/*rails-:Rdestroy*
 rails-:Rdoc	rails.txt	/*rails-:Rdoc*
 rails-:Rdoc!	rails.txt	/*rails-:Rdoc!*
 rails-:Redit	rails.txt	/*rails-:Redit*
+rails-:Renvironment	rails.txt	/*rails-:Renvironment*
 rails-:Rextract	rails.txt	/*rails-:Rextract*
 rails-:Rfind	rails.txt	/*rails-:Rfind*
 rails-:Rfixtures	rails.txt	/*rails-:Rfixtures*
 rails-:Rfunctionaltest	rails.txt	/*rails-:Rfunctionaltest*
 rails-:Rgenerate	rails.txt	/*rails-:Rgenerate*
 rails-:Rhelper	rails.txt	/*rails-:Rhelper*
+rails-:Rinitializer	rails.txt	/*rails-:Rinitializer*
 rails-:Rintegrationtest	rails.txt	/*rails-:Rintegrationtest*
 rails-:Rinvert	rails.txt	/*rails-:Rinvert*
 rails-:Rjavascript	rails.txt	/*rails-:Rjavascript*
@@ -86,6 +87,7 @@ rails-:Rlib	rails.txt	/*rails-:Rlib*
 rails-:Rlog	rails.txt	/*rails-:Rlog*
 rails-:Rmigration	rails.txt	/*rails-:Rmigration*
 rails-:Rmodel	rails.txt	/*rails-:Rmodel*
+rails-:Rnavcommand	rails.txt	/*rails-:Rnavcommand*
 rails-:Robserver	rails.txt	/*rails-:Robserver*
 rails-:Rp	rails.txt	/*rails-:Rp*
 rails-:Rpartial	rails.txt	/*rails-:Rpartial*
@@ -94,7 +96,6 @@ rails-:Rpp	rails.txt	/*rails-:Rpp*
 rails-:Rpreview	rails.txt	/*rails-:Rpreview*
 rails-:Rpreview!	rails.txt	/*rails-:Rpreview!*
 rails-:Rproject	rails.txt	/*rails-:Rproject*
-rails-:Rproject!	rails.txt	/*rails-:Rproject!*
 rails-:Rrefresh	rails.txt	/*rails-:Rrefresh*
 rails-:Rrefresh!	rails.txt	/*rails-:Rrefresh!*
 rails-:Rrunner	rails.txt	/*rails-:Rrunner*
@@ -102,6 +103,7 @@ rails-:Rscript	rails.txt	/*rails-:Rscript*
 rails-:Rserver	rails.txt	/*rails-:Rserver*
 rails-:Rserver!	rails.txt	/*rails-:Rserver!*
 rails-:Rset	rails.txt	/*rails-:Rset*
+rails-:Rspec	rails.txt	/*rails-:Rspec*
 rails-:Rstylesheet	rails.txt	/*rails-:Rstylesheet*
 rails-:Rtags	rails.txt	/*rails-:Rtags*
 rails-:Rtask	rails.txt	/*rails-:Rtask*
@@ -130,6 +132,7 @@ rails-integration	rails.txt	/*rails-integration*
 rails-introduction	rails.txt	/*rails-introduction*
 rails-license	rails.txt	/*rails-license*
 rails-menu	rails.txt	/*rails-menu*
+rails-merb	rails.txt	/*rails-merb*
 rails-migrations	rails.txt	/*rails-migrations*
 rails-misc-navigation	rails.txt	/*rails-misc-navigation*
 rails-model-navigation	rails.txt	/*rails-model-navigation*
