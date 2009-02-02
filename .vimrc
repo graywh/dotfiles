@@ -2,47 +2,47 @@
 " Author: Will Gray <graywh@gmail.com>
 
 " Options {{{1
-set all&                        " Set everything to the default
-set nocompatible                " Vim is better than Vi
+set all&			" Set everything to the default
+set nocompatible		" Vim is better than Vi
 
 " Mouse {{{2
-set mouse=a                     " Use the mouse for all modes
-set mousehide                   " Hide the mouse while typing
-set mousemodel=popup_setpos     " Reposition the cursor on right-click
+set mouse=a			" Use the mouse for all modes
+set mousehide			" Hide the mouse while typing
+set mousemodel=popup_setpos	" Reposition the cursor on right-click
 
 " Terminal {{{2
-set title                       " Turn on titlebar support
-set ttyscroll=5                 " Redraw when scrolling a long ways
-set ttymouse=xterm2             " Assume xterm mouse support
+set title			" Turn on titlebar support
+set ttyscroll=5			" Redraw when scrolling a long ways
+set ttymouse=xterm2		" Assume xterm mouse support
 
 " Navigation {{{2
-set scrolloff=1                 " Leave a line next to window edge
-set showmatch                   " Show matching brackets.
-set sidescrolloff=10            " Leave some characters next to window edge (w/ nowrap)
-set virtualedit=block           " Allow block selection anywhere
-set virtualedit+=onemore        " Allow cursor to be on the newline
+set scrolloff=1			" Leave a line next to window edge
+set showmatch			" Show matching brackets.
+set sidescrolloff=10		" Leave some characters next to window edge (w/ nowrap)
+set virtualedit=block		" Allow block selection anywhere
+set virtualedit+=onemore	" Allow cursor to be on the newline
 
 " Editing {{{2
-set backspace=indent,eol,start  " More powerful backspacing
-set nrformats=hex,octal,alpha   " Recognize hexadecimal, octal, and characters for ctrl-a/x
-set textwidth=0                 " Don't break lines
-set wrapmargin=0                " Don't break lines based on window size
+set backspace=indent,eol,start	" More powerful backspacing
+set nrformats=hex,octal,alpha	" Recognize hexadecimal, octal, and characters for ctrl-a/x
+set textwidth=0			" Don't break lines
+set wrapmargin=0		" Don't break lines based on window size
 
 " Tabs, Indents {{{2
-set autoindent                  " Always set autoindenting on
-set expandtab                   " Always expand tabs to spaces
-set shiftwidth=4                " Use 4 spaces for each level of indention
-set smarttab                    " Use 'sw' at begining of line, 'ts' otherwise
-set softtabstop=8               " To make backspacing over expanded tabs easier
-set tabstop=8                   " What tabs are meant to be
+set autoindent			" Always set autoindenting on
+set expandtab			" Always expand tabs to spaces
+set shiftwidth=4		" Use 4 spaces for each level of indention
+set smarttab			" Use 'sw' at begining of line, 'ts' otherwise
+set softtabstop=8		" To make backspacing over expanded tabs easier
+set tabstop=8			" What tabs are meant to be
 
 " Completion {{{2
-set completeopt=longest         " Start with longest part
-set completeopt+=menu,preview   "  then show a menu
+set completeopt=longest		" Start with longest part
+set completeopt+=menu,preview	"  then show a menu
 
 " Command-line {{{2
-set wildmenu                    " Use a menu to show tab-completions
-set wildmode=longest:full,full  " Complete longest, tab through matches
+set wildmenu			" Use a menu to show tab-completions
+set wildmode=longest:full,full	" Complete longest, tab through matches
 " Suffixes that get lower priority when doing tab completion for filenames.
 " These are files we are not likely to want to edit or read.
 set suffixes=.bak,~,.swp,.swo,.o,.d,.info,.aux,.log,.dvi,.pdf,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.pyc,.pyd,.dll
@@ -56,23 +56,23 @@ if has('multi_byte') && &enc !~ '^u\(tf\|cs\)'
 endif
 
 " Searching, Patterns {{{2
-set ignorecase                  " Ignore case when searching
-set incsearch                   " Incremental search
-set smartcase                   " Search case-insensitive mostly
+set ignorecase			" Ignore case when searching
+set incsearch			" Incremental search
+set smartcase			" Search case-insensitive mostly
 
 " Windows, Buffers {{{2
-set hidden                      " Allow hiding changed buffers without override or warning
-set splitbelow                  " New window goes below
-set splitright                  " New windows goes right
+set hidden			" Allow hiding changed buffers without override or warning
+set splitbelow			" New window goes below
+set splitright			" New windows goes right
 
 " Display {{{2
-set foldcolumn=1                " Show top-level fold sections
-set linebreak                   " Don't wrap words
-set list                        " Add visual clues (disables 'linebreak')
-set number                      " Show line numbers
-set wrap                        " Wrap long lines
+set foldcolumn=1		" Show top-level fold sections
+set linebreak			" Don't wrap words
+set list			" Add visual clues (disables 'linebreak')
+set number			" Show line numbers
+set wrap			" Wrap long lines
 
-set listchars=                  " Settings for list mode
+set listchars=			" Settings for list mode
 "set listchars+=eol:$
 set listchars+=tab:>-
 set listchars+=nbsp:+
@@ -89,24 +89,24 @@ if has('multi_byte') && &tenc =~ '^u\(tf\|cs\)'
 endif
 
 " Messages, Info, Status {{{2
-set laststatus=2                " Always display the statusline
-set ruler                       " Show position even without status line
-set showcmd                     " Show (partial) command in status line
-set vb t_vb=                    " Disable visual and audible bell
+set laststatus=2		" Always display the statusline
+set ruler			" Show position even without status line
+set showcmd			" Show (partial) command in status line
+set vb t_vb=			" Disable visual and audible bell
 
 " Viminfo {{{2
-set history=50                  " Keep 50 lines of command line history
-set viminfo=                    " Read/write a .viminfo file
-set viminfo+='20                " Remember 20 previously edited files' marks (required)
-set viminfo+=!                  " Remember some global variables
-set viminfo+=h                  " Don't restore the hlsearch highlighting
+set history=50			" Keep 50 lines of command line history
+set viminfo=			" Read/write a .viminfo file
+set viminfo+='20		" Remember 20 previously edited files' marks (required)
+set viminfo+=!			" Remember some global variables
+set viminfo+=h			" Don't restore the hlsearch highlighting
 
 " Reading, Writing {{{2
-set modeline                    " Let files set their own options
-set fileformats=unix,mac,dos    " End-of-line character
+set modeline			" Let files set their own options
+set fileformats=unix,mac,dos	" End-of-line character
 
 " Other {{{2
-set winaltkeys=no               " Don't use ALT to access the menu
+set winaltkeys=no		" Don't use ALT to access the menu
 
 " Filetype {{{2
 " Enabled file type detection
