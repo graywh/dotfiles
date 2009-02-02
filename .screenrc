@@ -49,16 +49,9 @@ bindkey -k k4 copy # F4 - start copy/scrollback mode
 
 # TERMCAP/TERMINFO {{{1
 # tell screen that it can change the title of xterm-alikes
-#termcapinfo screen*|xterm*|konsole*|gnome*|putty* "hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007"
+#termcapinfo screen*|xterm*|konsole*|gnome*|putty* "hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007"
 
 # tell screen how to set colors. AB = background, AF = foreground
 #termcapinfo screen*|xterm*|konsole*|gnome*|putty* "Co#256:AB=\E[48;5;%p1%dm:AF=\E[38;5;%p1%dm"
-
-# ENVIRONMENT{{{1
-#unsetenv DISPLAY
-#unsetenv SESSION_MANAGER
-#unsetenv SSH_AGEND_PID
-#unsetenv SSH_AUTH_SOCK
-# }}}1
 
 # vim: fdm=marker

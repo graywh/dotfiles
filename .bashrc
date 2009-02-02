@@ -106,7 +106,7 @@ function prompt_command { #{{{2
     # If this is an xterm set the title to user@host:dir
     case $TERM in
     xterm*|screen*|gnome*|konsole*|putty*)
-        echo -ne "\e]0;${USER}@${HOSTNAME}: ${PWD}\a"
+        echo -ne "\e]2;${USER}@${HOSTNAME}: ${PWD}\a"
         ;;
     *)
         ;;
