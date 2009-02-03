@@ -21,6 +21,9 @@ TERM cygwin
 TERM dtterm
 TERM gnome
 TERM gnome-256color
+TERM konsole
+TERM konsole-16color
+TERM knosole-256color
 TERM mlterm
 TERM putty
 TERM putty-256color
