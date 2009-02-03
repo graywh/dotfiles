@@ -194,7 +194,7 @@ settings = {
     user_name = "graywh";
     nick = "graywh";
     timestamp_format = "%H:%M";
-    log_timestamp = "%H:%M:%S ";
+    log_timestamp = "%Y/%m/%d %H:%M:%S ";
   };
   "fe-text" = { actlist_sort = "refnum"; };
   "fe-common/core" = {
@@ -236,6 +236,7 @@ mainwindows = {
 ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
 notifies = {
   crookshanks = { ircnets = ( "fn" ); };
+  viking = { ircnets = ( "fn" ); };
   biagidp = { ircnets = ( "fn" ); };
 };
 logs = { };
