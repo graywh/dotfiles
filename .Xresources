@@ -55,6 +55,7 @@ XTerm.toolBar: false
 *VT100.color13: rgb:ff/66/ff
 *VT100.color14: rgb:66/ff/ff
 *VT100.color15: rgb:ff/ff/ff
+! --- 16-255 {{{3
 *VT100.color16: rgb:00/00/00
 *VT100.color17: rgb:00/00/33
 *VT100.color18: rgb:00/00/66
