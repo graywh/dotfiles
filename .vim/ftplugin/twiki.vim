@@ -71,7 +71,6 @@ setlocal wrap
 setlocal commentstring=<!--%s-->
 
 " Three-space indentation is significant to TWiki
-setlocal tabstop=3
 setlocal shiftwidth=3
 setlocal softtabstop=3
 " tabs should be converted to spaces
@@ -96,7 +95,7 @@ if exists("g:Twiki_FoldAtHeadings") &&
             let foldLevel = strlen(pluses)
             let foldValue = ">".foldLevel
         endif
-        
+
         return foldValue
 
     endfunction " Twiki_GetFoldValue()

@@ -1,6 +1,6 @@
 " Vim syntax file
-" Language:   brew
-" Maintainer: Will Gray <graywh@gmail.com>
+" Language:	brew
+" Maintainer:	Will Gray <graywh@gmail.com>
 "
 " This is heavily based on Tim Pope's eruby.vim.
 

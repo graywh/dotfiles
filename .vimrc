@@ -2,7 +2,7 @@
 " Author: Will Gray <graywh@gmail.com>
 
 " Options {{{1
-set all&			" Set everything to the default
+"set all&			" Set everything to the default
 set nocompatible		" Vim is better than Vi
 
 " Mouse {{{2
@@ -16,7 +16,8 @@ set ttyscroll=5			" Redraw when scrolling a long ways
 set ttymouse=xterm2		" Assume xterm mouse support
 
 " Navigation {{{2
-set scrolloff=1			" Leave a line next to window edge
+set nostartofline		" Avoid moving the cursor when moving around
+set scrolloff=3			" Leave lines next to window edge
 set showmatch			" Show matching brackets.
 set sidescrolloff=10		" Leave some characters next to window edge (w/ nowrap)
 set virtualedit=block		" Allow block selection anywhere
@@ -27,6 +28,14 @@ set backspace=indent,eol,start	" More powerful backspacing
 set nrformats=hex,octal,alpha	" Recognize hexadecimal, octal, and characters for ctrl-a/x
 set textwidth=0			" Don't break lines
 set wrapmargin=0		" Don't break lines based on window size
+
+" Formatting {{{2
+set formatoptions=
+set formatoptions+=r		" Continue comments by default
+set formatoptions+=o		" Make comment when using o or O
+set formatoptions+=q		" Format comments with gq
+set formatoptions+=n		" Recognize numbered lists
+set formatoptions+=1		" Break before 1-letter words
 
 " Tabs, Indents {{{2
 set autoindent			" Always set autoindenting on
@@ -62,10 +71,12 @@ set smartcase			" Search case-insensitive mostly
 
 " Windows, Buffers {{{2
 set hidden			" Allow hiding changed buffers without override or warning
+set switchbuf=useopen,usetab
 set splitbelow			" New window goes below
 set splitright			" New windows goes right
 
 " Display {{{2
+set cursorline			" Highlight the current line
 set foldcolumn=1		" Show top-level fold sections
 set linebreak			" Don't wrap words
 set list			" Add visual clues (disables 'linebreak')
@@ -73,19 +84,20 @@ set number			" Show line numbers
 set wrap			" Wrap long lines
 
 set listchars=			" Settings for list mode
-"set listchars+=eol:$
-set listchars+=tab:>-
-set listchars+=nbsp:+
-set listchars+=trail:.
-set listchars+=extends:>
-set listchars+=precedes:<
-if has('multi_byte') && &tenc =~ '^u\(tf\|cs\)'
+if has('multi_byte') && (&tenc =~ '^u\(tf\|cs\)' || (empty(&tenc) && &enc =~ '^u\(tf\|cs\)'))
   "set listchars+=eol:¶
   set listchars+=tab:>·
   set listchars+=nbsp:+
   set listchars+=trail:·
   set listchars+=extends:»
   set listchars+=precedes:«
+else
+  "set listchars+=eol:$
+  set listchars+=tab:>-
+  set listchars+=nbsp:+
+  set listchars+=trail:.
+  set listchars+=extends:>
+  set listchars+=precedes:<
 endif
 
 " Messages, Info, Status {{{2
@@ -141,24 +153,36 @@ let python_highlight_doctests = 1
 " }}}3
 
 " Commands {{{1
+" Compare a modified file to what is saved on disk
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
+" Replace tabs with 'shiftwidth' spaces
+if has('ex_extra')
+  command! -bang -range=% ReTab let ts=&l:ts | let &l:ts=&sw | <line1>,<line2>retab<bang> | let &l:ts=ts | unlet ts
+endif
+
+" Remove trailing space
+command! -range=% UnTrail <line1>,<line2>s/\s\+$//
+
+" Shift the position under the cursor to column N
+command! -nargs=1 Shift exec 'normal '.(<args>-col('.')).'i '
+
+" D'oh
+command! -bang -nargs=? -complete=help H help<bang> <args>
+
 " Functions {{{1
-function! MyFoldText()
+function! MyFoldText() " {{{2
   let sub1 = substitute(getline(v:foldstart), '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
+  let sub1 = substitute(sub1, '\s*$', '')
   let sub2 = substitute(getline(v:foldend), '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
-  let sub2 = substitute(sub2, '^\s*', '')
+  let sub2 = substitute(sub2, '^\s*\(.*\)\s*$', '\1')
   let lines = v:foldend - v:foldstart + 1
-  return sub1.'...'.sub2.' ('.lines.' lines) '
+  return sub1 . '...' . sub2 . ' (' . lines . ' lines) '
 endfunction
 
-function! ShowSynStack()
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunction
-
-" return '[\s]' if trailing whitespace is detected
-" return '' otherwise
-function! TrailingSpace()
+function! TrailingSpace() " {{{2
+  " return '[\s]' if trailing whitespace is detected
+  " return '' otherwise
   if !exists("b:statusline_trailing_space_warning")
     if search('\s\+$', 'nw') != 0
       let b:statusline_trailing_space_warning = '[\s]'
@@ -170,65 +194,101 @@ function! TrailingSpace()
 endfunction
 
 " Status line {{{1
-" (includes 'set ruler' info)
 " - buffer number (4 columns, lines up with the line numbers most of the time)
 " - relative filename & path (truncatable)
 " - [Help] flag
 " - [Preview] flag
 " - modified [+] or not modifiable [-] flag
 " - read-only flag [RO]
+" - start left-alignment
 " - filetype
-" - 'set ruler' defaults: line, column [virtual column]     percent
+" - 'set ruler' defaults: line, column [virtual column] percent
 set statusline=%4(%n%)\ %<%f\ %h%w%m%r%=%y\ %-14.(%l,%c%V%)\ %P
 
+" See also TrailingSpace
+
 " Autocommands {{{1
-"augroup vimrcEx
-"  au!
-"  " recalculate the trailing whitespace warning when idle, and after saving
-"  " use with %{TrailingSpace()} in the statusline
-"  autocmd CursorHold,BufWritePost * unlet! b:statusline_trailing_space_warning
-"augroup END
+augroup vimrcEx
+  au!
+  " recalculate the trailing whitespace warning when idle, and after saving " {{{2
+  " use with %{TrailingSpace()} in the statusline
+  "autocmd CursorHold,BufWritePost * unlet! b:statusline_trailing_space_warning
+augroup END
 
 " Keymap {{{1
-" Autocomplete
-inoremap <C-space> <C-r>=pumvisible() ? '\<lt>C-e>' : '\<lt>C-x>\<lt>C-o>'<CR>
+" make Q like before {{{2
+map Q gq
 
-" Add new line indented here
-nnoremap <Leader>o :let ospaces=virtcol('.')-1<CR>o<Esc>:exe 'norm '.ospaces.'i '<CR>:.retab!<CR>A
-nnoremap <Leader>O :let ospaces=virtcol('.')-1<CR>O<Esc>:exe 'norm '.ospaces.'i '<CR>:.retab!<CR>A
+" make Y like D & C {{{2
+map Y y$
 
-" Change to different capitalization
+" Clear search hilight {{{2
+nnoremap <silent> <C-h> :nohl<CR>
+
+" Autocomplete {{{2
+inoremap <expr> <C-space> pumvisible() \|\| &omnifunc == '' ? "\<C-n>" : "\<C-x>\<C-o>"
+inoremap <C-@> <C-space>
+
+" Add new line indented here {{{2
+nnoremap <silent> <Leader>o :let ospaces=virtcol('.')-1<CR>o<Esc>:exec 'normal '.ospaces.'i '<CR>:.retab!<CR>A
+nnoremap <silent> <Leader>O :let ospaces=virtcol('.')-1<CR>O<Esc>:exec 'normal '.ospaces.'i '<CR>:.retab!<CR>A
+
+" Change to different capitalization {{{2
 "nnoremap <Leader>sc ciw<C-r>=substitute(@", '_\(\w\)', '\u\1', 'g')<CR><Esc>
 "nnoremap <Leader>sp ciw<C-r>=substitute(@", '_\(\w\)', '\u\1', 'g')<CR><Esc>bgUl
 "nnoremap <Leader>cs ciw<C-r>=substitute(@", '[a-z]\zs\([A-Z]\)', '_\l\1', 'g')<CR><Esc>bgul
 
-" Show the syntax highlighting groups for the item under the cursor
-nnoremap <F8> :echo 'hi<' . synIDattr(synID(line('.'),col('.'),1),'name') . '> trans<' . synIDattr(synID(line('.'),col('.'),0),'name') . '> lo<' . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name') . '>'<CR>
-nnoremap <F7> :call ShowSynStack()<CR>
+" Show the syntax highlighting groups for the item under the cursor {{{2
+function! ShowSynStack() " {{{3
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunction
+
+function! ShowSynIDs() " {{{3
+  let hi = synIDattr(synID(line('.'),col('.'),1),'name')
+  let trans = synIDattr(synID(line('.'),col('.'),0),'name')
+  let lo = synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')
+  echo 'hi<' . hi . '> trans<' . trans . '> lo<' . lo . '>'
+endfunction
+"}}}3
+nnoremap <silent> <F8> :call ShowSynIDs()<CR>
+nnoremap <silent> <F7> :call ShowSynStack()<CR>
+
+" Arrow keys for window movement {{{2
+nnoremap <silent> <Left> :wincmd h<CR>
+nnoremap <silent> <Right> :wincmd l<CR>
+nnoremap <silent> <Up> :wincmd k<CR>
+nnoremap <silent> <Down> :wincmd j<CR>
+
+" Ctrl-Left/Right for buffer cycling {{{2
+nnoremap <silent> <C-Left> :bp<CR>
+nnoremap <silent> <C-Right> :bn<CR>
+nnoremap <silent> <C-Up> :bp<CR>
+nnoremap <silent> <C-Down> :bn<CR>
 
 " Mac OS X Terminal.app {{{2
 "map <Esc>[H <Home>
 "map <Esc>[F <End>
-"imap <Esc>[H <C-O><Home>
-"imap <Esc>[F <C-O><End>
+"map! <Esc>[H <Home>
+"map! <Esc>[F <End>
 "map <C-D-\> <Home>
 "map <C-D-[> <End>
-"imap <C-D-\> <C-O><Home>
-"imap <C-D-[> <C-O><End>
+"map! <C-D-\> <Home>
+"map! <C-D-[> <End>
 
 " Terminal Stuff {{{1
-" XXX Fix vim bug when exiting alt screen
+" XXX Fix vim bug when exiting alt screen {{{2
 exe "set t_te=" . &t_te . &t_op
 
-" Manually set the titlestring escape sequences for any terminal
+" Manually set the titlestring escape sequences for any terminal {{{2
 " that hasn't already and is not known to not support them
 if &term !~? '^\v(linux|cons|vt)' && empty(&t_ts) && empty(&t_fs)
   let &t_ts="\<Esc>]2;"
   let &t_fs="\x7"
 endif
 
-" change the xterm cursor color for insert mode
+" change the xterm cursor color for insert mode {{{2
 if &term =~ 'xterm'
   let &t_SI="\<Esc>]12;purple\x7"
   let &t_EI="\<Esc>]12;green\x7"
 endif
+
