@@ -65,7 +65,7 @@ syn keyword rNumber   NA
 " Operators
 syn match rArrow /<\{1,2}-/
 syn match rArrow /->\{1,2}/
-syn match rOperator "[-+=/\*|&^:$!<>@]"
+syn match rOperator "[-+=/*|&^:$!<>@]"
 syn match rOperator "%\%(\*\|/\|o\|in\|\)%"
 
 " Type

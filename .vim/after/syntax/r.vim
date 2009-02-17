@@ -1,3 +1,3 @@
-syn match rOperator "%[^%]*%"
+"syn match rOperator '%[^%]*%'
 
 highlight! link rIdentifier Normal
