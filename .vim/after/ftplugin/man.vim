@@ -2,20 +2,23 @@
 " Options {{{1
 
 " Display {{{2
-setlocal foldcolumn=0           " Hide the fold column
-setlocal laststatus=0           " Hide the statusline
-setlocal nolist                 " Hide non-printable characters
-setlocal nonumber               " Hide the line number column
-setlocal ruler                  " Show the ruler
+setlocal foldcolumn=0		" Hide the fold column
+setlocal nolist			" Hide non-printable characters
+setlocal nonumber		" Hide the line number column
+setlocal nowrap			" Don't wrap long lines
 
 " Searching, Patterns {{{2
-setlocal hlsearch               " Highlight all search matches
+"setlocal hlsearch		" Highlight all search matches
 
-setlocal nomodifiable           " Don't allow modification
-setlocal nomodified             " So Vim doesn't complain on exiting
-setlocal viminfo=               " Don't save marks, history, and such
+" Other {{{2
+setlocal bufhidden=wipe
+setlocal buftype=nofile
+setlocal readonly		" Don't allow saving
+setlocal nomodifiable		" Don't allow modification
+setlocal nomodified		" So Vim doesn't complain on exiting
+setlocal noswapfile
 
-nohlsearch                      " Unhighlight previous search
+"nohlsearch			" Unhighlight previous search
 " Key mappings {{{1
-noremap q ZQ
+"nnoremap <buffer> q ZQ
 " }}}1
