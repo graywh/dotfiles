@@ -19,7 +19,7 @@ Irssi::theme_register([
 
 my %saved_colors;
 my %session_colors = {};
-my @colors = qw/3 4 5 6 7 8 9 12 13/;
+my @colors = qw/2 3 4 5 6 7 8 9 12 13/;
 
 sub load_colors {
     open COLORS, "$ENV{HOME}/.irssi/saved_colors";
@@ -141,6 +141,8 @@ sub cmd_color {
         Irssi::print ("No operation given");
     } elsif ($op eq "save") {
         save_colors;
+    } elsif ($op eq "load") {
+        load_colors;
     } elsif ($op eq "set") {
         if (!$nick) {
             Irssi::print ("Nick not given");
