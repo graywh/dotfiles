@@ -78,8 +78,12 @@ syn clear
 while search("_on_", "W") < 58
   let col1 = substitute(expand("<cword>"), '\(\w\+\)_on_\w\+', '\1', "")
   let col2 = substitute(expand("<cword>"), '\w\+_on_\(\w\+\)', '\1', "")
-  exec 'hi col_'.col1.'_'.col2.' ctermfg='.col1.' guifg='.col1.' ctermbg='.col2.' guibg='.col2
+  exec 'hi col_'.col1.'_'.col2.' ctermfg='.col1.' ctermbg='.col2
+  try
+    exec 'hi col_'.col1.'_'.col2.' guifg='.col1.' guibg='.col2
+  catch
+  endtry
   exec 'syn keyword col_'.col1.'_'.col2.' '.col1.'_on_'.col2
 endwhile
-8,57g/^" \w/exec 'hi col_'.expand("<cword>").' ctermfg='.expand("<cword>").' guifg='.expand("<cword>")| exec 'syn keyword col_'.expand("<cword>")." ".expand("<cword>")
+8,57g/^" \w/exec 'hi col_'.expand("<cword>").' ctermfg='.expand("<cword>")| try| exec 'hi col_'.expand("<cword>").' guifg='.expand("<cword>")| catch| endtry| exec 'syn keyword col_'.expand("<cword>")." ".expand("<cword>")
 nohlsearch
