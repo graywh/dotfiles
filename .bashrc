@@ -129,7 +129,9 @@ PROMPT_COMMAND=prompt_command
 # Enable color support of ls and others {{{1
 if [[ "${TERM}" != "dumb" ]]; then
     if [[ -x /usr/bin/dircolors ]]; then
-        eval $(dircolors -b $HOME/.dircolors-$(tput colors))
+        if [[ -f "${HOME}/.dircolors-$(tput colors)" ]]; then
+            eval $(dircolors -b ${HOME}/.dircolors-$(tput colors))
+        fi
         alias ls='ls -F --color=auto'
         alias grep='grep --color=auto'
         alias egrep='egrep --color=auto'

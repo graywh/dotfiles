@@ -131,13 +131,17 @@ function precmd { #{{{2
     #tput rc
 }
 
-# Enable color support of ls {{{1
+# Enable color support of ls and others {{{1
 if [[ "${TERM}" != "dumb" ]]; then
-    if [[ "${OSTYPE}" == "darwin8.0" ]]; then
-        alias ls='ls -FG'
-    else
-        eval $(dircolors -b $HOME/.dircolors-$(tput colors))
+    if [[ -x /usr/bin/dircolors ]]; then
+        if [[ -f "${HOME}/.dircolors-$(tput colors)" ]]; then
+            eval $(dircolors -b ${HOME}/.dircolors-$(tput colors))
+        fi
         alias ls='ls -F --color=auto'
+        alias grep='grep --color=auto'
+        alias egrep='egrep --color=auto'
+    elif [[ "${OSTYPE}" =~ "darwin" ]]; then
+        alias ls='ls -FG'
     fi
 fi
 
