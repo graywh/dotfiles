@@ -76,7 +76,9 @@ set splitbelow			" New window goes below
 set splitright			" New windows goes right
 
 " Display {{{2
-set cursorline			" Highlight the current line
+if has("gui_running") || &t_Co > 16
+  set cursorline			" Highlight the current line
+endif
 set foldcolumn=1		" Show top-level fold sections
 set linebreak			" Don't wrap words
 set list			" Add visual clues (disables 'linebreak')
@@ -135,7 +137,7 @@ colorscheme graywh
 runtime! macros/matchit.vim
 
 " Options {{{2
-let g:tex_flavor = 'latex' " Use LaTeX as the TeX flavor
+let g:tex_flavor = 'pdflatex'	" Use pdflatex as the tex compiler
 
 " PHP {{{3
 let php_sql_query = 1
@@ -151,24 +153,6 @@ let python_highlight_doctests = 1
 " Ruby {{{3
 "let ruby_fold = 1
 " }}}3
-
-" Commands {{{1
-" Compare a modified file to what is saved on disk
-command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
-
-" Replace tabs with 'shiftwidth' spaces
-if has('ex_extra')
-  command! -bang -range=% ReTab let ts=&l:ts | let &l:ts=&sw | <line1>,<line2>retab<bang> | let &l:ts=ts | unlet ts
-endif
-
-" Remove trailing space
-command! -range=% UnTrail <line1>,<line2>s/\s\+$//
-
-" Shift the position under the cursor to column N
-command! -nargs=1 Shift exec 'normal '.(<args>-col('.')).'i '
-
-" D'oh
-command! -bang -nargs=? -complete=help H help<bang> <args>
 
 " Functions {{{1
 function! MyFoldText() " {{{2
@@ -193,6 +177,27 @@ function! TrailingSpace() " {{{2
   return b:statusline_trailing_space_warning
 endfunction
 
+" Commands {{{1
+" Compare a modified file to what is saved on disk
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+
+" Replace tabs with 'shiftwidth' spaces
+if has('ex_extra')
+  command! -bang -range=% ReTab let ts=&l:ts | let &l:ts=&sw | <line1>,<line2>retab<bang> | let &l:ts=ts | unlet ts
+endif
+
+" Remove trailing space
+command! -range=% UnTrail <line1>,<line2>s/\s\+$//
+
+" Shift the position under the cursor to column N
+command! -nargs=1 Shift exec 'normal '.(<args>-col('.')).'i '
+
+" Save using sudo
+command! SUwrite write !sudo tee %
+
+" D'oh
+command! -bang -nargs=? -complete=help H help<bang> <args>
+
 " Status line {{{1
 " - buffer number (4 columns, lines up with the line numbers most of the time)
 " - relative filename & path (truncatable)
@@ -209,10 +214,14 @@ set statusline=%4(%n%)\ %<%f\ %h%w%m%r%=%y\ %-14.(%l,%c%V%)\ %P
 
 " Autocommands {{{1
 augroup vimrcEx
-  au!
-  " recalculate the trailing whitespace warning when idle, and after saving " {{{2
+ " clear all existing autocmds
+  autocmd!
+
+  " recalculate the trailing whitespace warning when idle, and after saving "
   " use with %{TrailingSpace()} in the statusline
   "autocmd CursorHold,BufWritePost * unlet! b:statusline_trailing_space_warning
+
+  autocmd BufWritePre ~/.irssi/saved_colors sort i | sort /:/ n
 augroup END
 
 " Keymap {{{1

@@ -1,7 +1,7 @@
 " Vim script for testing colors
 " Maintainer:	Bram Moolenaar <Bram@vim.org>
 " Contributors:	Rafael Garcia-Suarez, Charles Campbell
-" Last Change:	2006 Feb 20
+" Last Change:	2008 Jun 04
 
 " edit this file, then do ":source %", and check if the colors match
 
@@ -59,11 +59,18 @@
 " Open this file in a window if it isn't edited yet.
 " Use the current window if it's empty.
 if expand('%:p') != expand('<sfile>:p')
-  if &mod || line('$') != 1 || getline(1) != ''
-    exe "new " . expand('<sfile>')
+  let s:fname = expand('<sfile>')
+  if exists('*fnameescape')
+    let s:fname = fnameescape(s:fname)
   else
-    exe "edit " . expand('<sfile>')
+    let s:fname = escape(s:fname, ' \|')
   endif
+  if &mod || line('$') != 1 || getline(1) != ''
+    exe "new " . s:fname
+  else
+    exe "edit " . s:fname
+  endif
+  unlet s:fname
 endif
 
 syn clear
@@ -76,4 +83,3 @@ while search("_on_", "W") < 58
 endwhile
 8,57g/^" \w/exec 'hi col_'.expand("<cword>").' ctermfg='.expand("<cword>").' guifg='.expand("<cword>")| exec 'syn keyword col_'.expand("<cword>")." ".expand("<cword>")
 nohlsearch
-setlocal tabstop=8 shiftwidth=8

@@ -21,4 +21,5 @@ setlocal noswapfile
 "nohlsearch			" Unhighlight previous search
 " Key mappings {{{1
 "nnoremap <buffer> q ZQ
+"let b:undo_ftplugin = b:undo_ftplugin . "|nunmap <buffer> q"
 " }}}1
