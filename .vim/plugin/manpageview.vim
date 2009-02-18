@@ -8,7 +8,7 @@ let $MANPAGER=''
 "let $PAGER=''
 set cpo&vim
 
-com! -nargs=* Man call s:ManPageView(<q-args>)
+command! -nargs=* Man call s:ManPageView(<q-args>)
 
 function s:GetArticle(topic)
   let file = (split(system("man -w ".a:topic." 2>/dev/null"), '\n') + [""])[0]
@@ -19,7 +19,8 @@ endfunction
 function s:ManPageView(topic)
   let article = s:GetArticle(a:topic)
   if article == []
-    echoerr "No article found matching \"" . a:topic . "\""
+    echohl ErrorMsg
+    echomsg "No article found matching \"" . a:topic . "\""
     return
   endif
   new
