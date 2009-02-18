@@ -9,15 +9,15 @@
 [[ -z "${PS1}" ]] && return
 
 # Terminal stuff {{{1
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-#shopt -s checkwinsize
-
 if [[ "${COLORTERM}" == "gnome-terminal" ]]; then
     export TERM="gnome-256color"
 fi
-# }}}1
+
 # Zsh Options {{{1
+setopt BASH_AUTO_LIST NO_AUTO_MENU NO_ALWAYS_LAST_PROMPT
+setopt PROMPT_SUBST
+bindkey -v
+
 # don't put duplicate lines in the history. See bash(1) for more options
 HISTCONTROL=ignoredups
 HISTFILE=~/.zsh_history
@@ -25,13 +25,10 @@ HISTSIZE=1000
 SAVEHIST=1000
 setopt HIST_IGNORE_DUPS HIST_IGNORE_SPACE APPEND_HISTORY EXTENDED_HISTORY
 
-setopt BASH_AUTO_LIST NO_AUTO_MENU NO_ALWAYS_LAST_PROMPT
-setopt PROMPT_SUBST
-bindkey -v
-# }}}1
 # Set a fancy prompt {{{1
 # Color definitions {{{2
-if [[ "`tput colors`" -ge 16 ]]; then
+COLORS=$(tput colors)
+if [[ ${COLORS} -ge 16 ]]; then
     # For 16+ color term {{{
     Black="$(tput setaf 0)"
     DarkGray="$(tput setaf 8)"
@@ -66,7 +63,7 @@ if [[ "`tput colors`" -ge 16 ]]; then
     CyanBg="$(tput setab 14)"
     DarkCyanBg="$(tput setab 6)"
     # }}}
-else
+elif [[ ${COLORS} -ge 16 ]]; then
     # For 8 color term {{{
     Black="$(tput setaf 0)"
     DarkGray="$(tput setaf 0;tput bold)"
@@ -103,17 +100,17 @@ else
     # }}}
 fi
 None="$(tput sgr0)"
-# }}}2
-PS1="${Green}[%n@%m:${Red}%~${Yellow}\$(___git_ps1)${Green}]
-${None}%# "
+#}}}2
+PS1="(${Cyan}%*${None})--(${Green}%n${None}@${Magenta}%m${None})--(${Red}%~${None}${Yellow}\$(___git_ps1)${None})${None}
+%# "
 
 # a function to put the current time in the top-right corner of the terminal
 # and change the title of the terminal
 function precmd { #{{{2
     # If this is an xterm set the title to user@host:dir
-    case $TERM in
-    xterm*|gnome*|konsole*|putty*)
-        print -Pn "\e]0;%n@%m: %~\a"
+    case ${TERM} in
+    xterm*|screen*|gnome*|konsole*|putty*)
+        print -Pn "\e]2;%n@%m: %~\a"
         ;;
     *)
         ;;
@@ -134,8 +131,8 @@ function precmd { #{{{2
 # Enable color support of ls and others {{{1
 if [[ "${TERM}" != "dumb" ]]; then
     if [[ -x /usr/bin/dircolors ]]; then
-        if [[ -f "${HOME}/.dircolors-$(tput colors)" ]]; then
-            eval $(dircolors -b ${HOME}/.dircolors-$(tput colors))
+        if [[ -f "${HOME}/.dircolors-${COLORS}" ]]; then
+            eval $(dircolors -b ${HOME}/.dircolors-${COLORS})
         fi
         alias ls='ls -F --color=auto'
         alias grep='grep --color=auto'
@@ -146,38 +143,22 @@ if [[ "${TERM}" != "dumb" ]]; then
 fi
 
 # Aliases {{{1
-# some more ls aliases
-alias la='ls -A'
-#alias l.='ls -d .*' # make better
-alias ll='ls -hl'
-alias lla='ll -A'
-#alias ll.='ll -d .*' # make better
-alias XtermIrssi='xterm +sb -T Irssi -geometry 100x25 -fa Monaco -fs 12 -e "screen -c ~/.screenrc-irssi"'
-alias XtermIrssiR='xterm +sb -T Irssi -geometry 100x25 -fa Monaco -fs 12 -e "screen -r irssi"'
-alias XtermIrssiX='xterm +sb -T Irssi -geometry 100x25 -fa Monaco -fs 12 -e "screen -x irssi"'
-alias Irssi='resize -s 25 100;___xtermtitle "Irssi";screen -c ~/.screenrc-irssi'
-alias IrssiR='resize -s 25 100;___xtermtitle "Irssi";screen -r irssi'
-alias IrssiX='resize -s 25 100;___xtermtitle "Irssi";screen -x irssi'
+if [[ -f "${HOME}/.aliases" ]]; then
+    source "${HOME}/.aliases"
+fi
 
-function l. {
-    olddir=$PWD
-    cd $1
-    ls -d .*
-    cd $olddir
-    unset olddir
-}
-function ll. {
-    olddir=$PWD
-    cd $1
-    ls -dhl .*
-    cd $olddir
-    unset olddir
-}
+# Load other zsh configurations {{{1
+# include the local system modifications
+if [[ -f "${HOME}/.zshrc.local" ]]; then
+    source "${HOME}/.zshrc.local"
+fi
 
 # Functions {{{1
-function calc {
-    echo "$@" | bc -l
-}
+if [[ -x $(which bc) ]]; then
+    function calc {
+        echo "$@" | bc -l
+    }
+fi
 
 function ___git_branch {
     local base_dir=$(git rev-parse --show-cdup 2>/dev/null) || return 1
@@ -207,7 +188,7 @@ function ___git_ps1 { # reference __git_ps1
 }
 
 function ___xtermtitle {
-    print -Pn "\e]0;${1}\a"
+    print -Pn "\e]2;${1}\a"
 }
 
 #}}}1

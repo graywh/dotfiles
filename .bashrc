@@ -25,7 +25,8 @@ export HISTCONTROL=ignoredups
 
 # Set a fancy prompt {{{1
 # Color definitions {{{2
-if (( "`tput colors`" >= 16 )); then
+COLORS=$(tput colors)
+if (( ${COLORS} >= 16 )); then
     # For 16+ color term {{{
     Black="\[$(tput setaf 0)\]"
     DarkGray="\[$(tput setaf 8)\]"
@@ -60,7 +61,7 @@ if (( "`tput colors`" >= 16 )); then
     CyanBg="\[$(tput setab 14)\]"
     DarkCyanBg="\[$(tput setab 6)\]"
     # }}}
-else
+elif (( ${COLORS} == 8 )); then
     # For 8 color term {{{
     Black="\[$(tput setaf 0)\]"
     DarkGray="\[$(tput setaf 0;tput bold)\]"
@@ -98,13 +99,13 @@ else
 fi
 None="\[$(tput sgr0)\]"
 #}}}2
-PS1="(${Cyan}\t${None})--(${Green}\u${None}@${Magenta}\H${None})--(${Red}\w${None}${Yellow}\$(___git_ps1)${None})\n\$ "
+PS1="${None}(${Cyan}\\t${None})--(${Green}\\u${None}@${Magenta}\\H${None})--(${Red}\\w${None}${Yellow}\$(___git_ps1)${None})\n\\$ "
 
 # a function to put the current time in the top-right corner of the terminal
 # and change the title of the terminal
 function prompt_command { #{{{2
     # If this is an xterm set the title to user@host:dir
-    case $TERM in
+    case ${TERM} in
     xterm*|screen*|gnome*|konsole*|putty*)
         echo -ne "\e]2;${USER}@${HOSTNAME}: ${PWD}\a"
         ;;
@@ -129,8 +130,8 @@ PROMPT_COMMAND=prompt_command
 # Enable color support of ls and others {{{1
 if [[ "${TERM}" != "dumb" ]]; then
     if [[ -x /usr/bin/dircolors ]]; then
-        if [[ -f "${HOME}/.dircolors-$(tput colors)" ]]; then
-            eval $(dircolors -b ${HOME}/.dircolors-$(tput colors))
+        if [[ -f "${HOME}/.dircolors-${COLORS}" ]]; then
+            eval $(dircolors -b ${HOME}/.dircolors-${COLORS})
         fi
         alias ls='ls -F --color=auto'
         alias grep='grep --color=auto'
@@ -141,52 +142,28 @@ if [[ "${TERM}" != "dumb" ]]; then
 fi
 
 # Aliases {{{1
-# some more ls aliases
-alias la='ls -A'
-alias ll='ls -hl'
-alias lla='ll -A'
-alias XtermIrssi='xterm +sb -T Irssi -geometry 100x25 -fs 9 -e "screen -c ${HOME}/.screenrc-irssi"'
-alias XtermIrssiR='xterm +sb -T Irssi -geometry 100x25 -fs 9 -e "screen -r irssi"'
-alias XtermIrssiX='xterm +sb -T Irssi -geometry 100x25 -fs 9 -e "screen -x irssi"'
-alias Irssi='resize -s 25 100;___xtermtitle "Irssi";screen -c ${HOME}/.screenrc-irssi'
-alias IrssiR='resize -s 25 100;___xtermtitle "Irssi";screen -r irssi'
-alias IrssiX='resize -s 25 100;___xtermtitle "Irssi";screen -x irssi'
-#if [[ $TERM == screen* ]]; then
-#    alias vim='screen -t vim vim'
-#    alias view='screen -t vim view'
-#fi
-
-function l.() {
-    olddir=$PWD
-    cd $1
-    ls -d .*
-    cd $olddir
-    unset olddir
-}
-function ll.() {
-    olddir=$PWD
-    cd $1
-    ls -dhl .*
-    cd $olddir
-    unset olddir
-}
+if [[ -f "${HOME}/.aliases" ]]; then
+    source "${HOME}/.aliases"
+fi
 
 # Load other bash configurations {{{1
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc).
 if [[ -f "/etc/bash_completion" ]]; then
-  . /etc/bash_completion
+    source "/etc/bash_completion"
 fi
 
 # include the local system modifications
-if [[ -f "${HOME}/.bashrc_local" ]]; then
-  . ${HOME}/.bashrc_local
+if [[ -f "${HOME}/.bashrc.local" ]]; then
+    source "${HOME}/.bashrc.local"
 fi
 
 # Functions {{{1
-function calc {
-    echo "$@" | bc -l
-}
+if [[ -x $(which bc) ]]; then
+    function calc {
+        echo "$@" | bc -l
+    }
+fi
 
 function ___git_branch {
     local base_dir=$(git rev-parse --show-cdup 2>/dev/null) || return 1
@@ -216,7 +193,7 @@ function ___git_ps1 { # reference __git_ps1
 }
 
 function ___xtermtitle {
-    echo -ne "\e]0;${1}\a"
+    echo -ne "\e]2;${1}\a"
 }
 
 #}}}1

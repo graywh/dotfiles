@@ -1,0 +1,39 @@
+alias la="ls -A"
+alias ll="ls -hl"
+alias lla="ll -A"
+alias XtermIrssi="xterm -T Irssi -geometry 100x25 -fs 9 -e \"screen -c ${HOME}/.screenrc-irssi\""
+alias XtermIrssiR="xterm -T Irssi -geometry 100x25 -fs 9 -e \"screen -r irssi\""
+alias XtermIrssiX="xterm -T Irssi -geometry 100x25 -fs 9 -e \"screen -x irssi\""
+alias Irssi="resize -s 25 100;screen -c ${HOME}/.screenrc-irssi"
+alias IrssiR="resize -s 25 100;screen -r irssi"
+alias IrssiX="resize -s 25 100;screen -x irssi"
+
+function l. {
+    olddir=$PWD
+    oldold=$OLDPWD
+    if [[ -n "$1" ]]; then
+        cd "$1"
+    fi
+    ls -d .*
+    if [[ -n "$1" ]]; then
+        cd "$olddir"
+        export OLDPWD="$oldold"
+    fi
+    unset olddir oldold
+}
+
+function ll. {
+    olddir=$PWD
+    oldold=$OLDPWD
+    if [[ -n "$1" ]]; then
+        cd "$1"
+    fi
+    ls -dhl .*
+    if [[ -n "$1" ]]; then
+        cd "$olddir"
+        export OLDPWD="$oldold"
+    fi
+    unset olddir oldold
+}
+
+# vim: ft=sh
