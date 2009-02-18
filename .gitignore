@@ -4,13 +4,8 @@
 !.bash_profile
 !.bashrc
 !.dircolors
-!.dircolors-8
-!.dircolors-16
-!.dircolors-256
-!.gitconfig
-!.gitignore
-!.gitignored
-!.gitmodules
+!.dircolors-*
+!.git*
 !.gvimrc
 !.inputrc
 !.irssi/
@@ -18,8 +13,7 @@
 !.profile
 !.pythonrc.py
 !.Rprofile
-!.screenrc
-!.screenrc-irssi
+!.screenrc*
 !.subversion/config
 !.vim/
 !.vimrc

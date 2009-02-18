@@ -26,8 +26,10 @@
 	funcname = ^\\s*\\(\\(class\\|module\\|def\\|describe\\) .*\\)
 [diff "python"]
 	funcname = ^\\s*\\(\\(class\\|def\\) .*\\)
+[diff "vim"]
+	function = ^\\s*\\(function .*\\)
 [help]
 	browser = dillo
 [gui]
-	fontdiff = -family Deja\\ Vu\\ Sans\\ Mono -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family DejaVu\\ Sans\\ Mono -size 12 -weight normal -slant roman -underline 0 -overstrike 0
 	spellingdictionary = none

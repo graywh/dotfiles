@@ -8,3 +8,6 @@ Session.vim
 # OS X
 .DS_Store
 .Trashes
+
+# KDE
+.directory
