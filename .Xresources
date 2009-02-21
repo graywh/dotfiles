@@ -24,6 +24,7 @@ XTerm*vt100.faceName: DejaVu\ Sans\ Mono
 XTerm*vt100.faceSize: 10
 XTerm*vt100.geometry: 85x36
 XTerm*vt100.highlightSelection: true
+XTerm*vt100.locale: true
 !XTerm*vt100.metaSendsEscape: true
 XTerm*vt100.rightScrollBar: true
 XTerm*vt100.saveLines: 2048
