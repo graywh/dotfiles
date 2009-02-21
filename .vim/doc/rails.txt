@@ -485,7 +485,7 @@ The following commands are not clearly associated with models or controllers.
 			Rakefile or the application Rakefile will be edited.
 
 						*rails-:Rmetal*
-:Renvironment [{name}]  Edit the app/metal file specified.  With no argument,
+:Rmetal [{name}]	Edit the app/metal file specified.  With no argument,
 			defaults to editing config/boot.rb.
 
 						*rails-:Renvironment*
@@ -498,8 +498,9 @@ The following commands are not clearly associated with models or controllers.
 
 						*rails-:Rintegrationtest*
 :Rintegrationtest [{name}]
-			Edit the integration test specified.  With no
-			argument, defaults to editing test/test_helper.rb.
+			Edit the integration test or cucumber feature
+			specified.  With no argument, defaults to editing
+			test/test_helper.rb.
 
 						*rails-:Rspec*
 :Rspec [{name}]		Edit the given spec.  With no argument, defaults to
