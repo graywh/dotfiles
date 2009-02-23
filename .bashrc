@@ -136,7 +136,7 @@ if [[ "${TERM}" != "dumb" ]]; then
         alias ls='ls -F --color=auto'
         alias grep='grep --color=auto'
         alias egrep='egrep --color=auto'
-    elif [[ "${OSTYPE}" =~ "darwin" ]]; then
+    elif [[ "${OSTYPE}" == darwin* ]]; then
         alias ls='ls -FG'
     fi
 fi

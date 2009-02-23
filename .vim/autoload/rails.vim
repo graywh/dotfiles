@@ -1437,7 +1437,7 @@ function! s:Complete_script(ArgLead,CmdLine,P)
       return s:modelList(a:ArgLead,"","")
     elseif target ==# 'migration' || target ==# 'session_migration'
       return s:migrationList(a:ArgLead,"","")
-    elseif target ==# 'integration_test'
+    elseif target ==# 'integration_test' || target ==# 'feature'
       return s:integrationtestList(a:ArgLead,"","")
     elseif target ==# 'observer'
       let observers = s:observerList("","","")
@@ -1718,6 +1718,8 @@ function! s:RailsFind()
   if res != ""|return res."\n".s:findview(res)|endif
   let res = s:findamethod('render\s*:\%(template\|action\)\s\+=>\s*','\1.'.format.'\n\1')
   if res != ""|return res|endif
+  let res = s:sub(s:sub(s:findfromview('render','\1'),'^/',''),'\k+$','_&')
+  if res != ""|return res."\n".s:findview(res)|endif
   let res = s:findamethod('redirect_to\s*(\=\s*:action\s\+=>\s*','\1')
   if res != ""|return res|endif
   let res = s:findfromview('stylesheet_link_tag','public/stylesheets/\1.css')
@@ -1771,12 +1773,9 @@ endfunction
 
 function! s:RailsIncludefind(str,...)
   if a:str ==# "ApplicationController"
-    return "app/controllers/application.rb"
+    return "application_controller.rb\napp/controllers/application.rb"
   elseif a:str ==# "Test::Unit::TestCase"
     return "test/unit/testcase.rb"
-  elseif a:str == "<%="
-    " Probably a silly idea
-    return "action_view.rb"
   endif
   let str = a:str
   if a:0 == 1
@@ -1841,7 +1840,6 @@ function! s:RailsIncludefind(str,...)
       endif
     endwhile
   elseif str =~# '_\%(path\|url\)$'
-    " REST helpers
     let str = s:sub(str,'_%(path|url)$','')
     let str = s:sub(str,'^hash_for_','')
     let file = rails#app().named_route_file(str)
@@ -1906,7 +1904,7 @@ function! s:BufFinderCommands()
     call s:addfilecmds("unittest")
     call s:addfilecmds("functionaltest")
   endif
-  if rails#app().test_suites('test')
+  if rails#app().test_suites('test') || rails#app().test_suites('features')
     call s:addfilecmds("integrationtest")
   endif
   if rails#app().test_suites('spec')
@@ -2061,7 +2059,14 @@ function! s:functionaltestList(A,L,P)
 endfunction
 
 function! s:integrationtestList(A,L,P)
-  return s:autocamelize(rails#app().relglob("test/integration/","**/*","_test.rb"),a:A)
+  let found = []
+  if rails#app().test_suites('test')
+    let found += s:autocamelize(rails#app().relglob("test/integration/","**/*","_test.rb"),a:A)
+  endif
+  if rails#app().test_suites('features')
+    let found += rails#app().relglob("features/","**/*",".feature")
+  endif
+  return found
 endfunction
 
 function! s:specList(A,L,P)
@@ -2408,7 +2413,7 @@ function! s:unittestEdit(bang,cmd,...)
   let mapping = {'test': ['test/unit/','_test.rb'], 'spec': ['spec/models/','_spec.rb']}
   let tests = map(filter(rails#app().test_suites(),'has_key(mapping,v:val)'),'get(mapping,v:val)')
   if empty(tests)
-    let tests = [mapping[tests]]
+    let tests = [mapping['test']]
   endif
   for [prefix, suffix] in tests
     if !a:0 && RailsFileType() =~# '^model-aro\>' && f != '' && f !~# '_observer$'
@@ -2446,11 +2451,27 @@ function! s:functionaltestEdit(bang,cmd,...)
 endfunction
 
 function! s:integrationtestEdit(bang,cmd,...)
-  if a:0
-    return s:EditSimpleRb(a:bang,a:cmd,"integrationtest",a:1,"test/integration/","_test.rb")
-  else
-    call s:EditSimpleRb(a:bang,a:cmd,"integrationtest","test_helper","test/",".rb")
+  if !a:0
+    if rails#app().test_suites('features')
+      return s:EditSimpleRb(a:bang,a:cmd,"integrationtest","support/env","features/",".rb")
+    else
+      return s:EditSimpleRb(a:bang,a:cmd,"integrationtest","test_helper","test/",".rb")
+    endif
   endif
+  let cmd = s:findcmdfor(a:cmd.(a:bang?'!':''))
+  let mapping = {'test': ['test/integration/','_test.rb'], 'features': ['features/','.feature']}
+  let tests = map(filter(rails#app().test_suites(),'has_key(mapping,v:val)'),'get(mapping,v:val)')
+  if empty(tests)
+    let tests = [mapping['test']]
+  endif
+  for [prefix, suffix] in tests
+    if rails#app().has_file(prefix.a:1.suffix)
+      return s:findedit(cmd,prefix.a:1.suffix)
+    elseif rails#app().has_file(prefix.rails#underscore(a:1).suffix)
+      return s:findedit(cmd,prefix.rails#underscore(a:1).suffix)
+    endif
+  endfor
+  return s:findedit(cmd,tests[0][0].a:1.tests[0][1])
 endfunction
 
 function! s:specEdit(bang,cmd,...)
