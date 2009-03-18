@@ -1,6 +1,7 @@
 " Vim syntax file
 " Language:	brew
 " Maintainer:	Will Gray <graywh@gmail.com>
+" GetLatestVimScripts: 2024 1 :AutoInstall: brew.vim
 "
 " This is heavily based on Tim Pope's eruby.vim.
 

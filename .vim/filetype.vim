@@ -43,4 +43,7 @@ augroup filetypedetect
   " Python Server Pages
   autocmd! BufNewFile,BufRead *.psp setfiletype psp
 
+  " Git configs
+  autocmd! BufNewFile,BufRead .gitmodules setfiletype gitconfig
+
 augroup END

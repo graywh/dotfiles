@@ -2,6 +2,11 @@
 " Author: Will Gray <graywh@gmail.com>
 
 " Options {{{1
+if has("win32")
+  let &runtimepath = substitute(&runtimepath, '\(\~\|'.$USER.'\)/vimfiles\>', '\1/.vim', 'g')
+endif
+" use pathogen.vim here
+
 "set all&			" Set everything to the default
 set nocompatible		" Vim is better than Vi
 
@@ -68,6 +73,7 @@ endif
 set ignorecase			" Ignore case when searching
 set incsearch			" Incremental search
 set smartcase			" Search case-insensitive mostly
+set wrapscan			" Searches wrap around end of file
 
 " Windows, Buffers {{{2
 set hidden			" Allow hiding changed buffers without override or warning
@@ -77,7 +83,7 @@ set splitright			" New windows goes right
 
 " Display {{{2
 if has("gui_running") || &t_Co > 16
-  set cursorline			" Highlight the current line
+  set cursorline		" Highlight the current line
 endif
 set foldcolumn=1		" Show top-level fold sections
 set linebreak			" Don't wrap words
@@ -137,22 +143,24 @@ colorscheme graywh
 runtime! macros/matchit.vim
 
 " Options {{{2
-let g:tex_flavor = 'pdflatex'	" Use pdflatex as the tex compiler
+let g:tex_flavor = 'pdflatex' " Use pdflatex as the tex compiler
+
+" Space.vim {{{3
+let g:space_no_character_movements = 1
 
 " PHP {{{3
-let php_sql_query = 1
-let php_htmlInStrings = 1
-let php_baselib = 1
+let g:php_sql_query = 1
+let g:php_htmlInStrings = 1
+let g:php_baselib = 1
 
 " Python {{{3
-let python_highlight_builtins = 1
-let python_highlight_exceptions = 1
-let python_highlight_string_formatting = 1
-let python_highlight_doctests = 1
+let g:python_highlight_builtins = 1
+let g:python_highlight_exceptions = 1
+let g:python_highlight_string_formatting = 1
+let g:python_highlight_doctests = 1
 
 " Ruby {{{3
 "let ruby_fold = 1
-" }}}3
 
 " Functions {{{1
 function! MyFoldText() " {{{2
@@ -227,6 +235,10 @@ augroup END
 " Keymap {{{1
 " make Q like before {{{2
 map Q gq
+
+" swap ' and ` {{{2
+noremap ' `
+noremap ` '
 
 " make Y like D & C {{{2
 map Y y$

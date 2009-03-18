@@ -1,7 +1,6 @@
 " Vim syntax file
 " Language: Directory outline
 " Maintainer: Will Gray <graywh@gmail.com>
-" Last Change: 5 Sep 2007
 "
 " Notes: Comments can contain "/" only if it is followed by a non-space and is
 " not the last character of the line.  Otherwise, it will be interpreted as a

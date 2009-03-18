@@ -50,12 +50,12 @@ Transparency=false
 
 [Color4]
 Bold=false
-Color=0,0,204
+Color=51,102,204
 Transparency=false
 
 [Color4Intense]
 Bold=false
-Color=51,102,255
+Color=102,153,255
 Transparency=false
 
 [Color5]

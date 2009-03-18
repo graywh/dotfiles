@@ -1,18 +1,15 @@
 syntax sync fromstart
 
 " Add self to keywords {{{1
-syntax keyword pythonSelf self
-highlight link pythonSelf Constant
-
-" Remove some keywords {{{1
-syntax keyword pythonNot all any help
+syntax keyword pythonSelf	self
+highlight link pythonSelf	Constant
 
 " Add some operators {{{1
-syntax match pythonOperator '[-+*/%<>]'
-syntax match pythonOperator '\*\*\|<=\|>=\|==\|!='
-"syntax match pythonDelimiter '[,;]'
-"syntax match pythonDelimiter ':' contained containedin=pythonCurlyRegion,pythonBraceRegion
-"syntax match pythonDelimiter ',' contained containedin=pythonCurlyRegion
+syntax match pythonOperator	'[-+*/%<>]'
+syntax match pythonOperator	'\*\*\|<=\|>=\|==\|!='
+"syntax match pythonDelimiter	'[,;]'
+"syntax match pythonDelimiter	':' contained containedin=pythonCurlyRegion,pythonBraceRegion
+"syntax match pythonDelimiter	',' contained containedin=pythonCurlyRegion
 
 " Add () {} [] pairs {{{1
 syntax region pythonParenRegion matchgroup=pythonParenDelimiter start=/(/ end=/)/ transparent contains=ALLBUT,pythonError,pythonBraceError,pythonCurlyError,pythonFunction,pythonType
@@ -21,10 +18,6 @@ syntax region pythonBraceRegion matchgroup=pythonBraceDelimiter start=/\[/ end=/
 highlight link pythonParenDelimiter Delimiter
 highlight link pythonCurlyDelimiter Delimiter
 highlight link pythonBraceDelimiter Delimiter
-
-" Add __.*__ items {{{1
-syntax match pythonBuiltin '__\k\{-1,}__'
-highlight link pythonBuiltin Type
 
 " Add DocString highlighting {{{1
 syntax region pythonDocString start=/"""/ end=/"""/ keepend contains=pythonDocTest2,pythonTodo contained
