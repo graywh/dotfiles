@@ -13,3 +13,6 @@
 [submodule ".dotfiles/externals/vim-haml"]
 	path = .dotfiles/externals/vim-haml
 	url = git://github.com/tpope/vim-haml.git
+[submodule ".dotfiles/externals/vim-ruby"]
+	path = .dotfiles/externals/vim-ruby
+	url = git://github.com/vim-ruby/vim-ruby
