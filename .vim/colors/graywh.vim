@@ -55,16 +55,18 @@ hi WarningMsg           guifg=#CCCC00
 hi WildMenu             guifg=bg        guibg=#CCCC00
 hi Folded               guifg=#FFCCFF   guibg=#474747   gui=italic
 hi FoldColumn           guifg=#66FFFF   guibg=#474747
+if v:version >= 600
 hi DiffAdd                              guibg=#143314
 hi DiffChange                           guibg=#141433
 hi DiffDelete           guifg=fg        guibg=#331414   gui=none
 hi DiffText                             guibg=#333314   gui=none
+endif
 hi SignColumn           guifg=#FFFF66   guibg=#474747
-if version >= 700
-  hi SpellBad                                           gui=undercurl           guisp=#FF0000
-  hi SpellCap                                           gui=undercurl           guisp=#0000FF
-  hi SpellRare                                          gui=undercurl           guisp=#FF00FF
-  hi SpellLocal                                         gui=undercurl           guisp=#00FFFF
+if v:version >= 700
+hi SpellBad                                             gui=undercurl           guisp=#FF0000
+hi SpellCap                                             gui=undercurl           guisp=#0000FF
+hi SpellRare                                            gui=undercurl           guisp=#FF00FF
+hi SpellLocal                                           gui=undercurl           guisp=#00FFFF
 endif
 hi Pmenu                guifg=fg        guibg=#CC66CC
 hi PmenuSel             guifg=fg        guibg=#666666
@@ -117,16 +119,18 @@ hi WarningMsg           ctermfg=DarkYellow
 hi WildMenu             ctermfg=bg              ctermbg=Yellow
 hi Folded               ctermfg=Magenta         ctermbg=bg
 hi FoldColumn           ctermfg=Cyan            ctermbg=bg
+if v:version >= 600
 hi DiffAdd              ctermfg=Black           ctermbg=DarkGreen
 hi DiffChange                                   ctermbg=DarkBlue
 hi DiffDelete           ctermfg=Black           ctermbg=DarkRed
 hi DiffText             ctermfg=Black           ctermbg=DarkYellow      cterm=none
+endif
 hi SignColumn           ctermfg=Yellow          ctermbg=bg
-if version >= 700
-  hi SpellBad                                   ctermbg=DarkRed         cterm=underline
-  hi SpellCap                                   ctermbg=DarkBlue        cterm=underline
-  hi SpellRare                                  ctermbg=DarkMagenta     cterm=underline
-  hi SpellLocal                                 ctermbg=DarkCyan        cterm=underline
+if v:version >= 700
+hi SpellBad                                     ctermbg=DarkRed         cterm=underline
+hi SpellCap                                     ctermbg=DarkBlue        cterm=underline
+hi SpellRare                                    ctermbg=DarkMagenta     cterm=underline
+hi SpellLocal                                   ctermbg=DarkCyan        cterm=underline
 endif
 hi Pmenu                ctermfg=fg              ctermbg=DarkMagenta
 hi PmenuSel             ctermfg=fg              ctermbg=DarkGray

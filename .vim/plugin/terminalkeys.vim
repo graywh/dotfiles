@@ -5,7 +5,7 @@
 " History:       TODO(History Link)
 
 " Abort if running in vi-compatible mode or the user doesn't want us.
-if &cp || exists('g:terminalkeys_loaded') || has("gui_running")
+if &cp || exists('g:terminalkeys_loaded') || has("gui_running") || version < 700
   if &cp && &verbose
     echo "Not loading terminalkeys in compatible mode."
   endif

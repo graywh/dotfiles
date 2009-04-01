@@ -29,8 +29,10 @@ endif
 set nostartofline               " Avoid moving the cursor when moving around
 set scrolloff=3                 " Leave lines next to window edge
 set showmatch                   " Show matching brackets.
-set sidescrolloff=10            " Leave some characters next to window edge
-set virtualedit=onemore         " Allow cursor to be on the newline
+set sidescrolloff=10            " Leave some characters next to window edge (w/ nowrap)
+if v:version >= 700
+  set virtualedit=onemore       " Allow cursor to be on the newline
+endif
 
 " Editing {{{2
 set backspace=indent,eol,start  " More powerful backspacing
@@ -59,8 +61,10 @@ set softtabstop=8               " To make backspacing over expanded tabs easier
 set tabstop=8                   " What tabs are meant to be
 
 " Completion {{{2
-set completeopt=longest         " Start with longest part
-set completeopt+=menu,preview   "  then show a menu
+if v:version >= 700
+  set completeopt=longest       " Start with longest part
+  set completeopt+=menu,preview "  then show a menu
+endif
 
 " Command-line {{{2
 set wildmenu                    " Use a menu to show tab-completions
@@ -70,8 +74,8 @@ set wildmode=longest:full,full  " Complete longest, tab through matches
 set suffixes=.bak,~,.swp,.swo,.o,.d,.info,.aux,.log,.dvi,.pdf,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.pyc,.pyd,.dll
 
 " Encoding {{{2
-if has('multi_byte') && &enc !~ '^u\(tf\|cs\)'
-  if empty(&tenc)
+if has('multi_byte') && &enc !~? '^u\(tf\|cs\)'
+  if ! strlen(&tenc)
     let &tenc = &enc
   endif
   set encoding=utf-8
@@ -85,12 +89,16 @@ set wrapscan                    " Searches wrap around end of file
 
 " Windows, Buffers {{{2
 set hidden                      " Allow hiding changed buffers
-set switchbuf=useopen,usetab
+if v:version >= 700
+  set switchbuf=useopen,usetab
+elseif v:version >= 504
+  set switchbuf=useopen
+endif
 set splitbelow                  " New window goes below
 set splitright                  " New windows goes right
 
 " Display {{{2
-if has("gui_running") || &t_Co > 16
+if (has("gui_running") || &t_Co > 16) && v:version >= 700
   set cursorline                " Highlight the current line
 endif
 set display=lastline            " Show as much as possible of wrapped lines
@@ -101,17 +109,24 @@ set number                      " Show line numbers
 set wrap                        " Wrap long lines
 
 set listchars=                  " Settings for list mode
-if has('multi_byte') && (&tenc =~ '^u\(tf\|cs\)' || (empty(&tenc) && &enc =~ '^u\(tf\|cs\)'))
+if has('multi_byte') && (&tenc =~? '^u\(tf\|cs\)' || (! strlen(&tenc) && &enc =~? '^u\(tf\|cs\)')) && v:version >= 602
   "set listchars+=eol:§
   set listchars+=tab:>·
-  set listchars+=nbsp:+
+  if v:version >= 700
+    set listchars+=nbsp:+
+  endif
   set listchars+=trail:·
   set listchars+=extends:»
   set listchars+=precedes:«
 else
-  "set listchars+=eol:$
+  if v:version < 603
+    " :print may behave badly with this disabled
+    "set listchars+=eol:$
+  endif
   set listchars+=tab:>-
-  set listchars+=nbsp:+
+  if v:version >= 700
+    set listchars+=nbsp:+
+  endif
   set listchars+=trail:.
   set listchars+=extends:>
   set listchars+=precedes:<
@@ -137,8 +152,10 @@ set fileformats=unix,mac,dos    " End-of-line character
 " Diff mode {{{2
 set diffopt=filler
 set diffopt+=iwhite
-set diffopt+=vertical
-set diffopt+=foldcolumn:2
+if v:version >= 700
+  set diffopt+=vertical
+  set diffopt+=foldcolumn:2
+endif
 
 " Other {{{2
 set winaltkeys=no               " Don't use ALT to access the menu
@@ -147,15 +164,23 @@ set winaltkeys=no               " Don't use ALT to access the menu
 " Enabled file type detection
 " Use the default filetype settings. If you also want to load indent files
 " to automatically do language-dependent indenting add 'indent' as well.
-filetype plugin indent on
-syntax enable
-syntax sync fromstart
+if v:version >= 504
+  filetype plugin indent on
+endif
+if v:version >= 600
+  syntax enable
+  syntax sync fromstart
+endif
 
 " Colors {{{2
-colorscheme graywh
+if v:version >= 600
+  colorscheme graywh
+endif
 
 " Plugins {{{1
-runtime! macros/matchit.vim
+if v:version >= 600
+  runtime! macros/matchit.vim
+endif
 
 " Options {{{2
 let g:tex_flavor = 'pdflatex'           " Use pdflatex as the tex compiler
@@ -299,14 +324,16 @@ set statusline=%4(%n%)\ %<%f\ %h%w%m%r%=%y\ %-14.(%l,%c%V%)\ %P
 
 " Autocommands {{{1
 augroup vimrcEx
- " clear all existing autocmds
+  " clear all existing autocmds
   autocmd!
 
   " recalculate the trailing whitespace warning when idle, and after saving "
   " use with %{TrailingSpace()} in the statusline
   "autocmd CursorHold,BufWritePost * unlet! b:statusline_trailing_space_warning
 
-  autocmd BufWritePre ~/.irssi/saved_colors sort i | sort /:/ n
+  if v:version >= 700
+    autocmd BufWritePre ~/.irssi/saved_colors sort i | sort /:/ n
+  endif
 augroup END
 
 " Keymap {{{1
@@ -327,7 +354,9 @@ if has('extra_search')
 endif
 
 " Autocomplete {{{2
-inoremap <expr> <C-space> pumvisible() \|\| &omnifunc == '' ? "\<C-n>" : "\<C-x>\<C-o>"
+if v:version >= 700
+  inoremap <expr> <C-space> pumvisible() \|\| &omnifunc == '' ? "\<C-n>" : "\<C-x>\<C-o>"
+endif
 inoremap <C-@> <C-space>
 
 " Add new line indented here {{{2
@@ -350,10 +379,12 @@ cnoremap <C-h> <Left>
 cnoremap <C-f> <Right>
 
 " Arrow keys for window movement {{{2
-nnoremap <silent> <Left> :wincmd h<CR>
-nnoremap <silent> <Right> :wincmd l<CR>
-nnoremap <silent> <Up> :wincmd k<CR>
-nnoremap <silent> <Down> :wincmd j<CR>
+if v:version >= 600
+  nnoremap <silent> <Left> :wincmd h<CR>
+  nnoremap <silent> <Right> :wincmd l<CR>
+  nnoremap <silent> <Up> :wincmd k<CR>
+  nnoremap <silent> <Down> :wincmd j<CR>
+endif
 
 " Ctrl-Left/Right for buffer cycling {{{2
 nnoremap <silent> <C-Left> :bp<CR>
@@ -380,13 +411,13 @@ exe "set t_te=" . &t_te . &t_op
 
 " Manually set the titlestring escape sequences for any terminal {{{2
 " that hasn't already and is not known to not support them
-if &term !~? '^\v(linux|cons|vt)' && empty(&t_ts) && empty(&t_fs)
+if &term !~? '^\v(linux|cons|vt)' && ! strlen(&t_ts) && ! strlen(&t_fs)
   let &t_ts="\<Esc>]2;"
   let &t_fs="\x7"
 endif
 
 " change the xterm cursor color for insert mode {{{2
-if &term =~ 'xterm'
+if &term =~? '^xterm' && v:version >= 700
   let &t_SI="\<Esc>]12;purple\x7"
   let &t_EI="\<Esc>]12;green\x7"
 endif

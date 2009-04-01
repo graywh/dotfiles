@@ -55,10 +55,12 @@ hi WarningMsg           guifg=#3333FF
 hi WildMenu             guifg=bg        guibg=#3333FF
 hi Folded               guifg=#003300   guibg=#B8B8B8   gui=italic
 hi FoldColumn           guifg=#990000   guibg=#B8B8B8
+if v:version >= 600
 hi DiffAdd                              guibg=#EBCCEB
 hi DiffChange                           guibg=#EBEBCC
 hi DiffDelete           guifg=fg        guibg=#CCEBEB   gui=none
 hi DiffText                             guibg=#CCCCEB   gui=none
+endif
 hi SignColumn           guifg=#000099   guibg=#B8B8B8
 if version >= 700
   hi SpellBad                                             gui=undercurl   guisp=#FF0000
@@ -117,10 +119,12 @@ hi WarningMsg   ctermfg=DarkBlue
 hi WildMenu     ctermfg=bg              ctermbg=Blue
 hi Folded       ctermfg=Green           ctermbg=bg
 hi FoldColumn   ctermfg=Red             ctermbg=bg
+if v:version >= 600
 hi DiffAdd      ctermfg=White           ctermbg=DarkMagenta
 hi DiffChange                           ctermbg=DarkYellow
 hi DiffDelete   ctermfg=White           ctermbg=DarkCyan
 hi DiffText     ctermfg=White           ctermbg=DarkBlue        cterm=none
+endif
 hi SignColumn   ctermfg=Blue            ctermbg=bg
 if version >= 700
   hi SpellBad                             ctermbg=DarkCyan        cterm=underline
