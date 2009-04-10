@@ -15,7 +15,7 @@ $VERSION = "1";
 # hm.. i should make it possible to use the existing one..
 Irssi::theme_register([
     'pubmsg_hilight', '{pubmsghinick $0 $3 $1}$2'
-    ]);
+]);
 
 my %saved_colors;
 my %session_colors = {};
@@ -187,6 +187,15 @@ sub cmd_color {
         foreach my $i (1..16) {
             Irssi::print (chr (3) . "$i" . "Color #$i " . chr(3) . "15,$i ");
         }
+    } elsif ($op eq "help") {
+        Irssi::print ("save");
+        Irssi::print ("load");
+        Irssi::print ("set \$nick \$color");
+        Irssi::print ("keep \$nick");
+        Irssi::print ("show \$nick");
+        Irssi::print ("clear \$nick");
+        Irssi::print ("list");
+        Irssi::print ("preview");
     }
 }
 

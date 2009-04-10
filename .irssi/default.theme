@@ -156,17 +156,17 @@ abstracts = {
   msgchannel = "%w:%c$*%n";
 
   # private message, $0 = nick, $1 = host
-  privmsg = "[%R$0%w(%r$1-%w)%n] ";
+  privmsg = "[%W$0%w(%c$1-%w)%n] ";
 
   # private message from you, $0 = "msg", $1 = target nick
-  ownprivmsg = "[%r$0%w(%R$1-%w)%n] ";
+  ownprivmsg = "[%r$0%w(%w$1-%w)%n] ";
 
   # own private message in query
   ownprivmsgnick = "{msgnick  $*}";
   ownprivnick = "%w$*%n";
 
   # private message in query
-  privmsgnick = "{msgnick  %R$*%n}";
+  privmsgnick = "{msgnick  %W$*%n}";
 
   ##
   ## Actions (/ME stuff)
