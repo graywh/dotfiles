@@ -7,12 +7,12 @@
 
 # include .profile if it exists
 if [[ -f ${HOME}/.profile ]]; then
-    . ${HOME}/.profile
+    source ${HOME}/.profile
 fi
 
 # include .bashrc if it exists
 if [[ -f ${HOME}/.bashrc ]]; then
-    . ${HOME}/.bashrc
+    source ${HOME}/.bashrc
 fi
 
 # vim: fdm=marker
