@@ -28,7 +28,7 @@ fi
 #}}}1
 
 # Don't let these variables be propogated {{{1
-if [[ ${TERM} == screen* ]]; then
+if [[ ${TERM} != screen* ]]; then
     unset INTERM
     unset STY
 fi

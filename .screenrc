@@ -16,10 +16,11 @@ nethack off # don't show stupid messages
 startup_message off # no startup message
 term "screen-256color"
 vbell off # don't use visual bell
+vbell_msg "  VBELL  "
 
 # CAPTION {{{1
 caption always
-caption string "%{= kK}[%L=%-Lw%50L>%{r}(%{w}%n%f*%t%{r})%{K}%+Lw%-019<%L=                                                                                                                                                                                         ][%D %d %M %0c]%>%<"
+caption string "%{= kK}[%L=%-Lw%50L>%{r}(%{w}%n%f*%t%{r})%{K}%+Lw%-019<%L=                                                                                                                                                                                                         ][%D %d %M %0c]%>%<"
 #caption string "%{= kK}[%L=%=%-Lw%>%40=%{r}(%{w}%n*%f%t%{r})%{K}%+Lw%L<%-019=][%D %d %M %0c]"
 
 # viking's
@@ -33,9 +34,16 @@ caption string "%{= kK}[%L=%-Lw%50L>%{r}(%{w}%n%f*%t%{r})%{K}%+Lw%-019<%L=      
 #caption string "%{= kK}-(%H)--[%L=%-Lw%50L>%n%f*%t%+Lw%-026<]%L=-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------(%D %d %M %Y %0c)-%>%<"
 
 # KEY BINDINGS {{{1
-# defaults that Debian "kindly" removed
 bind \\
-bind ^\ quit
+bind ^\
+bind K
+bind I
+bind O
+bind }
+
+bind h prev
+bind l next
+bind ^^ other
 
 # region navigation similar to Vim
 bind w focus
@@ -48,6 +56,12 @@ bind o only
 bindkey -k k4 copy # F4 - start copy/scrollback mode
 
 # TERMCAP/TERMINFO {{{1
+# The vt100 description does not mention "dl". *sigh*
+termcapinfo vt100 "dl=5\E[M"
+
+# set these terminals up to be 'optimal' instead of vt100
+termcapinfo xterm*|linux*|rxvt*|Eterm* OP
+
 # tell screen that it can change the title of xterm-alikes
 termcapinfo screen*|xterm*|konsole*|gnome*|putty* "hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007"
 
