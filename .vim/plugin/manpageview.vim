@@ -14,7 +14,6 @@ function! s:GetArticle(topic)
 endfunction
 
 function! s:ManPageView(topic)
-  new
   let article = s:GetArticle(a:topic)
   if article == []
     echohl ErrorMsg
@@ -22,6 +21,7 @@ function! s:ManPageView(topic)
     echohl None
     return
   endif
+  new
   exe 'sil! file!' escape(article[0].'('.article[1].')', ' \')
   setlocal noswapfile
   " As of 2008/11/09, bsdmainutils provides a `col' that doesn't understand

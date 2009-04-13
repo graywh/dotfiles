@@ -2,13 +2,13 @@
 " Author: Will Gray <graywh@gmail.com>
 
 " Options {{{1
+"set all&			" Set everything to the default
+set nocompatible		" Vim is better than Vi
+
 if has("win32")
   let &runtimepath = substitute(&runtimepath, '\(\~\|'.$USER.'\)/vimfiles\>', '\1/.vim', 'g')
 endif
 " use pathogen.vim here
-
-"set all&			" Set everything to the default
-set nocompatible		" Vim is better than Vi
 
 " Mouse {{{2
 set mouse=a			" Use the mouse for all modes
@@ -19,23 +19,28 @@ set mousemodel=popup_setpos	" Reposition the cursor on right-click
 set title			" Turn on titlebar support
 set ttyscroll=5			" Redraw when scrolling a long ways
 set ttymouse=xterm2		" Assume xterm mouse support
+if &term =~ 'xterm' || &term =~ 'screen' || &term =~ 'putty' || &term =~ 'konsole'
+  set ttyfast			" Because no one should have to suffer
+endif
 
 " Navigation {{{2
 set nostartofline		" Avoid moving the cursor when moving around
 set scrolloff=3			" Leave lines next to window edge
 set showmatch			" Show matching brackets.
-set sidescrolloff=10		" Leave some characters next to window edge (w/ nowrap)
+set sidescrolloff=10		" Leave some characters next to window edge
 set virtualedit=block		" Allow block selection anywhere
 set virtualedit+=onemore	" Allow cursor to be on the newline
 
 " Editing {{{2
-set backspace=indent,eol,start	" More powerful backspacing
-set nrformats=hex,octal,alpha	" Recognize hexadecimal, octal, and characters for ctrl-a/x
+set backspace=indent,eol	" More powerful backspacing
+set nrformats=hex,octal,alpha	" Recognize hexadecimal, octal, and characters
+				" for ctrl-a/x
 set textwidth=0			" Don't break lines
 set wrapmargin=0		" Don't break lines based on window size
 
 " Formatting {{{2
 set formatoptions=
+set formatoptions+=c		" Format comments
 set formatoptions+=r		" Continue comments by default
 set formatoptions+=o		" Make comment when using o or O
 set formatoptions+=q		" Format comments with gq
@@ -76,7 +81,7 @@ set smartcase			" Search case-insensitive mostly
 set wrapscan			" Searches wrap around end of file
 
 " Windows, Buffers {{{2
-set hidden			" Allow hiding changed buffers without override or warning
+set hidden			" Allow hiding changed buffers
 set switchbuf=useopen,usetab
 set splitbelow			" New window goes below
 set splitright			" New windows goes right
@@ -93,7 +98,7 @@ set wrap			" Wrap long lines
 
 set listchars=			" Settings for list mode
 if has('multi_byte') && (&tenc =~ '^u\(tf\|cs\)' || (empty(&tenc) && &enc =~ '^u\(tf\|cs\)'))
-  "set listchars+=eol:¶
+  "set listchars+=eol:§
   set listchars+=tab:>·
   set listchars+=nbsp:+
   set listchars+=trail:·
@@ -117,13 +122,19 @@ set vb t_vb=			" Disable visual and audible bell
 " Viminfo {{{2
 set history=50			" Keep 50 lines of command line history
 set viminfo=			" Read/write a .viminfo file
-set viminfo+='20		" Remember 20 previously edited files' marks (required)
+set viminfo+='20		" Remember 20 previously edited files' marks
 set viminfo+=!			" Remember some global variables
 set viminfo+=h			" Don't restore the hlsearch highlighting
 
 " Reading, Writing {{{2
 set modeline			" Let files set their own options
 set fileformats=unix,mac,dos	" End-of-line character
+
+" Diff mode {{{2
+set diffopt=filler
+set diffopt+=iwhite
+set diffopt+=vertical
+set diffopt+=foldcolumn:2
 
 " Other {{{2
 set winaltkeys=no		" Don't use ALT to access the menu
@@ -144,6 +155,10 @@ runtime! macros/matchit.vim
 
 " Options {{{2
 let g:tex_flavor = 'pdflatex' " Use pdflatex as the tex compiler
+
+let g:Twiki_SourceHTMLSyntax = 1 " Let TWiki include HTML syntax
+let g:twiki_highlight_r = 1 " <highlight> tags include R
+let g:twiki_highlight_perl = 0 " <highlight> tags include perl
 
 " Space.vim {{{3
 let g:space_no_character_movements = 1
@@ -243,8 +258,9 @@ noremap ` '
 " make Y like D & C {{{2
 map Y y$
 
-" Clear search hilight {{{2
-nnoremap <silent> <C-h> :nohl<CR>
+" Search highlight {{{2
+nnoremap <silent> <F6> :set hlsearch!<CR>:set hlsearch?<CR>
+nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 
 " Autocomplete {{{2
 inoremap <expr> <C-space> pumvisible() \|\| &omnifunc == '' ? "\<C-n>" : "\<C-x>\<C-o>"
@@ -261,7 +277,13 @@ nnoremap <silent> <Leader>O :let ospaces=virtcol('.')-1<CR>O<Esc>:exec 'normal '
 
 " Show the syntax highlighting groups for the item under the cursor {{{2
 function! ShowSynStack() " {{{3
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+  if v:version >= 702 || (v:version == 701 && has("patch215"))
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+  else
+    echohl Warning
+    echo 'Not available in this version.'
+    echohl None
+  endif
 endfunction
 
 function! ShowSynIDs() " {{{3
@@ -271,8 +293,8 @@ function! ShowSynIDs() " {{{3
   echo 'hi<' . hi . '> trans<' . trans . '> lo<' . lo . '>'
 endfunction
 "}}}3
-nnoremap <silent> <F8> :call ShowSynIDs()<CR>
 nnoremap <silent> <F7> :call ShowSynStack()<CR>
+nnoremap <silent> <F8> :call ShowSynIDs()<CR>
 
 " Arrow keys for window movement {{{2
 nnoremap <silent> <Left> :wincmd h<CR>

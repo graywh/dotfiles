@@ -13,6 +13,7 @@ endif
 
 " GUI Display {{{2
 set guioptions=aAcegimtv
+set guicursor+=a:blinkon0
 set columns=85
 set lines=40
 set vb t_vb=

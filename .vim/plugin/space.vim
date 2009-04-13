@@ -106,8 +106,7 @@ if !exists("g:space_no_section") || !g:space_no_section
     vnoremap <silent> [] :<C-u>call <SID>setup_space("section_end")<CR>gv[]
 endif
 
-cnoremap <expr> <CR> (getcmdtype() == ':' && 
-      \ <SID>parse_cmd_line() ?  "\<CR>" : "\<CR>")
+cnoremap <expr> <CR> (getcmdtype() == ':' && <SID>parse_cmd_line() ?  "\<CR>" : "\<CR>")
 
 command! SpaceRemoveMappings call <SID>remove_space_mappings()
 function! s:remove_space_mappings()

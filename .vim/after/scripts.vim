@@ -11,7 +11,8 @@ let s:line3 = getline(3)
 let s:line4 = getline(4)
 let s:line5 = getline(5)
 
-if s:line1 =~ '^\(=\+\) .* \1$'
+" Detech MoinMoin headers or rules
+if         s:line1 =~ '^\(=\+\) .* \1$'
       \ || s:line2 =~ '^\(=\+\) .* \1$'
       \ || s:line3 =~ '^\(=\+\) .* \1$'
       \ || s:line4 =~ '^\(=\+\) .* \1$'
@@ -23,7 +24,8 @@ if s:line1 =~ '^\(=\+\) .* \1$'
       \ || s:line5 =~ '^#\(acl\|format\|redirect\|refresh\|pragma\|deprecated\|language\) '
   set filetype=moin
 
-elseif s:line1 =~ '^---+\{1,5} .*'
+" Detech TWiki headers
+elseif     s:line1 =~ '^---+\{1,5} .*'
       \ || s:line2 =~ '^---+\{1,5} .*'
       \ || s:line3 =~ '^---+\{1,5} .*'
       \ || s:line4 =~ '^---+\{1,5} .*'
