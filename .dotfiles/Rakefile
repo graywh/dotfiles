@@ -6,6 +6,17 @@ Externals = "externals"
 
 $noop = false
 
+def stash(&block)
+  stash = system("git --no-pager status > /dev/null")
+  if stash > 0 do
+    system("git stash save")
+  end
+  block.call()
+  if stash > 0 do
+    system("git --no-pager stash pop > /dev/null")
+  end
+end
+
 desc "No-act"
 task :dryrun do
   $noop = true
@@ -13,23 +24,23 @@ end
 
 desc "Update master and rebase"
 task :update do
-  system("git stash save")
-  system("git checkout master")
-  system("git pull")
-  system("git checkout local")
-  system("git rebase master")
-  system("git --no-pager stash pop")
+  stash do
+    system("git checkout master")
+    system("git pull")
+    system("git checkout local")
+    system("git rebase master")
+  end
 end
 
 desc "Cherry pick commits for master"
 task :cherry, :rev do |t, args|
   raise "no revision" unless args.rev
-  system("git stash save")
-  system("git checkout master")
-  system("git cherry-pick #{args.rev}")
-  system("git checkout local")
-  system("git rebase master")
-  system("git --no-pager stash pop")
+  stash do
+    system("git checkout master")
+    system("git cherry-pick #{args.rev}")
+    system("git checkout local")
+    system("git rebase master")
+  end
 end
 
 namespace :externals do
