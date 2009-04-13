@@ -5,6 +5,9 @@
 *.sw[op]
 Session.vim
 
+# Zsh
+.rake_tasks
+
 # OS X
 .DS_Store
 .Trashes

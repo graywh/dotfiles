@@ -1,6 +1,6 @@
-set mainfont {{DejaVu Sans Mono} 10}
-set textfont {{DejaVu Sans Mono} 10}
-set uifont {{Nimbus Sans L} 11}
+set mainfont {{dejavu sans mono} 9}
+set textfont {{dejavu sans mono} 9}
+set uifont {{nimbus sans l} 10}
 set tabstop 4
 set findmergefiles 0
 set maxgraphpct 50
@@ -16,14 +16,16 @@ set bgcolor white
 set fgcolor black
 set colors {green red blue magenta darkgrey brown orange}
 set diffcolors {red "#00a000" blue}
+set markbgcolor #e0e0ff
 set diffcontext 2
 set selectbgcolor gray85
 set extdifftool meld
-set geometry(main) 1190x1497+0+0
-set geometry(topwidth) 1188
+set perfile_attrs 0
+set geometry(main) 1190x1485+0+0
+set geometry(topwidth) 1186
 set geometry(topheight) 813
-set geometry(pwsash0) "693 1"
-set geometry(pwsash1) "966 1"
-set geometry(botwidth) 806
-set geometry(botheight) 672
+set geometry(pwsash0) "705 2"
+set geometry(pwsash1) "1012 2"
+set geometry(botwidth) 801
+set geometry(botheight) 652
 set permviews {}

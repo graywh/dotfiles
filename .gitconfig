@@ -4,14 +4,12 @@
 [alias]
 	co = checkout
 	ci = commit
-	st = !git --no-pager status
+	st = status
 	br = branch
 [color]
-	branch = auto
 	diff = false
-	interactive = auto
 	pager = false
-	status = auto
+	ui = auto
 [core]
 	editor = vim
 	pager = view -
@@ -31,5 +29,5 @@
 [help]
 	browser = dillo
 [gui]
-	fontdiff = -family DejaVu\\ Sans\\ Mono -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family \"DejaVu Sans Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 	spellingdictionary = none
