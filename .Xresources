@@ -6,8 +6,8 @@
 ! --- XTerm {{{1
 XTerm.termName: xterm-256color
 XTerm.toolBar: false
-! --- *VT100 {{{1
-! --- *VT100 options {{{2
+! --- VT100 widget {{{1
+! --- options {{{2
 *VT100.boldColors: false
 *VT100.boldMode: true
 *VT100.colorMode: true
@@ -26,18 +26,16 @@ XTerm.toolBar: false
 *VT100.ttyModes: erase ^?
 *VT100.underline: true
 *VT100.utf8: 1
-! --- *VT100 keybindings {{{2
+! --- keybindings {{{2
 *VT100.translations: #override \n\
-    <Key>BackSpace: string(0x7F) \n\
-    Shift<Key>Up: scroll-back(1,line) \n\
-    Shift<Key>Down: scroll-forw(1,line)
+    <Key>BackSpace: string(0x7F)
 *VT100.scrollbar.translations: #override \n\
     <Btn5Down>: StartScroll(Forward) \n\
     <Btn1Down>: StartScroll(Continuous) MoveThumb() NotifyThumb() \n\
     <Btn4Down>: StartScroll(Backward) \n\
     <Btn1Motion>: MoveThumb() NotifyThumb() \n\
     <BtnUp>: NotifyScroll(Proportional) EndScroll()
-! --- *VT100 colors {{{2
+! --- colors {{{2
 *VT100.background: rgb:14/14/14
 *VT100.foreground: rgb:cc/cc/cc
 *VT100.cursorColor: rgb:33/ff/33
@@ -298,7 +296,6 @@ XTerm.toolBar: false
 *VT100.color253: rgb:e0/e0/e0
 *VT100.color254: rgb:ea/ea/ea
 *VT100.color255: rgb:f4/f4/f4
-! }}}
 ! }}}1
 
 ! vim: fdm=marker
