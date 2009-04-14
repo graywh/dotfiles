@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<gconf>
+        <entry name="paste" mtime="1239733150" type="string">
+                <stringvalue>&lt;Shift&gt;&lt;Super&gt;v</stringvalue>
+        </entry>
+        <entry name="copy" mtime="1239733147" type="string">
+                <stringvalue>&lt;Shift&gt;&lt;Super&gt;c</stringvalue>
+        </entry>
+        <entry name="close_tab" mtime="1239733141" type="string">
+                <stringvalue>&lt;Shift&gt;&lt;Super&gt;q</stringvalue>
+        </entry>
+        <entry name="close_window" mtime="1239733139" type="string">
+                <stringvalue>&lt;Control&gt;&lt;Super&gt;q</stringvalue>
+        </entry>
+        <entry name="new_window" mtime="1239733134" type="string">
+                <stringvalue>&lt;Control&gt;&lt;Super&gt;n</stringvalue>
+        </entry>
+        <entry name="new_tab" mtime="1239733131" type="string">
+                <stringvalue>&lt;Control&gt;&lt;Super&gt;t</stringvalue>
+        </entry>
+        <entry name="help" mtime="1239733124" type="string">
+                <stringvalue>disabled</stringvalue>
+        </entry>
+        <entry name="move_tab_right" mtime="1239733085" type="string">
+                <stringvalue>&lt;Shift&gt;&lt;Control&gt;&lt;Super&gt;Page_Down</stringvalue>
+        </entry>
+        <entry name="move_tab_left" mtime="1239733082" type="string">
+                <stringvalue>&lt;Shift&gt;&lt;Control&gt;&lt;Super&gt;Page_Up</stringvalue>
+        </entry>
+        <entry name="next_tab" mtime="1239733079" type="string">
+                <stringvalue>&lt;Control&gt;&lt;Super&gt;Page_Up</stringvalue>
+        </entry>
+        <entry name="prev_tab" mtime="1239733075" type="string">
+                <stringvalue>&lt;Control&gt;&lt;Super&gt;Page_Down</stringvalue>
+        </entry>
+        <entry name="switch_to_tab_9" mtime="1239733113" type="string">
+                <stringvalue>&lt;Super&gt;9</stringvalue>
+        </entry>
+        <entry name="switch_to_tab_8" mtime="1239733111" type="string">
+                <stringvalue>&lt;Super&gt;8</stringvalue>
+        </entry>
+        <entry name="switch_to_tab_7" mtime="1239733109" type="string">
+                <stringvalue>&lt;Super&gt;7</stringvalue>
+        </entry>
+        <entry name="switch_to_tab_6" mtime="1239733106" type="string">
+                <stringvalue>&lt;Super&gt;6</stringvalue>
+        </entry>
+        <entry name="switch_to_tab_5" mtime="1239733104" type="string">
+                <stringvalue>&lt;Super&gt;5</stringvalue>
+        </entry>
+        <entry name="switch_to_tab_4" mtime="1239733100" type="string">
+                <stringvalue>&lt;Super&gt;4</stringvalue>
+        </entry>
+        <entry name="switch_to_tab_3" mtime="1239733096" type="string">
+                <stringvalue>&lt;Super&gt;3</stringvalue>
+        </entry>
+        <entry name="switch_to_tab_2" mtime="1239733095" type="string">
+                <stringvalue>&lt;Super&gt;2</stringvalue>
+        </entry>
+        <entry name="switch_to_tab_1" mtime="1239733091" type="string">
+                <stringvalue>&lt;Super&gt;1</stringvalue>
+        </entry>
+</gconf>

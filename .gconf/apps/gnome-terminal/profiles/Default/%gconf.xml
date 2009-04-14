@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<gconf>
+        <entry name="silent_bell" mtime="1239732915" type="bool" value="true">
+        </entry>
+        <entry name="background_type" mtime="1239723793" type="string">
+                <stringvalue>solid</stringvalue>
+        </entry>
+        <entry name="scrollbar_position" mtime="1239732915" type="string">
+                <stringvalue>hidden</stringvalue>
+        </entry>
+        <entry name="login_shell" mtime="1229636212" type="bool" value="false">
+        </entry>
+        <entry name="scrollback_lines" mtime="1239732915" type="int" value="1024">
+        </entry>
+        <entry name="palette" mtime="1239732915" type="string">
+                <stringvalue>#000000000000:#CCCC00000000:#0000CCCC0000:#CCCCCCCC0000:#33336666CCCC:#CCCC0000CCCC:#0000CCCCCCCC:#CCCCCCCCCCCC:#666666666666:#FFFF66666666:#6666FFFF6666:#FFFFFFFF6666:#66669999FFFF:#FFFF6666FFFF:#6666FFFFFFFF:#FFFFFFFFFFFF</stringvalue>
+        </entry>
+        <entry name="use_theme_colors" mtime="1239732915" type="bool" value="false">
+        </entry>
+        <entry name="visible_name" mtime="1239732915" type="string">
+                <stringvalue>Default</stringvalue>
+        </entry>
+        <entry name="foreground_color" mtime="1239732915" type="string">
+                <stringvalue>#CCCCCCCCCCCC</stringvalue>
+        </entry>
+        <entry name="alternate_screen_scroll" mtime="1239732915" type="bool" value="true">
+        </entry>
+        <entry name="background_color" mtime="1239732915" type="string">
+                <stringvalue>#141414141414</stringvalue>
+        </entry>
+</gconf>
