@@ -155,6 +155,9 @@ runtime! macros/matchit.vim
 
 " Options {{{2
 let g:tex_flavor = 'pdflatex' " Use pdflatex as the tex compiler
+let g:Twiki_SourceHTMLSyntax = 1 " Let TWiki include HTML syntax
+let g:twiki_highlight_r = 1 " <highlight> tags include R
+let g:twiki_highlight_perl = 0 " <highlight> tags include perl
 
 let g:Twiki_SourceHTMLSyntax = 1 " Let TWiki include HTML syntax
 let g:twiki_highlight_r = 1 " <highlight> tags include R

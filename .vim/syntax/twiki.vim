@@ -63,7 +63,6 @@ syntax match twikiVariableParam contained "[a-z0-9]*="
 syntax region twikiVariableValue start="\"" skip="\\\"" end="\"" contains=twikiSimpleVariable,twikiVariable
 syntax region twikiVariable start="\([^!]\|^\)\zs%\w\+{" end="}%"
     \ contains=twikiVariableParam,twikiVariableValue,TwikiHiLink,twikiSimpleVariable,twikiVariable
-syntax match twikiTag      "<\w\+>"
 
 syntax match twikiDelimiter "|"
 
