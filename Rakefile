@@ -8,11 +8,11 @@ $noop = false
 
 def stash(&block)
   stash = system("git --no-pager status > /dev/null")
-  if stash > 0 do
+  if stash > 0
     system("git stash save")
   end
   block.call()
-  if stash > 0 do
+  if stash > 0
     system("git --no-pager stash pop > /dev/null")
   end
 end

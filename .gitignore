@@ -1,5 +1,4 @@
 /*
-!/.dotfiles/
 !/.aliases
 !/.bash_functions
 !/.bash_profile
@@ -34,3 +33,4 @@
 !/.zshenv
 !/.zshrc
 !/.zsh_functions
+!/Rakefile

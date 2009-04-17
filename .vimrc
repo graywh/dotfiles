@@ -5,10 +5,12 @@
 "set all&			" Set everything to the default
 set nocompatible		" Vim is better than Vi
 
+" Path Munging {{{2
 if has("win32")
   let &runtimepath = substitute(&runtimepath, '\(\~\|'.$USER.'\)/vimfiles\>', '\1/.vim', 'g')
 endif
-" use pathogen.vim here
+
+silent! call pathogen#runtime_prepend_subdirectories($HOME.'/.vim/bundles')
 
 " Mouse {{{2
 set mouse=a			" Use the mouse for all modes
