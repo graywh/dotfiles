@@ -18,29 +18,14 @@ augroup filetypedetect
     endif
   endfunc
 
-  " Brew
-  autocmd! BufNewFile,BufRead *.brew setfiletype brew
-
   " R
   autocmd! BufNewFile,BufRead *.[rRsS] setfiletype r
   autocmd! BufNewFile,BufRead *.[rR]history setfiletype r
-
-  " Irssi logs
-  autocmd! BufNewFile,BufRead $HOME/.irssi/logs/**/*.log setfiletype irssilog
 
   " Mutt config
   autocmd! BufNewFile,BufRead $HOME/.mutt/* call s:StarSetf('muttrc')
 
   " Apache conf.d
   autocmd! BufNewFile,BufRead /etc/apache2/conf.d* call s:StarSetf('apache')
-
-  " XUL
-  autocmd! BufNewFile,BufRead *.xul setfiletype xul
-
-  " Mako
-  autocmd! BufNewFile,BufRead *.mako setfiletype mako
-
-  " Python Server Pages
-  autocmd! BufNewFile,BufRead *.psp setfiletype psp
 
 augroup END
