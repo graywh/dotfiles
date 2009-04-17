@@ -41,7 +41,6 @@ csapprox.vim	CSApprox.txt	/*csapprox.vim*
 g:CSApprox_approximator_function	CSApprox.txt	/*g:CSApprox_approximator_function*
 g:CSApprox_attr_map	CSApprox.txt	/*g:CSApprox_attr_map*
 g:CSApprox_eterm	CSApprox.txt	/*g:CSApprox_eterm*
-g:CSApprox_extra_rgb_txt_dirs	CSApprox.txt	/*g:CSApprox_extra_rgb_txt_dirs*
 g:CSApprox_hook_post	CSApprox.txt	/*g:CSApprox_hook_post*
 g:CSApprox_hook_pre	CSApprox.txt	/*g:CSApprox_hook_pre*
 g:CSApprox_hook_{scheme}_post	CSApprox.txt	/*g:CSApprox_hook_{scheme}_post*
@@ -49,4 +48,5 @@ g:CSApprox_hook_{scheme}_pre	CSApprox.txt	/*g:CSApprox_hook_{scheme}_pre*
 g:CSApprox_konsole	CSApprox.txt	/*g:CSApprox_konsole*
 g:CSApprox_loaded	CSApprox.txt	/*g:CSApprox_loaded*
 g:CSApprox_redirfallback	CSApprox.txt	/*g:CSApprox_redirfallback*
+g:CSApprox_use_showrgb	CSApprox.txt	/*g:CSApprox_use_showrgb*
 g:CSApprox_verbose_level	CSApprox.txt	/*g:CSApprox_verbose_level*

@@ -30,8 +30,7 @@ set nostartofline		" Avoid moving the cursor when moving around
 set scrolloff=3			" Leave lines next to window edge
 set showmatch			" Show matching brackets.
 set sidescrolloff=10		" Leave some characters next to window edge
-set virtualedit=block		" Allow block selection anywhere
-set virtualedit+=onemore	" Allow cursor to be on the newline
+set virtualedit=onemore		" Allow cursor to be on the newline
 
 " Editing {{{2
 set backspace=indent,eol	" More powerful backspacing
