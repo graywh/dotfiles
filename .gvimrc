@@ -14,10 +14,15 @@ endif
 " GUI Display {{{2
 set guioptions=aAcegimtv
 set guicursor+=a:blinkon0
+set noantialias
 set columns=85
 set lines=40
 set vb t_vb=
 
+" MacVim {{{2
+if has('gui_macvim')
+  set fuoptions=maxvert,maxhorz
+endif
 " Keymap {{{1
 " Mouse back/forward {{{2
 nmap <X2Mouse> <C-I>
