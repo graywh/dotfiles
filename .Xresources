@@ -3,8 +3,8 @@
 *customization: -color
 #endif
 
-! --- Nethack {{{1
-Nethack.tile_file: x11tiles
+! --- NetHack {{{1
+NetHack.tile_file: x11tiles
 
 ! --- XTerm {{{1
 XTerm.termName: xterm-256color
