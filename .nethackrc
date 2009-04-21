@@ -1,0 +1,28 @@
+# vim: ft=conf
+options=DECgraphics
+
+options=autodig
+options=autopickup
+options=autoquiver
+options=color
+#options=eight_bit_tty
+options=hilite_pet
+options=lit_corridor
+options=nomail
+options=safe_pet
+options=standout
+options=toptenwin
+
+options=boulder:0
+#options=boulder:®
+options=catname:crookshanks
+options=dogname:fang
+options=fruit:durian
+options=horsename:shadowfax
+options=pickup_types:$?+!/
+options=windowtype:x11
+
+#autopickup_exception=">*chest*"
+#autopickup_exception="<*arrow"
+#autopickup_exception=">*corpse"
+#autopickup_exception=">* cursed*"
