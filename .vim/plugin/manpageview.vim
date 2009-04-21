@@ -1,3 +1,6 @@
+" TODO:  Is there any way to support the :tab modifier?
+"        Reuse existing windows where possible
+"        Make a map on K?
 if &cp || exists("g:loaded_manpageview")
  finish
 endif
@@ -5,7 +8,7 @@ let g:loaded_manpageview = "v17g"
 let s:keepcpo            = &cpo
 set cpo&vim
 
-command! -nargs=* Man call s:ManPageView(<q-args>)
+com! -nargs=* Man call s:ManPageView(<q-args>)
 
 function! s:GetArticle(topic)
   let file = (split(system("man -w ".a:topic." 2>/dev/null"), '\n') + [""])[0]
@@ -13,7 +16,41 @@ function! s:GetArticle(topic)
   return matchlist(basename, '\(.\{-}\)\.\([^.]*\)\(\.gz\)\=$')[1:2]
 endfunction
 
+" Get result of "man | col" as a List
+function! s:ReadManPage(topic)
+  " MAN_KEEP_FORMATTING:
+  " man-db 2.5.0 feature to disable stripping format with `col -p -b -x'.
+  " We want to strip these characters ourself if at all possible, because
+  " the bsdutils currently available on linux ships a `col' that isn't
+  " multibyte aware, and can delete half of a multibyte character when
+  " removing backspaces from the file.  Doesn't expand right, either.
+  " Note: This should have no effect on non-Linux systems.
+
+  let cmdline = 'env MAN_KEEP_FORMATTING=1 MANPAGER= PAGER= man ' . a:topic
+  let cmdline .= ' | col'
+
+  " See if 'col' accepts the '-p' switch
+  call system('col -p', 'foo')
+  if v:shell_error == 0
+    let cmdline .= ' -p'
+  endif
+
+  " Call man
+  let rv = split(system(cmdline), '\n')
+
+  " Remove ^H ourself (col can't be trusted to do it on Linux)
+  for i in range(len(rv))
+    while rv[i] =~ '\%x08'
+      let rv[i] = substitute(rv[i], '^[[:backspace:]]*', '', '')
+      let rv[i] = substitute(rv[i], '[^[:backspace:]][[:backspace:]]', '', 'g')
+    endwhile
+  endfor
+
+  return rv
+endfunction
+
 function! s:ManPageView(topic)
+  new
   let article = s:GetArticle(a:topic)
   if article == []
     echohl ErrorMsg
@@ -21,21 +58,17 @@ function! s:ManPageView(topic)
     echohl None
     return
   endif
-  new
   exe 'sil! file!' escape(article[0].'('.article[1].')', ' \')
   setlocal noswapfile
-  " As of 2008/11/09, bsdmainutils provides a `col' that doesn't understand
-  " multibyte, and bsdutils provides a `col' that understand multibyte, but
-  " glibc seems to think that '‐' is an invalid character.  So, I'm using
-  " a new option that was introduced in man-db 2.5.0 to disable stripping
-  " format characters with `col', combined with what seems to be an
-  " implementation detail of bsdmainutils `col' that it will reorder
-  " characters, so that "ab^H^Hxyz" becomes the equivalent "a^Hb^Hxyz".
-  " This means I can run `col' to reorder the output and expand tabs to spaces
-  " without stripping the ^H's itself, and then use `sed' to remove the
-  " backspaces.
-  exe 'sil r!MAN_KEEP_FORMATTING=1 MANPAGER= man ' a:topic '| col -p -x | sed -e "s/^\x08*//g" -e "s/.\x08//g"'
-  sil 0d
+
+  let page = s:ReadManPage(a:topic)
+
+  call setline(1, page)
+
+  " Remove any tabs from the man output
+  setlocal tabstop=8
+  sil retab
+
   setlocal ro nomod noma bh=wipe ft=man nolist nonu nowrap bt=nofile
 endfunction
 

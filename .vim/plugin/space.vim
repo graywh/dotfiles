@@ -1,119 +1,158 @@
 " space.vim - Smart Space key
-" Author:       Henrik Öhman <spiiphNOSPAM@hotmail.com>
+" Author:       Henrik Öhman <speeph@gmail.com>
 " URL:          http://skota.org/spiff/vim/plugin/space.vim
-" Version:      1.5
-" LastChanged:  $LastChangedDate: 2009-02-06 12:26:57 +0100 (Fri, 06 Feb 2009) $
-" Revision:     $Revision: 156 $
+" Version:      1.6
+" LastChanged:  $LastChangedDate: 2009-04-22 16:17:14 +0200 (Wed, 22 Apr 2009) $
+" Revision:     $Revision: 169 $
 "
 " Licensed under the same terms as Vim itself.
 "
 " NOTE: Using this script disables 'foldopen', since vim won't open folds if a
-" command is part of a mapping. This could possibly be fixed by issuing a zv
-" in the appropriate parts of setup_space() and possibly also do_space(), but
-" this feels hackish and not like a good solution. 
+" command is part of a mapping. This is possible to emulate in a few cases,
+" such as the quickfix and location list commands. For the major part of the
+" remapped commands, however, it is not possible to immitate Vim exactly, and
+" I have therefore opted not to do it at all.
 " ============================================================================
+
 
 " Set this variable to disable space.vim
 "
 "   let g:loaded_space = 1
+
+" These variables disables the usage of <Space> for groups of different
+" movement commands
+"
+" Disable <Space> for character movements, e.g. fFtT;,
+"   let g:space_no_character_movements = 1
+"
+" Disable <Space> for searches, e.g. /?#*nN
+"   let g:space_no_search = 1
+"
+" Disable <Space> for diff commands, e.g. [c and ]c
+"   let g:space_no_diff = 1
+"
+" Disable <Space> for brace movement commands, e.g. [(, ]), [{ and ]}
+"   let g:space_no_brace = 1
+"
+" Disable <Space> for method movement commands, e.g. [m, ]m, [M and ]M
+"   let g:space_no_method = 1
+"
+" Disable <Space> for section movement commands, e.g. [[, ]], [] and ][
+"   let g:space_no_section = 1
+"
+" Disable <Space> for quickfix and location list commands, e.g. :cc, :ll, etc.
+"   let g:space_no_quickfix = 1
 "
 
-if exists("g:loaded_space")
+if exists("g:space_debug")
+    let g:space_no_character_movements = 0
+    let g:space_no_search = 0
+    let g:space_no_diff = 0
+    let g:space_no_brace = 0
+    let g:space_no_method = 0
+    let g:space_no_section = 0
+    let g:space_no_quickfix = 0
+    echomsg "Running space.vim in debug mode."
+elseif exists("g:loaded_space")
     finish
 endif
 let g:loaded_space = 1
 
-nmap <silent> <Space>   :call <SID>do_space(0, 0)<CR>
-nmap <silent> <S-Space> :call <SID>do_space(1, 0)<CR>
-nmap <silent> <BS>      :call <SID>do_space(2, 0)<CR>
-vmap <silent> <Space>   :<C-u>call <SID>do_space(0, 1)<CR>
-vmap <silent> <Space>   :<C-u>call <SID>do_space(1, 1)<CR>
-vmap <silent> <BS>      :<C-u>call <SID>do_space(2, 1)<CR>
+noremap <expr> <silent> <Space>   <SID>do_space(0, "<Space>")
+noremap <expr> <silent> <S-Space> <SID>do_space(1, "<S-Space>")
+noremap <expr> <silent> <BS>      <SID>do_space(1, "<BS>")
 
 " character movement commands
 if !exists("g:space_no_character_movements") || !g:space_no_character_movements
-    nnoremap <silent> f :call <SID>setup_space("char")<CR>f
-    nnoremap <silent> F :call <SID>setup_space("char")<CR>F
-    nnoremap <silent> t :call <SID>setup_space("char")<CR>t
-    nnoremap <silent> T :call <SID>setup_space("char")<CR>T
-    nnoremap <silent> ; :call <SID>setup_space("char")<CR>;
-    nnoremap <silent> , :call <SID>setup_space("char")<CR>,
-    vnoremap <silent> f :<C-u>call <SID>setup_space("char")<CR>gvf
-    vnoremap <silent> F :<C-u>call <SID>setup_space("char")<CR>gvF
-    vnoremap <silent> t :<C-u>call <SID>setup_space("char")<CR>gvt
-    vnoremap <silent> T :<C-u>call <SID>setup_space("char")<CR>gvT
-    vnoremap <silent> ; :<C-u>call <SID>setup_space("char")<CR>gv;
-    vnoremap <silent> , :<C-u>call <SID>setup_space("char")<CR>gv,
+    nnoremap <expr> <silent> f <SID>setup_space("char", "f")
+    nnoremap <expr> <silent> F <SID>setup_space("char", "F")
+    nnoremap <expr> <silent> t <SID>setup_space("char", "t")
+    nnoremap <expr> <silent> T <SID>setup_space("char", "T")
+    nnoremap <expr> <silent> ; <SID>setup_space("char", ";")
+    nnoremap <expr> <silent> , <SID>setup_space("char", ",")
+    vnoremap <expr> <silent> f <SID>setup_space("char", "f")
+    vnoremap <expr> <silent> F <SID>setup_space("char", "F")
+    vnoremap <expr> <silent> t <SID>setup_space("char", "t")
+    vnoremap <expr> <silent> T <SID>setup_space("char", "T")
+    vnoremap <expr> <silent> ; <SID>setup_space("char", ";")
+    vnoremap <expr> <silent> , <SID>setup_space("char", ",")
 endif
 
 " search commands
 if !exists("g:space_no_search") || !g:space_no_search
-    nnoremap <silent> * :call <SID>setup_space("search")<CR>*
-    nnoremap <silent> # :call <SID>setup_space("search")<CR>#
-    nnoremap          / :call <SID>setup_space("search")<CR>/
-    nnoremap          ? :call <SID>setup_space("search")<CR>?
-    nnoremap <silent> n :call <SID>setup_space("search")<CR>n
-    nnoremap <silent> N :call <SID>setup_space("search")<CR>N
-    vnoremap <silent> * :<C-u>call <SID>setup_space("search")<CR>gv*
-    vnoremap <silent> # :<C-u>call <SID>setup_space("search")<CR>gv#
-    vnoremap          / :<C-u>call <SID>setup_space("search")<CR>gv/
-    vnoremap          ? :<C-u>call <SID>setup_space("search")<CR>gv?
-    vnoremap <silent> n :<C-u>call <SID>setup_space("search")<CR>gvn
-    vnoremap <silent> N :<C-u>call <SID>setup_space("search")<CR>gvN
+    nnoremap <expr> <silent> *  <SID>setup_space("search", "*")
+    nnoremap <expr> <silent> #  <SID>setup_space("search", "#")
+    nnoremap <expr> <silent> g* <SID>setup_space("search", "g*")
+    nnoremap <expr> <silent> g# <SID>setup_space("search", "g#")
+    nnoremap <expr> <silent> n  <SID>setup_space("search", "n")
+    nnoremap <expr> <silent> N  <SID>setup_space("search", "N")
+    vnoremap <expr> <silent> *  <SID>setup_space("search", "*")
+    vnoremap <expr> <silent> #  <SID>setup_space("search", "#")
+    vnoremap <expr> <silent> g* <SID>setup_space("search", "g*")
+    vnoremap <expr> <silent> g# <SID>setup_space("search", "g#")
+    vnoremap <expr> <silent> n  <SID>setup_space("search", "n")
+    vnoremap <expr> <silent> N  <SID>setup_space("search", "N")
 endif
 
 " diff next/prev
 if !exists("g:space_no_diff") || !g:space_no_diff
-    nnoremap <silent> ]c :call <SID>setup_space("diff")<CR>]c
-    nnoremap <silent> [c :call <SID>setup_space("diff")<CR>[c
-    vnoremap <silent> ]c :<C-u>call <SID>setup_space("diff")<CR>gv]c
-    vnoremap <silent> [c :<C-u>call <SID>setup_space("diff")<CR>gv[c
+    nnoremap <expr> <silent> ]c <SID>setup_space("diff", "]c")
+    nnoremap <expr> <silent> [c <SID>setup_space("diff", "[c")
+    vnoremap <expr> <silent> ]c <SID>setup_space("diff", "]c")
+    vnoremap <expr> <silent> [c <SID>setup_space("diff", "[c")
 endif
 
 " previous/next unmatched ( or [
 if !exists("g:space_no_brace") || !g:space_no_brace
-    nnoremap <silent> ]) :call <SID>setup_space("paren")<CR>])
-    vnoremap <silent> ]) :<C-u>call <SID>setup_space("paren")<CR>gv])
-    nnoremap <silent> [( :call <SID>setup_space("paren")<CR>[(
-    vnoremap <silent> [( :<C-u>call <SID>setup_space("paren")<CR>gv[(
-    nnoremap <silent> ]} :call <SID>setup_space("curly")<CR>]}
-    vnoremap <silent> ]} :<C-u>call <SID>setup_space("curly")<CR>gv]}
-    nnoremap <silent> [{ :call <SID>setup_space("curly")<CR>[{
-    vnoremap <silent> [{ :<C-u>call <SID>setup_space("curly")<CR>gv[{
+    nnoremap <expr> <silent> ]) <SID>setup_space("paren", "])")
+    vnoremap <expr> <silent> ]) <SID>setup_space("paren", "])")
+    nnoremap <expr> <silent> [( <SID>setup_space("paren", "[(")
+    vnoremap <expr> <silent> [( <SID>setup_space("paren", "[(")
+
+    nnoremap <expr> <silent> ]} <SID>setup_space("curly", "]}")
+    vnoremap <expr> <silent> ]} <SID>setup_space("curly", "]}")
+    nnoremap <expr> <silent> [{ <SID>setup_space("curly", "[{")
+    vnoremap <expr> <silent> [{ <SID>setup_space("curly", "[{")
 endif
 
 " start/end of a method
 if !exists("g:space_no_method") || !g:space_no_method
-    nnoremap <silent> ]m :call <SID>setup_space("method_start")<CR>]c
-    nnoremap <silent> [m :call <SID>setup_space("method_start")<CR>[c
-    vnoremap <silent> ]m :<C-u>call <SID>setup_space("method_start")<CR>gv]c
-    vnoremap <silent> [m :<C-u>call <SID>setup_space("method_start")<CR>gv[c
-    nnoremap <silent> ]M :call <SID>setup_space("method_end")<CR>]c
-    nnoremap <silent> [M :call <SID>setup_space("method_end")<CR>[c
-    vnoremap <silent> ]M :<C-u>call <SID>setup_space("method_end")<CR>gv]c
-    vnoremap <silent> [M :<C-u>call <SID>setup_space("method_end")<CR>gv[c
+    nnoremap <expr> <silent> ]m <SID>setup_space("method_start", "]m")
+    nnoremap <expr> <silent> [m <SID>setup_space("method_start", "[m")
+    vnoremap <expr> <silent> ]m <SID>setup_space("method_start", "]m")
+    vnoremap <expr> <silent> [m <SID>setup_space("method_start", "[m")
+
+    nnoremap <expr> <silent> ]M <SID>setup_space("method_end", "]M")
+    nnoremap <expr> <silent> [M <SID>setup_space("method_end", "[M")
+    vnoremap <expr> <silent> ]M <SID>setup_space("method_end", "]M")
+    vnoremap <expr> <silent> [M <SID>setup_space("method_end", "[M")
 endif
 
 " previous/next section or '}'/'{' in the first column
 if !exists("g:space_no_section") || !g:space_no_section
-    nnoremap <silent> ]] :call <SID>setup_space("section_start")<CR>]]
-    vnoremap <silent> ]] :<C-u>call <SID>setup_space("section_start")<CR>gv]]
-    nnoremap <silent> [[ :call <SID>setup_space("section_start")<CR>[[
-    vnoremap <silent> [[ :<C-u>call <SID>setup_space("section_start")<CR>gv[[
-    nnoremap <silent> ][ :call <SID>setup_space("section_end")<CR>][
-    vnoremap <silent> ][ :<C-u>call <SID>setup_space("section_end")<CR>gv][
-    nnoremap <silent> [] :call <SID>setup_space("section_end")<CR>[]
-    vnoremap <silent> [] :<C-u>call <SID>setup_space("section_end")<CR>gv[]
+    nnoremap <expr> <silent> ]] <SID>setup_space("section_start", "]]")
+    vnoremap <expr> <silent> ]] <SID>setup_space("section_start", "]]")
+    nnoremap <expr> <silent> [[ <SID>setup_space("section_start", "[[")
+    vnoremap <expr> <silent> [[ <SID>setup_space("section_start", "[[")
+
+    nnoremap <expr> <silent> ][ <SID>setup_space("section_end", "][")
+    vnoremap <expr> <silent> ][ <SID>setup_space("section_end", "][")
+    nnoremap <expr> <silent> [] <SID>setup_space("section_end", "[]")
+    vnoremap <expr> <silent> [] <SID>setup_space("section_end", "[]")
 endif
 
-cnoremap <expr> <CR> (getcmdtype() == ':' && <SID>parse_cmd_line() ?  "\<CR>" : "\<CR>")
+" quickfix and location list commands
+if !exists("g:space_no_quickfix") || !g:space_no_quickfix
+    cnoremap <expr> <CR> <SID>parse_cmd_line()
+endif
 
+" TODO: Have all mappings add the remapped sequence to a list, and use that
+"       list to remove mappings.
 command! SpaceRemoveMappings call <SID>remove_space_mappings()
 function! s:remove_space_mappings()
-    silent! nunmap <Space>
-    silent! nunmap <S-Space>
-    silent! vunmap <Space>
-    silent! vunmap <S-Space>
+    silent! unmap <Space>
+    silent! unmap <S-Space>
+    silent! unmap <BS>
 
     silent! nunmap f
     silent! nunmap F
@@ -128,16 +167,16 @@ function! s:remove_space_mappings()
     silent! vunmap ;
     silent! vunmap ,
 
-    silent! nunmap /
-    silent! nunmap ?
     silent! nunmap *
     silent! nunmap #
+    silent! nunmap g*
+    silent! nunmap g#
     silent! nunmap n
     silent! nunmap N
-    silent! vunmap /
-    silent! vunmap ?
     silent! vunmap *
     silent! vunmap #
+    silent! vunmap g*
+    silent! vunmap g#
     silent! vunmap n
     silent! vunmap N
 
@@ -155,6 +194,15 @@ function! s:remove_space_mappings()
     silent! vunmap [{
     silent! vunmap ]}
 
+    silent! nunmap ]]
+    silent! nunmap [[
+    silent! nunmap ][
+    silent! nunmap []
+    silent! vunmap ]]
+    silent! vunmap [[
+    silent! vunmap ][
+    silent! vunmap []
+
     silent! nunmap ]m
     silent! nunmap [m
     silent! vunmap ]m
@@ -164,120 +212,115 @@ function! s:remove_space_mappings()
     silent! vunmap ]M
     silent! vunmap [M
 
-    silent! nunmap [[
-    silent! nunmap ]]
-    silent! vunmap [[
-    silent! vunmap ]]
-    silent! nunmap []
-    silent! nunmap ][
-    silent! vunmap []
-    silent! vunmap ][
-endfunc
+    silent! cunmap <CR>
+
+    silent! unlet g:loaded_space
+endfunction
+
+" TODO: Add matches for :[l]make, :[l]grep and :[l]vim
+" TODO: Modify matches for [count] arguments
+" TODO: Check if the '\>!\=' part of the pattern fails when 'iskeyword'
+"       contains '!'
+let s:qf_re = '^c\%(' .
+    \ 'c\|' .
+    \ 'p\%[revious]\|' .
+    \ '[nN]\%[ext]\|' .
+    \ '\(fir\|la\)\%[st]\|' .
+    \ 'r\%[ewind]\|' .
+    \ '\(f\|nf\|Nf\|pf\)\%[ile]' .
+    \ '\)\>!\='
+
+let s:lf_re = '^l\%(' .
+    \ 'l\|' .
+    \ 'p\%[revious]\|' .
+    \ 'ne\%[xt]\|N\%[ext]\|' .
+    \ '\(fir\|la\)\%[st]\|' .
+    \ 'r\%[ewind]\|' .
+    \ '\(f\|nf\|Nf\|pf\)\%[ile]' .
+    \ '\)\>!\='
 
 function! s:parse_cmd_line()
     let cmd = getcmdline()
-    if cmd =~ "^c\\%(p\\%[revious]\\|[nN]\\%[ext]\\|c!\\=\\|fir\\%[st]\\|la\\%[st]\\|nf\\%[ile]\\|r\\%[ewind]\\|f\\%[ile]\\|g\\%[etfile]\\|addf\\[ile]\\)"
-        call <SID>setup_space("qf")
-    elseif cmd =~ "^l\\%(p\\%[revious]\\|N\\%[ext]\\|ne\\%[ext]\\|l!\\=\\|fir\\%[st]\\|la\\%[st]\\|nf\\%[ile]\\|r\\%[ewind]\\|f\\%[ile]\\|g\\%[etfile]\\|addf\\[ile]\\)"
-        call <SID>setup_space("lf")
-    endif
-    return cmd
+    let type = getcmdtype()
+
+    if type == '/' || type == '?'
+        call <SID>setup_space("search", cmd)
+    elseif type == ':'
+        if cmd =~ s:qf_re
+            call <SID>setup_space("qf", cmd)
+        elseif cmd =~ s:lf_re
+            call <SID>setup_space("lf", cmd)
+        endif
+    end
+    return "\<CR>"
 endfunc
 
-function! s:setup_space(type)
+function! s:setup_space(type, command)
+    let cmd = a:command
+
     if a:type == "char"
         let s:space_move = ";"
         let s:shift_space_move = ","
-        let s:prefix = "norm! "
-        let s:visual_prefix = "norm! gv"
     elseif a:type == "diff"
         let s:space_move = "]c"
         let s:shift_space_move = "[c"
-        let s:prefix = "silent! norm! "
-        let s:visual_prefix = "norm! gv"
     elseif a:type == "method_start"
         let s:space_move = "]m"
         let s:shift_space_move = "[m"
-        let s:prefix = "silent! norm! "
-        let s:visual_prefix = "norm! gv"
     elseif a:type == "method_end"
         let s:space_move = "]M"
         let s:shift_space_move = "[M"
-        let s:prefix = "silent! norm! "
-        let s:visual_prefix = "norm! gv"
     elseif a:type == "section_start"
         let s:space_move = "]]"
         let s:shift_space_move = "[["
-        let s:prefix = "silent! norm! "
-        let s:visual_prefix = "norm! gv"
     elseif a:type == "section_end"
         let s:space_move = "]["
         let s:shift_space_move = "[]"
-        let s:prefix = "silent! norm! "
-        let s:visual_prefix = "norm! gv"
     elseif a:type == "paren"
         let s:space_move = "])"
         let s:shift_space_move = "[("
-        let s:prefix = "silent! norm! "
-        let s:visual_prefix = "norm! gv"
     elseif a:type == "curly"
         let s:space_move = "]}"
         let s:shift_space_move = "[{"
-        let s:prefix = "silent! norm! "
-        let s:visual_prefix = "norm! gv"
     elseif a:type == "search"
         let s:space_move = "n"
         let s:shift_space_move = "N"
-        let s:prefix = "silent! norm! "
-        let s:visual_prefix = "norm! gv"
     elseif a:type == "qf"
-        let s:space_move = "silent! cn"
-        let s:shift_space_move = "silent! cN"
-        let s:prefix = ""
-        let s:visual_prefix = ""
+        let s:space_move = ":\<C-u>cn\<CR>"
+        let s:shift_space_move = ":\<C-u>cN\<CR>"
     elseif a:type == "lf"
-        let s:space_move = "silent! lne"
-        let s:shift_space_move = "silent! lN"
-        let s:prefix = ""
-        let s:visual_prefix = ""
+        let s:space_move = ":\<C-u>lne\<CR>"
+        let s:shift_space_move = ":\<C-u>lN\<CR>"
+    endif
+    call <SID>debug_msg("setup_space(type = " . a:type .
+        \ ", command = " . cmd . ")")
+    return cmd
+endfunc
+
+function! s:do_space(shift, default)
+    " <Space>
+    if a:shift == 0
+        if exists("s:space_move")
+            call <SID>debug_msg("do_space(space_move = " . s:space_move . ")")
+            return s:space_move
+        else
+            return a:default
+        endif
+    " <S-Space> and <BS>
+    else
+        if exists("s:shift_space_move")
+            call <SID>debug_msg("do_space(shift_space_move = " .
+                \ s:shift_space_move . ")")
+            return s:shift_space_move
+        else
+            return a:default
+        endif
     endif
 endfunc
 
-function! s:do_space(shift, visual)
-    if a:visual == 0
-        if exists("s:prefix")
-            let l:prefix = s:prefix
-        end
-    else
-        if exists("s:visual_prefix")
-            let l:prefix = s:visual_prefix
-        end
-    endif
-
-    " <Space>
-    if a:shift == 0
-        "echomsg "Called do_space(0)"
-        if exists("s:space_move") && exists("l:prefix")
-            execute l:prefix . s:space_move
-        else
-            execute "norm! <Space>"
-        endif
-    " <S-Space>
-    elseif a:shift == 1
-        "echomsg "Called do_space(1)"
-        if exists("s:shift_space_move") && exists("l:prefix")
-            execute l:prefix . s:shift_space_move
-        else
-            execute "norm! <S-Space>"
-        endif
-    " <BS>
-    else
-        "echomsg "Called do_space(2)"
-        if exists("s:shift_space_move") && exists("l:prefix")
-            execute l:prefix . s:shift_space_move
-        else
-            execute "norm! \<BS>"
-        endif
+function! s:debug_msg(string)
+    if exists("g:space_debug")
+        echomsg a:string
     endif
 endfunc
 

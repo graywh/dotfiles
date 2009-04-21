@@ -2,8 +2,8 @@
 " Author: Will Gray <graywh@gmail.com>
 
 " Options {{{1
-"set all&			" Set everything to the default
-set nocompatible		" Vim is better than Vi
+"set all&                       " Set everything to the default
+set nocompatible                " Vim is better than Vi
 
 " Path Munging {{{2
 if has("win32")
@@ -13,56 +13,56 @@ endif
 silent! call pathogen#runtime_prepend_subdirectories($HOME.'/.vim/bundles')
 
 " Mouse {{{2
-set mouse=a			" Use the mouse for all modes
-set mousehide			" Hide the mouse while typing
-set mousemodel=popup_setpos	" Reposition the cursor on right-click
+set mouse=a                     " Use the mouse for all modes
+set mousehide                   " Hide the mouse while typing
+set mousemodel=popup_setpos     " Reposition the cursor on right-click
 
 " Terminal {{{2
-set title			" Turn on titlebar support
-set ttyscroll=5			" Redraw when scrolling a long ways
-set ttymouse=xterm2		" Assume xterm mouse support
+set title                       " Turn on titlebar support
+set ttyscroll=5                 " Redraw when scrolling a long ways
+set ttymouse=xterm2             " Assume xterm mouse support
 if &term =~ 'xterm' || &term =~ 'screen' || &term =~ 'putty' || &term =~ 'konsole'
-  set ttyfast			" Because no one should have to suffer
+  set ttyfast                   " Because no one should have to suffer
 endif
 
 " Navigation {{{2
-set nostartofline		" Avoid moving the cursor when moving around
-set scrolloff=3			" Leave lines next to window edge
-set showmatch			" Show matching brackets.
-set sidescrolloff=10		" Leave some characters next to window edge
-set virtualedit=onemore		" Allow cursor to be on the newline
+set nostartofline               " Avoid moving the cursor when moving around
+set scrolloff=3                 " Leave lines next to window edge
+set showmatch                   " Show matching brackets.
+set sidescrolloff=10            " Leave some characters next to window edge
+set virtualedit=onemore         " Allow cursor to be on the newline
 
 " Editing {{{2
-set backspace=indent,eol	" More powerful backspacing
-set nrformats=hex,octal,alpha	" Recognize hexadecimal, octal, and characters
-				" for ctrl-a/x
-set textwidth=0			" Don't break lines
-set wrapmargin=0		" Don't break lines based on window size
+set backspace=indent,eol        " More powerful backspacing
+set nrformats=hex,octal,alpha   " Recognize hexadecimal, octal, and characters
+                                " for ctrl-a/x
+set textwidth=0                 " Don't break lines
+set wrapmargin=0                " Don't break lines based on window size
 
 " Formatting {{{2
 set formatoptions=
-set formatoptions+=c		" Format comments
-set formatoptions+=r		" Continue comments by default
-set formatoptions+=o		" Make comment when using o or O
-set formatoptions+=q		" Format comments with gq
-set formatoptions+=n		" Recognize numbered lists
-set formatoptions+=1		" Break before 1-letter words
+set formatoptions+=c            " Format comments
+set formatoptions+=r            " Continue comments by default
+set formatoptions+=o            " Make comment when using o or O
+set formatoptions+=q            " Format comments with gq
+set formatoptions+=n            " Recognize numbered lists
+set formatoptions+=1            " Break before 1-letter words
 
 " Tabs, Indents {{{2
-set autoindent			" Always set autoindenting on
-set expandtab			" Always expand tabs to spaces
-set shiftwidth=4		" Use 4 spaces for each level of indention
-set smarttab			" Use 'sw' at begining of line, 'ts' otherwise
-set softtabstop=8		" To make backspacing over expanded tabs easier
-set tabstop=8			" What tabs are meant to be
+set autoindent                  " Always set autoindenting on
+set expandtab                   " Always expand tabs to spaces
+set shiftwidth=4                " Use 4 spaces for each level of indention
+set smarttab                    " Use 'sw' at begining of line, 'ts' otherwise
+set softtabstop=8               " To make backspacing over expanded tabs easier
+set tabstop=8                   " What tabs are meant to be
 
 " Completion {{{2
-set completeopt=longest		" Start with longest part
-set completeopt+=menu,preview	"  then show a menu
+set completeopt=longest         " Start with longest part
+set completeopt+=menu,preview   "  then show a menu
 
 " Command-line {{{2
-set wildmenu			" Use a menu to show tab-completions
-set wildmode=longest:full,full	" Complete longest, tab through matches
+set wildmenu                    " Use a menu to show tab-completions
+set wildmode=longest:full,full  " Complete longest, tab through matches
 " Suffixes that get lower priority when doing tab completion for filenames.
 " These are files we are not likely to want to edit or read.
 set suffixes=.bak,~,.swp,.swo,.o,.d,.info,.aux,.log,.dvi,.pdf,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.pyc,.pyd,.dll
@@ -76,28 +76,28 @@ if has('multi_byte') && &enc !~ '^u\(tf\|cs\)'
 endif
 
 " Searching, Patterns {{{2
-set ignorecase			" Ignore case when searching
-set incsearch			" Incremental search
-set smartcase			" Search case-insensitive mostly
-set wrapscan			" Searches wrap around end of file
+set ignorecase                  " Ignore case when searching
+set incsearch                   " Incremental search
+set smartcase                   " Search case-insensitive mostly
+set wrapscan                    " Searches wrap around end of file
 
 " Windows, Buffers {{{2
-set hidden			" Allow hiding changed buffers
+set hidden                      " Allow hiding changed buffers
 set switchbuf=useopen,usetab
-set splitbelow			" New window goes below
-set splitright			" New windows goes right
+set splitbelow                  " New window goes below
+set splitright                  " New windows goes right
 
 " Display {{{2
 if has("gui_running") || &t_Co > 16
-  set cursorline		" Highlight the current line
+  set cursorline                " Highlight the current line
 endif
-set foldcolumn=1		" Show top-level fold sections
-set linebreak			" Don't wrap words
-set list			" Add visual clues (disables 'linebreak')
-set number			" Show line numbers
-set wrap			" Wrap long lines
+set foldcolumn=1                " Show top-level fold sections
+set linebreak                   " Don't wrap words
+set list                        " Add visual clues (disables 'linebreak')
+set number                      " Show line numbers
+set wrap                        " Wrap long lines
 
-set listchars=			" Settings for list mode
+set listchars=                  " Settings for list mode
 if has('multi_byte') && (&tenc =~ '^u\(tf\|cs\)' || (empty(&tenc) && &enc =~ '^u\(tf\|cs\)'))
   "set listchars+=eol:§
   set listchars+=tab:>·
@@ -115,21 +115,21 @@ else
 endif
 
 " Messages, Info, Status {{{2
-set laststatus=2		" Always display the statusline
-set ruler			" Show position even without status line
-set showcmd			" Show (partial) command in status line
-set vb t_vb=			" Disable visual and audible bell
+set laststatus=2                " Always display the statusline
+set ruler                       " Show position even without status line
+set showcmd                     " Show (partial) command in status line
+set vb t_vb=                    " Disable visual and audible bell
 
 " Viminfo {{{2
-set history=50			" Keep 50 lines of command line history
-set viminfo=			" Read/write a .viminfo file
-set viminfo+='20		" Remember 20 previously edited files' marks
-set viminfo+=!			" Remember some global variables
-set viminfo+=h			" Don't restore the hlsearch highlighting
+set history=50                  " Keep 50 lines of command line history
+set viminfo=                    " Read/write a .viminfo file
+set viminfo+='20                " Remember 20 previously edited files' marks
+set viminfo+=!                  " Remember some global variables
+set viminfo+=h                  " Don't restore the hlsearch highlighting
 
 " Reading, Writing {{{2
-set modeline			" Let files set their own options
-set fileformats=unix,mac,dos	" End-of-line character
+set modeline                    " Let files set their own options
+set fileformats=unix,mac,dos    " End-of-line character
 
 " Diff mode {{{2
 set diffopt=filler
@@ -138,7 +138,7 @@ set diffopt+=vertical
 set diffopt+=foldcolumn:2
 
 " Other {{{2
-set winaltkeys=no		" Don't use ALT to access the menu
+set winaltkeys=no               " Don't use ALT to access the menu
 
 " Filetype {{{2
 " Enabled file type detection
@@ -155,17 +155,14 @@ colorscheme graywh
 runtime! macros/matchit.vim
 
 " Options {{{2
-let g:tex_flavor = 'pdflatex' " Use pdflatex as the tex compiler
-let g:Twiki_SourceHTMLSyntax = 1 " Let TWiki include HTML syntax
-let g:twiki_highlight_r = 1 " <highlight> tags include R
-let g:twiki_highlight_perl = 0 " <highlight> tags include perl
+let g:tex_flavor = 'pdflatex'           " Use pdflatex as the tex compiler
+let g:Twiki_SourceHTMLSyntax = 1        " Let TWiki include HTML syntax
+let g:twiki_highlight_r = 1             " <highlight> tags include R
+let g:twiki_highlight_perl = 0          " <highlight> tags include perl
 
-let g:Twiki_SourceHTMLSyntax = 1 " Let TWiki include HTML syntax
-let g:twiki_highlight_r = 1 " <highlight> tags include R
-let g:twiki_highlight_perl = 0 " <highlight> tags include perl
-
-" Space.vim {{{3
-let g:space_no_character_movements = 1
+let g:Twiki_SourceHTMLSyntax = 1        " Let TWiki include HTML syntax
+let g:twiki_highlight_r = 1             " <highlight> tags include R
+let g:twiki_highlight_perl = 0          " <highlight> tags include perl
 
 " PHP {{{3
 let g:php_sql_query = 1
