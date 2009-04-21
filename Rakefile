@@ -1,10 +1,10 @@
-# TODO find sensible meaning and use for "force"
 require 'fileutils'
+require 'yaml'
+
+Yobj = YAML::load(File.open('.dotfiles.yaml'))
 
 Home = ENV["HOME"]
-Externals = "externals"
-
-$noop = false
+DownloadCmd = "wget -O"
 
 def stash(&block)
   stash = system("git --no-pager status > /dev/null")
@@ -17,9 +17,11 @@ def stash(&block)
   end
 end
 
-desc "No-act"
-task :dryrun do
-  $noop = true
+def vimdoctags(bundles)
+  puts("updating vim help tags")
+  bundles.each do |bundle|
+    system("vim -c 'helptags #{bundle}/doc' -c 'q'")
+  end
 end
 
 desc "Update master and rebase"
@@ -47,44 +49,29 @@ namespace :externals do
   desc "Initialize externals"
   task :init do
     system("git submodule update --init")
+    vimdoctags(Yobj['VimBundles'])
   end
-
-  desc "Update externals"
-  task :update => ["externals:update:git"]
 
   namespace :update do
     desc "Git submodules"
     task :git do
-      %w{vim-rails vim-ruby vim-surround vim-speeddating vim-git vim-haml}.each do |name|
-        system("cd #{Externals}/#{name}")
-        system("git checkout master")
-        system("git pull")
-        system("cd ../..")
-      end
-    end
-  end
-
-  desc "Merge externals files"
-  task :merge => ["externals:merge:install","externals:merge:plain"]
-
-  namespace :merge do
-    desc "Plain copy"
-    task :plain do
-      %w{vim-haml vim-surround vim-speeddating vim-git}.each do |name|
-        puts "=== #{name} ==="
-        FileUtils.cp_r("#{Externals}/#{name}/.", "../.vim", :noop => $noop)
-      end
+      system("git submodule foreach git checkout master")
+      system("git submodule foreach git pull")
+      vimdoctags(Yobj['VimBundles'])
     end
 
-    desc "Install script"
-    task :install do
-      # Use installation script
-      system("#{Externals}/vim-ruby/bin/vim-ruby-install.rb -d ../.vim")
-      # Install with rake
-      %w{vim-rails}.each do |name|
-        puts "=== #{name} ==="
-        system("cd #{Externals}/#{name}")
-        system("rake install #{Home}")
+    desc "Files"
+    task :files, :pattern do |t, args|
+      files = Yobj['Files']
+      if args.pattern
+        pattern = Regexp.new(args.pattern)
+        files.delete_if do |key, value|
+          not (key =~ pattern)
+        end
+      end
+      files.each do |key, value|
+        puts("downloading #{key}")
+        system("#{DownloadCmd} #{key} #{value}")
       end
     end
   end

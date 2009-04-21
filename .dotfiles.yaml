@@ -1,0 +1,21 @@
+Files:
+    # tpope
+    #.vim/autoload/pathogen.vim: http://git.tpope.net/tpope.git?a=blob_plain;f=.vim/autoload/pathogen.vim;hb=HEAD
+    # godlygeek
+    .vim/plugin/manpageview.vim: http://github.com/godlygeek/vim-files/raw/master/plugin/manpageview.vim
+    .vim/plugin/terminalkeys.vim: http://github.com/godlygeek/vim-files/raw/master/plugin/terminalkeys.vim
+    .vim/plugin/vsearch.vim: http://github.com/godlygeek/vim-files/raw/master/plugin/vsearch.vim
+    # spiiph
+    .vim/plugin/space.vim: http://skota.org/spiff/vim/plugin/space.vim
+    # Dmitry Vasiliev
+    .vim/syntax/python1.vim: http://www.hlabs.spb.ru/vim/python.vim
+    # mattn
+    .vim/plugin/gist.vim: http://github.com/mattn/gist-vim/raw/master/gist.vim
+
+VimBundles:
+    - .vim/bundles/git
+    - .vim/bundles/haml
+    - .vim/bundles/rails
+    - .vim/bundles/ruby
+    - .vim/bundles/speeddating
+    - .vim/bundles/surround
