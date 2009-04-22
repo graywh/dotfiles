@@ -6,6 +6,8 @@
 	ci = commit
 	st = status
 	br = branch
+	log1 = log --pretty=oneline
+	diffi = diff --ignore-all-space
 [color]
 	diff = false
 	pager = false
