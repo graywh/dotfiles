@@ -53,7 +53,7 @@ hi WildMenu             guifg=bg        guibg=#CCCC00
 hi Folded               guifg=#FFCCFF   guibg=#474747   gui=italic
 hi FoldColumn           guifg=#66FFFF   guibg=#474747
 hi DiffAdd                              guibg=#143314
-hi DiffChange                           guibg=#282828
+hi DiffChange                           guibg=#141433
 hi DiffDelete           guifg=fg        guibg=#331414   gui=none
 hi DiffText                             guibg=#333314   gui=none
 hi SignColumn           guifg=#FFFF66   guibg=#474747
@@ -113,7 +113,7 @@ hi WildMenu             ctermfg=bg              ctermbg=Yellow
 hi Folded               ctermfg=Magenta         ctermbg=bg
 hi FoldColumn           ctermfg=Cyan            ctermbg=bg
 hi DiffAdd              ctermfg=Black           ctermbg=DarkGreen
-hi DiffChange                                   ctermbg=DarkGray
+hi DiffChange                                   ctermbg=DarkBlue
 hi DiffDelete           ctermfg=Black           ctermbg=DarkRed
 hi DiffText             ctermfg=Black           ctermbg=DarkYellow      cterm=none
 hi SignColumn           ctermfg=Yellow          ctermbg=bg
