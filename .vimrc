@@ -214,7 +214,9 @@ endif
 command! -range=% UnTrail <line1>,<line2>s/\s\+$//
 
 " Shift the position under the cursor to column N
-command! -nargs=1 Shift exec 'normal '.(<args>-col('.')).'i '
+if has('ex_extra')
+  command! -nargs=1 Shift exec 'normal '.(<args>-col('.')).'i '
+endif
 
 " Save using sudo
 command! SUwrite write !sudo tee %
@@ -260,16 +262,20 @@ noremap ` '
 map Y y$
 
 " Search highlight {{{2
-nnoremap <silent> <F6> :set hlsearch!<CR>:set hlsearch?<CR>
-nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
+if has('extra_search')
+  nnoremap <silent> <F6> :set hlsearch!<CR>:set hlsearch?<CR>
+  nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
+endif
 
 " Autocomplete {{{2
 inoremap <expr> <C-space> pumvisible() \|\| &omnifunc == '' ? "\<C-n>" : "\<C-x>\<C-o>"
 inoremap <C-@> <C-space>
 
 " Add new line indented here {{{2
-nnoremap <silent> <Leader>o :let ospaces=virtcol('.')-1<CR>o<Esc>:exec 'normal '.ospaces.'i '<CR>:.retab!<CR>A
-nnoremap <silent> <Leader>O :let ospaces=virtcol('.')-1<CR>O<Esc>:exec 'normal '.ospaces.'i '<CR>:.retab!<CR>A
+if has('ex_extra')
+  nnoremap <silent> <Leader>o :let ospaces=virtcol('.')-1<CR>o<Esc>:exec 'normal '.ospaces.'i '<CR>:.retab!<CR>A
+  nnoremap <silent> <Leader>O :let ospaces=virtcol('.')-1<CR>O<Esc>:exec 'normal '.ospaces.'i '<CR>:.retab!<CR>A
+endif
 
 " Change to different capitalization {{{2
 "nnoremap <Leader>sc ciw<C-r>=substitute(@", '_\(\w\)', '\u\1', 'g')<CR><Esc>

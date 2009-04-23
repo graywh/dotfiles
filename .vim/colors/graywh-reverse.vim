@@ -1,5 +1,8 @@
 " Vim color file
 " Maintainer:   Will Gray <graywh@gmail.com>
+" GetLatestVimScripts: 2616 1 :AutoInstall: graywh.vim
+"
+" For best results on 88/256-color terminals, I recommend CSApprox.vim by
 " GetLatestVimScripts: xxxx 1 :AutoInstall: graywh-reverse.vim
 
 " Favorite colors {{{1
@@ -57,10 +60,12 @@ hi DiffChange                           guibg=#EBEBCC
 hi DiffDelete           guifg=fg        guibg=#CCEBEB   gui=none
 hi DiffText                             guibg=#CCCCEB   gui=none
 hi SignColumn           guifg=#000099   guibg=#B8B8B8
-hi SpellBad                                             gui=undercurl   guisp=#FF0000
-hi SpellCap                                             gui=undercurl   guisp=#0000FF
-hi SpellRare                                            gui=undercurl   guisp=#FF00FF
-hi SpellLocal                                           gui=undercurl   guisp=#00FFFF
+if version >= 700
+  hi SpellBad                                             gui=undercurl   guisp=#FF0000
+  hi SpellCap                                             gui=undercurl   guisp=#0000FF
+  hi SpellRare                                            gui=undercurl   guisp=#FF00FF
+  hi SpellLocal                                           gui=undercurl   guisp=#00FFFF
+endif
 hi Pmenu                guifg=fg        guibg=#339933
 hi PmenuSel             guifg=fg        guibg=#999999
 hi PmenuSbar            guifg=fg        guibg=#999999
@@ -117,10 +122,12 @@ hi DiffChange                           ctermbg=DarkYellow
 hi DiffDelete   ctermfg=White           ctermbg=DarkCyan
 hi DiffText     ctermfg=White           ctermbg=DarkBlue        cterm=none
 hi SignColumn   ctermfg=Blue            ctermbg=bg
-hi SpellBad                             ctermbg=DarkCyan        cterm=underline
-hi SpellCap                             ctermbg=DarkYellow      cterm=underline
-hi SpellRare                            ctermbg=DarkGreen       cterm=underline
-hi SpellLocal                           ctermbg=DarkRed         cterm=underline
+if version >= 700
+  hi SpellBad                             ctermbg=DarkCyan        cterm=underline
+  hi SpellCap                             ctermbg=DarkYellow      cterm=underline
+  hi SpellRare                            ctermbg=DarkGreen       cterm=underline
+  hi SpellLocal                           ctermbg=DarkRed         cterm=underline
+endif
 hi Pmenu        ctermfg=fg              ctermbg=DarkGreen
 hi PmenuSel     ctermfg=fg              ctermbg=LightGray
 hi PmenuSbar    ctermfg=fg              ctermbg=LightGray

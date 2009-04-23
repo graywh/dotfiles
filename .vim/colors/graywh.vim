@@ -1,6 +1,9 @@
 " Vim color file
 " Maintainer:   Will Gray <graywh@gmail.com>
-" GetLatestVimScripts: xxxx 1 :AutoInstall: graywh.vim
+" GetLatestVimScripts: 2616 1 :AutoInstall: graywh.vim
+"
+" For best results on 88/256-color terminals, I recommend CSApprox.vim by
+" godlygeek.
 
 " Favorite colors {{{1
 " I prefer to use a terminal with color levels of [00, 33, 66, 99, CC, FF]
@@ -57,10 +60,12 @@ hi DiffChange                           guibg=#141433
 hi DiffDelete           guifg=fg        guibg=#331414   gui=none
 hi DiffText                             guibg=#333314   gui=none
 hi SignColumn           guifg=#FFFF66   guibg=#474747
-hi SpellBad                                             gui=undercurl           guisp=#FF0000
-hi SpellCap                                             gui=undercurl           guisp=#0000FF
-hi SpellRare                                            gui=undercurl           guisp=#FF00FF
-hi SpellLocal                                           gui=undercurl           guisp=#00FFFF
+if version >= 700
+  hi SpellBad                                           gui=undercurl           guisp=#FF0000
+  hi SpellCap                                           gui=undercurl           guisp=#0000FF
+  hi SpellRare                                          gui=undercurl           guisp=#FF00FF
+  hi SpellLocal                                         gui=undercurl           guisp=#00FFFF
+endif
 hi Pmenu                guifg=fg        guibg=#CC66CC
 hi PmenuSel             guifg=fg        guibg=#666666
 hi PmenuSbar            guifg=fg        guibg=#666666
@@ -117,10 +122,12 @@ hi DiffChange                                   ctermbg=DarkBlue
 hi DiffDelete           ctermfg=Black           ctermbg=DarkRed
 hi DiffText             ctermfg=Black           ctermbg=DarkYellow      cterm=none
 hi SignColumn           ctermfg=Yellow          ctermbg=bg
-hi SpellBad                                     ctermbg=DarkRed         cterm=underline
-hi SpellCap                                     ctermbg=DarkBlue        cterm=underline
-hi SpellRare                                    ctermbg=DarkMagenta     cterm=underline
-hi SpellLocal                                   ctermbg=DarkCyan        cterm=underline
+if version >= 700
+  hi SpellBad                                   ctermbg=DarkRed         cterm=underline
+  hi SpellCap                                   ctermbg=DarkBlue        cterm=underline
+  hi SpellRare                                  ctermbg=DarkMagenta     cterm=underline
+  hi SpellLocal                                 ctermbg=DarkCyan        cterm=underline
+endif
 hi Pmenu                ctermfg=fg              ctermbg=DarkMagenta
 hi PmenuSel             ctermfg=fg              ctermbg=DarkGray
 hi PmenuSbar            ctermfg=fg              ctermbg=DarkGray
