@@ -5,6 +5,8 @@ Files:
     .vim/plugin/manpageview.vim: http://github.com/godlygeek/vim-files/raw/master/plugin/manpageview.vim
     .vim/plugin/terminalkeys.vim: http://github.com/godlygeek/vim-files/raw/master/plugin/terminalkeys.vim
     .vim/plugin/vsearch.vim: http://github.com/godlygeek/vim-files/raw/master/plugin/vsearch.vim
+    # jamessan
+    .vim/plugin/BufGrep.vim: http://git.jamessan.com/?p=etc/vim.git;a=blob_plain;f=plugin/BufGrep.vim;hb=HEAD
     # spiiph
     .vim/plugin/space.vim: http://skota.org/spiff/vim/plugin/space.vim
     # Dmitry Vasiliev
