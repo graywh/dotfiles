@@ -33,20 +33,22 @@ set sidescrolloff=10            " Leave some characters next to window edge
 set virtualedit=onemore         " Allow cursor to be on the newline
 
 " Editing {{{2
-set backspace=indent,eol        " More powerful backspacing
+set backspace=indent,eol,start  " More powerful backspacing
 set nrformats=hex,octal,alpha   " Recognize hexadecimal, octal, and characters
                                 " for ctrl-a/x
-set textwidth=0                 " Don't break lines
+set textwidth=78                " Seems like a good place to break lines
 set wrapmargin=0                " Don't break lines based on window size
 
 " Formatting {{{2
 set formatoptions=
 set formatoptions+=c            " Format comments
 set formatoptions+=r            " Continue comments by default
-set formatoptions+=o            " Make comment when using o or O
+set formatoptions+=o            " Make comment when using o or O from comment line
 set formatoptions+=q            " Format comments with gq
 set formatoptions+=n            " Recognize numbered lists
 set formatoptions+=1            " Break before 1-letter words
+set formatoptions+=a            " Autoformat paragraphs
+set formatoptions+=2            " Use indent from 2nd line of a paragraph
 
 " Tabs, Indents {{{2
 set autoindent                  " Always set autoindenting on
@@ -91,6 +93,7 @@ set splitright                  " New windows goes right
 if has("gui_running") || &t_Co > 16
   set cursorline                " Highlight the current line
 endif
+set display=lastline            " Show as much as possible of wrapped lines
 set foldcolumn=1                " Show top-level fold sections
 set linebreak                   " Don't wrap words
 set list                        " Add visual clues (disables 'linebreak')
@@ -183,9 +186,17 @@ function! MyFoldText() " {{{2
   let sub1 = substitute(getline(v:foldstart), '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
   let sub1 = substitute(sub1, '\s*$', '')
   let sub2 = substitute(getline(v:foldend), '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
-  let sub2 = substitute(sub2, '^\s*\(.*\)\s*$', '\1')
+  let sub2 = substitute(sub2, '^\s*\(\S.*\S\)\s*$', '\1')
   let lines = v:foldend - v:foldstart + 1
-  return sub1 . '...' . sub2 . ' (' . lines . ' lines) '
+  let text = sub1 . '...' . sub2
+  let text = text[1:min([strlen(text), &columns - &fdc - 15 - strlen(nr2char(lines))])]
+  return text . ' (' . lines . ' lines) '
+endfunction
+
+function! MyFoldIndent() " {{{2
+  let line = substitute(getline(v:lnum), '^\(\s*\).*', '\1', '')
+  let line = substitute(line, '\t', repeat(' ', &tabstop), 'g')
+  return strlen(line) / &shiftwidth
 endfunction
 
 function! TrailingSpace() " {{{2
@@ -201,6 +212,54 @@ function! TrailingSpace() " {{{2
   return b:statusline_trailing_space_warning
 endfunction
 
+function! ShowSynStack() " {{{2
+  if v:version >= 702 || (v:version == 701 && has("patch215"))
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+  else
+    echohl Warning
+    echo 'Not available in this version.'
+    echohl None
+  endif
+endfunction
+
+function! ShowSynIDs() " {{{2
+  let hi = synIDattr(synID(line('.'),col('.'),1),'name')
+  let trans = synIDattr(synID(line('.'),col('.'),0),'name')
+  let lo = synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')
+  echo 'hi<' . hi . '> trans<' . trans . '> lo<' . lo . '>'
+endfunction
+
+function! VisualNavigation() " {{{2
+  if !exists("g:my_visual_navigation_maps")
+    let g:my_visual_navigation_maps=1
+    echomsg 'Enabled visual navigation'
+    setlocal wrap
+    silent! noremap <buffer> <unique> _ g_
+    silent! noremap <buffer> <unique> 0 g0
+    silent! noremap <buffer> <unique> <Home> g<Home>
+    silent! noremap <buffer> <unique> ^ g^
+    silent! noremap <buffer> <unique> $ g$
+    silent! noremap <buffer> <unique> <End> g<End>
+    silent! noremap <buffer> <unique> k gk
+    silent! noremap <buffer> <unique> <Down> g<Down>
+    silent! noremap <buffer> <unique> j gj
+    silent! noremap <buffer> <unique> <Up> g<Up>
+  else
+    unlet g:my_visual_navigation_maps
+    echomsg 'Disabled visual navigation'
+    setlocal wrap<
+    silent! unmap <buffer> _
+    silent! unmap <buffer> 0
+    silent! unmap <buffer> <Home>
+    silent! unmap <buffer> ^
+    silent! unmap <buffer> $
+    silent! unmap <buffer> <End>
+    silent! unmap <buffer> k
+    silent! unmap <buffer> <Down>
+    silent! unmap <buffer> j
+    silent! unmap <buffer> <Up>
+  endif
+endfunction
 " Commands {{{1
 " Compare a modified file to what is saved on disk
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
@@ -283,25 +342,12 @@ endif
 "nnoremap <Leader>cs ciw<C-r>=substitute(@", '[a-z]\zs\([A-Z]\)', '_\l\1', 'g')<CR><Esc>bgul
 
 " Show the syntax highlighting groups for the item under the cursor {{{2
-function! ShowSynStack() " {{{3
-  if v:version >= 702 || (v:version == 701 && has("patch215"))
-    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-  else
-    echohl Warning
-    echo 'Not available in this version.'
-    echohl None
-  endif
-endfunction
-
-function! ShowSynIDs() " {{{3
-  let hi = synIDattr(synID(line('.'),col('.'),1),'name')
-  let trans = synIDattr(synID(line('.'),col('.'),0),'name')
-  let lo = synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')
-  echo 'hi<' . hi . '> trans<' . trans . '> lo<' . lo . '>'
-endfunction
-"}}}3
 nnoremap <silent> <F7> :call ShowSynStack()<CR>
 nnoremap <silent> <F8> :call ShowSynIDs()<CR>
+
+" Command-line navigation {{{2
+cnoremap <C-h> <Left>
+cnoremap <C-f> <Right>
 
 " Arrow keys for window movement {{{2
 nnoremap <silent> <Left> :wincmd h<CR>
@@ -314,6 +360,9 @@ nnoremap <silent> <C-Left> :bp<CR>
 nnoremap <silent> <C-Right> :bn<CR>
 nnoremap <silent> <C-Up> :bp<CR>
 nnoremap <silent> <C-Down> :bn<CR>
+
+" Wrap-based movements {{{2
+nnoremap <silent> <F5> :call VisualNavigation()<CR>
 
 " Mac OS X Terminal.app {{{2
 "map <Esc>[H <Home>

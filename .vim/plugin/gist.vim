@@ -328,7 +328,7 @@ function! s:GistPost(user, token, content, private)
   return res
 endfunction
 
-function! Gist(line1, line2, ...)
+function! s:Gist(line1, line2, ...)
   if !exists('g:github_user')
     let g:github_user = substitute(system('git config --global github.user'), "\n", '', '')
   endif
@@ -409,5 +409,5 @@ function! Gist(line1, line2, ...)
   return 1
 endfunction
 
-command! -nargs=? -range=% Gist :call Gist(<line1>, <line2>, <f-args>)
+command! -nargs=? -range=% Gist call s:Gist(<line1>, <line2>, <f-args>)
 

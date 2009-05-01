@@ -747,5 +747,5 @@ endfunction
 
 " Command to call the function:
 
-com! -range=% -nargs=0 Pastebin :<line1>,<line2>call Pastebin()
+com! -range=% -nargs=0 Pastebin <line1>,<line2>call Pastebin()
 
