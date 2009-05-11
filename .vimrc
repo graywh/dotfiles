@@ -46,9 +46,11 @@ set formatoptions+=r            " Continue comments by default
 set formatoptions+=o            " Make comment when using o or O from comment line
 set formatoptions+=q            " Format comments with gq
 set formatoptions+=n            " Recognize numbered lists
-set formatoptions+=1            " Break before 1-letter words
-set formatoptions+=a            " Autoformat paragraphs
 set formatoptions+=2            " Use indent from 2nd line of a paragraph
+set formatoptions+=l            " Don't break lines that are already long
+set formatoptions+=1            " Break before 1-letter words
+
+set formatlistpat=^\\s*\\(\\d\\+\\\|\\*\\\|-\\)[\\]:.)}\\t\ ]\\s*
 
 " Tabs, Indents {{{2
 set autoindent                  " Always set autoindenting on
@@ -98,16 +100,17 @@ set foldcolumn=1                " Show top-level fold sections
 set linebreak                   " Don't wrap words
 set list                        " Add visual clues (disables 'linebreak')
 set number                      " Show line numbers
+set numberwidth=4
 set wrap                        " Wrap long lines
 
 set listchars=                  " Settings for list mode
 if has('multi_byte') && (&tenc =~ '^u\(tf\|cs\)' || (empty(&tenc) && &enc =~ '^u\(tf\|cs\)'))
   "set listchars+=eol:§
-  set listchars+=tab:>·
+  set listchars+=tab:»·
   set listchars+=nbsp:+
   set listchars+=trail:·
-  set listchars+=extends:»
-  set listchars+=precedes:«
+  set listchars+=extends:→
+  set listchars+=precedes:←
 else
   "set listchars+=eol:$
   set listchars+=tab:>-
@@ -182,21 +185,41 @@ let g:python_highlight_doctests = 1
 "let ruby_fold = 1
 
 " Functions {{{1
+function! SimpleFoldText() " {{{2
+  return getline(v:foldstart) . ' '
+endfunction
+
 function! MyFoldText() " {{{2
-  let sub1 = substitute(getline(v:foldstart), '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
-  let sub1 = substitute(sub1, '\s*$', '')
-  let sub2 = substitute(getline(v:foldend), '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
-  let sub2 = substitute(sub2, '^\s*\(\S.*\S\)\s*$', '\1')
+  let suba = substitute(getline(v:foldstart), '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
+  let suba = substitute(suba, '\s*$', '')
+  let subb = substitute(getline(v:foldend), '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
+  let subb = substitute(subb, '^\s*', '', '')
+  let subb = substitute(subb, '\s*$', '', '')
   let lines = v:foldend - v:foldstart + 1
-  let text = sub1 . '...' . sub2
-  let text = text[1:min([strlen(text), &columns - &fdc - 15 - strlen(nr2char(lines))])]
+  let text = suba . ' ... ' . subb
+  let text = text[0:min([strlen(text), &columns - &fdc - 15 - strlen(nr2char(lines))])]
   return text . ' (' . lines . ' lines) '
 endfunction
 
 function! MyFoldIndent() " {{{2
-  let line = substitute(getline(v:lnum), '^\(\s*\).*', '\1', '')
+  let line = getline(v:lnum)
+  if line =~ '^$'
+    return 0
+  endif
+  let numl = LeadingSpace(line)
+  if line =~ &formatlistpat && &formatoptions =~ 'n'
+    return '>' . ((numl  / &shiftwidth) + 1)
+  endif
+  if (numl % &shiftwidth) > 0 || numl == 0
+    return '='
+  endif
+  return numl / &shiftwidth
+endfunction
+
+function! LeadingSpace(line)
+  let line = substitute(a:line, '^\(\s*\)\S.*$', '\1', '')
   let line = substitute(line, '\t', repeat(' ', &tabstop), 'g')
-  return strlen(line) / &shiftwidth
+  return strlen(line)
 endfunction
 
 function! TrailingSpace() " {{{2
@@ -307,6 +330,8 @@ augroup vimrcEx
   "autocmd CursorHold,BufWritePost * unlet! b:statusline_trailing_space_warning
 
   autocmd BufWritePre ~/.irssi/saved_colors sort i | sort /:/ n
+
+  autocmd BufRead * let &numberwidth = max([float2nr(log10(line('$')))+3, &numberwidth])
 augroup END
 
 " Keymap {{{1

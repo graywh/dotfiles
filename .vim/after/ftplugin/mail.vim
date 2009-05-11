@@ -1,2 +1,2 @@
-setlocal formatoptions=tnl1
+setlocal formatoptions+=t
 setlocal textwidth=70
