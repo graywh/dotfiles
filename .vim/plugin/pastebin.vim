@@ -706,7 +706,7 @@ function! s:ExecutePaste(title, text) "{{{2
   let command .= " ".s:PASTE_PAYLOAD
   let command .= " ".substitute(s:PASTE_NICK, "nickID", g:nickID, "g")
   let command .= " ".substitute(s:PASTE_FORMAT, "textFormat", s:ResolveTextFormat(), "g")
-  let command .= " ".substitute(s:PASTE_TITLE, "titleString", title, "g")
+  let command .= " ".substitute(s:PASTE_TITLE, "titleString", a:title, "g")
   let command .= " ".s:PASTE_URI
 
   let output   = split(system(command, s:PASTE_TEXT_AREA.'='.a:text), '\n')
@@ -739,7 +739,7 @@ function! Pastebin() range
   if (!exists('g:nickID'))
     let g:nickID = inputdialog("Enter your /nick or ID: ", "Anonymous")
   endif
-  let title=inputdialog("Enter a title: ", "Pastebin plugin for Vim post")
+  let title = inputdialog("Enter a title: ", "Pastebin plugin for Vim post")
 
   call s:ExecutePaste(s:StringEncodeURL(title), s:StringEncodeURL(join(getline(a:firstline, a:lastline), "\n")))
 endfunction
