@@ -6,8 +6,9 @@ if [[ -z "${PS1}" ]]; then
 fi
 
 # Terminal stuff {{{1
-if [[ "${COLORTERM}" == "gnome-terminal" && "${TERM}" != screen* ]]; then
+if [[ "${COLORTERM}" == "gnome-terminal" ]]; then
     export TERM="gnome-256color"
+    unset COLORTERM
 fi
 
 #if [[ -n "${STY}" ]]; then
