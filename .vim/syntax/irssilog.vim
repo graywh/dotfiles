@@ -11,7 +11,7 @@ endif
 
 let b:current_syntax = 'irssilog'
 
-setlocal iskeyword+=45,91-96,124
+setlocal iskeyword+=45,91-96,123-125
 
 syntax spell notoplevel
 

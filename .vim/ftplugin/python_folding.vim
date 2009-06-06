@@ -61,10 +61,20 @@ function! GetPythonFold(lnum)
   endif
 
   " Support markers
-  if line =~ "{{{"
-    return 'a1'
-  elseif line =~ "}}}"
-    return 's1'
+  if exists("g:python_folding_markers") && g:python_folding_markers
+    let markers = split(&foldmarker, ',')
+    let m1 = markers[0]
+    let m2 = markers[1]
+    if line =~ m1."\d"
+      return substitute(line, '.*'.m1.'\(\d\).*', '>\1', '')
+    elseif line =~ m2."\d"
+      return substitute(line, '.*'.m2.'\(\d\).*', '>\1', '')
+    endif
+    if line =~ m1
+      return 'a1'
+    elseif line =~ m2
+      return 's1'
+    endif
   endif
 
   " Classes and functions get their own folds
