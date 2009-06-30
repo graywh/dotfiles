@@ -46,7 +46,7 @@ aliases = {
   RUN = "SCRIPT LOAD";
   EXEMPTLIST = "mode $C +e";
   NS = "msg nickserv";
-  DOESNTWORK = "msg vimgor $0 doesn't work";
+  DOESNTWORK = "say vimgor, tell $0 doesn't work";
 };
 
 statusbar = {
