@@ -21,7 +21,7 @@ setopt autopushd pushdignoredups
 # completion
 setopt noalwayslastprompt noautolist noautomenu autonamedirs bashautolist
 # expansion and globbing
-setopt nomarkdirs
+setopt nomarkdirs nonomatch
 # job control
 setopt longlistjobs nohup
 # prompting
