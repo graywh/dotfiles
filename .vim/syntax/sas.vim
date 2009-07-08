@@ -19,8 +19,8 @@ let b:current_syntax = "sas"
 syn case ignore
 syn sync ccomment sasComment
 
-syn region sasString start=+"+  skip=+\\\\\|\\"+  end=+"+ contains=sasMacroVar
-syn region sasString start=+'+  skip=+\\\\\|\\'+  end=+'+
+syn region sasString matchgroup=sasStringDelim start=+"+  skip=+\\\\\|\\"+  end=+"+ contains=sasMacroVar
+syn region sasString matchgroup=sasStringDelim start=+'+  skip=+\\\\\|\\'+  end=+'+
 
 " Want region from 'cards;' to ';' to be captured
 syn region sasCards  start="^\s*CARDS.*" end="^\s*;\s*$"
@@ -168,6 +168,7 @@ if version >= 508 || !exists("did_sas_syntax_inits")
   HiLink  sasLogMsg       Debug
   HiLink  sasCards        Type
   HiLink  sasUnderscore   Special
+  HiLink  sasStringDelim  Special
 
   delcommand HiLink
 endif
