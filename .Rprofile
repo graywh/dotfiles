@@ -1,2 +1,8 @@
-#vim:ft=r
-options(editor = 'vim -c":set ft=r"', tab.width = 4)
+# vim: ft=r
+if (interactive()) {
+    local({
+        options(editor = 'vim',
+                repos = 'http://debian.mc.vanderbilt.edu/R/CRAN/',
+                tab.width = 4)
+    })
+}
