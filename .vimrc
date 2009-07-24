@@ -325,7 +325,9 @@ if has('ex_extra')
 endif
 
 " Save using sudo
-command! SUwrite write !sudo tee %
+if executable('sudo') && executable('dd')
+  command! SUwrite write !sudo dd of=%
+endif
 
 " D'oh
 command! -bang -nargs=? -complete=help H help<bang> <args>
@@ -357,7 +359,9 @@ augroup vimrcEx
     autocmd BufWritePre ~/.irssi/saved_colors sort i | sort /:/ n
   endif
 
-  autocmd BufRead * let &numberwidth = max([float2nr(log10(line('$')))+3, &numberwidth])
+  if exists('*log10')
+    autocmd BufRead * let &numberwidth = max([float2nr(log10(line('$')))+3, &numberwidth])
+  endif
 augroup END
 
 " Keymap {{{1
