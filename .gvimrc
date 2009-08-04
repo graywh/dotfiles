@@ -14,6 +14,7 @@ endif
 " GUI Display {{{2
 set guioptions=aAcegimtv
 set guicursor+=a:blinkon0
+set mousehide                   " Hide the mouse while typing
 set noantialias
 set columns=85
 set lines=40
