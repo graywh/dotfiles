@@ -426,33 +426,33 @@ cnoremap <C-f> <Right>
 
 " Arrow keys for window movement {{{2
 if exists(':wincmd') == 2
-  nnoremap <silent> <Left> :wincmd h<CR>
+  nnoremap <silent> <Left>  :wincmd h<CR>
   nnoremap <silent> <Right> :wincmd l<CR>
-  nnoremap <silent> <Up> :wincmd k<CR>
-  nnoremap <silent> <Down> :wincmd j<CR>
+  nnoremap <silent> <Up>    :wincmd k<CR>
+  nnoremap <silent> <Down>  :wincmd j<CR>
 else
-  nnoremap <silent> <Left> <C-w>h
+  nnoremap <silent> <Left>  <C-w>h
   nnoremap <silent> <Right> <C-w>l
-  nnoremap <silent> <Up> <C-w>k
-  nnoremap <silent> <Down> <C-w>j
+  nnoremap <silent> <Up>    <C-w>k
+  nnoremap <silent> <Down>  <C-w>j
 endif
 
 " Ctrl-Left/Right for buffer cycling {{{2
-nnoremap <silent> <C-Left> :bp<CR>
+nnoremap <silent> <C-Left>  :bp<CR>
 nnoremap <silent> <C-Right> :bn<CR>
-nnoremap <silent> <C-Up> :bp<CR>
-nnoremap <silent> <C-Down> :bn<CR>
+nnoremap <silent> <C-Up>    :bp<CR>
+nnoremap <silent> <C-Down>  :bn<CR>
 
 " Wrap-based movements {{{2
 nnoremap <silent> <F5> :call VisualNavigation()<CR>
 
 " Mac OS X Terminal.app {{{2
-"map <Esc>[H <Home>
-"map <Esc>[F <End>
+"map  <Esc>[H <Home>
+"map  <Esc>[F <End>
 "map! <Esc>[H <Home>
 "map! <Esc>[F <End>
-"map <C-D-\> <Home>
-"map <C-D-[> <End>
+"map  <C-D-\> <Home>
+"map  <C-D-[> <End>
 "map! <C-D-\> <Home>
 "map! <C-D-[> <End>
 
