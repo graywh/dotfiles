@@ -31,7 +31,7 @@ set nostartofline               " Avoid moving the cursor when moving around
 set scrolloff=3                 " Leave lines next to window edge
 set showmatch                   " Show matching brackets.
 set sidescrolloff=10            " Leave some characters next to window edge (w/ nowrap)
-if exists('+virtualedit')
+if exists('&virtualedit')
   set virtualedit=onemore       " Allow cursor to be on the newline
 endif
 
@@ -63,7 +63,7 @@ set softtabstop=8               " To make backspacing over expanded tabs easier
 set tabstop=8                   " What tabs are meant to be
 
 " Completion {{{2
-if exists('+completeopt')
+if exists('&completeopt')
   set completeopt=longest       " Start with longest part
   set completeopt+=menu,preview "  then show a menu
 endif
@@ -91,7 +91,7 @@ set wrapscan                    " Searches wrap around end of file
 
 " Windows, Buffers {{{2
 set hidden                      " Allow hiding changed buffers
-if exists('+switchbuf')
+if exists('&switchbuf')
   set switchbuf=useopen
   try
     set switchbuf+=usetab
@@ -101,11 +101,11 @@ set splitbelow                  " New window goes below
 set splitright                  " New windows goes right
 
 " Display {{{2
-if (has('gui_running') || &t_Co > 16) && exists('+cursorline')
+if (has('gui_running') || &t_Co > 16) && exists('&cursorline')
   set cursorline                " Highlight the current line
 endif
 set display=lastline            " Show as much as possible of wrapped lines
-if exists('+foldcolumn')
+if exists('&foldcolumn')
   set foldcolumn=1              " Show top-level fold sections
 endif
 set linebreak                   " Don't wrap words
@@ -158,7 +158,7 @@ set fileformats=unix,mac,dos    " End-of-line character
 " Diff mode {{{2
 set diffopt=filler
 set diffopt+=iwhite
-if exists('+diffopt')
+if exists('&diffopt')
   set diffopt+=vertical
   set diffopt+=foldcolumn:2
 endif
@@ -458,7 +458,7 @@ nnoremap <silent> <F5> :call VisualNavigation()<CR>
 
 " Terminal Stuff {{{1
 " XXX Fix vim bug when exiting alt screen {{{2
-if exists(':execute') == 2
+if exists(':execute') == 2 && exists('&t_te') && exists('&t_op')
   execute "set t_te=" . &t_te . &t_op
 endif
 
