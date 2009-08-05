@@ -1,7 +1,7 @@
 require 'fileutils'
 require 'yaml'
 
-Yobj = YAML::load(File.open('.dotfiles.yaml'))
+Yobj = YAML::load(File.open('.dotfiles.yml'))
 
 Home = ENV["HOME"]
 DownloadCmd = "wget -O"
