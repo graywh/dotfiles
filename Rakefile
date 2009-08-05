@@ -54,10 +54,21 @@ namespace :externals do
 
   namespace :update do
     desc "Git submodules"
-    task :git do
-      system("git submodule foreach git checkout master")
-      system("git submodule foreach git pull")
-      vimdoctags(Yobj['VimBundles'])
+    task :git, :project do |t, args|
+      projects = Yobj['VimBundles']
+      if args.project
+        pattern = Regexp.new(args.project)
+        projects.delete_if do |value|
+          not (value =~ pattern)
+        end
+        projects.each do |value|
+          system("cd #{value}; git pull")
+        end
+      else
+        system("git submodule foreach git checkout master")
+        system("git submodule foreach git pull")
+      end
+      vimdoctags(projects)
     end
 
     desc "Files"
