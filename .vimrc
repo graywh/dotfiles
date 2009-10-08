@@ -191,6 +191,8 @@ endif
 " Options {{{2
 if exists(':let') == 2
 
+  let g:CSApprox_konsole = 1
+
   let g:tex_flavor = 'pdflatex'         " Use pdflatex as the tex compiler
 
   let g:Twiki_SourceHTMLSyntax = 1      " Let TWiki include HTML syntax

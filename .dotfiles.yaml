@@ -15,6 +15,7 @@ Files:
     .vim/plugin/gist.vim: http://github.com/mattn/gist-vim/raw/master/gist.vim
 
 VimBundles:
+    - .vim/bundles/csapprox
     - .vim/bundles/git
     - .vim/bundles/haml
     - .vim/bundles/rails
