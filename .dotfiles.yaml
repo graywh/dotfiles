@@ -7,8 +7,6 @@ Files:
     .vim/plugin/vsearch.vim: http://github.com/godlygeek/vim-files/raw/master/plugin/vsearch.vim
     # jamessan
     .vim/plugin/BufGrep.vim: http://git.jamessan.com/?p=etc/vim.git;a=blob_plain;f=plugin/BufGrep.vim;hb=HEAD
-    # spiiph
-    .vim/plugin/space.vim: http://skota.org/spiff/vim/plugin/space.vim
     # Dmitry Vasiliev
     .vim/syntax/python1.vim: http://www.hlabs.spb.ru/vim/python.vim
     # mattn
@@ -20,6 +18,7 @@ VimBundles:
     - .vim/bundles/haml
     - .vim/bundles/rails
     - .vim/bundles/ruby
+    - .vim/bundles/space
     - .vim/bundles/speeddating
     - .vim/bundles/surround
     - .vim/bundles/vcscommand
