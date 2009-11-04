@@ -6,17 +6,17 @@
 " godlygeek.
 
 " Favorite colors {{{1
-" I prefer to use a terminal with color levels of [00, 33, 66, 99, CC, FF]
+" I prefer to use a terminal with color levels of [00, 5F, 87, AF, D7, FF]
 " and have used color codes to reflect that.
 "                Light                           Dark
-"       Black    333333 236  8   1E1E1E 234      000000  16 0
-"       Red      FFCCCC 224      FF6666 210  9   CC0000 160 1
-"       Green    CCFFCC 194      66FF66 120 10   00CC00  40 2
-"       Yellow   FFFFCC 230      FFFF66 228 11   CCCC00 184 3
-"       Blue     99CCFF 153      6699FF 111 12   3366CC  68 4
-"       Magenta  FFCCFF 225      FF66FF 213 13   CC00CC 164 5
-"       Cyan     CCFFFF 195      66FFFF 123 14   00CCCC  44 6
-"       Gray     FFFFFF 231 15                   CCCCCC 251 7
+"       Black    5F5F5F 236  8   1E1E1E 234      000000  16 0
+"       Red      FFD7D7 224      FF8787 210  9   D70000 160 1
+"       Green    D7FFD7 194      87FF87 120 10   00D700  40 2
+"       Yellow   FFFFD7 230      FFFF87 228 11   D7D700 184 3
+"       Blue     AFD7FF 153      87AFFF 111 12   5F87D7  68 4
+"       Magenta  FFD7FF 225      FF87FF 213 13   D700D7 164 5
+"       Cyan     D7FFFF 195      87FFFF 123 14   00D7D7  44 6
+"       Gray     FFFFFF 231 15                   D7D7D7 251 7
 " }}}1
 
 " First remove all existing highlighting.
@@ -33,44 +33,44 @@ let colors_name = "graywh"
 hi link Character String
 
 " For GUI {{{1
-hi Normal               guifg=#CCCCCC   guibg=#1E1E1E
+hi Normal               guifg=#D7D7D7   guibg=#1E1E1E
 " Vim {{{2
 hi SpecialKey           guifg=#515151   guibg=bg        gui=none
-hi NonText              guifg=#66FFFF   guibg=#282828   gui=none
-hi Directory            guifg=#009999
-hi ErrorMsg             guifg=#CC0000   guibg=bg
+hi NonText              guifg=#87FFFF   guibg=#282828   gui=none
+hi Directory            guifg=#00AFAF
+hi ErrorMsg             guifg=#D70000   guibg=bg
 hi IncSearch                                            gui=reverse
 hi Search                               guibg=#FFFF00
-hi MoreMsg              guifg=#339966                   gui=bold
+hi MoreMsg              guifg=#5FAF87                   gui=bold
 hi ModeMsg                                              gui=bold
-hi LineNr               guifg=#CCCC99   guibg=#282828
-hi Question             guifg=#33FF33                   gui=bold
+hi LineNr               guifg=#D7D7AF   guibg=#282828
+hi Question             guifg=#5FFF5F                   gui=bold
 hi StatusLine                                           gui=reverse,bold
 hi StatusLineNC                                         gui=reverse
 hi VertSplit                                            gui=reverse
-hi Title                guifg=#FF66FF                   gui=bold
+hi Title                guifg=#FF87FF                   gui=bold
 hi Visual                               guibg=bg        gui=reverse
 hi VisualNOS                                            gui=bold,underline
-hi WarningMsg           guifg=#CCCC00
-hi WildMenu             guifg=bg        guibg=#CCCC00
-hi Folded               guifg=#FFCCFF   guibg=#474747   gui=italic
-hi FoldColumn           guifg=#66FFFF   guibg=#474747
+hi WarningMsg           guifg=#D7D700
+hi WildMenu             guifg=bg        guibg=#D7D700
+hi Folded               guifg=#FFD7FF   guibg=#474747   gui=italic
+hi FoldColumn           guifg=#87FFFF   guibg=#474747
 if v:version >= 600
-hi DiffAdd                              guibg=#143314
-hi DiffChange                           guibg=#141433
-hi DiffDelete           guifg=fg        guibg=#331414   gui=none
-hi DiffText                             guibg=#333314   gui=none
+hi DiffAdd                              guibg=#145F14
+hi DiffChange                           guibg=#14145F
+hi DiffDelete           guifg=fg        guibg=#5F1414   gui=none
+hi DiffText                             guibg=#5F5F14   gui=none
 endif
-hi SignColumn           guifg=#FFFF66   guibg=#474747
+hi SignColumn           guifg=#FFFF87   guibg=#474747
 if v:version >= 700
 hi SpellBad                                             gui=undercurl           guisp=#FF0000
 hi SpellCap                                             gui=undercurl           guisp=#0000FF
 hi SpellRare                                            gui=undercurl           guisp=#FF00FF
 hi SpellLocal                                           gui=undercurl           guisp=#00FFFF
 endif
-hi Pmenu                guifg=fg        guibg=#CC66CC
-hi PmenuSel             guifg=fg        guibg=#666666
-hi PmenuSbar            guifg=fg        guibg=#666666
+hi Pmenu                guifg=fg        guibg=#D787D7
+hi PmenuSel             guifg=fg        guibg=#878787
+hi PmenuSbar            guifg=fg        guibg=#878787
 hi PmenuThumb                                           gui=reverse
 hi TabLine              guifg=bg        guibg=fg        gui=none
 hi TabLineSel           guifg=fg        guibg=bg        gui=bold
@@ -80,22 +80,22 @@ hi CursorLine                           guibg=#282828
 hi Cursor               guifg=bg        guibg=fg
 " Syntax {{{2
 hi lCursor              guifg=bg        guibg=fg
-hi MatchParen                           guibg=#009999
-hi Comment              guifg=#99FF99                   gui=italic
-hi Constant             guifg=#FF9999
-hi String               guifg=#FF99FF
-hi Boolean              guifg=#3366FF                   gui=bold
-hi Identifier           guifg=#99FFFF
-hi Function             guifg=#99CCFF
-hi Statement            guifg=#6699FF                   gui=none
-hi Operator             guifg=#FF9966
-hi PreProc              guifg=#33FFFF                   gui=none
-hi Type                 guifg=#FFFF99                   gui=none
-hi Special              guifg=#FF3333
-hi Underlined           guifg=#9999FF                   gui=underline
+hi MatchParen                           guibg=#00AFAF
+hi Comment              guifg=#AFFFAF                   gui=italic
+hi Constant             guifg=#FFAFAF
+hi String               guifg=#FFAFFF
+hi Boolean              guifg=#5F87FF                   gui=bold
+hi Identifier           guifg=#AFFFFF
+hi Function             guifg=#AFD7FF
+hi Statement            guifg=#87AFFF                   gui=none
+hi Operator             guifg=#FFAF87
+hi PreProc              guifg=#5FFFFF                   gui=none
+hi Type                 guifg=#FFFFAF                   gui=none
+hi Special              guifg=#FF5F5F
+hi Underlined           guifg=#AFAFFF                   gui=underline
 hi Ignore               guifg=bg
-hi Error                guifg=#FFFFFF   guibg=#FF3333
-hi Todo                 guifg=#0000CC   guibg=#FFFF33
+hi Error                guifg=#FFFFFF   guibg=#FF5F5F
+hi Todo                 guifg=#0000D7   guibg=#FFFF5F
 " For 16 color terminals {{{1
 hi Normal               ctermfg=Gray            ctermbg=Black
 " Vim {{{2
