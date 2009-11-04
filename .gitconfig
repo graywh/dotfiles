@@ -33,5 +33,9 @@
 [gui]
 	fontdiff = -family \"DejaVu Sans Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 	spellingdictionary = none
+	editor = gvim
 [push]
 	default = matching
+[cola]
+	fontdiff = DejaVu Sans Mono,10,-1,5,50,0,0,0,0,0
+	fontui = DejaVu Sans,11,-1,5,50,0,0,0,0,0
