@@ -11,6 +11,11 @@ Files:
     .vim/syntax/python1.vim: http://www.hlabs.spb.ru/vim/python.vim
     # mattn
     .vim/plugin/gist.vim: http://github.com/mattn/gist-vim/raw/master/gist.vim
+    # zsh
+    .zsh/functions/_git: http://zsh.cvs.sourceforge.net/viewvc/*checkout*/zsh/zsh/Completion/Unix/Command/_git
+    .zsh/functions/_rake: http://zsh.cvs.sourceforge.net/viewvc/*checkout*/zsh/zsh/Completion/Unix/Command/_rake
+    # plasticboy
+    .vim/syntax/markdown.vim: http://github.com/plasticboy/vim-markdown/raw/master/mkd.vim
 
 VimBundles:
     - .vim/bundles/csapprox
