@@ -28,28 +28,24 @@ set noantialias                 " Don't anti-alias fonts?
 set columns=85
 set lines=40
 set vb t_vb=                    " Disable visual and audible bell
+set winaltkeys=no               " Don't use ALT to access the menu
 
 " MacVim {{{2
 if has('gui_macvim')
   set fuoptions=maxvert,maxhorz " Full-screen mode uses the full screen
 endif
+
 " Keymap {{{1
 " Mouse back/forward {{{2
 nmap <X2Mouse> <C-I>
 nmap <X1Mouse> <C-O>
-"
-" Ctrl-Tab tab navigation {{{2
-"noremap  <C-Tab>   gt
-"noremap  <C-S-Tab> gT
-"inoremap <C-Tab>   <C-O>gt
-"inoremap <C-S-Tab> <C-O>gT
-"
+
 " Shift-arrow visual/display navigation {{{2
 "noremap  <S-Up>   g<Up>
 "noremap  <S-Down> g<Down>
 "inoremap <S-Up>   <C-O>g<Up>
 "inoremap <S-Down> <C-O>g<Down>
-"
+
 " Shift-home/end visual/display navigation {{{2
 "noremap  <S-Home> g<Home>
 "noremap  <S-End>  g<End>

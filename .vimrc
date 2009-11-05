@@ -115,13 +115,15 @@ set display=lastline            " Show as much as possible of wrapped lines
 if exists('&foldcolumn')
   set foldcolumn=1              " Show top-level fold sections
 endif
+set nofoldenable                " Disable folds by default
+set foldmethod=syntax           " Fold by syntax
 set linebreak                   " Don't wrap words
 set list                        " Add visual clues (disables 'linebreak')
 set number                      " Show line numbers
 set numberwidth=4
 set wrap                        " Wrap long lines
 
-set listchars=                  " Settings for list mode
+set listchars=
 if has('multi_byte') && (&tenc =~? '^u\(tf\|cs\)' || (! strlen(&tenc) && &enc =~? '^u\(tf\|cs\)')) && (v:version >= 602 || v:version == 601 && has('patch469'))
   "set listchars+=eol:§
   set listchars+=tab:»·
@@ -153,8 +155,8 @@ set vb t_vb=                    " Disable visual and audible bell
 
 " Viminfo {{{2
 set history=50                  " Keep 50 lines of command line history
-set viminfo=                    " Read/write a .viminfo file
-set viminfo+='20                " Remember 20 previously edited files' marks
+set viminfo=
+set viminfo+='100               " Remember 100 previously edited files' marks
 set viminfo+=!                  " Remember some global variables
 set viminfo+=h                  " Don't restore the hlsearch highlighting
 
@@ -191,14 +193,25 @@ if exists(':colorscheme') == 2
 endif
 
 " Plugins {{{1
-if exists(':runtime') == 2
+if exists(':runtime') == 2 && &loadplugins
   runtime! macros/matchit.vim
 endif
 
 " Options {{{2
 if exists(':let') == 2
 
-  let g:CSApprox_konsole = 1
+  let g:fit_manpages_to_window = 1      " Let man format manpages to fit the window
+
+  let g:php_sql_query = 1
+  let g:php_htmlInStrings = 1
+  let g:php_baselib = 1
+
+  let g:python_highlight_builtins = 1
+  let g:python_highlight_exceptions = 1
+  let g:python_highlight_string_formatting = 1
+  let g:python_highlight_doctests = 1
+
+  "let ruby_fold = 1
 
   let g:tex_flavor = 'pdflatex'         " Use pdflatex as the tex compiler
 
@@ -206,21 +219,7 @@ if exists(':let') == 2
   let g:twiki_highlight_r = 1           " <highlight> tags include R
   let g:twiki_highlight_perl = 0        " <highlight> tags include perl
 
-  let g:fit_manpages_to_window = 1      " Let man format manpages to fit the window
-
-  " PHP {{{3
-  let g:php_sql_query = 1
-  let g:php_htmlInStrings = 1
-  let g:php_baselib = 1
-
-  " Python {{{3
-  let g:python_highlight_builtins = 1
-  let g:python_highlight_exceptions = 1
-  let g:python_highlight_string_formatting = 1
-  let g:python_highlight_doctests = 1
-
-  " Ruby {{{3
-  "let ruby_fold = 1
+  let g:VCSCommandDeleteOnHide = 1
 
 endif
 
@@ -245,11 +244,11 @@ if exists(':function') == 2
 
   function! MyFoldIndent() " {{{2
     let line = getline(v:lnum)
-    if line =~ '^$'
+    if line =~# '^$'
       return 0
     endif
     let numl = LeadingSpace(line)
-    if line =~ &formatlistpat && &formatoptions =~ 'n'
+    if line =~# &formatlistpat && &formatoptions =~# 'n'
       return '>' . ((numl  / &shiftwidth) + 1)
     endif
     if (numl % &shiftwidth) > 0 || numl == 0
@@ -264,17 +263,47 @@ if exists(':function') == 2
     return strlen(line)
   endfunction
 
-  function! TrailingSpace() " {{{2
-    " return '[\s]' if trailing whitespace is detected
+  function! StatusLineTrailingSpaceWarning() " {{{2
+    " return '[\s$]' if trailing whitespace is detected
     " return '' otherwise
     if !exists('b:statusline_trailing_space_warning')
-      if search('\s\+$', 'nw') != 0
-        let b:statusline_trailing_space_warning = '[\s]'
+      if !&readonly && search('\s\+$', 'nw') != 0
+        let b:statusline_trailing_space_warning = '[\s$]'
       else
         let b:statusline_trailing_space_warning = ''
       endif
     endif
     return b:statusline_trailing_space_warning
+  endfunction
+
+  function! StatusLineTabWarning() " {{{2
+    " return '[&et]' if &et is set wrong
+    " return '[mixed-indenting]' if spaces and tabs are used to indent
+    " return an empty string if everything is fine
+    if !exists('b:statusline_tab_warning')
+      if &filetype == 'help'
+        let b:statusline_tab_warning = ''
+      else
+        let tabs = search('^\t', 'nw') != 0
+        let spaces = search('^ ', 'nw') != 0
+        if tabs && spaces
+          let b:statusline_tab_warning = '[mixed-indenting]'
+        elseif (spaces && !&et) || (tabs && &et)
+          let b:statusline_tab_warning = '[&et]'
+        else
+          let b:statusline_tab_warning = ''
+        endif
+      endif
+    endif
+    return b:statusline_tab_warning
+  endfunction
+
+  function! StatusLineEncodingBombWarning() " {{{2
+    if &fenc !~ '^$\|utf-8' || &bomb
+      return '[' . &fenc . (&bomb ? '-bom' : '') . ']'
+    else
+      return ''
+    endif
   endfunction
 
   if exists('*synstack') " {{{2
@@ -322,21 +351,32 @@ if exists(':function') == 2
     endif
   endfunction
 
+  function! LastModified() "{{{2
+    " autocmd BufWritePre * call LastModified()
+    if &modified
+      let save_cursor = getpos(".")
+      silent! keepjumps 1,4s/ Last Modified: \zs.*/\=strftime('%c')/
+      call setpos('.', save_cursor)
+    endif
+  endfunction
+
 endif
 
 " Commands {{{1
 if exists(':command') == 2
 
   " Compare a modified file to what is saved on disk
-  command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+  command! DiffOrig vert new | set bt=nofile bh=wipe |
+        \ read # | 0 delete _ | diffthis | wincmd p | diffthis
+  command! DiffOff only | diffoff | set fdc<
 
   " Replace tabs with 'shiftwidth' spaces
   if has('ex_extra')
-    command! -bang -range=% ReTab let ts=&l:ts | let &l:ts=&sw | <line1>,<line2>retab<bang> | let &l:ts=ts | unlet ts
+    command! -bang -range=% ReTab silent unlet b:statusline_tab_warning | let ts=&l:ts | let &l:ts=&sw | <line1>,<line2>retab<bang> | let &l:ts=ts | unlet ts
   endif
 
   " Remove trailing space
-  command! -range=% UnTrail <line1>,<line2>s/\s\+$//
+  command! -range=% UnTrail silent! unlet b:statusline_trailing_space_warning | <line1>,<line2>s/\s\+$//
 
   " Shift the position under the cursor to column N
   if has('ex_extra')
@@ -354,18 +394,21 @@ if exists(':command') == 2
 endif
 
 " Status line {{{1
-" - buffer number (4 columns, lines up with the line numbers most of the time)
-" - relative filename & path (truncatable)
-" - [Help] flag
-" - [Preview] flag
-" - modified [+] or not modifiable [-] flag
-" - read-only flag [RO]
-" - start left-alignment
-" - filetype
-" - 'set ruler' defaults: line, column [virtual column] percent
-set statusline=%4(%n%)\ %<%f\ %h%w%m%r%=%y\ %-14.(%l,%c%V%)\ %P
-
-" See also TrailingSpace
+set statusline=
+set statusline+=%4(%n%)\                " Buffer number (4 columns, lines up with the line numbers most of the time)
+set statusline+=%<%f\                   " Relative filename & path (truncatable)
+set statusline+=%y%m%r%w                " Flags: filetype, modified/nomodifiable, read-only, preview
+set statusline+=%1*                     " Various warnings
+set statusline+=%{StatusLineTabWarning()}               " Indentation
+set statusline+=%{StatusLineTrailingSpaceWarning()}     " Trailing space
+set statusline+=%{&ff=='unix'?'':'['.&ff.']'}           " &fileformat != 'unix'
+set statusline+=%{StatusLineEncodingBombWarning()}      " &fileencoding, &bomb
+set statusline+=%{&eol?'':'[noeol]'}                    " &noeol
+set statusline+=%*                      " End of warnings section
+set statusline+=%=                      " Separate left from right
+"set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\      " Current highlight group
+"set statusline+=%b,0x%-8B\             " Current character in decimal and hex representation
+set statusline+=%-12(%l,%c%V%)\ %P      " Current line and column, file percentage (set 'ruler')
 
 " Autocommands {{{1
 if has('autocmd')
@@ -373,9 +416,10 @@ if has('autocmd')
     " clear all existing autocmds
     autocmd!
 
-    " recalculate the trailing whitespace warning when idle, and after saving "
-    " use with %{TrailingSpace()} in the statusline
-    "autocmd CursorHold,BufWritePost * unlet! b:statusline_trailing_space_warning
+    " recalculate the trailing whitespace warning when idle, and after writing
+    autocmd CursorHold,BufWritePost * unlet! b:statusline_trailing_space_warning
+    " recalculate the tab warning when idle and after writing
+    autocmd CursorHold,BufWritePost * unlet! b:statusline_tab_warning
 
     if exists(':sort') == 2
       autocmd BufWritePre ~/.irssi/saved_colors sort i | sort /:/ n
@@ -388,12 +432,17 @@ if has('autocmd')
 endif
 
 " Keymap {{{1
+" Disable F1 for help {{{2
+map <F1> <Nop>
+
 " make Q like before {{{2
 map Q gq
 
 " swap ' and ` {{{2
 noremap ' `
 noremap ` '
+noremap g' g`
+noremap g` g'
 
 " make Y like D & C {{{2
 map Y y$
@@ -432,17 +481,10 @@ cnoremap <C-h> <Left>
 cnoremap <C-f> <Right>
 
 " Arrow keys for window movement {{{2
-if exists(':wincmd') == 2
-  nnoremap <silent> <Left>  :wincmd h<CR>
-  nnoremap <silent> <Right> :wincmd l<CR>
-  nnoremap <silent> <Up>    :wincmd k<CR>
-  nnoremap <silent> <Down>  :wincmd j<CR>
-else
-  nnoremap <silent> <Left>  <C-w>h
-  nnoremap <silent> <Right> <C-w>l
-  nnoremap <silent> <Up>    <C-w>k
-  nnoremap <silent> <Down>  <C-w>j
-endif
+nnoremap <silent> <Left>  <C-w>h
+nnoremap <silent> <Right> <C-w>l
+nnoremap <silent> <Up>    <C-w>k
+nnoremap <silent> <Down>  <C-w>j
 
 " Ctrl-Left/Right for buffer cycling {{{2
 nnoremap <silent> <C-Left>  :bp<CR>
@@ -453,15 +495,14 @@ nnoremap <silent> <C-Down>  :bn<CR>
 " Wrap-based movements {{{2
 nnoremap <silent> <F5> :call VisualNavigation()<CR>
 
-" Mac OS X Terminal.app {{{2
-"map  <Esc>[H <Home>
-"map  <Esc>[F <End>
-"map! <Esc>[H <Home>
-"map! <Esc>[F <End>
-"map  <C-D-\> <Home>
-"map  <C-D-[> <End>
-"map! <C-D-\> <Home>
-"map! <C-D-[> <End>
+" Screen {{{2
+map <C-_> <Nop>
+map! <C-_> <Nop>
+
+" Folding {{{2
+for k in ['i', 'm', 'M', 'n', 'N', 'r', 'R', 'v', 'x', 'X']
+  execute "nnoremap <silent> Z".k." :windo normal z".k."<CR>"
+endfor
 
 " Terminal Stuff {{{1
 " XXX Fix vim bug when exiting alt screen {{{2

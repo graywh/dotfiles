@@ -9,9 +9,9 @@
 "               Tables not yet implemented
 
 if version <600
-    syntax clear
-elsif exists("b:current_syntax")
-    finish
+  syntax clear
+elseif exists("b:current_syntax")
+  finish
 endif
 
 " headings
