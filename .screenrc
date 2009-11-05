@@ -11,8 +11,10 @@ escape  # use ^_ for commands and ^_^_ to get ^_ (^_ == ^7)
 # http://osdir.com/ml/gnu.screen.user/2006-06/msg00001.html
 hardstatus off
 hardstatus message
-hardstatus string "* %?%h%:%t%?"
+hardstatus string "%?%h%:%t%?"
 nethack off # don't show stupid messages
+shell zsh
+#shelltitle '% |zsh:'
 startup_message off # no startup message
 term "screen-256color"
 vbell off # don't use visual bell
@@ -41,6 +43,7 @@ bind I
 bind O
 bind }
 
+# screen navigation
 bind h prev
 bind l next
 bind ^^ other

@@ -31,9 +31,9 @@ setopt nobeep
 
 # history
 HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
-setopt appendhistory histignoredups histreduceblanks
+SAVEHIST=10000
+HISTSIZE=10000
+setopt appendhistory histignoredups histreduceblanks sharehistory
 
 # Completion {{{1
 autoload -U compinit
@@ -48,7 +48,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # allows lower->upper
 #zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # adds upper->lower
 
 # Better handling of rake tasks
-zstyle ':completion::complete:rake:*' matcher-list 'r:|[:]=*'
+zstyle ':completion:*' matcher-list 'r:|[:]=*'
 
 # Page long lists
 zstyle ':completion:*' list-prompt '%S%L -- More --%s'
@@ -195,13 +195,20 @@ PS1=${None}'('${Blue}'%?'${None}')--('${Cyan}'%*'${None}')--('${Green}'%n'${None
 function precmd { #{{{2
     # If this is an xterm-alike set the title to user@host:dir
     case ${TERM} in
-    xterm*|gnome*|konsole*|putty*|screen*)
-        print -Pn "\e]0;%n@%m: %~\a"
+        xterm*|gnome*|konsole*|putty*|screen*)
+            print -Pn "\e]0;%n@%m: %~\a"
         ;;
     esac
     if [[ ${TERM} == screen* ]]; then
         print -Pn "\ek\e\\"
     fi
+}
+function preexec { #{{{2
+    #case ${TERM} in
+    #    screen*)
+    #        print -Pn "\ek$1\e\\"
+    #    ;;
+    #esac
 }
 
 # Enable color support of ls and others {{{1

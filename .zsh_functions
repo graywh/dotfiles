@@ -76,7 +76,7 @@ function __xtermtitle {
 }
 
 function __screentitle {
-    print -nP "\ek${1}\e\\"
+    print -nP "\ek${1}\e\\\\"
 }
 
 # moin current revision {{{1
