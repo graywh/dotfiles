@@ -18,12 +18,19 @@ if has('mouse')
 endif
 set mousemodel=popup_setpos     " Reposition the cursor on right-click
 
+" Keyboard {{{2
+set notimeout                   " Don't timeout on mappings
+set ttimeout                    " Timeout on keycodes
+set ttimeoutlen=100             " Keycodes shouldn't take long
+
 " Terminal {{{2
-set title                       " Turn on titlebar support
+"set title                      " Let Vim decide
+"set icon                       " Let Vim decide
 set ttyscroll=5                 " Redraw when scrolling a long ways
-set ttymouse=xterm2             " Assume xterm mouse support
-if &term =~ 'xterm' || &term =~ 'screen' || &term =~ 'putty' || &term =~ 'konsole'
+if &term =~? '^\(xterm\|screen\|putty\|konsole\|gnome\)'
+  let &t_RV="\<Esc>[>c"         " Let Vim check for xterm-compatibility
   set ttyfast                   " Because no one should have to suffer
+  set ttymouse=xterm2           " Assume xterm mouse support
 endif
 
 " Navigation {{{2
@@ -458,20 +465,19 @@ nnoremap <silent> <F5> :call VisualNavigation()<CR>
 
 " Terminal Stuff {{{1
 " XXX Fix vim bug when exiting alt screen {{{2
-if exists(':execute') == 2 && exists('&t_te') && exists('&t_op')
-  execute "set t_te=" . &t_te . &t_op
+if exists('&t_te') && exists('&t_op')
+  let &t_te=&t_te.&t_op
 endif
 
 " Manually set the titlestring escape sequences for any terminal {{{2
 " that hasn't already and is not known to not support them
-if &term !~? '^\v(linux|cons|vt)' && ! strlen(&t_ts) && ! strlen(&t_fs)
-  let &t_ts="\<Esc>]2;"
-  let &t_fs="\x7"
-endif
+"if &term !~? '^\v(linux|cons|vt)' && ! strlen(&t_ts) && ! strlen(&t_fs)
+"  let &t_ts="\<Esc>]2;"
+"  let &t_fs="\x7"
+"endif
 
 " change the xterm cursor color for insert mode {{{2
 if &term =~? '^xterm' && exists('&t_SI')
   let &t_SI="\<Esc>]12;purple\x7"
   let &t_EI="\<Esc>]12;green\x7"
 endif
-

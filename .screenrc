@@ -63,7 +63,7 @@ termcapinfo vt100 "dl=5\E[M"
 termcapinfo xterm*|linux*|rxvt*|Eterm* OP
 
 # tell screen that it can change the title of xterm-alikes
-termcapinfo screen*|xterm*|konsole*|gnome*|putty* "hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007"
+termcapinfo screen*|xterm*|konsole*|gnome*|putty* "hs:ts=\E]0;:fs=\007:ds=\E]0;\007"
 
 # tell screen how to set colors. AB = background, AF = foreground
 #termcapinfo screen*|xterm*|konsole*|gnome*|putty* "Co#256:AB=\E[48;5;%p1%dm:AF=\E[38;5;%p1%dm"

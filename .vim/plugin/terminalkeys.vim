@@ -5,7 +5,7 @@
 " History:       TODO(History Link)
 
 " Abort if running in vi-compatible mode or the user doesn't want us.
-if &cp || exists('g:terminalkeys_loaded') || has("gui_running") || version < 700
+if &cp || exists('g:terminalkeys_loaded') || has("gui_running")
   if &cp && &verbose
     echo "Not loading terminalkeys in compatible mode."
   endif
@@ -47,6 +47,7 @@ function! s:MapArrowKeys()
     else
       call s:MapAllModes(s:FastMap("\eO".letter) . " <" . dir . ">")
     endif
+    call s:MapAllModes(s:FastMap("\eO".tolower(letter)) . " <C-" . dir . ">")
     call s:MapAllModes(s:FastMap("\e[".letter) . " <" . dir . ">")
   endfor
 endfunction
@@ -91,6 +92,8 @@ function! s:MapOthers()
   endif
   call s:MapAllModes(s:FastMap("\e[H")  . " <Home>")
   call s:MapAllModes(s:FastMap("\e[F")  . " <End>")
+  call s:MapAllModes(s:FastMap("\eOH")  . " <Home>")
+  call s:MapAllModes(s:FastMap("\eOF")  . " <End>")
 
   " <Insert>/<Del>/<PageUp>/<PageDown>
   exe "set <Insert>=\<Esc>[2;*~"
