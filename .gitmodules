@@ -21,7 +21,7 @@
 	url = git://repo.or.cz/vcscommand
 [submodule ".vim/bundles/csapprox"]
 	path = .vim/bundles/csapprox
-	url = git://github.com/graywh/csapprox.git
+	url = git://github.com/godlygeek/csapprox.git
 [submodule ".vim/bundles/space"]
 	path = .vim/bundles/space
 	url = git://github.com/spiiph/vim-space.git
