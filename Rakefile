@@ -20,7 +20,7 @@ end
 def vimdoctags(bundles)
   puts("updating vim help tags")
   bundles.each do |bundle|
-    system("vim -c 'helptags #{bundle}/doc' -c 'q'")
+    system("vim -u NONE -U NONE --noplugin -c 'helptags #{bundle}/doc' -c 'q'")
   end
 end
 
