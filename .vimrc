@@ -24,8 +24,8 @@ set ttimeout                    " Timeout on keycodes
 set ttimeoutlen=100             " Keycodes shouldn't take long
 
 " Terminal {{{2
-"set title                      " Let Vim decide
-"set icon                       " Let Vim decide
+set title                       " Let Vim decide
+set icon                        " Let Vim decide
 set ttyscroll=5                 " Redraw when scrolling a long ways
 if &term =~? '^\(xterm\|screen\|putty\|konsole\|gnome\)'
   let &t_RV="\<Esc>[>c"         " Let Vim check for xterm-compatibility
@@ -512,10 +512,12 @@ endif
 
 " Manually set the titlestring escape sequences for any terminal {{{2
 " that hasn't already and is not known to not support them
-"if &term !~? '^\v(linux|cons|vt)' && ! strlen(&t_ts) && ! strlen(&t_fs)
-"  let &t_ts="\<Esc>]2;"
-"  let &t_fs="\x7"
-"endif
+if &term !~? '^\v(linux|cons|vt)' && ! strlen(&t_ts) && ! strlen(&t_fs)
+  let &t_ts="\<Esc>]2;"
+  let &t_fs="\x7"
+  let &t_IS="\<Esc>]1;"
+  let &t_IE="\x7"
+endif
 
 " change the xterm cursor color for insert mode {{{2
 if &term =~? '^xterm' && exists('&t_SI')
