@@ -1,2 +1,13 @@
-load xmpp
-/win 2
+bind -delete meta-up
+bind -delete meta-down
+bind -delete meta-right
+bind -delete meta-left
+bind -delete meta-[O
+bind -delete meta-backspace
+bind -delete meta2-7~
+bind -delete meta2-7\;5~
+bind -delete meta2-8~
+bind -delete meta2-8\;5~
+bind -delete meta2-c
+bind -delete meta2-d
+win 2
