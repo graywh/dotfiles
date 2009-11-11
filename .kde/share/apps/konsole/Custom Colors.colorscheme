@@ -1,96 +1,77 @@
 [Background]
-Bold=false
 Color=20,20,20
 Transparency=false
 
 [BackgroundIntense]
-Bold=false
-Color=51,51,51
+Color=40,40,40
 Transparency=false
 
 [Color0]
-Bold=false
 Color=0,0,0
 Transparency=false
 
 [Color0Intense]
-Bold=false
-Color=102,102,102
+Color=135,135,135
 Transparency=false
 
 [Color1]
-Bold=false
-Color=204,0,0
+Color=215,0,0
 Transparency=false
 
 [Color1Intense]
-Bold=false
-Color=255,102,102
+Color=255,135,135
 Transparency=false
 
 [Color2]
-Bold=false
-Color=0,204,0
+Color=0,215,0
 Transparency=false
 
 [Color2Intense]
-Bold=false
-Color=102,255,102
+Color=135,255,135
 Transparency=false
 
 [Color3]
-Bold=false
-Color=204,204,0
+Color=215,215,0
 Transparency=false
 
 [Color3Intense]
-Bold=false
-Color=255,255,102
+Color=255,255,135
 Transparency=false
 
 [Color4]
-Bold=false
-Color=51,102,204
+Color=95,135,215
 Transparency=false
 
 [Color4Intense]
-Bold=false
-Color=102,153,255
+Color=135,175,255
 Transparency=false
 
 [Color5]
-Bold=false
 Color=204,0,204
 Transparency=false
 
 [Color5Intense]
-Bold=false
-Color=255,102,255
+Color=255,135,255
 Transparency=false
 
 [Color6]
-Bold=false
-Color=0,204,204
+Color=0,215,215
 Transparency=false
 
 [Color6Intense]
-Bold=false
-Color=102,255,255
+Color=135,255,255
 Transparency=false
 
 [Color7]
-Bold=false
-Color=204,204,204
+Color=215,215,215
 Transparency=false
 
 [Color7Intense]
-Bold=false
 Color=255,255,255
 Transparency=false
 
 [Foreground]
-Bold=false
-Color=204,204,204
+Color=215,215,215
 Transparency=false
 
 [ForegroundIntense]
@@ -99,5 +80,5 @@ Color=255,255,255
 Transparency=false
 
 [General]
-Description=PuTTY Colors
+Description=Custom Colors
 Opacity=1
