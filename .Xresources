@@ -11,53 +11,53 @@ XTerm.termName: xterm-256color
 XTerm.toolBar: false
 ! --- VT100 widget {{{2
 ! --- options {{{3
-XTerm.vt100.boldColors: false
-XTerm.vt100.boldMode: true
-XTerm.vt100.colorMode: true
-XTerm.vt100.eightBitControl: false
-XTerm.vt100.eightBitInput: false
-XTerm.vt100.eightBitOutput: true
-XTerm.vt100.faceName: DejaVu\ Sans\ Mono
-XTerm.vt100.faceSize: 10
-XTerm.vt100.geometry: 85x36
-XTerm.vt100.highlightSelection: true
-XTerm.vt100.loginShell: false
-!XTerm.vt100.metaSendsEscape: true
-XTerm.vt100.scrollBar: false
-XTerm.vt100.saveLines: 2048
-XTerm.vt100.rightScrollBar: true
-XTerm.vt100.ttyModes: erase ^?
-XTerm.vt100.underline: true
-XTerm.vt100.utf8: 1
+XTerm*vt100.allowTcapOps: true
+XTerm*vt100.allowWindowOps: true
+XTerm*vt100.backarrowKey: false
+XTerm*vt100.boldColors: false
+XTerm*vt100.boldMode: true
+XTerm*vt100.colorMode: true
+XTerm*vt100.eightBitControl: false
+XTerm*vt100.eightBitInput: false
+XTerm*vt100.eightBitOutput: true
+XTerm*vt100.faceName: DejaVu\ Sans\ Mono
+XTerm*vt100.faceSize: 10
+XTerm*vt100.geometry: 85x36
+XTerm*vt100.highlightSelection: true
+!XTerm*vt100.metaSendsEscape: true
+XTerm*vt100.rightScrollBar: true
+XTerm*vt100.saveLines: 2048
+XTerm*vt100.scrollBar: false
+XTerm*vt100.ttyModes: erase ^?
+XTerm*vt100.underLine: true
+XTerm*vt100.utf8: 1
 ! --- keybindings {{{3
-XTerm.vt100.translations: #override \n\
-    <Key>BackSpace: string(0x7F)
-XTerm.vt100.scrollbar.translations: #override \n\
+XTerm*vt100.scrollbar.translations: #override \n\
     <Btn5Down>: StartScroll(Forward) \n\
     <Btn1Down>: StartScroll(Continuous) MoveThumb() NotifyThumb() \n\
     <Btn4Down>: StartScroll(Backward) \n\
     <Btn1Motion>: MoveThumb() NotifyThumb() \n\
     <BtnUp>: NotifyScroll(Proportional) EndScroll()
 ! --- colors {{{3
-XTerm.vt100.background: rgb:14/14/14
-XTerm.vt100.foreground: rgb:D7/D7/D7
-XTerm.vt100.cursorColor: rgb:5F/ff/5F
-XTerm.vt100.color0: rgb:00/00/00
-XTerm.vt100.color1: rgb:D7/00/00
-XTerm.vt100.color2: rgb:00/D7/00
-XTerm.vt100.color3: rgb:D7/D7/00
-XTerm.vt100.color4: rgb:5F/87/D7
-XTerm.vt100.color5: rgb:D7/00/D7
-XTerm.vt100.color6: rgb:00/D7/D7
-XTerm.vt100.color7: rgb:D7/D7/D7
-XTerm.vt100.color8: rgb:87/87/87
-XTerm.vt100.color9: rgb:ff/87/87
-XTerm.vt100.color10: rgb:87/ff/87
-XTerm.vt100.color11: rgb:ff/ff/87
-XTerm.vt100.color12: rgb:87/AF/ff
-XTerm.vt100.color13: rgb:ff/87/ff
-XTerm.vt100.color14: rgb:87/ff/ff
-XTerm.vt100.color15: rgb:ff/ff/ff
+XTerm*vt100.background: rgb:14/14/14
+XTerm*vt100.foreground: rgb:D7/D7/D7
+XTerm*vt100.cursorColor: rgb:5F/ff/5F
+XTerm*vt100.color0: rgb:00/00/00
+XTerm*vt100.color1: rgb:D7/00/00
+XTerm*vt100.color2: rgb:00/D7/00
+XTerm*vt100.color3: rgb:D7/D7/00
+XTerm*vt100.color4: rgb:5F/87/D7
+XTerm*vt100.color5: rgb:D7/00/D7
+XTerm*vt100.color6: rgb:00/D7/D7
+XTerm*vt100.color7: rgb:D7/D7/D7
+XTerm*vt100.color8: rgb:87/87/87
+XTerm*vt100.color9: rgb:ff/87/87
+XTerm*vt100.color10: rgb:87/ff/87
+XTerm*vt100.color11: rgb:ff/ff/87
+XTerm*vt100.color12: rgb:87/AF/ff
+XTerm*vt100.color13: rgb:ff/87/ff
+XTerm*vt100.color14: rgb:87/ff/ff
+XTerm*vt100.color15: rgb:ff/ff/ff
 ! }}}1
 
 ! vim: fdm=marker
