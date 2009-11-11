@@ -1,16 +1,3 @@
-
-# If not running interactively, don't do anything
-# Important for ssh+svn support
-if [[ -z ${PS1} ]]; then
-    return
-fi
-
-# Terminal stuff {{{1
-if [[ ${COLORTERM} == "gnome-terminal" ]]; then
-    export TERM="gnome-256color"
-    unset COLORTERM
-fi
-
 #if [[ -n ${STY} ]]; then
 #    screen -X "shelltitle '% |zsh:'"
 #fi
@@ -242,4 +229,4 @@ if [[ -f ${HOME}"/.zshrc.local" ]]; then
     source ${HOME}"/.zshrc.local"
 fi
 
-# vim: fdm=marker
+# vim: fdm=marker fen
