@@ -1,8 +1,14 @@
 source .screenrc
+
+attrcolor b "-b .I"
 caption splitonly
 hardstatus string "irssi"
-attrcolor b "-b .I"
 sessionname irssi
+
 screen irssi
+
+# tell screen that it can change the title of xterm-alikes
+# change both title and icon in this case
+termcapinfo screen*|xterm*|konsole*|gnome*|putty* "hs:ts=\E]0;:fs=\007:ds=\E]0;\007"
 
 # vim: ft=screen
