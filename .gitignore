@@ -25,6 +25,7 @@
 !/.screenrc-irssi
 !/.subversion/config
 !/.vim/
+# See .vim/.gitignore
 !/.vimrc
 !/.Xdefaults
 !/.Xmodmap
