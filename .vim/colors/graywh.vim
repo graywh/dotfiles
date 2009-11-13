@@ -33,17 +33,18 @@ let colors_name = "graywh"
 hi link Character String
 
 " For GUI {{{1
-hi Normal               guifg=#D7D7D7   guibg=#1E1E1E
+hi Normal               guifg=#D7D7D7   guibg=#1C1C1C
+
 " Vim {{{2
 hi SpecialKey           guifg=#515151   guibg=bg        gui=none
-hi NonText              guifg=#87FFFF   guibg=#282828   gui=none
+hi NonText              guifg=#87FFFF   guibg=#262626   gui=none
 hi Directory            guifg=#00AFAF
 hi ErrorMsg             guifg=#D70000   guibg=bg
 hi IncSearch                                            gui=reverse
 hi Search                               guibg=#FFFF00
 hi MoreMsg              guifg=#5FAF87                   gui=bold
 hi ModeMsg                                              gui=bold
-hi LineNr               guifg=#D7D7AF   guibg=#282828
+hi LineNr               guifg=#D7D7AF   guibg=#262626
 hi Question             guifg=#5FFF5F                   gui=bold
 hi StatusLine                                           gui=reverse,bold
 hi StatusLineNC                                         gui=reverse
@@ -53,21 +54,25 @@ hi Visual                               guibg=bg        gui=reverse
 hi VisualNOS                                            gui=bold,underline
 hi WarningMsg           guifg=#D7D700
 hi WildMenu             guifg=bg        guibg=#D7D700
-hi Folded               guifg=#FFD7FF   guibg=#474747   gui=italic
-hi FoldColumn           guifg=#87FFFF   guibg=#474747
+hi Folded               guifg=#FFD7FF   guibg=#444444   gui=italic
+hi FoldColumn           guifg=#87FFFF   guibg=#444444
+
 if v:version >= 600
-hi DiffAdd                              guibg=#145F14
-hi DiffChange                           guibg=#14145F
-hi DiffDelete           guifg=fg        guibg=#5F1414   gui=none
-hi DiffText                             guibg=#5F5F14   gui=none
+  hi DiffAdd                              guibg=#123012
+  hi DiffChange                           guibg=#121230
+  hi DiffDelete           guifg=fg        guibg=#301212   gui=none
+  hi DiffText                             guibg=#303012   gui=none
 endif
-hi SignColumn           guifg=#FFFF87   guibg=#474747
+
+hi SignColumn           guifg=#FFFF87   guibg=#444444
+
 if v:version >= 700
-hi SpellBad                                             gui=undercurl           guisp=#FF0000
-hi SpellCap                                             gui=undercurl           guisp=#0000FF
-hi SpellRare                                            gui=undercurl           guisp=#FF00FF
-hi SpellLocal                                           gui=undercurl           guisp=#00FFFF
+  hi SpellBad                                             gui=undercurl           guisp=#FF0000
+  hi SpellCap                                             gui=undercurl           guisp=#0000FF
+  hi SpellRare                                            gui=undercurl           guisp=#FF00FF
+  hi SpellLocal                                           gui=undercurl           guisp=#00FFFF
 endif
+
 hi Pmenu                guifg=fg        guibg=#D787D7
 hi PmenuSel             guifg=fg        guibg=#878787
 hi PmenuSbar            guifg=fg        guibg=#878787
@@ -75,9 +80,10 @@ hi PmenuThumb                                           gui=reverse
 hi TabLine              guifg=bg        guibg=fg        gui=none
 hi TabLineSel           guifg=fg        guibg=bg        gui=bold
 hi TabLineFill          guifg=fg        guibg=bg        gui=reverse
-hi CursorColumn                         guibg=#282828
-hi CursorLine                           guibg=#282828
+hi CursorColumn                         guibg=#262626
+hi CursorLine                           guibg=#262626
 hi Cursor               guifg=bg        guibg=fg
+
 " Syntax {{{2
 hi lCursor              guifg=bg        guibg=fg
 hi MatchParen                           guibg=#00AFAF
@@ -96,8 +102,10 @@ hi Underlined           guifg=#AFAFFF                   gui=underline
 hi Ignore               guifg=bg
 hi Error                guifg=#FFFFFF   guibg=#FF5F5F
 hi Todo                 guifg=#0000D7   guibg=#FFFF5F
+
 " For 16 color terminals {{{1
 hi Normal               ctermfg=Gray            ctermbg=Black
+
 " Vim {{{2
 hi SpecialKey           ctermfg=DarkGray
 hi NonText              ctermfg=Cyan
@@ -119,19 +127,23 @@ hi WarningMsg           ctermfg=DarkYellow
 hi WildMenu             ctermfg=bg              ctermbg=Yellow
 hi Folded               ctermfg=Magenta         ctermbg=bg
 hi FoldColumn           ctermfg=Cyan            ctermbg=bg
+
 if v:version >= 600
-hi DiffAdd              ctermfg=Black           ctermbg=DarkGreen
-hi DiffChange                                   ctermbg=DarkBlue
-hi DiffDelete           ctermfg=Black           ctermbg=DarkRed
-hi DiffText             ctermfg=Black           ctermbg=DarkYellow      cterm=none
+  hi DiffAdd              ctermfg=Black           ctermbg=DarkGreen
+  hi DiffChange                                   ctermbg=DarkBlue
+  hi DiffDelete           ctermfg=Black           ctermbg=DarkRed
+  hi DiffText             ctermfg=Black           ctermbg=DarkYellow      cterm=none
 endif
+
 hi SignColumn           ctermfg=Yellow          ctermbg=bg
+
 if v:version >= 700
-hi SpellBad                                     ctermbg=DarkRed         cterm=underline
-hi SpellCap                                     ctermbg=DarkBlue        cterm=underline
-hi SpellRare                                    ctermbg=DarkMagenta     cterm=underline
-hi SpellLocal                                   ctermbg=DarkCyan        cterm=underline
+  hi SpellBad                                     ctermbg=DarkRed         cterm=underline
+  hi SpellCap                                     ctermbg=DarkBlue        cterm=underline
+  hi SpellRare                                    ctermbg=DarkMagenta     cterm=underline
+  hi SpellLocal                                   ctermbg=DarkCyan        cterm=underline
 endif
+
 hi Pmenu                ctermfg=fg              ctermbg=DarkMagenta
 hi PmenuSel             ctermfg=fg              ctermbg=DarkGray
 hi PmenuSbar            ctermfg=fg              ctermbg=DarkGray
@@ -141,6 +153,7 @@ hi TabLineSel                                                           cterm=bo
 hi TabLineFill                                                          cterm=reverse
 hi CursorColumn                                 ctermbg=DarkGray
 hi CursorLine                                                           cterm=underline
+
 " Syntax {{{2
 hi MatchParen                                   ctermbg=DarkCyan
 hi Comment              ctermfg=Green
@@ -158,7 +171,8 @@ hi Underlined           ctermfg=Magenta                                 cterm=un
 hi Ignore               ctermfg=bg
 hi Error                ctermfg=White           ctermbg=Red
 hi Todo                 ctermfg=DarkBlue        ctermbg=Yellow
+
 " 8-color terminal extras {{{2
 if &t_Co == 8
-hi Identifier                                                           cterm=bold
+  hi Identifier                                                           cterm=bold
 endif
