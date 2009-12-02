@@ -405,7 +405,7 @@ set statusline+=%{&ff=='unix'?'':'['.&ff.']'}           " &fileformat != 'unix'
 set statusline+=%{StatusLineEncodingBombWarning()}      " &fileencoding, &bomb
 set statusline+=%{&eol?'':'[noeol]'}                    " &noeol
 set statusline+=%*                      " End of warnings section
-set statusline+=%=                      " Separate left from right
+set statusline+=%=\                     " Separate left from right
 "set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\      " Current highlight group
 "set statusline+=%b,0x%-8B\             " Current character in decimal and hex representation
 set statusline+=%-12(%l,%c%V%)\ %P      " Current line and column, file percentage (set 'ruler')
