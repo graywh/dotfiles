@@ -6,7 +6,7 @@
 	ci = commit
 	st = status
 	br = branch
-	log1 = log --pretty=oneline
+	log1 = log --pretty=oneline --abbrev-commit
 	diffi = diff --ignore-all-space
 [color]
 	diff = false
