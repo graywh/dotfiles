@@ -59,7 +59,7 @@ set formatoptions+=2            " Use indent from 2nd line of a paragraph
 set formatoptions+=l            " Don't break lines that are already long
 set formatoptions+=1            " Break before 1-letter words
 
-set formatlistpat=^\\s*\\(\\d\\+\\\|\\*\\\|-\\)[\\]:.)}\\t\ ]\\s*
+set formatlistpat=^\\s*\\(\\d\\+\\\|\\*\\\|-\\\|•\\)[\\]:.)}\\t\ ]\\s*
 
 " Tabs, Indents {{{2
 set autoindent                  " Always set autoindenting on
