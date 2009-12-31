@@ -175,11 +175,24 @@ else
     # }}}
 fi
 #}}}2
+# VCS Info {{{2
+#autoload -Uz vcs_info && vcs_info
+#zstyle ':vcs_info:*' enable svn git hg
+#zstyle ':vcs_info:*' check-for-changes false
+#zstyle ':vcs_info:*' stagedstr "${Green}+${None}"
+#zstyle ':vcs_info:*' unstagedstr "${Red}!${None}"
+#zstyle ':vcs_info:*' actionformats " ${Yellow}%b%c%u${Yellow}|%a"
+#zstyle ':vcs_info:*' formats " ${Yellow}%b%c%u"
+#zstyle ':vcs_info:*' branchformat "%b:%r"
+#zstyle ':vcs_info:*:*:graywh' disable-patterns "$HOME(/*)"
+# }}}2
+#PS1=${None}'('${Blue}'%?'${None}')--('${Cyan}'%*'${None}')--('${Green}'%n'${None}'@'${Magenta}'%m'${None}')--('${Red}'%~'${None}'$vcs_info_msg_0_'${None}')'${None}"
 PS1=${None}'('${Blue}'%?'${None}')--('${Cyan}'%*'${None}')--('${Green}'%n'${None}'@'${Magenta}'%m'${None}')--('${Red}'%~'${None}${Yellow}'$(___git_ps1)'${None}')'${None}"
 "'%# '
 
 # Functions {{{1
 function precmd { #{{{2
+    #vcs_info
     # If this is an xterm-alike set the title to user@host:dir
     case ${TERM} in
         xterm*|gnome*|konsole*|putty*|screen*)
