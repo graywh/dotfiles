@@ -1,6 +1,6 @@
 Files:
     # tpope
-    #.vim/autoload/pathogen.vim: http://git.tpope.net/tpope.git?a=blob_plain;f=.vim/autoload/pathogen.vim;hb=HEAD
+    .vim/autoload/pathogen.vim: http://github.com/tpope/vim-pathogen/raw/master/autoload/pathogen.vim
     # godlygeek
     .vim/plugin/manpageview.vim: http://github.com/godlygeek/vim-files/raw/master/plugin/manpageview.vim
     .vim/plugin/terminalkeys.vim: http://github.com/godlygeek/vim-files/raw/master/plugin/terminalkeys.vim
