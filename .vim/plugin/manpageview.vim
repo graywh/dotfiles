@@ -26,11 +26,11 @@ function! s:ReadManPage(topic)
   " removing backspaces from the file.  Doesn't expand right, either.
   " Note: This should have no effect on non-Linux systems.
 
-  let cmdline = 'env MAN_KEEP_FORMATTING=1 MANPAGER= PAGER= '
+  let cmdline = 'env MAN_KEEP_FORMATTING=1 '
   if exists('g:fit_manpages_to_window') && g:fit_manpages_to_window
     let cmdline .= printf('COLUMNS=%d MANWIDTH=%d ', winwidth(0), winwidth(0))
   endif
-  let cmdline .= 'man ' . a:topic
+  let cmdline .= 'man -Pcat ' . a:topic
   let cmdline .= ' | col'
 
   " See if 'col' accepts the '-p' switch
