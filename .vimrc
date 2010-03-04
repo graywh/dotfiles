@@ -45,7 +45,9 @@ set scrolloff=3                 " Leave lines next to window edge
 set showmatch                   " Show matching brackets.
 set sidescrolloff=10            " Leave some characters next to window edge (w/ nowrap)
 if exists('&virtualedit')
-  set virtualedit=onemore       " Allow cursor to be on the newline
+  if v:version >= 700
+    set virtualedit=onemore     " Allow cursor to be on the newline
+  endif
 endif
 
 " Editing {{{2
@@ -65,7 +67,9 @@ set formatoptions+=2            " Use indent from 2nd line of a paragraph
 set formatoptions+=l            " Don't break lines that are already long
 set formatoptions+=1            " Break before 1-letter words
 
-set formatlistpat=^\\s*\\(\\d\\+\\\|\\*\\\|-\\\|•\\)[\\]:.)}\\t\ ]\\s*
+if exists('&formatlistpat')
+  set formatlistpat=^\\s*\\(\\d\\+\\\|\\*\\\|-\\\|•\\)[\\]:.)}\\t\ ]\\s*
+endif
 
 " Tabs, Indents {{{2
 set autoindent                  " Always set autoindenting on
@@ -106,9 +110,9 @@ set wrapscan                    " Searches wrap around end of file
 set hidden                      " Allow hiding changed buffers
 if exists('&switchbuf')
   set switchbuf=useopen
-  try
+  if v:version >= 700
     set switchbuf+=usetab
-  endtry
+  endif
 endif
 set splitbelow                  " New window goes below
 set splitright                  " New windows goes right
@@ -127,16 +131,18 @@ set foldminlines=0              " Allow folding single lines
 set linebreak                   " Don't wrap words
 set list                        " Add visual clues (disables 'linebreak')
 set number                      " Show line numbers
-set numberwidth=4
+if exists('&numberwidth')
+  set numberwidth=4
+endif
 set wrap                        " Wrap long lines
 
 set listchars=
 if has('multi_byte') && (&tenc =~? '^u\(tf\|cs\)' || (! strlen(&tenc) && &enc =~? '^u\(tf\|cs\)')) && (v:version >= 602 || v:version == 601 && has('patch469'))
   "set listchars+=eol:§
   set listchars+=tab:»·
-  try
+  if v:version >= 700
     set listchars+=nbsp:+
-  endtry
+  endif
   set listchars+=trail:·
   set listchars+=extends:→
   set listchars+=precedes:←
@@ -146,9 +152,9 @@ else
     "set listchars+=eol:$
   endif
   set listchars+=tab:>-
-  try
+  if v:version >= 700
     set listchars+=nbsp:+
-  endtry
+  endif
   set listchars+=trail:.
   set listchars+=extends:>
   set listchars+=precedes:<
@@ -172,11 +178,13 @@ set modeline                    " Let files set their own options
 set fileformats=unix,mac,dos    " End-of-line character
 
 " Diff mode {{{2
-set diffopt=filler
-set diffopt+=iwhite
 if exists('&diffopt')
-  set diffopt+=vertical
-  set diffopt+=foldcolumn:2
+  set diffopt=filler
+  set diffopt+=iwhite
+  if v:version >= 700
+    set diffopt+=vertical
+    set diffopt+=foldcolumn:2
+  endif
 endif
 
 " Other {{{2
@@ -508,9 +516,11 @@ map <C-_> <Nop>
 map! <C-_> <Nop>
 
 " Folding {{{2
-for k in ['i', 'm', 'M', 'n', 'N', 'r', 'R', 'v', 'x', 'X']
-  execute "nnoremap <silent> Z".k." :windo normal z".k."<CR>"
-endfor
+if exists(':for')
+  for k in ['i', 'm', 'M', 'n', 'N', 'r', 'R', 'v', 'x', 'X']
+    execute "nnoremap <silent> Z".k." :windo normal z".k."<CR>"
+  endfor
+endif
 
 " Terminal Stuff {{{1
 map <C-@> <C-space>
