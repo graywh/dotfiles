@@ -14,6 +14,7 @@ Files:
     # zsh
     .zsh/functions/_git: http://zsh.cvs.sourceforge.net/viewvc/*checkout*/zsh/zsh/Completion/Unix/Command/_git
     .zsh/functions/_rake: http://zsh.cvs.sourceforge.net/viewvc/*checkout*/zsh/zsh/Completion/Unix/Command/_rake
+    .zsh/functions/_tmux: http://zsh.cvs.sourceforge.net/viewvc/*checkout*/zsh/zsh/Completion/Unix/Command/_tmux
     # plasticboy
     .vim/syntax/markdown.vim: http://github.com/plasticboy/vim-markdown/raw/master/mkd.vim
 

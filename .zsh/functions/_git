@@ -1,4 +1,4 @@
-#compdef git git-add git-am git-annotate git-apply git-applymbox git-applypatch git-archimport git-archive git-bisect git-blame git-branch git-cat-file git-check-attr git-check-ref-format git-checkout git-checkout-index git-cherry git-cherry-pick git-clean git-clone git-clone-pack git-commit git-commit-tree git-convert-objects git-count-objects git-cvsexportcommit git-cvsimport git-cvsserver git-daemon git-describe git-diff git-diff-files git-diff-index git-diff-stages git-diff-tree git-fast-import git-fetch git-fetch-pack git-fmt-merge-msg git-for-each-ref git-format-patch git-fsck git-gc git-get-tar-commit-id git-grep git-hash-object git-http-fetch git-http-push git-imap-send git-index-pack git-init git-instaweb git-local-fetch git-log git-lost-found git-ls-files git-ls-remote git-ls-tree git-mailinfo git-mailsplit git-merge git-merge-base git-merge-file git-merge-index git-merge-one-file git-merge-tree git-mergetool git-mktag git-mktree git-mv git-name-rev git-pack-objects git-pack-redundant git-pack-refs git-patch-id git-peek-remote git-prune git-prune-packed git-pull git-push git-quiltimport git-read-tree git-rebase git-receive-pack git-reflog git-relink git-remote git-repack gut-runstatus git-config git-request-pull git-rerere git-reset git-rev-list git-rev-parse git-revert git-rm git-send-email git-send-pack git-sh-setup git-shell git-shortlog git-show git-show-branch git-show-index git-show-ref git-ssh-fetch git-ssh-upload git-status git-stripspace git-svn git-svnimport git-symbolic-ref git-tag git-tar-tree git-unpack-file git-unpack-objects git-update-index git-update-ref git-update-server-info git-upload-archive git-upload-pack git-var git-verify-pack git-verify-tag git-whatchanged git-write-tree
+#compdef git git-cvsserver git-receive-pack git-upload-archive git-upload-pack git-shell
 
 # TODO: All if (( words[(I)-option] )) should be turned into
 # if (( words[(I)-option] > 0 && words[(I)-option] < CURRENT )), as the user
@@ -225,6 +225,7 @@ _git_commands () {
     'mktag:create tag object'
     'mktree:build tree-object from ls-tree formatted text'
     'name-rev:find symbolic names for given revisions'
+    'notes:add/inspect commit notes'
     'pack-objects:create packed archive of objects'
     'pack-redundant:find redundant pack files'
     'pack-refs:pack heads and tags for efficient repository access'
@@ -996,6 +997,37 @@ _git-name-rev () {
     '(--stdin :)--all[list all commits reachable from all refs]' \
     '(--all :)--stdin[read from stdin and append revision-name]' \
     '(--stdin --all)*:commit-ish:__git_revisions' && ret=0
+}
+
+(( $+functions[_git-notes] )) ||
+_git-notes () {
+  local expl
+  local -a notes_cmds
+
+  notes_cmds=(
+    edit:"edit note"
+    show:"show commit note"
+  )
+
+  if (( CURRENT == 2 )); then
+    _describe -t command "git-notes commands" notes_cmds && ret=0
+  else
+    case $words[2] in
+      (show)
+        _arguments \
+          '*:commit id:__git_commits' && ret=0
+        ;;
+      (edit)
+        _arguments \
+          '-F[use file'\''s contents as the commit note]:file:_path_files' \
+          '-m[use the given message as the commit note]:message' \
+          '*:commit id:__git_commits' && ret=0
+        ;;
+      (*)
+        _nothing
+        ;;
+    esac
+  fi
 }
 
 (( $+functions[_git-pack-redundant] )) ||
@@ -2813,19 +2845,70 @@ __git_stages () {
   __git_guard $* "[[:digit:]]#" 'stage'
 }
 
+(( $+functions[__git_files_relative] )) ||
+__git_files_relative () {
+  local rawfiles files file f_parts prefix p_parts tmp
+
+  prefix=$(_call_program gitprefix git rev-parse --show-prefix 2>/dev/null)
+  __git_command_successful || return
+
+  # Empty prefix, no modifications
+  if (( $#prefix == 0 )); then
+    print $1
+    return
+  fi
+
+  rawfiles=(${(ps:\0:)1})
+  files=()
+
+  # Now we assume that we've given "absolute" paths list with "root"
+  # being repository top directory.  $prefix is also "absolute" path.
+  for file in $rawfiles; do
+    # Collapse "/./" and "//", strip "/." and "/" from tail (I know,
+    # this is a bit paranoid).
+    f_parts=(${(s:/:)"${${${${file//\/\///}//\/.\///}%%/.}%%/}"})
+    p_parts=(${(s:/:)"${${${${prefix//\/\///}//\/.\///}%%/.}%%/}"})
+    tmp=()
+
+    # Strip common path prefix.
+    while (( $#f_parts > 0 )) && (( $#p_parts > 0 )) && [[ $f_parts[1] == $p_parts[1] ]]; do
+      f_parts[1]=()
+      p_parts[1]=()
+    done
+
+    # If prefix still not empty, ascend up.
+    while (( $#p_parts > 0 )); do
+	tmp+=..
+	p_parts[1]=()
+    done
+
+    # Add remaining path.
+    tmp=("$tmp[@]" "$f_parts[@]")
+
+    files+=${(j:/:)tmp}
+  done
+
+  print ${(pj:\0:)files}
+}
+
 (( $+functions[__git_files] )) ||
 __git_files () {
-  local expl files ls_opts opts gitdir
+  local expl files ls_opts opts gitdir gitcdup
 
   zparseopts -D -E -a opts -- -cached -deleted -modified -others -ignored -unmerged -killed
 
   gitdir=$(_call_program gitdir git rev-parse --git-dir 2>/dev/null)
   __git_command_successful || return
 
+  gitcdup=$(_call_program gitcdup git rev-parse --show-cdup 2>/dev/null)
+  __git_command_successful || return
+
   ls_opts=("--exclude-per-directory=.gitignore")
   [[ -f "$gitdir/info/exclude" ]] && ls_opts+="--exclude-from=$gitdir/info/exclude"
 
-  files=(${(ps:\0:)"$(_call_program files git ls-files -z $ls_opts $opts 2>/dev/null)"})
+  files=$(_call_program files git ls-files -z --full-name $ls_opts $opts -- $gitcdup 2>/dev/null)
+  __git_command_successful || return
+  files=(${(ps:\0:)"$(__git_files_relative $files)"})
   __git_command_successful || return
 
   _wanted files expl 'index file' _multi_parts $@ - / files
@@ -2864,9 +2947,11 @@ __git_unmerged_files () {
 #this is for git-commit which can take files both git-added and not
 (( $+functions[__git_changed_files] )) ||
 __git_changed_files () {
-  local -a files
+  local files
 
-  files=(${(ps:\0:)"$(_call_program files git diff-index -z --name-only --no-color HEAD 2>/dev/null)"})
+  files=$(_call_program files git diff-index -z --name-only --no-color HEAD 2>/dev/null)
+  __git_command_successful || return
+  files=(${(ps:\0:)"$(__git_files_relative $files)"})
   __git_command_successful || return
 
   _wanted files expl 'index file' _multi_parts $@ - / files
