@@ -3,20 +3,18 @@
 " GetLatestVimScripts: 2616 1 :AutoInstall: graywh.vim
 "
 " For best results on 88/256-color terminals, I recommend CSApprox.vim by
-" GetLatestVimScripts: xxxx 1 :AutoInstall: graywh-reverse.vim
+" godlygeek.
 
 " Favorite colors {{{1
-" I prefer to use a terminal with color levels of [00, 33, 66, 99, CC, FF]
-" and have used color codes to reflect that.
 "                Light                           Dark
-"       Black    333333 236  8   1E1E1E 234      000000  16 0
-"       Red      FFCCCC 224      FF6666 210  9   CC0000 160 1
-"       Green    CCFFCC 194      66FF66 120 10   00CC00  40 2
-"       Yellow   FFFFCC 230      FFFF66 228 11   CCCC00 184 3
-"       Blue     99CCFF 153      6699FF 111 12   3366CC  68 4
-"       Magenta  FFCCFF 225      FF66FF 213 13   CC00CC 164 5
-"       Cyan     CCFFFF 195      66FFFF 123 14   00CCCC  44 6
-"       Gray     FFFFFF 231 15                   CCCCCC 251 7
+"       Black    5F5F5F 236  8   1E1E1E 234      000000  16 0
+"       Red      FFD7D7 224      FF8787 210  9   D70000 160 1
+"       Green    D7FFD7 194      87FF87 120 10   00D700  40 2
+"       Yellow   FFFFD7 230      FFFF87 228 11   D7D700 184 3
+"       Blue     AFD7FF 153      87AFFF 111 12   005FD7  68 4
+"       Magenta  FFD7FF 225      FF87FF 213 13   D700D7 164 5
+"       Cyan     D7FFFF 195      87FFFF 123 14   00D7D7  44 6
+"       Gray     FFFFFF 231 15                   D7D7D7 251 7
 " }}}1
 
 " First remove all existing highlighting.
@@ -28,137 +26,150 @@ endif
 
 let colors_name = "graywh-reverse"
 
-" Common {{{1
-" Links {{{2
+" Links {{{1
 hi link Character String
 
 " For GUI {{{1
-hi Normal               guifg=#333333   guibg=#E1E1E1
+hi Normal               guifg=#282828   guibg=#E3E3E3
+
 " Vim {{{2
-hi SpecialKey           guifg=#AEAEAE   guibg=bg        gui=none
-hi NonText              guifg=#990000   guibg=#D7D7D7   gui=none
-hi Directory            guifg=#FF6666
-hi ErrorMsg             guifg=#33FFFF   guibg=bg
+hi SpecialKey           guifg=#B1B1B1   guibg=bg        gui=none
+hi NonText              guifg=#780000   guibg=#D9D9D9   gui=none
+hi Directory            guifg=#FF5050
+hi ErrorMsg             guifg=#28FFFF   guibg=bg
 hi IncSearch                                            gui=reverse
 hi Search                               guibg=#0000FF
-hi MoreMsg              guifg=#CC6699                   gui=bold
+hi MoreMsg              guifg=#A05078                   gui=bold
 hi ModeMsg                                              gui=bold
-hi LineNr               guifg=#333366   guibg=#D7D7D7
-hi Question             guifg=#CC00CC                   gui=bold
+hi LineNr               guifg=#282850   guibg=#D9D9D9
+hi Question             guifg=#A000A0                   gui=bold
 hi StatusLine                                           gui=reverse,bold
 hi StatusLineNC                                         gui=reverse
 hi VertSplit                                            gui=reverse
-hi Title                guifg=#009900                   gui=bold
+hi Title                guifg=#007800                   gui=bold
 hi Visual                               guibg=bg        gui=reverse
 hi VisualNOS                                            gui=bold,underline
-hi WarningMsg           guifg=#3333FF
-hi WildMenu             guifg=bg        guibg=#3333FF
-hi Folded               guifg=#003300   guibg=#B8B8B8   gui=italic
-hi FoldColumn           guifg=#990000   guibg=#B8B8B8
+hi WarningMsg           guifg=#2828FF
+hi WildMenu             guifg=bg        guibg=#2828FF
+hi Folded               guifg=#002800   guibg=#BBBBBB   gui=italic
+hi FoldColumn           guifg=#780000   guibg=#BBBBBB
+
 if v:version >= 600
-hi DiffAdd                              guibg=#EBCCEB
-hi DiffChange                           guibg=#EBEBCC
-hi DiffDelete           guifg=fg        guibg=#CCEBEB   gui=none
-hi DiffText                             guibg=#CCCCEB   gui=none
+  hi DiffAdd                              guibg=#EDCFED
+  hi DiffChange                           guibg=#EDEDCF
+  hi DiffDelete           guifg=fg        guibg=#CFEDED   gui=none
+  hi DiffText                             guibg=#CFCFED   gui=none
 endif
-hi SignColumn           guifg=#000099   guibg=#B8B8B8
-if version >= 700
-  hi SpellBad                                             gui=undercurl   guisp=#FF0000
-  hi SpellCap                                             gui=undercurl   guisp=#0000FF
-  hi SpellRare                                            gui=undercurl   guisp=#FF00FF
-  hi SpellLocal                                           gui=undercurl   guisp=#00FFFF
+
+hi SignColumn           guifg=#000078   guibg=#BBBBBB
+
+if v:version >= 700
+  hi SpellBad                                             gui=undercurl           guisp=#00FFFF
+  hi SpellCap                                             gui=undercurl           guisp=#FFFF00
+  hi SpellRare                                            gui=undercurl           guisp=#00FF00
+  hi SpellLocal                                           gui=undercurl           guisp=#FF0000
 endif
-hi Pmenu                guifg=fg        guibg=#339933
-hi PmenuSel             guifg=fg        guibg=#999999
-hi PmenuSbar            guifg=fg        guibg=#999999
+
+hi Pmenu                guifg=fg        guibg=#287828
+hi PmenuSel             guifg=fg        guibg=#787878
+hi PmenuSbar            guifg=fg        guibg=#787878
 hi PmenuThumb                                           gui=reverse
 hi TabLine              guifg=bg        guibg=fg        gui=none
 hi TabLineSel           guifg=fg        guibg=bg        gui=bold
 hi TabLineFill          guifg=fg        guibg=bg        gui=reverse
-hi CursorColumn                         guibg=#D7D7D7
-hi CursorLine                           guibg=#D7D7D7
+hi CursorColumn                         guibg=#D9D9D9
+hi CursorLine                           guibg=#D9D9D9
 hi Cursor               guifg=bg        guibg=fg
+
 " Syntax {{{2
 hi lCursor              guifg=bg        guibg=fg
-hi MatchParen                           guibg=#FF6666
-hi Comment              guifg=#660066                   gui=italic
-hi Constant             guifg=#006666
-hi String               guifg=#006600
-hi Boolean              guifg=#CC9900                   gui=bold
-hi Identifier           guifg=#660000
-hi Function             guifg=#663300
-hi Statement            guifg=#996600                   gui=none
-hi Operator             guifg=#006699
-hi PreProc              guifg=#CC0000                   gui=none
-hi Type                 guifg=#000066                   gui=none
-hi Special              guifg=#00CCCC
-hi Underlined           guifg=#666600                   gui=underline
+hi MatchParen                           guibg=#FF5050
+hi Comment              guifg=#500050                   gui=italic
+hi Constant             guifg=#005050
+hi String               guifg=#005000
+hi Boolean              guifg=#A07800                   gui=bold
+hi Identifier           guifg=#500000
+hi Function             guifg=#502800
+hi Statement            guifg=#785000                   gui=none
+hi Operator             guifg=#005078
+hi PreProc              guifg=#A00000                   gui=none
+hi Type                 guifg=#000050                   gui=none
+hi Special              guifg=#00A0A0
+hi Underlined           guifg=#505000                   gui=underline
 hi Ignore               guifg=bg
-hi Error                guifg=#000000   guibg=#00CCCC
-hi Todo                 guifg=#FFFF33   guibg=#0000CC
+hi Error                guifg=#000000   guibg=#00A0A0
+hi Todo                 guifg=#FFFF28   guibg=#0000A0
+
 " For 16 color terminals {{{1
-hi Normal       ctermfg=DarkGray        ctermbg=White
+hi Normal               ctermfg=DarkGray            ctermbg=White
+
 " Vim {{{2
-hi SpecialKey   ctermfg=LightGray
-hi NonText      ctermfg=Red
-hi Directory    ctermfg=DarkRed
-hi ErrorMsg     ctermfg=DarkCyan        ctermbg=bg
-hi IncSearch                                                    cterm=reverse
-hi Search                               ctermbg=Blue
-hi MoreMsg      ctermfg=Magenta
-hi ModeMsg                                                      cterm=bold
-hi LineNr       ctermfg=Blue
-hi Question     ctermfg=Magenta
-hi StatusLine                                                   cterm=reverse,bold
-hi StatusLineNC                                                 cterm=reverse
-hi VertSplit                                                    cterm=reverse
-hi Title        ctermfg=Green
-hi Visual                               ctermbg=bg              cterm=reverse
-hi VisualNOS                                                    cterm=underline
-hi WarningMsg   ctermfg=DarkBlue
-hi WildMenu     ctermfg=bg              ctermbg=Blue
-hi Folded       ctermfg=Green           ctermbg=bg
-hi FoldColumn   ctermfg=Red             ctermbg=bg
+hi SpecialKey           ctermfg=LightGray
+hi NonText              ctermfg=DarkRed
+hi Directory            ctermfg=LightRed
+hi ErrorMsg             ctermfg=LightCyan         ctermbg=bg
+hi IncSearch                                                            cterm=reverse
+hi Search                                       ctermbg=DarkBlue
+hi MoreMsg              ctermfg=DarkMagenta
+hi ModeMsg                                                              cterm=bold
+hi LineNr               ctermfg=DarkBlue
+hi Question             ctermfg=DarkMagenta
+hi StatusLine                                                           cterm=reverse,bold
+hi StatusLineNC                                                         cterm=reverse
+hi VertSplit                                                            cterm=reverse
+hi Title                ctermfg=DarkGreen
+hi Visual                                       ctermbg=bg              cterm=reverse
+hi VisualNOS                                                            cterm=underline
+hi WarningMsg           ctermfg=LightBlue
+hi WildMenu             ctermfg=bg              ctermbg=DarkBlue
+hi Folded               ctermfg=DarkGreen         ctermbg=bg
+hi FoldColumn           ctermfg=DarkRed            ctermbg=bg
+
 if v:version >= 600
-hi DiffAdd      ctermfg=White           ctermbg=DarkMagenta
-hi DiffChange                           ctermbg=DarkYellow
-hi DiffDelete   ctermfg=White           ctermbg=DarkCyan
-hi DiffText     ctermfg=White           ctermbg=DarkBlue        cterm=none
+  hi DiffAdd              ctermfg=White           ctermbg=LightMagenta
+  hi DiffChange                                   ctermbg=LightYellow
+  hi DiffDelete           ctermfg=White           ctermbg=LightCyan
+  hi DiffText             ctermfg=White           ctermbg=LightBlue      cterm=none
 endif
-hi SignColumn   ctermfg=Blue            ctermbg=bg
-if version >= 700
-  hi SpellBad                             ctermbg=DarkCyan        cterm=underline
-  hi SpellCap                             ctermbg=DarkYellow      cterm=underline
-  hi SpellRare                            ctermbg=DarkGreen       cterm=underline
-  hi SpellLocal                           ctermbg=DarkRed         cterm=underline
+
+hi SignColumn           ctermfg=DarkBlue          ctermbg=bg
+
+if v:version >= 700
+  hi SpellBad                                     ctermbg=LightCyan         cterm=underline
+  hi SpellCap                                     ctermbg=LightYellow        cterm=underline
+  hi SpellRare                                    ctermbg=LightGreen     cterm=underline
+  hi SpellLocal                                   ctermbg=LightRed        cterm=underline
 endif
-hi Pmenu        ctermfg=fg              ctermbg=DarkGreen
-hi PmenuSel     ctermfg=fg              ctermbg=LightGray
-hi PmenuSbar    ctermfg=fg              ctermbg=LightGray
-hi PmenuThumb                                                   cterm=reverse
-hi TabLine      ctermfg=bg              ctermbg=fg              cterm=none
-hi TabLineSel                                                   cterm=bold
-hi TabLineFill                                                  cterm=reverse
-hi CursorColumn                         ctermbg=LightGray
-hi CursorLine                                                   cterm=underline
+
+hi Pmenu                ctermfg=fg              ctermbg=LightGreen
+hi PmenuSel             ctermfg=fg              ctermbg=LightGray
+hi PmenuSbar            ctermfg=fg              ctermbg=LightGray
+hi PmenuThumb                                                           cterm=reverse
+hi TabLine              ctermfg=bg              ctermbg=fg              cterm=none
+hi TabLineSel                                                           cterm=bold
+hi TabLineFill                                                          cterm=reverse
+hi CursorColumn                                 ctermbg=LightGray
+hi CursorLine                                                           cterm=underline
+
 " Syntax {{{2
-hi MatchParen                           ctermbg=DarkRed
-hi Comment      ctermfg=Magenta
-hi Constant     ctermfg=Cyan
-hi String       ctermfg=Green
-hi Boolean      ctermfg=Yellow
-hi Identifier   ctermfg=Red                                     cterm=none
-hi Function     ctermfg=Red
-hi Statement    ctermfg=Yellow
-hi Operator     ctermfg=Yellow
-hi PreProc      ctermfg=DarkRed
-hi Type         ctermfg=Blue
-hi Special      ctermfg=DarkCyan
-hi Underlined   ctermfg=Green                                   cterm=underline
-hi Ignore       ctermfg=bg
-hi Error        ctermfg=Black           ctermbg=Cyan
-hi Todo         ctermfg=DarkYellow      ctermbg=Blue
+hi MatchParen                                   ctermbg=LightRed
+hi Comment              ctermfg=DarkMagenta
+hi Constant             ctermfg=DarkCyan
+hi String               ctermfg=DarkGreen
+hi Boolean              ctermfg=DarkYellow
+hi Identifier           ctermfg=DarkRed                                    cterm=none
+hi Function             ctermfg=DarkRed
+hi Statement            ctermfg=DarkYellow
+hi Operator             ctermfg=DarkYellow
+hi PreProc              ctermfg=LightRed
+hi Type                 ctermfg=DarkBlue
+hi Special              ctermfg=LightCyan
+hi Underlined           ctermfg=DarkGreen                                 cterm=underline
+hi Ignore               ctermfg=bg
+hi Error                ctermfg=Black           ctermbg=DarkCyan
+hi Todo                 ctermfg=LightYellow        ctermbg=DarkBlue
+
 " 8-color terminal extras {{{2
 if &t_Co == 8
-hi Identifier cterm=bold
+  hi Identifier                                                           cterm=bold
 endif

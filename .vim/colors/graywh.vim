@@ -6,14 +6,12 @@
 " godlygeek.
 
 " Favorite colors {{{1
-" I prefer to use a terminal with color levels of [00, 5F, 87, AF, D7, FF]
-" and have used color codes to reflect that.
 "                Light                           Dark
 "       Black    5F5F5F 236  8   1E1E1E 234      000000  16 0
 "       Red      FFD7D7 224      FF8787 210  9   D70000 160 1
 "       Green    D7FFD7 194      87FF87 120 10   00D700  40 2
 "       Yellow   FFFFD7 230      FFFF87 228 11   D7D700 184 3
-"       Blue     AFD7FF 153      87AFFF 111 12   5F87D7  68 4
+"       Blue     AFD7FF 153      87AFFF 111 12   005FD7  68 4
 "       Magenta  FFD7FF 225      FF87FF 213 13   D700D7 164 5
 "       Cyan     D7FFFF 195      87FFFF 123 14   00D7D7  44 6
 "       Gray     FFFFFF 231 15                   D7D7D7 251 7
@@ -28,15 +26,14 @@ endif
 
 let colors_name = "graywh"
 
-" Common {{{1
-" Links {{{2
+" Links {{{1
 hi link Character String
 
 " For GUI {{{1
 hi Normal               guifg=#D7D7D7   guibg=#1C1C1C
 
 " Vim {{{2
-hi SpecialKey           guifg=#515151   guibg=bg        gui=none
+hi SpecialKey           guifg=#4E4E4E   guibg=bg        gui=none
 hi NonText              guifg=#87FFFF   guibg=#262626   gui=none
 hi Directory            guifg=#00AFAF
 hi ErrorMsg             guifg=#D70000   guibg=bg

@@ -3,27 +3,27 @@
 	<entry name="word_chars" mtime="1256333264" type="string">
 		<stringvalue>-A-Za-z0-9,./?%&amp;#:_=+@~</stringvalue>
 	</entry>
-	<entry name="silent_bell" mtime="1257965716" type="bool" value="true"/>
-	<entry name="background_type" mtime="1239723793" type="string">
+	<entry name="silent_bell" mtime="1265815377" type="bool" value="true"/>
+	<entry name="background_type" mtime="1262895691" type="string">
 		<stringvalue>solid</stringvalue>
 	</entry>
-	<entry name="scrollbar_position" mtime="1257965716" type="string">
+	<entry name="scrollbar_position" mtime="1265815377" type="string">
 		<stringvalue>hidden</stringvalue>
 	</entry>
 	<entry name="login_shell" mtime="1229636212" type="bool" value="false"/>
-	<entry name="scrollback_lines" mtime="1257965716" type="int" value="1024"/>
-	<entry name="palette" mtime="1257965951" type="string">
-		<stringvalue>#000000000000:#D7D700000000:#0000D7D70000:#D7D7D7D70000:#5F5F8787D7D7:#D7D70000D7D7:#0000D7D7D7D7:#D7D7D7D7D7D7:#878787878787:#FFFF87878787:#8787FFFF8787:#FFFFFFFF8787:#8787AFAFFFFF:#FFFF8787FFFF:#8787FFFFFFFF:#FFFFFFFFFFFF</stringvalue>
+	<entry name="scrollback_lines" mtime="1265815377" type="int" value="1024"/>
+	<entry name="palette" mtime="1265815377" type="string">
+		<stringvalue>#000000000000:#D7D700000000:#0000D7D70000:#D7D7D7D70000:#00005F5FD7D7:#D7D70000D7D7:#0000D7D7D7D7:#D7D7D7D7D7D7:#878787878787:#FFFF87878787:#8787FFFF8787:#FFFFFFFF8787:#8787AFAFFFFF:#FFFF8787FFFF:#8787FFFFFFFF:#FFFFFFFFFFFF</stringvalue>
 	</entry>
-	<entry name="use_theme_colors" mtime="1257965716" type="bool" value="false"/>
-	<entry name="visible_name" mtime="1257965716" type="string">
+	<entry name="use_theme_colors" mtime="1265815377" type="bool" value="false"/>
+	<entry name="visible_name" mtime="1265815377" type="string">
 		<stringvalue>Default</stringvalue>
 	</entry>
-	<entry name="foreground_color" mtime="1257965908" type="string">
+	<entry name="foreground_color" mtime="1265815377" type="string">
 		<stringvalue>#D7D7D7D7D7D7</stringvalue>
 	</entry>
-	<entry name="alternate_screen_scroll" mtime="1257965716" type="bool" value="true"/>
-	<entry name="background_color" mtime="1257965912" type="string">
+	<entry name="alternate_screen_scroll" mtime="1265815377" type="bool" value="true"/>
+	<entry name="background_color" mtime="1265815377" type="string">
 		<stringvalue>#141414141414</stringvalue>
 	</entry>
 </gconf>

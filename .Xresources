@@ -47,7 +47,7 @@ XTerm*vt100.color0: rgb:00/00/00
 XTerm*vt100.color1: rgb:D7/00/00
 XTerm*vt100.color2: rgb:00/D7/00
 XTerm*vt100.color3: rgb:D7/D7/00
-XTerm*vt100.color4: rgb:5F/87/D7
+XTerm*vt100.color4: rgb:00/5F/D7
 XTerm*vt100.color5: rgb:D7/00/D7
 XTerm*vt100.color6: rgb:00/D7/D7
 XTerm*vt100.color7: rgb:D7/D7/D7

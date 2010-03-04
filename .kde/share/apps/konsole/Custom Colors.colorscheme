@@ -39,7 +39,7 @@ Color=255,255,135
 Transparency=false
 
 [Color4]
-Color=95,135,215
+Color=0,95,215
 Transparency=false
 
 [Color4Intense]
@@ -47,7 +47,7 @@ Color=135,175,255
 Transparency=false
 
 [Color5]
-Color=204,0,204
+Color=215,0,215
 Transparency=false
 
 [Color5Intense]
