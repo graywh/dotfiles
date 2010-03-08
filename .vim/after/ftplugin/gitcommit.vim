@@ -1,1 +1,1 @@
-autocmd FileType gitcommit DiffGitCached | wincmd p
+DiffGitCached | wincmd p
