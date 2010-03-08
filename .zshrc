@@ -45,23 +45,38 @@ zstyle ':completion:*:warnings' format '%BNo matches for: %d%b'
 
 # Keybindings {{{1
 bindkey -v
+# Navigation {{{2
 bindkey "\e[1~" beginning-of-line
 bindkey "\e[H" beginning-of-line
-bindkey "" beginning-of-line
+bindkey "^B" beginning-of-line
 bindkey "\e[4~" end-of-line
 bindkey "\e[F" end-of-line
-bindkey "" end-of-line
+bindkey "^E" end-of-line
+bindkey "\e[1;2D" backward-word
+bindkey "\e[1;5D" vi-backward-blank-word
+bindkey "\e[1;2C" forward-word
+bindkey "\e[1;5C" vi-forward-blank-word
+# History {{{2
+#bindkey "\e[5~" beginning-of-history
+#bindkey "\e[6~" end-of-history
+bindkey "^P" history-beginning-search-backward
+bindkey "^N" history-beginning-search-forward
+# Editing {{{2
 bindkey "\e[2~" vi-quoted-insert
 bindkey "\e[3~" delete-char
-bindkey "\e[5~" beginning-of-history
-bindkey "\e[6~" end-of-history
-bindkey "" history-beginning-search-backward
-bindkey "" history-beginning-search-forward
-bindkey "" kill-line
-bindkey "" backward-kill-line
-bindkey "" backward-delete-char
-bindkey "\e[1;5D" backward-word
-bindkey "\e[1;5C" forward-word
+bindkey "^K" kill-line
+bindkey "^U" backward-kill-line
+bindkey "^?" backward-delete-char
+bindkey "^W" backward-kill-word
+# Completion {{{2
+bindkey "^I" complete-word
+bindkey "^A" expand-word
+#bindkey "\e[Z" reverse-menu-complete
+# Misc {{{2
+bindkey "^J" self-insert-unmeta
+bindkey "^O" push-input
+bindkey "^T" get-line
+bindkey "^Y" undo
 
 # Set a fancy prompt {{{1
 # Color definitions {{{2
