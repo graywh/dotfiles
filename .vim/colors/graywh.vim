@@ -47,7 +47,7 @@ hi StatusLine                                           gui=reverse,bold
 hi StatusLineNC                                         gui=reverse
 hi VertSplit                                            gui=reverse
 hi Title                guifg=#FF87FF                   gui=bold
-hi Visual                               guibg=bg        gui=reverse
+hi Visual                               guibg=NONE      gui=reverse
 hi VisualNOS                                            gui=bold,underline
 hi WarningMsg           guifg=#D7D700
 hi WildMenu             guifg=bg        guibg=#D7D700
@@ -195,3 +195,7 @@ hi mailSignature        ctermfg=DarkGray
 if &t_Co == 8
   hi Identifier                                                           cterm=bold
 endif
+
+" CSApprox config {{{1
+let g:CSApprox_hook_graywh_post = ['hi Visual          ctermbg=NONE ctermfg=NONE cterm=reverse',
+                                 \ 'hi IncSearch       ctermbg=NONE ctermfg=NONE cterm=reverse' ]
