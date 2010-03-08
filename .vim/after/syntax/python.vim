@@ -20,10 +20,10 @@ highlight link pythonCurlyDelimiter Delimiter
 highlight link pythonBraceDelimiter Delimiter
 
 " Add DocString highlighting {{{1
-syntax region pythonDocString start=/"""/ end=/"""/ keepend contains=pythonDocTest2,pythonTodo contained
-syntax region pythonDocString start=/'''/ end=/'''/ keepend contains=pythonDocTest,pythonTodo contained
-syntax region pythonDocString start=/\%^\n*"""/ end=/"""/ contains=pythonTodo
-syntax region pythonDocString start=/\%^\n*'''/ end=/'''/ contains=pythonTodo
+"syntax region pythonDocString start=/"""/ end=/"""/ keepend contains=pythonDocTest2,pythonTodo contained
+"syntax region pythonDocString start=/'''/ end=/'''/ keepend contains=pythonDocTest,pythonTodo contained
+"syntax region pythonDocString start=/\%^\n*"""/ end=/"""/ contains=pythonTodo
+"syntax region pythonDocString start=/\%^\n*'''/ end=/'''/ contains=pythonTodo
 
 highlight link pythonDocString Comment
 

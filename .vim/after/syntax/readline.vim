@@ -1,1 +1,1 @@
-syn keyword readlineSettings mark-symlinked-directories
+syn keyword readlineSettings mark-symlinked-directories bind-tty-special-chars

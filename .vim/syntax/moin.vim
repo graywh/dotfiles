@@ -31,9 +31,9 @@ syn match       moinMacro               /\[\{2}.\{-}\]\{2}/
 syn region      moinPreformatted        start=/{{{/ end=/}}}/
 
 " Links
-syn match       moinWikiWord            /\(\w\+:\)\?\u[a-z0-9]\+\u[a-z0-9]\+\(\u[a-z0-9]\+\)*/
+syn match       moinWikiWord            /\<\(\w\+:\)\?\(\u[a-z0-9]\+\)\{2,}\>/
 syn match       moinBracketLink         /\[[^[\]]\+\]/
-syn match       moinSubLink             /\(\w\+\|\.\.\)\?\// nextgroup=moinWikiWord
+syn match       moinSubLink             /\<\(\(\u[a-z0-9]\+\)\{2,}\|\.\.\)\?\// nextgroup=moinWikiWord
 syn match       moinNormalURL           /\w\+:\/\/\S\+/
 syn match       moinEmail               /\S\+@\S\+/
 
