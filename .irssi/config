@@ -3,9 +3,8 @@ servers = (
     address = "irc.freenode.net";
     autoconnect = "yes";
     chatnet = "fn";
-    port = "6666";
-    use_ssl = "no";
-    ssl_verify = "no";
+    port = "7000";
+    use_ssl = "yes";
   },
   {
     address = "biostat.mc.vanderbilt.edu";
@@ -18,7 +17,10 @@ servers = (
 
 chatnets = {
   bio = { type = "XMPP"; nick = "graywh@biostat.mc.vanderbilt.edu"; };
-  fn = { type = "IRC"; };
+  fn = {
+    type = "IRC";
+    autosendcmd = "/quote monitor + viking,biagidp; /umode +R";
+  };
 };
 
 channels = ( { name = "#vim"; chatnet = "fn"; autojoin = "yes"; } );
@@ -45,6 +47,7 @@ aliases = {
   EXEMPTLIST = "mode $C +e";
   UNBIND = "bind -delete";
   NS = "msg nickserv";
+  MONITOR = "quote monitor $-";
   DOESNTWORK = "say vimgor, tell $0 doesn't work";
 };
 
@@ -207,12 +210,8 @@ mainwindows = {
   1 = { first_line = "1"; lines = "5"; };
   2 = { first_line = "6"; lines = "18"; };
 };
+notifies = { };
 ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
-notifies = {
-  viking = { away_check = "yes"; ircnets = ( "fn" ); };
-  biagidp = { away_check = "yes"; ircnets = ( "fn" ); };
-  crookshanks = { ircnets = ( "fn" ); };
-};
 logs = { };
 keyboard = (
   { key = "^B"; id = "key"; data = "home"; },
