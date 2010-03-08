@@ -7,9 +7,10 @@ if [[ ${COLORTERM} == "gnome-terminal" ]]; then
 fi
 
 # Don't let these variables be propogated {{{1
+# (usually when starting a new terminal)
 if [[ ${TERM} != screen* ]]; then
-    unset INTERM
     unset STY
+    unset TMUX
 fi
 
 # vim: fdm=marker fen

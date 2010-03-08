@@ -11,6 +11,11 @@ if [[ "${COLORTERM}" == "gnome-terminal" ]]; then
     unset COLORTERM
 fi
 
+if [[ "${TERM}" != screen* ]]; then
+    unset STY
+    unset TMUX
+fi
+
 #if [[ -n "${STY}" ]]; then
 #    screen -X "shelltitle '% |zsh:'"
 #fi
