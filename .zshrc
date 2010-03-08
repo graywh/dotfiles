@@ -199,9 +199,9 @@ function precmd { #{{{2
             print -Pn "\e]0;%n@%m: %~\a"
         ;;
     esac
-    if [[ ${TERM} == screen* ]]; then
-        print -Pn "\ek\e\\"
-    fi
+    #if [[ ${TERM} == screen* ]]; then
+    #    print -Pn "\ek\e\\"
+    #fi
 }
 function preexec { #{{{2
     #case ${TERM} in
