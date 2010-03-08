@@ -1,5 +1,5 @@
 " This scheme was created by CSApproxSnapshot
-" on Thu, 04 Mar 2010
+" on Mon, 08 Mar 2010
 
 hi clear
 if exists("syntax_on")
@@ -33,6 +33,12 @@ elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^
     CSAHi MoreMsg term=bold cterm=bold ctermbg=bg ctermfg=109 gui=bold guibg=bg guifg=#5faf87
     CSAHi ModeMsg term=bold cterm=bold ctermbg=bg ctermfg=fg gui=bold guibg=bg guifg=fg
     CSAHi LineNr term=underline cterm=NONE ctermbg=235 ctermfg=187 gui=NONE guibg=#262626 guifg=#d7d7af
+    CSAHi mailQuoted3 term=NONE cterm=NONE ctermbg=236 ctermfg=151 gui=NONE guibg=#303030 guifg=#afd7af
+    CSAHi mailQuoted4 term=NONE cterm=NONE ctermbg=236 ctermfg=182 gui=NONE guibg=#303030 guifg=#d7afd7
+    CSAHi mailQuoted5 term=NONE cterm=NONE ctermbg=236 ctermfg=152 gui=NONE guibg=#303030 guifg=#afd7d7
+    CSAHi mailQuoted6 term=NONE cterm=NONE ctermbg=236 ctermfg=187 gui=NONE guibg=#303030 guifg=#d7d7af
+    CSAHi mailEmail term=NONE cterm=underline ctermbg=bg ctermfg=111 gui=underline guibg=bg guifg=#5f87ff
+    CSAHi mailSignature term=NONE cterm=NONE ctermbg=bg ctermfg=245 gui=NONE guibg=bg guifg=#8a8a8a
     CSAHi Pmenu term=NONE cterm=NONE ctermbg=182 ctermfg=253 gui=NONE guibg=#d787d7 guifg=#d7d7d7
     CSAHi PmenuSel term=NONE cterm=NONE ctermbg=245 ctermfg=253 gui=NONE guibg=#878787 guifg=#d7d7d7
     CSAHi PmenuSbar term=NONE cterm=NONE ctermbg=245 ctermfg=253 gui=NONE guibg=#878787 guifg=#d7d7d7
@@ -43,7 +49,9 @@ elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^
     CSAHi CursorColumn term=reverse cterm=NONE ctermbg=235 ctermfg=fg gui=NONE guibg=#262626 guifg=fg
     CSAHi CursorLine term=underline cterm=NONE ctermbg=235 ctermfg=fg gui=NONE guibg=#262626 guifg=fg
     CSAHi Cursor term=NONE cterm=NONE ctermbg=253 ctermfg=234 gui=NONE guibg=#d7d7d7 guifg=#1c1c1c
+    CSAHi mailQuoted2 term=NONE cterm=NONE ctermbg=236 ctermfg=181 gui=NONE guibg=#303030 guifg=#d7afaf
     CSAHi Operator term=NONE cterm=NONE ctermbg=bg ctermfg=217 gui=NONE guibg=bg guifg=#ffaf87
+    CSAHi mailQuoted1 term=NONE cterm=NONE ctermbg=236 ctermfg=146 gui=NONE guibg=#303030 guifg=#afafd7
     CSAHi Question term=NONE cterm=bold ctermbg=bg ctermfg=120 gui=bold guibg=bg guifg=#5fff5f
     CSAHi StatusLine term=reverse,bold cterm=bold ctermbg=253 ctermfg=234 gui=reverse,bold guibg=bg guifg=fg
     CSAHi StatusLineNC term=reverse cterm=NONE ctermbg=253 ctermfg=234 gui=reverse guibg=bg guifg=fg
@@ -91,6 +99,12 @@ elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^
     CSAHi MoreMsg term=bold cterm=bold ctermbg=bg ctermfg=115 gui=bold guibg=bg guifg=#5faf87
     CSAHi ModeMsg term=bold cterm=bold ctermbg=bg ctermfg=fg gui=bold guibg=bg guifg=fg
     CSAHi LineNr term=underline cterm=NONE ctermbg=235 ctermfg=230 gui=NONE guibg=#262626 guifg=#d7d7af
+    CSAHi mailQuoted3 term=NONE cterm=NONE ctermbg=236 ctermfg=194 gui=NONE guibg=#303030 guifg=#afd7af
+    CSAHi mailQuoted4 term=NONE cterm=NONE ctermbg=236 ctermfg=225 gui=NONE guibg=#303030 guifg=#d7afd7
+    CSAHi mailQuoted5 term=NONE cterm=NONE ctermbg=236 ctermfg=195 gui=NONE guibg=#303030 guifg=#afd7d7
+    CSAHi mailQuoted6 term=NONE cterm=NONE ctermbg=236 ctermfg=230 gui=NONE guibg=#303030 guifg=#d7d7af
+    CSAHi mailEmail term=NONE cterm=underline ctermbg=bg ctermfg=111 gui=underline guibg=bg guifg=#5f87ff
+    CSAHi mailSignature term=NONE cterm=NONE ctermbg=bg ctermfg=245 gui=NONE guibg=bg guifg=#8a8a8a
     CSAHi Pmenu term=NONE cterm=NONE ctermbg=219 ctermfg=231 gui=NONE guibg=#d787d7 guifg=#d7d7d7
     CSAHi PmenuSel term=NONE cterm=NONE ctermbg=245 ctermfg=231 gui=NONE guibg=#878787 guifg=#d7d7d7
     CSAHi PmenuSbar term=NONE cterm=NONE ctermbg=245 ctermfg=231 gui=NONE guibg=#878787 guifg=#d7d7d7
@@ -101,7 +115,9 @@ elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^
     CSAHi CursorColumn term=reverse cterm=NONE ctermbg=235 ctermfg=fg gui=NONE guibg=#262626 guifg=fg
     CSAHi CursorLine term=underline cterm=NONE ctermbg=235 ctermfg=fg gui=NONE guibg=#262626 guifg=fg
     CSAHi Cursor term=NONE cterm=NONE ctermbg=231 ctermfg=234 gui=NONE guibg=#d7d7d7 guifg=#1c1c1c
+    CSAHi mailQuoted2 term=NONE cterm=NONE ctermbg=236 ctermfg=224 gui=NONE guibg=#303030 guifg=#d7afaf
     CSAHi Operator term=NONE cterm=NONE ctermbg=bg ctermfg=223 gui=NONE guibg=bg guifg=#ffaf87
+    CSAHi mailQuoted1 term=NONE cterm=NONE ctermbg=236 ctermfg=189 gui=NONE guibg=#303030 guifg=#afafd7
     CSAHi Question term=NONE cterm=bold ctermbg=bg ctermfg=120 gui=bold guibg=bg guifg=#5fff5f
     CSAHi StatusLine term=reverse,bold cterm=bold ctermbg=231 ctermfg=234 gui=reverse,bold guibg=bg guifg=fg
     CSAHi StatusLineNC term=reverse cterm=NONE ctermbg=231 ctermfg=234 gui=reverse guibg=bg guifg=fg
@@ -149,6 +165,12 @@ elseif has("gui_running") || &t_Co == 256
     CSAHi MoreMsg term=bold cterm=bold ctermbg=bg ctermfg=72 gui=bold guibg=bg guifg=#5faf87
     CSAHi ModeMsg term=bold cterm=bold ctermbg=bg ctermfg=fg gui=bold guibg=bg guifg=fg
     CSAHi LineNr term=underline cterm=NONE ctermbg=235 ctermfg=187 gui=NONE guibg=#262626 guifg=#d7d7af
+    CSAHi mailQuoted3 term=NONE cterm=NONE ctermbg=236 ctermfg=151 gui=NONE guibg=#303030 guifg=#afd7af
+    CSAHi mailQuoted4 term=NONE cterm=NONE ctermbg=236 ctermfg=182 gui=NONE guibg=#303030 guifg=#d7afd7
+    CSAHi mailQuoted5 term=NONE cterm=NONE ctermbg=236 ctermfg=152 gui=NONE guibg=#303030 guifg=#afd7d7
+    CSAHi mailQuoted6 term=NONE cterm=NONE ctermbg=236 ctermfg=187 gui=NONE guibg=#303030 guifg=#d7d7af
+    CSAHi mailEmail term=NONE cterm=underline ctermbg=bg ctermfg=69 gui=underline guibg=bg guifg=#5f87ff
+    CSAHi mailSignature term=NONE cterm=NONE ctermbg=bg ctermfg=245 gui=NONE guibg=bg guifg=#8a8a8a
     CSAHi Pmenu term=NONE cterm=NONE ctermbg=176 ctermfg=188 gui=NONE guibg=#d787d7 guifg=#d7d7d7
     CSAHi PmenuSel term=NONE cterm=NONE ctermbg=102 ctermfg=188 gui=NONE guibg=#878787 guifg=#d7d7d7
     CSAHi PmenuSbar term=NONE cterm=NONE ctermbg=102 ctermfg=188 gui=NONE guibg=#878787 guifg=#d7d7d7
@@ -159,7 +181,9 @@ elseif has("gui_running") || &t_Co == 256
     CSAHi CursorColumn term=reverse cterm=NONE ctermbg=235 ctermfg=fg gui=NONE guibg=#262626 guifg=fg
     CSAHi CursorLine term=underline cterm=NONE ctermbg=235 ctermfg=fg gui=NONE guibg=#262626 guifg=fg
     CSAHi Cursor term=NONE cterm=NONE ctermbg=188 ctermfg=234 gui=NONE guibg=#d7d7d7 guifg=#1c1c1c
+    CSAHi mailQuoted2 term=NONE cterm=NONE ctermbg=236 ctermfg=181 gui=NONE guibg=#303030 guifg=#d7afaf
     CSAHi Operator term=NONE cterm=NONE ctermbg=bg ctermfg=216 gui=NONE guibg=bg guifg=#ffaf87
+    CSAHi mailQuoted1 term=NONE cterm=NONE ctermbg=236 ctermfg=146 gui=NONE guibg=#303030 guifg=#afafd7
     CSAHi Question term=NONE cterm=bold ctermbg=bg ctermfg=83 gui=bold guibg=bg guifg=#5fff5f
     CSAHi StatusLine term=reverse,bold cterm=bold ctermbg=188 ctermfg=234 gui=reverse,bold guibg=bg guifg=fg
     CSAHi StatusLineNC term=reverse cterm=NONE ctermbg=188 ctermfg=234 gui=reverse guibg=bg guifg=fg
@@ -207,6 +231,12 @@ elseif has("gui_running") || &t_Co == 88
     CSAHi MoreMsg term=bold cterm=bold ctermbg=bg ctermfg=41 gui=bold guibg=bg guifg=#5faf87
     CSAHi ModeMsg term=bold cterm=bold ctermbg=bg ctermfg=fg gui=bold guibg=bg guifg=fg
     CSAHi LineNr term=underline cterm=NONE ctermbg=80 ctermfg=58 gui=NONE guibg=#262626 guifg=#d7d7af
+    CSAHi mailQuoted3 term=NONE cterm=NONE ctermbg=80 ctermfg=58 gui=NONE guibg=#303030 guifg=#afd7af
+    CSAHi mailQuoted4 term=NONE cterm=NONE ctermbg=80 ctermfg=58 gui=NONE guibg=#303030 guifg=#d7afd7
+    CSAHi mailQuoted5 term=NONE cterm=NONE ctermbg=80 ctermfg=58 gui=NONE guibg=#303030 guifg=#afd7d7
+    CSAHi mailQuoted6 term=NONE cterm=NONE ctermbg=80 ctermfg=58 gui=NONE guibg=#303030 guifg=#d7d7af
+    CSAHi mailEmail term=NONE cterm=underline ctermbg=bg ctermfg=39 gui=underline guibg=bg guifg=#5f87ff
+    CSAHi mailSignature term=NONE cterm=NONE ctermbg=bg ctermfg=83 gui=NONE guibg=bg guifg=#8a8a8a
     CSAHi Pmenu term=NONE cterm=NONE ctermbg=54 ctermfg=86 gui=NONE guibg=#d787d7 guifg=#d7d7d7
     CSAHi PmenuSel term=NONE cterm=NONE ctermbg=83 ctermfg=86 gui=NONE guibg=#878787 guifg=#d7d7d7
     CSAHi PmenuSbar term=NONE cterm=NONE ctermbg=83 ctermfg=86 gui=NONE guibg=#878787 guifg=#d7d7d7
@@ -217,7 +247,9 @@ elseif has("gui_running") || &t_Co == 88
     CSAHi CursorColumn term=reverse cterm=NONE ctermbg=80 ctermfg=fg gui=NONE guibg=#262626 guifg=fg
     CSAHi CursorLine term=underline cterm=NONE ctermbg=80 ctermfg=fg gui=NONE guibg=#262626 guifg=fg
     CSAHi Cursor term=NONE cterm=NONE ctermbg=86 ctermfg=80 gui=NONE guibg=#d7d7d7 guifg=#1c1c1c
+    CSAHi mailQuoted2 term=NONE cterm=NONE ctermbg=80 ctermfg=58 gui=NONE guibg=#303030 guifg=#d7afaf
     CSAHi Operator term=NONE cterm=NONE ctermbg=bg ctermfg=73 gui=NONE guibg=bg guifg=#ffaf87
+    CSAHi mailQuoted1 term=NONE cterm=NONE ctermbg=80 ctermfg=58 gui=NONE guibg=#303030 guifg=#afafd7
     CSAHi Question term=NONE cterm=bold ctermbg=bg ctermfg=45 gui=bold guibg=bg guifg=#5fff5f
     CSAHi StatusLine term=reverse,bold cterm=bold ctermbg=86 ctermfg=80 gui=reverse,bold guibg=bg guifg=fg
     CSAHi StatusLineNC term=reverse cterm=NONE ctermbg=86 ctermfg=80 gui=reverse guibg=bg guifg=fg

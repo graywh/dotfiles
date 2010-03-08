@@ -100,6 +100,17 @@ hi Ignore               guifg=bg
 hi Error                guifg=#FFFFFF   guibg=#FF5F5F
 hi Todo                 guifg=#0000D7   guibg=#FFFF5F
 
+" Custom {{{2
+" mail {{{3
+hi mailQuoted1          guifg=#AFAFD7   guibg=#303030
+hi mailQuoted2          guifg=#D7AFAF   guibg=#303030
+hi mailQuoted3          guifg=#AFD7AF   guibg=#303030
+hi mailQuoted4          guifg=#D7AFD7   guibg=#303030
+hi mailQuoted5          guifg=#AFD7D7   guibg=#303030
+hi mailQuoted6          guifg=#D7D7AF   guibg=#303030
+hi mailEmail            guifg=#5F87FF                   gui=underline
+hi mailSignature        guifg=#8A8A8A
+
 " For 16 color terminals {{{1
 hi Normal               ctermfg=Gray            ctermbg=Black
 
@@ -168,6 +179,17 @@ hi Underlined           ctermfg=Magenta                                 cterm=un
 hi Ignore               ctermfg=bg
 hi Error                ctermfg=White           ctermbg=Red
 hi Todo                 ctermfg=DarkBlue        ctermbg=Yellow
+
+" Custom {{{2
+" mail {{{3
+hi mailQuoted1          ctermfg=DarkBlue
+hi mailQuoted2          ctermfg=DarkRed
+hi mailQuoted3          ctermfg=DarkGreen
+hi mailQuoted4          ctermfg=DarkMagenta
+hi mailQuoted5          ctermfg=DarkCyan
+hi mailQuoted6          ctermfg=DarkYellow
+hi mailEmail            ctermfg=Blue                                    cterm=underline
+hi mailSignature        ctermfg=DarkGray
 
 " 8-color terminal extras {{{2
 if &t_Co == 8
