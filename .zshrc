@@ -186,8 +186,9 @@ fi
 #zstyle ':vcs_info:*' branchformat "%b:%r"
 #zstyle ':vcs_info:*:*:graywh' disable-patterns "$HOME(/*)"
 # }}}2
-#PS1=${None}'('${Blue}'%?'${None}')--('${Cyan}'%*'${None}')--('${Green}'%n'${None}'@'${Magenta}'%m'${None}')--('${Red}'%~'${None}'$vcs_info_msg_0_'${None}')'${None}"
-PS1=${None}'('${Blue}'%?'${None}')--('${Cyan}'%*'${None}')--('${Green}'%n'${None}'@'${Magenta}'%m'${None}')--('${Red}'%~'${None}${Yellow}'$(___git_ps1)'${None}')'${None}"
+Bell="%{$terminfo[bel]%}"
+#PS1=${Bell}${None}'('${Blue}'%?'${None}')--('${Cyan}'%*'${None}')--('${Green}'%n'${None}'@'${Magenta}'%m'${None}')--('${Red}'%~'${None}'$vcs_info_msg_0_'${None}')'${None}"
+PS1=${Bell}${None}'('${Blue}'%?'${None}')--('${Cyan}'%*'${None}')--('${Green}'%n'${None}'@'${Magenta}'%m'${None}')--('${Red}'%~'${None}${Yellow}'$(___git_ps1)'${None}')'${None}"
 "'%# '
 
 # Functions {{{1

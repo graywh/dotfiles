@@ -145,7 +145,7 @@ else
     # }}}
 fi
 #}}}2
-PS1=${None}'('${Blue}'$?'${None}')--('${Cyan}'\t'${None}')--('${Green}'\u'${None}'@'${Magenta}'\h'${None}')--('${Red}'\w'${None}${Yellow}'$(___git_ps1)'${None}')\n\$ '
+PS1="\a"${None}'('${Blue}'$?'${None}')--('${Cyan}'\t'${None}')--('${Green}'\u'${None}'@'${Magenta}'\h'${None}')--('${Red}'\w'${None}${Yellow}'$(___git_ps1)'${None}')\n\$ '
 
 # a function to put the current time in the top-right corner of the terminal
 # and change the title of the terminal
