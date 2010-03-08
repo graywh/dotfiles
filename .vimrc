@@ -273,7 +273,7 @@ if exists(':function') == 2
     " return '[\s$]' if trailing whitespace is detected
     " return '' otherwise
     if !exists('b:statusline_trailing_space_warning')
-      if !&readonly && search('\s\+$', 'nw') != 0
+      if !&readonly && &modifiable && search('\s\+$', 'nw') != 0
         let b:statusline_trailing_space_warning = '[\s$]'
       else
         let b:statusline_trailing_space_warning = ''
@@ -287,7 +287,7 @@ if exists(':function') == 2
     " return '[mixed-indenting]' if spaces and tabs are used to indent
     " return an empty string if everything is fine
     if !exists('b:statusline_tab_warning')
-      if &filetype == 'help'
+      if &filetype == 'help' || &readonly == 1 || &modifiable == 0
         let b:statusline_tab_warning = ''
       else
         let tabs = search('^\t', 'nw') != 0
