@@ -16,9 +16,6 @@
 [submodule ".vim/bundles/ruby"]
 	path = .vim/bundles/ruby
 	url = git://github.com/vim-ruby/vim-ruby.git
-[submodule ".vim/bundles/vcscommand"]
-	path = .vim/bundles/vcscommand
-	url = git://repo.or.cz/vcscommand
 [submodule ".vim/bundles/csapprox"]
 	path = .vim/bundles/csapprox
 	url = git://github.com/godlygeek/csapprox.git

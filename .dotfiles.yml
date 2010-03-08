@@ -27,4 +27,3 @@ VimBundles:
     - .vim/bundles/space
     - .vim/bundles/speeddating
     - .vim/bundles/surround
-    - .vim/bundles/vcscommand
