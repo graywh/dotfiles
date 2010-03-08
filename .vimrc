@@ -27,10 +27,16 @@ set ttimeoutlen=100             " Keycodes shouldn't take long
 set title                       " Let Vim decide
 set icon                        " Let Vim decide
 set ttyscroll=5                 " Redraw when scrolling a long ways
-if &term =~? '^\(xterm\|screen\|putty\|konsole\|gnome\)'
+if &term =~? '^\(xterm\|putty\|konsole\|gnome\)' " xterm and 'clones'
   let &t_RV="\<Esc>[>c"         " Let Vim check for xterm-compatibility
   set ttyfast                   " Because no one should have to suffer
   set ttymouse=xterm2           " Assume xterm mouse support
+endif
+if &term =~? '^screen'  " screen and tmux
+  set ttyfast                   " Because no one should have to suffer
+  if  exists("$STY")    " only screen
+    set ttymouse=xterm2         " Assume xterm mouse support
+  endif
 endif
 
 " Navigation {{{2
