@@ -3,24 +3,45 @@
 #fi
 
 # Options {{{1
-# changing directories
-setopt autopushd pushdignoredups
-# completion
-setopt noalwayslastprompt noautolist noautomenu autonamedirs bashautolist
-# expansion and globbing
-setopt nomarkdirs nonomatch
-# job control
-setopt longlistjobs nohup
-# prompting
-setopt promptsubst
-# zle
+# Changing directories {{{2
+setopt    autopushd
+setopt    pushdignoredups
+# Completion {{{2
+setopt noalwayslastprompt
+#setopt noautolist
+setopt noautomenu
+setopt    autonamedirs
+setopt    listpacked
+# Expansion and globbing {{{2
+setopt nomarkdirs
+setopt nonomatch
+# History {{{2
+setopt    histignoredups
+setopt    histreduceblanks
+setopt    sharehistory
+# Job control {{{2
+setopt nohup
+setopt    longlistjobs
+# Prompting {{{2
+setopt    promptsubst
+# Zle {{{2
 setopt nobeep
 
-# history
+# Variables {{{1
+mailpath=(/var/spool/mail/`whoami`?'You have mail in \$_')
+WORDCHARS="${WORDCHARS:s#/#}"
+
+# History {{{2
 HISTFILE=~/.zsh_history
 SAVEHIST=10000
 HISTSIZE=10000
-setopt appendhistory histignoredups histreduceblanks sharehistory
+
+# Function path {{{2
+typeset -U fpath
+
+if [[ -d ${HOME}'/.zsh/functions' ]]; then
+    fpath=(${HOME}'/.zsh/functions' $fpath)
+fi
 
 # Completion {{{1
 autoload -U compinit

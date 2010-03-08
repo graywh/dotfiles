@@ -1,5 +1,3 @@
-mailpath=(/var/spool/mail/`whoami`'?You have mail')
-
 # Terminal stuff {{{1
 if [[ ${COLORTERM} == "gnome-terminal" ]]; then
     TERM="gnome-256color"
