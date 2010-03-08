@@ -25,6 +25,9 @@ augroup filetypedetect
   " Mutt config
   autocmd! BufNewFile,BufRead $HOME/.mutt/* call s:StarSetf('muttrc')
 
+  " tmux config
+  autocmd! BufNewFile,BufRead $HOME/.tmux.conf setfiletype tmux
+
   " Apache conf.d
   autocmd! BufNewFile,BufRead /etc/apache2/conf.d* call s:StarSetf('apache')
 

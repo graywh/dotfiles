@@ -24,6 +24,7 @@
 !/.screenrc
 !/.screenrc-irssi
 !/.subversion/config
+!/.tmux.conf
 !/.vim/
 # See .vim/.gitignore
 !/.vimrc
