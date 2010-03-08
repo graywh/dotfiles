@@ -1,36 +1,19 @@
-#!bash
+#!zsh
 
-alias sudo="sudo"       # so aliases get expanded before using sudo
+#alias sudo="sudo"       # so aliases get expanded before using sudo
 alias la="ls -A"
 alias ll="ls -hl"
 alias lla="ll -A"
+alias l.="__ls 'ls -d .*'"
+alias ll.="__ls 'ls -dhl .*'"
 
-function l. {
-    local olddir oldold
-    olddir=${PWD}
-    oldold=${OLDPWD}
-    if [[ -n "${1}" ]]; then
-        cd "${1}"
+function __ls() {
+    local dir
+    dir=${PWD}
+    if [[ -n "${2}" ]]; then
+        dir=${2}
     fi
-    ls -d .*
-    if [[ -n "${1}" ]]; then
-        cd "${olddir}"
-        export OLDPWD="${oldold}"
-    fi
-}
-
-function ll. {
-    local olddir oldold
-    olddir=${PWD}
-    oldold=${OLDPWD}
-    if [[ -n "${1}" ]]; then
-        cd "${1}"
-    fi
-    ls -dhl .*
-    if [[ -n "${1}" ]]; then
-        cd "${olddir}"
-        export OLDPWD="${oldold}"
-    fi
+    (cd ${dir} && eval ${1})
 }
 
 alias XtermIrssi="xterm -T irssi -geometry 100x25 -fs 9 -e \"screen -c ${HOME}/.screenrc-irssi\""
