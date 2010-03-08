@@ -123,6 +123,7 @@ if exists('&foldcolumn')
 endif
 set nofoldenable                " Disable folds by default
 set foldmethod=syntax           " Fold by syntax
+set foldminlines=0              " Allow folding single lines
 set linebreak                   " Don't wrap words
 set list                        " Add visual clues (disables 'linebreak')
 set number                      " Show line numbers
@@ -205,6 +206,10 @@ endif
 
 " Options {{{2
 if exists(':let') == 2
+
+  let g:colorchart_origin = { 88: 0, 256: 7 }
+  let g:colorchart_angle = { 88: 0, 256: 4 }
+  let g:colorchart_chart = { 88: "ribbon" }
 
   let g:fit_manpages_to_window = 1      " Let man format manpages to fit the window
 
@@ -327,10 +332,9 @@ if exists(':function') == 2
 
   function! VisualNavigation() " {{{2
     if !exists('g:my_visual_navigation_maps')
-      let g:my_visual_navigation_maps=1
+      let b:my_visual_navigation_maps=1
       echomsg 'Enabled visual navigation'
       setlocal wrap
-      silent! noremap <buffer> <unique> _ g_
       silent! noremap <buffer> <unique> 0 g0
       silent! noremap <buffer> <unique> <Home> g<Home>
       silent! noremap <buffer> <unique> ^ g^
@@ -344,7 +348,6 @@ if exists(':function') == 2
       unlet g:my_visual_navigation_maps
       echomsg 'Disabled visual navigation'
       setlocal wrap<
-      silent! unmap <buffer> _
       silent! unmap <buffer> 0
       silent! unmap <buffer> <Home>
       silent! unmap <buffer> ^
@@ -391,7 +394,7 @@ if exists(':command') == 2
 
   " Save using sudo
   if executable('sudo') && executable('dd')
-    command! SUwrite write !sudo dd of=%
+    command! SUwrite write !sudo tee %
   endif
 
   " D'oh
@@ -463,7 +466,6 @@ endif
 if exists('*pumvisible')
   inoremap <expr> <C-space> pumvisible() \|\| &omnifunc == '' ? "\<C-n>" : "\<C-x>\<C-o>"
 endif
-inoremap <C-@> <C-space>
 
 " Add new line indented here {{{2
 if has('ex_extra')
@@ -511,6 +513,9 @@ for k in ['i', 'm', 'M', 'n', 'N', 'r', 'R', 'v', 'x', 'X']
 endfor
 
 " Terminal Stuff {{{1
+map <C-@> <C-space>
+map! <C-@> <C-space>
+
 " XXX Fix vim bug when exiting alt screen {{{2
 if exists('&t_te') && exists('&t_op')
   let &t_te=&t_te.&t_op

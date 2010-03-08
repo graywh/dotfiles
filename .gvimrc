@@ -25,7 +25,7 @@ set guioptions+=v               " Use a vertical layout for gui dialogs
 set guicursor+=a:blinkon0       " Don't blink the cursor
 set mousehide                   " Hide the mouse while typing
 set noantialias                 " Don't anti-alias fonts?
-set columns=85
+set columns=85                  " 80 + numberwidth + foldcolumn
 set lines=40
 set vb t_vb=                    " Disable visual and audible bell
 set winaltkeys=no               " Don't use ALT to access the menu
