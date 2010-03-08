@@ -7,21 +7,14 @@ if [[ -d ${HOME}'/bin' ]]; then
     path=($path ${HOME}'/bin')
 fi
 
-if [[ -d '/opt/local/bin' ]]; then
-    path=('/opt/local/bin' $path)
+if [[ -d '/opt/local' ]]; then
+    path=('/opt/local/sbin' '/opt/local/bin' $path)
 fi
 
-if [[ -d '/opt/local/sbin' ]]; then
-    path=('/opt/local/sbin' $path)
+if [[ -d '/var/lib/gems' ]]; then
+    path=(/var/lib/gems/*/bin $path)
 fi
-
-if [[ -d '/var/lib/gems/1.8/bin' ]]; then
-    path=('/var/lib/gems/1.8/bin' $path)
-fi
-
-if [[ -d '/var/lib/gems/1.9.0/bin' ]]; then
-    path=('/var/lib/gems/1.9.0/bin' $path)
-fi
+# }}}1
 
 # Function path {{{1
 typeset -U fpath
