@@ -1,4 +1,6 @@
-# Terminal stuff {{{1
+export GPGKEY=17F954B1
+
+# Terminal Stuff {{{1
 if [[ ${COLORTERM} == "gnome-terminal" ]]; then
     TERM="gnome-256color"
     unset COLORTERM

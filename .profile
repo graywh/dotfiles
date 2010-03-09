@@ -20,6 +20,9 @@ fi
 export PATH
 #}}}2
 
+GPGKEY=17F954B1
+export GPGKEY
+
 MAILPATH="/var/spool/mail/`whoami`?\"You have mail\""
 export MAILPATH
 
