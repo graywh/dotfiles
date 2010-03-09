@@ -129,7 +129,7 @@ hi StatusLine                                                           cterm=re
 hi StatusLineNC                                                         cterm=reverse
 hi VertSplit                                                            cterm=reverse
 hi Title                ctermfg=Magenta
-hi Visual                                       ctermbg=bg              cterm=reverse
+hi Visual                                       ctermbg=NONE            cterm=reverse
 hi VisualNOS                                                            cterm=underline
 hi WarningMsg           ctermfg=DarkYellow
 hi WildMenu             ctermfg=bg              ctermbg=Yellow
