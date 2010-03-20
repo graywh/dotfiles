@@ -1,4 +1,3 @@
-
 # If not running interactively, don't do anything
 # Important for ssh+svn support
 if [[ -z "${PS1}" ]]; then
@@ -194,11 +193,6 @@ fi
 # enable programmable completion features
 if [[ -f "/etc/bash_completion" ]]; then
     source "/etc/bash_completion"
-fi
-
-# include the local system modifications
-if [[ -f "${HOME}/.bashrc.local" ]]; then
-    source "${HOME}/.bashrc.local"
 fi
 
 # vim: fdm=marker

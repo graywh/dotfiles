@@ -276,9 +276,4 @@ if [[ -f ${HOME}"/.zsh_functions" ]]; then
     source ${HOME}"/.zsh_functions"
 fi
 
-# include the local system modifications
-if [[ -f ${HOME}"/.zshrc.local" ]]; then
-    source ${HOME}"/.zshrc.local"
-fi
-
 # vim: fdm=marker fen
