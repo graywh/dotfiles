@@ -222,9 +222,8 @@ fi
 #zstyle ':vcs_info:*' branchformat "%b:%r"
 #zstyle ':vcs_info:*:*:graywh' disable-patterns "$HOME(/*)"
 # }}}2
-Bell="%{$terminfo[bel]%}"
-#PS1=${Bell}${None}'('${Blue}'%?'${None}')--('${Cyan}'%*'${None}')--('${Green}'%n'${None}'@'${Magenta}'%m'${None}')--('${Red}'%~'${None}'$vcs_info_msg_0_'${None}')'${None}"
-PS1=${Bell}${None}'('${Blue}'%?'${None}')--('${Cyan}'%*'${None}')--('${Green}'%n'${None}'@'${Magenta}'%m'${None}')--('${Red}'%~'${None}${Yellow}'$(___git_ps1)'${None}')'${None}"
+#PS1=${None}'('${Blue}'%?'${None}')--('${Cyan}'%*'${None}')--('${Green}'%n'${None}'@'${Magenta}'%m'${None}')--('${Red}'%~'${None}'$vcs_info_msg_0_'${None}')'${None}"
+PS1=${None}'('${Blue}'%?'${None}')--('${Cyan}'%*'${None}')--('${Green}'%n'${None}'@'${Magenta}'%m'${None}')--('${Red}'%~'${None}${Yellow}'$(___git_ps1)'${None}')'${None}"
 "'%# '
 
 # Functions {{{1
@@ -236,6 +235,9 @@ function precmd { #{{{2
             print -Pn "\e]0;%n@%m: %~\a"
         ;;
     esac
+    if [[ ${TERM} == screen* && ( -n "${TMUX}" || -n "${STY}" ) ]]; then
+        print -n "\a"
+    fi
     #if [[ ${TERM} == screen* ]]; then
     #    print -Pn "\ek\e\\"
     #fi

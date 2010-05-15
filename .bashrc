@@ -156,6 +156,9 @@ function prompt_command { #{{{2
         echo -ne "\e]0;${USER}@${HOSTNAME}: ${PWD}\a"
         ;;
     esac
+    if [[ ${TERM} == screen* && ( -n "${TMUX}" || -n "${STY}" ) ]]; then
+        echo -ne "\a"
+    fi
     #if [[ "${TERM}" == screen* ]]; then
     #    echo -ne "\ek\e\\"
     #fi
