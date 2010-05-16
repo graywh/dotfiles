@@ -1,6 +1,15 @@
 import sys, os
 
-sys.path.append(os.path.join(os.environ["HOME"], "src", "python", "lib"))
-sys.path.append(os.path.join(os.environ["HOME"], "lib", "python"))
+paths = [
+        os.path.join(os.environ["HOME"], "src", "python", "lib"),
+        os.path.join(os.environ["HOME"], "Code", "python", "lib"),
+        os.path.join(os.environ["HOME"], "lib", "python"),
+        ]
+for path in paths:
+    if os.path.exists(path) and os.path.isdir(path):
+        sys.path.append(path)
 
-from base import *
+try:
+    from base import *
+except ImportError:
+    pass # do nothing
