@@ -1,7 +1,7 @@
-set mainfont {{dejavu sans mono} 9}
-set textfont {{dejavu sans mono} 9}
-set uifont {{nimbus sans l} 10}
-set tabstop 4
+set mainfont {{DejaVu Sans Mono} 9}
+set textfont {{DejaVu Sans Mono} 9}
+set uifont {{DejaVu Sans} 10}
+set tabstop 8
 set findmergefiles 0
 set maxgraphpct 50
 set maxwidth 16
@@ -26,10 +26,10 @@ set extdifftool meld
 set perfile_attrs 0
 set geometry(main) 1192x1485+0+0
 set geometry(state) normal
-set geometry(topwidth) 1188
+set geometry(topwidth) 1192
 set geometry(topheight) 813
-set geometry(pwsash0) "699 2"
-set geometry(pwsash1) "1003 2"
+set geometry(pwsash0) "699 1"
+set geometry(pwsash1) "1003 1"
 set geometry(botwidth) 794
-set geometry(botheight) 652
+set geometry(botheight) 667
 set permviews {}

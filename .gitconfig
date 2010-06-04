@@ -22,15 +22,15 @@
 [status]
 	relativePaths = true
 [diff]
-	rename = copy
+	renames = copy
 [diff "ruby"]
 	funcname = ^\\s*\\(\\(class\\|module\\|def\\|describe\\) .*\\)
 [diff "python"]
 	funcname = ^\\s*\\(\\(class\\|def\\) .*\\)
 [diff "vim"]
 	function = ^\\s*\\(function .*\\)
-[help]
-	browser = dillo
+[web]
+	browser = sensible-browser
 [gui]
 	fontdiff = -family \"DejaVu Sans Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 	spellingdictionary = none

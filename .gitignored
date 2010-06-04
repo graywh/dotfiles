@@ -9,6 +9,7 @@ Session.vim
 
 # Zsh
 .rake_tasks
+.cap_tasks
 
 # OS X
 .DS_Store
