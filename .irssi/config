@@ -237,6 +237,7 @@ keyboard = (
   { key = "meta2-4~"; id = "key"; data = "end"; },
   { key = "meta2-5~"; id = "key"; data = "prior"; },
   { key = "meta2-6~"; id = "key"; data = "next"; },
+  { key = "meta2-27;1;9~"; id = "key"; data = "tab"; },
   # shift
   { key = "meta2-1;2A"; id = "key"; data = "sup"; },
   { key = "meta2-1;2B"; id = "key"; data = "sdown"; },
@@ -248,6 +249,7 @@ keyboard = (
   { key = "meta2-1;2F"; id = "key"; data = "send"; },
   { key = "meta2-5;2~"; id = "key"; data = "sprior"; },
   { key = "meta2-6;2~"; id = "key"; data = "snext"; },
+  { key = "meta2-27;2;9~"; id = "key"; data = "stab"; },
   { key = "sup"; id = "nothing"; data = ""; },
   { key = "sdown"; id = "nothing"; data = ""; },
   { key = "sright"; id = "nothing"; data = ""; },
@@ -258,6 +260,7 @@ keyboard = (
   { key = "send"; id = "nothing"; data = ""; },
   { key = "sprior"; id = "nothing"; data = ""; },
   { key = "snext"; id = "nothing"; data = ""; },
+  { key = "stab"; id = "nothing"; data = ""; },
   # meta/alt
   { key = "meta2-1;3A"; id = "key"; data = "mup"; },
   { key = "meta2-1;3B"; id = "key"; data = "mdown"; },
@@ -269,12 +272,14 @@ keyboard = (
   { key = "meta2-1;3F"; id = "key"; data = "mend"; },
   { key = "meta2-5;3~"; id = "key"; data = "mprior"; },
   { key = "meta2-6;3~"; id = "key"; data = "mnext"; },
+  { key = "meta2-27;3;9~"; id = "key"; data = "mtab"; },
   { key = "mhome"; id = "nothing"; data = ""; },
   { key = "minsert"; id = "nothing"; data = ""; },
   { key = "mdelete"; id = "nothing"; data = ""; },
   { key = "mend"; id = "nothing"; data = ""; },
   { key = "mprior"; id = "nothing"; data = ""; },
   { key = "mnext"; id = "nothing"; data = ""; },
+  { key = "mtab"; id = "nothing"; data = ""; },
   # shift + meta/alt
   { key = "meta2-1;4A"; id = "key"; data = "smup"; },
   { key = "meta2-1;4B"; id = "key"; data = "smdown"; },
@@ -286,6 +291,7 @@ keyboard = (
   { key = "meta2-1;4F"; id = "key"; data = "smend"; },
   { key = "meta2-5;4~"; id = "key"; data = "smprior"; },
   { key = "meta2-6;4~"; id = "key"; data = "smnext"; },
+  { key = "meta2-27;4;9~"; id = "key"; data = "smtab"; },
   { key = "smup"; id = "nothing"; data = ""; },
   { key = "smdown"; id = "nothing"; data = ""; },
   { key = "smright"; id = "nothing"; data = ""; },
@@ -296,6 +302,7 @@ keyboard = (
   { key = "smend"; id = "nothing"; data = ""; },
   { key = "smprior"; id = "nothing"; data = ""; },
   { key = "smnext"; id = "nothing"; data = ""; },
+  { key = "smtab"; id = "nothing"; data = ""; },
   # ctrl
   { key = "meta2-1;5A"; id = "key"; data = "cup"; },
   { key = "meta2-1;5B"; id = "key"; data = "cdown"; },
@@ -307,12 +314,14 @@ keyboard = (
   { key = "meta2-1;5F"; id = "key"; data = "cend"; },
   { key = "meta2-5;5~"; id = "key"; data = "cprior"; },
   { key = "meta2-6;5~"; id = "key"; data = "cnext"; },
+  { key = "meta2-27;5;9~"; id = "key"; data = "ctab"; },
   { key = "cup"; id = "nothing"; data = ""; },
   { key = "cdown"; id = "nothing"; data = ""; },
   { key = "cinsert"; id = "nothing"; data = ""; },
   { key = "cdelete"; id = "nothing"; data = ""; },
   { key = "cprior"; id = "nothing"; data = ""; },
   { key = "cnext"; id = "nothing"; data = ""; },
+  { key = "ctab"; id = "nothing"; data = ""; },
   # shift + ctrl
   { key = "meta2-1;6A"; id = "key"; data = "scup"; },
   { key = "meta2-1;6B"; id = "key"; data = "scdown"; },
@@ -324,6 +333,7 @@ keyboard = (
   { key = "meta2-1;6F"; id = "key"; data = "scend"; },
   { key = "meta2-5;6~"; id = "key"; data = "scprior"; },
   { key = "meta2-6;6~"; id = "key"; data = "scnext"; },
+  { key = "meta2-27;6;9~"; id = "key"; data = "sctab"; },
   { key = "scup"; id = "nothing"; data = ""; },
   { key = "scdown"; id = "nothing"; data = ""; },
   { key = "scright"; id = "nothing"; data = ""; },
@@ -334,6 +344,7 @@ keyboard = (
   { key = "scend"; id = "nothing"; data = ""; },
   { key = "scprior"; id = "nothing"; data = ""; },
   { key = "scnext"; id = "nothing"; data = ""; },
+  { key = "sctab"; id = "nothing"; data = ""; },
   # meta/alt + ctrl
   { key = "meta2-1;7A"; id = "key"; data = "mcup"; },
   { key = "meta2-1;7B"; id = "key"; data = "mcdown"; },
@@ -345,6 +356,7 @@ keyboard = (
   { key = "meta2-1;7F"; id = "key"; data = "mcend"; },
   { key = "meta2-5;7~"; id = "key"; data = "mcprior"; },
   { key = "meta2-6;7~"; id = "key"; data = "mcnext"; },
+  { key = "meta2-27;7;9~"; id = "key"; data = "mctab"; },
   { key = "mcup"; id = "nothing"; data = ""; },
   { key = "mcdown"; id = "nothing"; data = ""; },
   { key = "mcright"; id = "nothing"; data = ""; },
@@ -355,6 +367,7 @@ keyboard = (
   { key = "mcend"; id = "nothing"; data = ""; },
   { key = "mcprior"; id = "nothing"; data = ""; },
   { key = "mcnext"; id = "nothing"; data = ""; },
+  { key = "mctab"; id = "nothing"; data = ""; },
   # shift + meta/alt + ctrl
   { key = "meta2-1;8A"; id = "key"; data = "smcup"; },
   { key = "meta2-1;8B"; id = "key"; data = "smcdown"; },
@@ -366,6 +379,7 @@ keyboard = (
   { key = "meta2-1;8F"; id = "key"; data = "smcend"; },
   { key = "meta2-5;8~"; id = "key"; data = "smcprior"; },
   { key = "meta2-6;8~"; id = "key"; data = "smcnext"; },
+  { key = "meta2-27;8;9~"; id = "key"; data = "smctab"; },
   { key = "smcup"; id = "nothing"; data = ""; },
   { key = "smcdown"; id = "nothing"; data = ""; },
   { key = "smcright"; id = "nothing"; data = ""; },
@@ -375,6 +389,7 @@ keyboard = (
   { key = "smcdelete"; id = "nothing"; data = ""; },
   { key = "smcend"; id = "nothing"; data = ""; },
   { key = "smcprior"; id = "nothing"; data = ""; },
-  { key = "smcnext"; id = "nothing"; data = ""; }
+  { key = "smcnext"; id = "nothing"; data = ""; },
+  { key = "smctab"; id = "nothing"; data = ""; }
 );
 # vim: ft=perl sw=2

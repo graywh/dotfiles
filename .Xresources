@@ -26,6 +26,7 @@ XTerm*vt100.geometry: 85x36
 XTerm*vt100.highlightSelection: true
 XTerm*vt100.locale: true
 !XTerm*vt100.metaSendsEscape: true
+!XTerm*vt100.modifyOtherKeys: 1
 XTerm*vt100.rightScrollBar: true
 XTerm*vt100.saveLines: 2048
 XTerm*vt100.scrollBar: false
@@ -35,6 +36,16 @@ XTerm*vt100.utf8: 1
 XTerm*vt100.visualBell: true
 XTerm*vt100.visualBellDelay: 0
 ! --- keybindings {{{3
+! modified tab key
+XTerm*vt100.translations: #override \n\
+    ~Ctrl ~Meta ~Shift <Key>Tab: string(0x09) \n\
+    ~Ctrl ~Meta  Shift <Key>Tab: string(0x1b) string("[Z") \n\
+    ~Ctrl  Meta ~Shift <Key>Tab: string(0x1b) string("[27;3;9~") \n\
+    ~Ctrl  Meta  Shift <Key>Tab: string(0x1b) string("[27;4;9~") \n\
+     Ctrl ~Meta ~Shift <Key>Tab: string(0x1b) string("[27;5;9~") \n\
+     Ctrl ~Meta  Shift <Key>Tab: string(0x1b) string("[27;6;9~") \n\
+     Ctrl  Meta ~Shift <Key>Tab: string(0x1b) string("[27;7;9~") \n\
+     Ctrl  Meta  Shift <Key>Tab: string(0x1b) string("[27;8;9~")
 ! use btn1 instead of wheel for click-hold scrolling
 XTerm*vt100.scrollbar.translations: #override \n\
     <Btn1Down>: StartScroll(Continuous) MoveThumb() NotifyThumb() \n\
