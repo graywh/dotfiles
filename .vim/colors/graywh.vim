@@ -27,7 +27,9 @@ endif
 let colors_name = "graywh"
 
 " Links {{{1
-hi link Character String
+hi! link Character String
+hi! link CursorColumn CursorLine
+hi! link VertSplit StatusLineNC
 
 " For GUI {{{1
 hi Normal               guifg=#D7D7D7   guibg=#1C1C1C
@@ -45,7 +47,6 @@ hi LineNr               guifg=#D7D7AF   guibg=#262626
 hi Question             guifg=#5FFF5F                   gui=bold
 hi StatusLine                                           gui=reverse,bold
 hi StatusLineNC                                         gui=reverse
-hi VertSplit                                            gui=reverse
 hi Title                guifg=#FF87FF                   gui=bold
 hi Visual                               guibg=NONE      gui=reverse
 hi VisualNOS                                            gui=bold,underline
@@ -55,19 +56,19 @@ hi Folded               guifg=#FFD7FF   guibg=#444444   gui=italic
 hi FoldColumn           guifg=#87FFFF   guibg=#444444
 
 if v:version >= 600
-  hi DiffAdd                              guibg=#123012
-  hi DiffChange                           guibg=#121230
-  hi DiffDelete           guifg=fg        guibg=#301212   gui=none
-  hi DiffText                             guibg=#303012   gui=none
+  hi DiffAdd                            guibg=#123012
+  hi DiffChange                         guibg=#121230
+  hi DiffDelete         guifg=fg        guibg=#301212   gui=none
+  hi DiffText                           guibg=#303012   gui=none
 endif
 
 hi SignColumn           guifg=#FFFF87   guibg=#444444
 
 if v:version >= 700
-  hi SpellBad                                             gui=undercurl           guisp=#FF0000
-  hi SpellCap                                             gui=undercurl           guisp=#0000FF
-  hi SpellRare                                            gui=undercurl           guisp=#FF00FF
-  hi SpellLocal                                           gui=undercurl           guisp=#00FFFF
+  hi SpellBad                                           gui=undercurl           guisp=#FF0000
+  hi SpellCap                                           gui=undercurl           guisp=#0000FF
+  hi SpellRare                                          gui=undercurl           guisp=#FF00FF
+  hi SpellLocal                                         gui=undercurl           guisp=#00FFFF
 endif
 
 hi Pmenu                guifg=fg        guibg=#D787D7
@@ -77,8 +78,7 @@ hi PmenuThumb                                           gui=reverse
 hi TabLine              guifg=bg        guibg=fg        gui=none
 hi TabLineSel           guifg=fg        guibg=bg        gui=bold
 hi TabLineFill          guifg=fg        guibg=bg        gui=reverse
-hi CursorColumn                         guibg=#262626
-hi CursorLine                           guibg=#262626
+hi CursorLine                           guibg=#303030
 hi Cursor               guifg=bg        guibg=fg
 
 " Syntax {{{2
@@ -101,6 +101,8 @@ hi Error                guifg=#FFFFFF   guibg=#FF5F5F
 hi Todo                 guifg=#0000D7   guibg=#FFFF5F
 
 " Custom {{{2
+hi colorIndentLevel1                    guibg=#121212
+hi colorIndentLevel2                    guibg=#262626
 " mail {{{3
 hi mailQuoted1          guifg=#AFAFD7   guibg=#303030
 hi mailQuoted2          guifg=#D7AFAF   guibg=#303030
@@ -159,8 +161,7 @@ hi PmenuThumb                                                           cterm=re
 hi TabLine              ctermfg=bg              ctermbg=fg              cterm=none
 hi TabLineSel                                                           cterm=bold
 hi TabLineFill                                                          cterm=reverse
-hi CursorColumn                                 ctermbg=DarkGray
-hi CursorLine                                                           cterm=underline
+hi CursorLine                                   ctermbg=DarkGray
 
 " Syntax {{{2
 hi MatchParen                                   ctermbg=DarkCyan
@@ -181,6 +182,8 @@ hi Error                ctermfg=White           ctermbg=Red
 hi Todo                 ctermfg=DarkBlue        ctermbg=Yellow
 
 " Custom {{{2
+hi colorIndentLevel1                            ctermbg=Black
+hi colorIndentLevel2                            ctermbg=DarkGray
 " mail {{{3
 hi mailQuoted1          ctermfg=DarkBlue
 hi mailQuoted2          ctermfg=DarkRed
