@@ -265,6 +265,7 @@ function precmd { #{{{2
             print -Pn "\e]0;%n@%m: %~\a"
         ;;
     esac
+    # If this is tmux or screen, print a bel
     if [[ ${TERM} == screen* && ( -n "${TMUX}" || -n "${STY}" ) ]]; then
         print -n "\a"
     fi
