@@ -1,3 +1,17 @@
+function vimh {
+    vim -c "help $1" -c "only"
+}
+
+function man {
+    vim -c "Man $1 $2" -c "only" -c "bd#"
+}
+
+function loop {
+    while true; do
+        $*
+    done
+}
+
 # calc shortcut {{{1
 if [[ -x $(which bc) ]]; then
     function calc {

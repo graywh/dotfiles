@@ -11,20 +11,20 @@ set keymap vi-insert
 
 "\e[1~": beginning-of-line
 "\e[H": beginning-of-line
-"": beginning-of-line
+"\C-b": beginning-of-line
 "\e[4~": end-of-line
 "\e[F": end-of-line
-"": end-of-line
+"\C-e": end-of-line
 #"\e[2~": quoted-insert
 "\e[3~": delete-char
 "\e[A": history-search-backward
-"": history-search-backward
+"\C-p": history-search-backward
 "\e[B": history-search-forward
-"": history-search-forward
+"\C-n": history-search-forward
 "\e[C": forward-char
 "\e[D": backward-char
-"": kill-line
-"": unix-line-discard
-"": unix-filename-rubout
+"\C-k": kill-line
+"\C-u": unix-line-discard
+"\C-w": unix-filename-rubout
 "\e[1;5D": backward-word
 "\e[1;5C": forward-word

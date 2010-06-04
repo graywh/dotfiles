@@ -1,5 +1,9 @@
 #!bash
 
+function vimh {
+    vim -c "help $1 | only"
+}
+
 # calc shortcut {{{1
 if [[ -x $(which bc) ]]; then
     function calc {

@@ -1,2 +1,4 @@
 # when leaving the console clear the screen to increase privacy
-clear
+if [ "$SHLVL" = 1 ]; then
+    clear
+fi

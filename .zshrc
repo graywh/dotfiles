@@ -2,6 +2,8 @@
 #    screen -X "shelltitle '% |zsh:'"
 #fi
 
+autoload zsh/terminfo
+
 # Options {{{1
 # Changing directories {{{2
 setopt    autopushd
@@ -78,8 +80,8 @@ bindkey "\e[1;5D" vi-backward-blank-word
 bindkey "\e[1;2C" forward-word
 bindkey "\e[1;5C" vi-forward-blank-word
 # History {{{2
-#bindkey "\e[5~" beginning-of-history
-#bindkey "\e[6~" end-of-history
+#bindkey "\e[5;5~" beginning-of-history
+#bindkey "\e[6;5~" end-of-history
 bindkey "^P" history-beginning-search-backward
 bindkey "^N" history-beginning-search-forward
 # Editing {{{2
@@ -99,9 +101,37 @@ bindkey "^O" push-input
 bindkey "^T" get-line
 bindkey "^Y" undo
 
+# From Debian/Ubuntu {{{3
+if [[ "$TERM" != emacs ]]; then
+    [[ -z "$terminfo[kdch1]" ]] || bindkey -M emacs "$terminfo[kdch1]" delete-char
+    [[ -z "$terminfo[khome]" ]] || bindkey -M emacs "$terminfo[khome]" beginning-of-line
+    [[ -z "$terminfo[kend]" ]] || bindkey -M emacs "$terminfo[kend]" end-of-line
+    [[ -z "$terminfo[kich1]" ]] || bindkey -M emacs "$terminfo[kich1]" overwrite-mode
+    [[ -z "$terminfo[kdch1]" ]] || bindkey -M vicmd "$terminfo[kdch1]" vi-delete-char
+    [[ -z "$terminfo[khome]" ]] || bindkey -M vicmd "$terminfo[khome]" vi-beginning-of-line
+    [[ -z "$terminfo[kend]" ]] || bindkey -M vicmd "$terminfo[kend]" vi-end-of-line
+    [[ -z "$terminfo[kich1]" ]] || bindkey -M vicmd "$terminfo[kich1]" overwrite-mode
+
+    [[ -z "$terminfo[cuu1]" ]] || bindkey -M viins "$terminfo[cuu1]" vi-up-line-or-history
+    [[ -z "$terminfo[cuf1]" ]] || bindkey -M viins "$terminfo[cuf1]" vi-forward-char
+    [[ -z "$terminfo[kcuu1]" ]] || bindkey -M viins "$terminfo[kcuu1]" vi-up-line-or-history
+    [[ -z "$terminfo[kcud1]" ]] || bindkey -M viins "$terminfo[kcud1]" vi-down-line-or-history
+    [[ -z "$terminfo[kcuf1]" ]] || bindkey -M viins "$terminfo[kcuf1]" vi-forward-char
+    [[ -z "$terminfo[kcub1]" ]] || bindkey -M viins "$terminfo[kcub1]" vi-backward-char
+
+    # ncurses fogyatekos
+    [[ "$terminfo[kcuu1]" == "\eO"* ]] && bindkey -M viins "${terminfo[kcuu1]/O/[}" vi-up-line-or-history
+    [[ "$terminfo[kcud1]" == "\eO"* ]] && bindkey -M viins "${terminfo[kcud1]/O/[}" vi-down-line-or-history
+    [[ "$terminfo[kcuf1]" == "\eO"* ]] && bindkey -M viins "${terminfo[kcuf1]/O/[}" vi-forward-char
+    [[ "$terminfo[kcub1]" == "\eO"* ]] && bindkey -M viins "${terminfo[kcub1]/O/[}" vi-backward-char
+    [[ "$terminfo[khome]" == "\eO"* ]] && bindkey -M viins "${terminfo[khome]/O/[}" beginning-of-line
+    [[ "$terminfo[kend]" == "\eO"* ]] && bindkey -M viins "${terminfo[kend]/O/[}" end-of-line
+    [[ "$terminfo[khome]" == "\eO"* ]] && bindkey -M emacs "${terminfo[khome]/O/[}" beginning-of-line
+    [[ "$terminfo[kend]" == "\eO"* ]] && bindkey -M emacs "${terminfo[kend]/O/[}" end-of-line
+fi
+
 # Set a fancy prompt {{{1
 # Color definitions {{{2
-autoload zsh/terminfo
 None="%{$terminfo[sgr0]%}"
 if (( $terminfo[colors] >= 16 )); then
     # For 16+ color term {{{

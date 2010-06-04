@@ -29,9 +29,6 @@ export EDITOR
 MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
 export MANPAGER
 
-BROWSER=firefox
-export BROWSER
-
 PYTHONSTARTUP=${HOME}/.pythonrc.py
 export PYTHONSTARTUP
 
