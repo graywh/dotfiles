@@ -3,87 +3,87 @@ require 'yaml'
 
 Yobj = YAML::load(File.open('.dotfiles.yml'))
 
-Home = ENV["HOME"]
-DownloadCmd = "wget -O"
-
-def stash(&block)
-  stash = system("git --no-pager status > /dev/null")
-  if stash > 0
-    system("git stash save")
+def git_stash(&block)
+  system("git diff-index --exit-code HEAD > /dev/null")
+  stash = $?.exitcode > 0
+  if stash
+    `git stash save --quiet 'dotfiles'`
   end
   block.call()
-  if stash > 0
-    system("git --no-pager stash pop > /dev/null")
+  if stash
+    `git --no-pager stash pop`
   end
 end
 
-def vimdoctags(bundles)
-  puts("updating vim help tags")
-  bundles.each do |bundle|
-    system("vim -u NONE -U NONE --noplugin -c 'helptags #{bundle}/doc' -c 'q'")
+def git_master(&block)
+  git_stash do
+    system("git checkout master")
+    block.call()
+    system("git checkout local")
+    system("git rebase master")
   end
+end
+
+def vimdoctags
+  puts("updating vim help tags")
+  system("vim --noplugin -c 'call pathogen#helptags()' -c 'q'")
+end
+
+def filter(hash, pattern)
+  if pattern
+    pattern = Regexp.new(pattern)
+    hash.delete_if do |key, value|
+      not (key =~ pattern)
+    end
+  end
+  return hash
+end
+
+def download(url, file)
+  puts("downloading #{file}")
+  system("wget #{url} -O #{file}")
 end
 
 desc "Update master and rebase"
 task :update do
-  stash do
-    system("git checkout master")
+  git_master do
     system("git pull")
-    system("git checkout local")
-    system("git rebase master")
   end
 end
 
 desc "Cherry pick commits for master"
 task :cherry, :rev do |t, args|
   raise "no revision" unless args.rev
-  stash do
-    system("git checkout master")
+  git_master do
     system("git cherry-pick #{args.rev}")
-    system("git checkout local")
-    system("git rebase master")
   end
 end
 
-namespace :externals do
-  desc "Initialize externals"
+namespace :bundle do
+  desc "Initialize bundles"
   task :init do
-    system("git submodule update --init")
-    vimdoctags(Yobj['VimBundles'])
+    Yobj['Bundles'].each do |key, value|
+      system("git clone #{value} #{key}") unless File.exists?(key)
+    end
+    vimdoctags
   end
 
-  namespace :update do
-    desc "Git submodules"
-    task :git, :project do |t, args|
-      projects = Yobj['VimBundles']
-      if args.project
-        pattern = Regexp.new(args.project)
-        projects.delete_if do |value|
-          not (value =~ pattern)
-        end
-        projects.each do |value|
-          system("cd #{value}; git pull")
-        end
-      else
-        system("git submodule foreach git checkout master")
-        system("git submodule foreach git pull")
-      end
-      vimdoctags(projects)
+  desc "Update bundles"
+  task :update, :pattern do |t, args|
+    projects = filter(Yobj['Bundles'], args.pattern)
+    projects.each do |key, value|
+      system("cd #{key}; git checkout master; git pull")
     end
+    vimdoctags
+  end
+end
 
-    desc "Files"
-    task :files, :pattern do |t, args|
-      files = Yobj['Files']
-      if args.pattern
-        pattern = Regexp.new(args.pattern)
-        files.delete_if do |key, value|
-          not (key =~ pattern)
-        end
-      end
-      files.each do |key, value|
-        puts("downloading #{key}")
-        system("#{DownloadCmd} #{key} #{value}")
-      end
+namespace :file do
+  desc "Update files"
+  task :update, :pattern do |t, args|
+    files = filter(Yobj['Files'], args.pattern)
+    files.each do |key, value|
+      download(value, key)
     end
   end
 end

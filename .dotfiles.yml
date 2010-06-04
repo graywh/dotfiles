@@ -1,29 +1,29 @@
 Files:
-    # tpope
-    .vim/autoload/pathogen.vim: http://github.com/tpope/vim-pathogen/raw/master/autoload/pathogen.vim
-    # godlygeek
-    .vim/plugin/manpageview.vim: http://github.com/godlygeek/vim-files/raw/master/plugin/manpageview.vim
-    .vim/plugin/terminalkeys.vim: http://github.com/godlygeek/vim-files/raw/master/plugin/terminalkeys.vim
-    .vim/plugin/vsearch.vim: http://github.com/godlygeek/vim-files/raw/master/plugin/vsearch.vim
-    # jamessan
-    .vim/plugin/BufGrep.vim: http://git.jamessan.com/?p=etc/vim.git;a=blob_plain;f=plugin/BufGrep.vim;hb=HEAD
-    # Dmitry Vasiliev
-    .vim/syntax/python1.vim: http://www.hlabs.spb.ru/vim/python.vim
-    # mattn
-    .vim/plugin/gist.vim: http://github.com/mattn/gist-vim/raw/master/gist.vim
-    # zsh
-    .zsh/functions/_git: http://zsh.cvs.sourceforge.net/viewvc/*checkout*/zsh/zsh/Completion/Unix/Command/_git
-    .zsh/functions/_rake: http://zsh.cvs.sourceforge.net/viewvc/*checkout*/zsh/zsh/Completion/Unix/Command/_rake
-    .zsh/functions/_tmux: http://zsh.cvs.sourceforge.net/viewvc/*checkout*/zsh/zsh/Completion/Unix/Command/_tmux
-    # plasticboy
-    .vim/syntax/markdown.vim: http://github.com/plasticboy/vim-markdown/raw/master/mkd.vim
+  .vim/autoload/pathogen.vim:    http://github.com/tpope/vim-pathogen/raw/master/autoload/pathogen.vim
+  .vim/plugin/BufGrep.vim:       http://git.jamessan.com/?p=etc/vim.git;a=blob_plain;f=plugin/BufGrep.vim;hb=HEAD
+  .vim/plugin/gist1.vim:         http://github.com/mattn/gist-vim/raw/master/gist.vim
+  .vim/plugin/manpageview1.vim:  http://github.com/godlygeek/vim-files/raw/master/plugin/manpageview.vim
+  .vim/plugin/terminalkeys1.vim: http://github.com/godlygeek/vim-files/raw/master/plugin/terminalkeys.vim
+  .vim/plugin/vsearch.vim:       http://github.com/godlygeek/vim-files/raw/master/plugin/vsearch.vim
+  .vim/syntax/markdown.vim:      http://github.com/plasticboy/vim-markdown/raw/master/mkd.vim
+  .vim/syntax/python1.vim:       http://www.hlabs.spb.ru/vim/python.vim
+  .zsh/functions/_git:           http://zsh.cvs.sourceforge.net/viewvc/*checkout*/zsh/zsh/Completion/Unix/Command/_git
+  .zsh/functions/_rake:          http://zsh.cvs.sourceforge.net/viewvc/*checkout*/zsh/zsh/Completion/Unix/Command/_rake
+  .zsh/functions/_tmux:          http://zsh.cvs.sourceforge.net/viewvc/*checkout*/zsh/zsh/Completion/Unix/Command/_tmux
 
-VimBundles:
-    - .vim/bundles/csapprox
-    - .vim/bundles/git
-    - .vim/bundles/haml
-    - .vim/bundles/rails
-    - .vim/bundles/ruby
-    - .vim/bundles/space
-    - .vim/bundles/speeddating
-    - .vim/bundles/surround
+Bundles:
+  .vim/bundles/brew:        git://github.com/graywh/brew.git
+  .vim/bundles/colorchart:  git://github.com/godlygeek/colorchart.git
+  .vim/bundles/colorindent: git://github.com/graywh/colorindent.git
+  .vim/bundles/csapprox:    git://github.com/godlygeek/csapprox.git
+  .vim/bundles/git:         git://github.com/tpope/vim-git.git
+  .vim/bundles/haml:        git://github.com/tpope/vim-haml.git
+  .vim/bundles/rails:       git://github.com/tpope/vim-rails.git
+  .vim/bundles/ruby:        git://github.com/vim-ruby/vim-ruby.git
+  .vim/bundles/space:       git://github.com/spiiph/vim-space.git
+  .vim/bundles/speeddating: git://github.com/tpope/vim-speeddating.git
+  .vim/bundles/surround:    git://github.com/tpope/vim-surround.git
+  .vim/bundles/tabular:     git://github.com/godlygeek/vim-tabular.git
+
+# '<,'>Tab /:\zs /l0
+# vim: isk+=46-47
