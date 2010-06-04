@@ -207,8 +207,8 @@ windows = {
   };
 };
 mainwindows = {
-  1 = { first_line = "1"; lines = "5"; };
-  2 = { first_line = "6"; lines = "18"; };
+  1 = { first_line = "1"; lines = "4"; };
+  2 = { first_line = "6"; lines = "17"; };
 };
 notifies = { };
 ignores = ( { level = "JOINS PARTS QUITS"; } );
