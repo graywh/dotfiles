@@ -78,7 +78,7 @@ endfunction
 function! s:MapOthers()
   " <BS>
   exe "set <BS>=\<C-?>"
-  call s:MapAllModes("\<C-h> <BS>")
+  "call s:MapAllModes("\<C-h> <BS>")
 
   " <Home>/<End>
   exe "set <Home>=\<Esc>[1;*H"

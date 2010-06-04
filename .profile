@@ -26,7 +26,7 @@ export MAILPATH
 EDITOR=vim
 export EDITOR
 
-MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -c 'nnoremap <buffer> q ZQ' -\""
+MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
 export MANPAGER
 
 BROWSER=firefox

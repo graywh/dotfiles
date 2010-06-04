@@ -1,7 +1,6 @@
 " Irssi Log syntax file
 " Language:	Irssi log
 " Maintainer:	Will Gray <graywh@gmail.com>
-" GetLatestVimScripts: 2553 1 :AutoInstall: irssilog.vim
 "
 " Based on work by TODO
 

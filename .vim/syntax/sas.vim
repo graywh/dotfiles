@@ -1,7 +1,6 @@
 " Vim syntax file
 " Language:	SAS
 " Maintainer:	Will Gray <graywh@gmail.com>
-" GetLatestVimScripts: 1999 1 :AutoInstall: sas.vim
 "
 " This is a modification of the version that ships with Vim
 " and maintained by James Kidd <james.kidd@covance.com>.

@@ -9,6 +9,7 @@ setlocal nowrap                 " Don't wrap long lines
 
 " Searching, Patterns {{{2
 "setlocal hlsearch              " Highlight all search matches
+setlocal iskeyword+=45          " Include - for command names
 
 " Other {{{2
 setlocal bufhidden=wipe
@@ -22,11 +23,5 @@ setlocal noswapfile
 " Key mappings {{{1
 nnoremap <buffer> <unique> <silent> K :Man <C-r><C-w><CR>
 vnoremap <buffer> <unique> <silent> K y:Man <C-r>"<CR>
-nnoremap <buffer> <unique> q :bd<CR>
-if !exists('b:undo_ftplugin')
-  let b:undo_ftplugin = ''
-else
-  let b:undo_ftplugin = b:undo_ftplugin . '|'
-endif
-let b:undo_ftplugin = b:undo_ftplugin . 'nunmap <buffer> q|nunmap <buffer> K'
+nnoremap <buffer> <unique> q :q<CR>
 " }}}1

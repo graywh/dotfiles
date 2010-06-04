@@ -28,6 +28,9 @@
 !/lang/
 /lang/*
 !/lang/*.vim
+!/macros/
+/macros/*
+!/macros/*.vim
 !/plugin/
 /plugin/*
 !/plugin/*.vim

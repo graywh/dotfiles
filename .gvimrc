@@ -3,9 +3,9 @@
 
 " Options {{{1
 " Font {{{2
-if has("win32")
+if has('win16') || has('win32') || has('win64')
   set guifont=DejaVu\ Sans\ Mono:h10
-elseif has("macunix")
+elseif has('macunix')
   set guifont=DejaVu\ Sans\ Mono:h14
 else
   set guifont=DejaVu\ Sans\ Mono\ 10

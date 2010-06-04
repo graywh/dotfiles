@@ -1,6 +1,5 @@
 " Vim color file
 " Maintainer:   Will Gray <graywh@gmail.com>
-" GetLatestVimScripts: 2616 1 :AutoInstall: graywh.vim
 "
 " For best results on 88/256-color terminals, I recommend CSApprox.vim by
 " godlygeek.

@@ -1,10 +1,32 @@
-autocmd User Rails/README Rlcd
+if !exists("g:loaded_rails") || !g:loaded_rails || &cp
+  finish
+endif
 
-autocmd User Rails setlocal softtabstop=8
+if exists(':function') == 2
 
-autocmd User Rails Rnavcommand sass public/stylesheets/sass -glob=**/* -suffix=.sass
+  function! s:rails_gui_init()
+    if filereadable(getcwd().'/config/environment.rb')
+      silent! set columns=140 lines=60
+    end
+  endfunction
 
-autocmd User Rails.migration*   nnoremap <silent> <buffer> <C-Left>  :A<CR>
-autocmd User Rails.migration*   nnoremap <silent> <buffer> <C-Right> :R<CR>
+endif
 
-autocmd User Rails.view.\(partial.\)\=erb*    syntax keyword erubyRailsHelperMethod error_messages submit contained containedin=@erubyRailsRegions
+if has('autocmd')
+  augroup railsPluginAfter
+    autocmd!
+
+    if exists('*<SID>rails_gui_init')
+      autocmd GUIEnter * call <SID>rails_gui_init()
+    endif
+
+    autocmd User Rails/README silent! Rlcd
+
+    autocmd User Rails.migration* nnoremap <silent> <buffer> <C-Left>  :A<CR>
+    autocmd User Rails.migration* nnoremap <silent> <buffer> <C-Right> :R<CR>
+
+    autocmd User Rails.view.\(partial.\)\=\(erb\|haml\)*
+          \ syntax keyword erubyRailsHelperMethod error_messages submit contained containedin=@erubyRailsRegions
+
+  augroup END
+endif

@@ -12,6 +12,18 @@ endif
 
 silent! call pathogen#runtime_prepend_subdirectories($HOME.'/.vim/bundles')
 
+" Filetype {{{2
+" Enabled file type detection
+" Use the default filetype settings. If you also want to load indent files
+" to automatically do language-dependent indenting add 'indent' as well.
+if has('autocmd') && exists(':filetype') == 2
+  filetype plugin indent on
+endif
+if exists(':syntax') == 2
+  syntax enable
+  syntax sync fromstart
+endif
+
 " Mouse {{{2
 if has('mouse')
   set mouse=a                   " Use the mouse for all modes
@@ -125,9 +137,11 @@ set display=lastline            " Show as much as possible of wrapped lines
 if exists('&foldcolumn')
   set foldcolumn=1              " Show top-level fold sections
 endif
-set nofoldenable                " Disable folds by default
-set foldmethod=syntax           " Fold by syntax
-set foldminlines=0              " Allow folding single lines
+if has('folding')
+  set nofoldenable              " Disable folds by default
+  set foldmethod=syntax         " Fold by syntax
+  set foldminlines=0            " Allow folding single lines
+endif
 set linebreak                   " Don't wrap words
 set list                        " Add visual clues (disables 'linebreak')
 set number                      " Show line numbers
@@ -190,16 +204,8 @@ endif
 " Other {{{2
 set winaltkeys=no               " Don't use ALT to access the menu
 
-" Filetype {{{2
-" Enabled file type detection
-" Use the default filetype settings. If you also want to load indent files
-" to automatically do language-dependent indenting add 'indent' as well.
-if has('autocmd') && exists(':filetype') == 2
-  filetype plugin indent on
-endif
-if exists(':syntax') == 2
-  syntax enable
-  syntax sync fromstart
+if has('unix')
+  let &grepprg='grep -nrI --exclude-dir=.svn --exclude-dir=.git $* /dev/null'
 endif
 
 " Colors {{{2
@@ -221,6 +227,8 @@ if exists(':let') == 2
 
   let g:fit_manpages_to_window = 1      " Let man format manpages to fit the window
 
+  let g:liquid_highlight_types = ["html","erb=eruby","html+erb=eruby.html", "ruby"]
+
   let g:php_sql_query = 1
   let g:php_htmlInStrings = 1
   let g:php_baselib = 1
@@ -230,7 +238,11 @@ if exists(':let') == 2
   let g:python_highlight_string_formatting = 1
   let g:python_highlight_doctests = 1
 
+  let g:rails_gnu_screen = 0
+
   "let ruby_fold = 1
+
+  let g:sql_type_default = 'mysql'
 
   let g:tex_flavor = 'pdflatex'         " Use pdflatex as the tex compiler
 
@@ -246,19 +258,50 @@ endif
 if exists(':function') == 2
 
   function! SimpleFoldText() " {{{2
-    return getline(v:foldstart) . ' '
+    let text = getline(v:foldstart)
+    if text[-1:] != ' '
+      let text .= ' '
+    endif
+    return text
   endfunction
 
   function! MyFoldText() " {{{2
-    let suba = substitute(getline(v:foldstart), '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
-    let suba = substitute(suba, '\s*$', '')
-    let subb = substitute(getline(v:foldend), '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
-    let subb = substitute(subb, '^\s*', '', '')
-    let subb = substitute(subb, '\s*$', '', '')
+    let suba = getline(v:foldstart)
+    let suba = substitute(suba, '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
+    let suba = substitute(suba, '\s*$', '', '')
+    let subb = getline(v:foldend)
+    "let subb = substitute(subb, '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
+    "let subb = substitute(subb, '^\s*', '', '')
+    "let subb = substitute(subb, '\s*$', '', '')
     let lines = v:foldend - v:foldstart + 1
-    let text = suba . ' ... ' . subb
-    let text = text[0:min([strlen(text), &columns - &fdc - 15 - strlen(nr2char(lines))])]
-    return text . ' (' . lines . ' lines) '
+    let text = suba
+    "if lines > 1 && strlen(subb) > 0
+    "let text .= ' ... '.subb
+    "endif
+    let fillchar = matchstr(&fillchars, 'fold:.')
+    if strlen(fillchar) > 0
+      let fillchar = fillchar[-1:]
+    else
+      let fillchar = '-'
+    endif
+    let lines = repeat(fillchar, 4).' ' . lines . ' lines '.repeat(fillchar, 3)
+    if has('float')
+      let nuw = max([float2nr(log10(line('$')))+3, &numberwidth])
+    else
+      let nuw = &numberwidth
+    endif
+    let n = winwidth(0) - &fdc - nuw - strlen(lines)
+    let text = text[:min([strlen(text), n])]
+    if text[-1:] != ' '
+      if strlen(text) < n
+        let text .= ' '
+      else
+        let text = substitute(text, '\s*.$', '', '')
+      endif
+    endif
+    let text .= repeat('-', n - strlen(text))
+    let text .= lines
+    return text
   endfunction
 
   function! MyFoldIndent() " {{{2
@@ -276,7 +319,7 @@ if exists(':function') == 2
     return numl / &shiftwidth
   endfunction
 
-  function! LeadingSpace(line)
+  function! LeadingSpace(line) " {{{2
     let line = substitute(a:line, '^\(\s*\)\S.*$', '\1', '')
     let line = substitute(line, '\t', repeat(' ', &tabstop), 'g')
     return strlen(line)
@@ -372,9 +415,17 @@ if exists(':function') == 2
     " autocmd BufWritePre * call LastModified()
     if &modified
       let save_cursor = getpos(".")
-      silent! keepjumps 1,4s/ Last Modified: \zs.*/\=strftime('%c')/
+      silent! keepjumps 1,4substitute/ Last Modified: \zs.*/\=strftime('%c')/
       call setpos('.', save_cursor)
     endif
+  endfunction
+
+  function! InvertColors() "{{{2
+    let swapbw = { 'Black' : 'White', 'White' : 'Black' }
+    %substitute/\<cterm[fb]g=\zs\(Black\|White\)/\=get(swapbw, submatch(1), '')/g
+    let swap = { 'Red' : 'Cyan', 'Green' : 'Magenta', 'Yellow' : 'Blue', 'Blue' : 'Yellow', 'Magenta' : 'Green', 'Cyan' : 'Red', 'Gray' : 'Gray', 'Grey' : 'Grey', 'Light' : 'Dark', 'Dark' : 'Light' }
+    %substitute/\<cterm[fb]g=\zs\(Dark\|Light\)\=\(Red\|Green\|Yellow\|Blue\|Magenta\|Cyan\|Gr[ae]y\)/\=get(swap, submatch(1), 'Dark') . get(swap, submatch(2), '')/g
+    %substitute/\<gui\(fg\|bg\|sp\)=#\zs\(\x\{6}\)/\=printf('%06X', 16777215 - str2nr(submatch(2), 16))/g
   endfunction
 
 endif
@@ -383,30 +434,41 @@ endif
 if exists(':command') == 2
 
   " Compare a modified file to what is saved on disk
-  command! DiffOrig vert new | set bt=nofile bh=wipe |
+  command! DiffOrig
+        \ vertical new | set bt=nofile bh=wipe |
         \ read # | 0 delete _ | diffthis | wincmd p | diffthis
-  command! DiffOff only | diffoff | set fdc<
+  command! DiffOff
+        \ only | diffoff | set fdc<
 
   " Replace tabs with 'shiftwidth' spaces
   if has('ex_extra')
-    command! -bang -range=% ReTab silent unlet b:statusline_tab_warning | let ts=&l:ts | let &l:ts=&sw | <line1>,<line2>retab<bang> | let &l:ts=ts | unlet ts
+    command! -bang -range=% ReTab
+          \ silent! unlet b:statusline_tab_warning |
+          \ let ts=&l:ts | let &l:ts=&sw |
+          \ <line1>,<line2>retab<bang> |
+          \ let &l:ts=ts | unlet ts
   endif
 
   " Remove trailing space
-  command! -range=% UnTrail silent! unlet b:statusline_trailing_space_warning | <line1>,<line2>s/\s\+$//
+  command! -range=% UnTrail
+        \ silent! unlet b:statusline_trailing_space_warning |
+        \ keepjumps <line1>,<line2>substitute/\s\+$//
 
   " Shift the position under the cursor to column N
   if has('ex_extra')
-    command! -nargs=1 Shift exec 'normal '.(<args>-col('.')).'i '
+    command! -nargs=1 Shift
+          \ execute 'normal '.(<args>-col('.')).'i '
   endif
 
   " Save using sudo
   if executable('sudo') && executable('dd')
-    command! SUwrite write !sudo tee %
+    command! SUwrite
+          \ write !sudo tee %
   endif
 
   " D'oh
-  command! -bang -nargs=? -complete=help H help<bang> <args>
+  command! -bang -nargs=? -complete=help H
+        \ help<bang> <args>
 
 endif
 
@@ -450,7 +512,8 @@ endif
 
 " Keymap {{{1
 " Disable F1 for help {{{2
-map <F1> <Nop>
+map  <F1> <Nop>
+imap <F1> <Nop>
 
 " make Q like before {{{2
 map Q gq
@@ -471,26 +534,32 @@ if has('extra_search')
 endif
 
 " Autocomplete {{{2
-if exists('*pumvisible')
-  inoremap <expr> <C-space> pumvisible() \|\| &omnifunc == '' ? "\<C-n>" : "\<C-x>\<C-o>"
-endif
+"if exists('*pumvisible')
+"inoremap <expr> <C-space> pumvisible() \|\| &omnifunc == '' ? "\<C-n>" : "\<C-x>\<C-o>"
+"endif
 
 " Add new line indented here {{{2
 if has('ex_extra')
-  nnoremap <silent> <Leader>o :let ospaces=virtcol('.')-1<CR>o<Esc>:exec 'normal '.ospaces.'i '<CR>:.retab!<CR>A
-  nnoremap <silent> <Leader>O :let ospaces=virtcol('.')-1<CR>O<Esc>:exec 'normal '.ospaces.'i '<CR>:.retab!<CR>A
+  nnoremap <silent> <Leader>o :let ospaces=virtcol('.')-1<CR>o<Esc>:execute 'normal '.ospaces.'i '<CR>:.retab!<CR>A
+  nnoremap <silent> <Leader>O :let ospaces=virtcol('.')-1<CR>O<Esc>:execute 'normal '.ospaces.'i '<CR>:.retab!<CR>A
 endif
-
-" Change to different capitalization {{{2
-"nnoremap <Leader>sc ciw<C-r>=substitute(@", '_\(\w\)', '\u\1', 'g')<CR><Esc>
-"nnoremap <Leader>sp ciw<C-r>=substitute(@", '_\(\w\)', '\u\1', 'g')<CR><Esc>bgUl
-"nnoremap <Leader>cs ciw<C-r>=substitute(@", '[a-z]\zs\([A-Z]\)', '_\l\1', 'g')<CR><Esc>bgul
 
 " Show the syntax highlighting groups for the item under the cursor {{{2
 if exists('*ShowSynStack')
   nnoremap <silent> <F7> :call ShowSynStack()<CR>
 endif
 nnoremap <silent> <F8> :call ShowSynIDs()<CR>
+
+" User commands
+if exists(':UnTrail') == 2
+  nnoremap <silent> <leader>ut :UnTrail<CR>
+  vnoremap <silent> <leader>ut :UnTrail<CR>
+endif
+
+if exists(':ReTab') == 2
+  nnoremap <silent> <leader>rt :ReTab<CR>
+  vnoremap <silent> <leader>rt :ReTab<CR>
+endif
 
 " Command-line navigation {{{2
 cnoremap <C-h> <Left>
@@ -516,15 +585,15 @@ map <C-_> <Nop>
 map! <C-_> <Nop>
 
 " Folding {{{2
-if exists(':for')
+if has('eval')
   for k in ['i', 'm', 'M', 'n', 'N', 'r', 'R', 'v', 'x', 'X']
     execute "nnoremap <silent> Z".k." :windo normal z".k."<CR>"
   endfor
 endif
 
 " Terminal Stuff {{{1
-map <C-@> <C-space>
-map! <C-@> <C-space>
+"map <C-@> <C-space>
+"map! <C-@> <C-space>
 
 " XXX Fix vim bug when exiting alt screen {{{2
 if exists('&t_te') && exists('&t_op')
@@ -541,7 +610,20 @@ if &term !~? '^\v(linux|cons|vt)' && ! strlen(&t_ts) && ! strlen(&t_fs)
 endif
 
 " change the xterm cursor color for insert mode {{{2
-if &term =~? '^xterm' && exists('&t_SI')
+if &term =~? '^xterm' && exists('&t_SI') && &t_Co > 1
   let &t_SI="\<Esc>]12;purple\x7"
   let &t_EI="\<Esc>]12;green\x7"
 endif
+
+" Collected Tips {{{1
+""%substitute/\(\d\d\)\(:\d\d\)\{1,2} \(AM\|PM\)/\=(submatch(3) == 'PM' && submatch(1) < 12 ? submatch(1)+12 : submatch(3) == 'AM' && submatch(1) == 12 ? '00' : submatch(1)).submatch(2)/
+
+" Change to different capitalization {{{2
+" under_score_case to camelCase
+"nnoremap <Leader>sc ciw<C-r>=substitute(@", '_\(\w\)', '\u\1', 'g')<CR><Esc>
+" under_score_case to PascalCase
+"nnoremap <Leader>sp ciw<C-r>=substitute(@", '_\(\w\)', '\u\1', 'g')<CR><Esc>bgUl
+" PascalCase to under_score_case
+"nnoremap <Leader>cs ciw<C-r>=substitute(@", '\l\zs\(\u\)', '_\l\1', 'g')<CR><Esc>bgul
+" PascalCase to UNDER_SCORE_CASE
+"nnoremap <Leader>cu ciw<C-r>=substitute(@", '\l\zs\ze\u', '_', 'g')<CR><Esc>bgUiw

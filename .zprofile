@@ -15,7 +15,7 @@ fi
 # }}}1
 
 export EDITOR=vim
-export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -c 'nnoremap <buffer> q ZQ' -\""
+export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
 export BROWSER=firefox
 
 if [[ -f ${HOME}"/.pythonrc.py" ]]; then

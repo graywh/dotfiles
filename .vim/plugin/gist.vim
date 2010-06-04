@@ -30,7 +30,7 @@
 "
 "   :Gist -c XXXXX.
 "     get gist XXXXX and put to clipboard.
-"  
+"
 "   :Gist -l
 "     list gists from mine.
 "
@@ -76,7 +76,7 @@
 "     on windows, should work with your setting.
 "
 " Thanks:
-"   MATSUU Takuto: 
+"   MATSUU Takuto:
 "     removed carriage return
 "     gist_browser_command enhancement
 "     edit support
@@ -89,12 +89,16 @@ endif
 let g:loaded_gist_vim = 1
 
 if (!exists('g:github_user') || !exists('g:github_token')) && !executable('git')
-  echoerr "Gist: require 'git' command"
+  echohl Error
+  echomsg "Gist: require 'git' command"
+  echohl None
   finish
 endif
 
 if !executable('curl')
-  echoerr "Gist: require 'curl' command"
+  echohl Error
+  echomsg "Gist: require 'curl' command"
+  echohl None
   finish
 endif
 
@@ -172,7 +176,7 @@ function! s:GistList(user, token, gistls)
   silent! %s/&gt;/>/g
   silent! %s/&lt;/</g
   silent! %s/&#\(\d\d\);/\=nr2char(submatch(1))/g
-  setlocal buftype=nofile bufhidden=hide noswapfile 
+  setlocal buftype=nofile bufhidden=hide noswapfile
   setlocal nomodified
   syntax match SpecialKey /^gist: /he=e-2
   exec 'nnoremap <silent> <buffer> <cr> :call <SID>GistListAction()<cr>'
@@ -208,7 +212,7 @@ function! s:GistGet(user, token, gistid, clipboard)
   filetype detect
   exec '%d _'
   exec 'silent 0r! curl -s '.url
-  setlocal buftype=acwrite bufhidden=delete noswapfile 
+  setlocal buftype=acwrite bufhidden=delete noswapfile
   setlocal nomodified
   doau StdinReadPost <buffer>
   normal! gg
@@ -262,7 +266,7 @@ function! s:GistUpdate(user, token, content, gistid, gistnm)
   unlet query
 
   let file = tempname()
-  exec 'redir! > '.file 
+  exec 'redir! > '.file
   silent echo squery
   redir END
   echon " Updating it to gist... "
@@ -272,11 +276,13 @@ function! s:GistUpdate(user, token, content, gistid, gistnm)
   call delete(file)
   let res = matchstr(split(res, '\(\r\?\n\|\r\n\?\)'), '^Location: ')
   let res = substitute(res, '^.*: ', '', '')
-  if len(res) > 0 && res != 'http://gist.github.com/gists' 
+  if len(res) > 0 && res != 'http://gist.github.com/gists'
     setlocal nomodified
     echo 'done: '.res
   else
-    echoerr 'Edit failed'
+    echohl Error
+    echomsg 'Edit failed'
+    echohl None
   endif
   return res
 endfunction
@@ -310,7 +316,7 @@ function! s:GistPost(user, token, content, private)
   unlet query
 
   let file = tempname()
-  exec 'redir! > '.file 
+  exec 'redir! > '.file
   silent echo squery
   redir END
   echon " Posting it to gist... "
@@ -320,10 +326,12 @@ function! s:GistPost(user, token, content, private)
   call delete(file)
   let res = matchstr(split(res, '\(\r\?\n\|\r\n\?\)'), '^Location: ')
   let res = substitute(res, '^.*: ', '', '')
-  if len(res) > 0 && res != 'http://gist.github.com/gists' 
+  if len(res) > 0 && res != 'http://gist.github.com/gists'
     echo 'done: '.res
   else
-    echoerr 'Post failed'
+    echohl Error
+    echomsg 'Post failed'
+    echohl None
   endif
   return res
 endfunction
@@ -373,7 +381,9 @@ function! s:Gist(line1, line2, ...)
         let gistid = arg
       endif
     elseif len(arg) > 0
-      echoerr 'Invalid arguments'
+      echohl Error
+      echomsg 'Invalid arguments'
+      echohl None
       unlet args
       return 0
     endif

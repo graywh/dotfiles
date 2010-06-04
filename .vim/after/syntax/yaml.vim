@@ -10,5 +10,5 @@ syn match   yamlTimestamp       '\d\d\d\d-\%(1[0-2]\|\%[0]\d\)-\%(3[0-2]\|[12]\d
 syn match yamlTimestampOperator '-\|:' contained
 hi def link yamlTimestampOperator Operator
 
-setlocal iskeyword=@,65-90,45,48-57
+setlocal iskeyword=@,65-90,45,48-57,_
 syn match yamlKey '\k\+\(\s\+\k\+\)*\ze\s*:'
