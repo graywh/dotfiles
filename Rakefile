@@ -44,6 +44,12 @@ def download(url, file)
   system("wget #{url} -O #{file}")
 end
 
+def print_name(text, action)
+  system("tput setaf 2")
+  puts("*** #{action} #{text}")
+  system("tput sgr0")
+end
+
 desc "Update master and rebase"
 task :update do
   git_master do
@@ -63,6 +69,7 @@ namespace :bundle do
   desc "Initialize bundles"
   task :init do
     Yobj['Bundles'].each do |key, value|
+      print_name(key, "Initializing")
       system("git clone #{value} #{key}") unless File.exists?(key)
     end
     vimdoctags
@@ -72,6 +79,7 @@ namespace :bundle do
   task :update, :pattern do |t, args|
     projects = filter(Yobj['Bundles'], args.pattern)
     projects.each do |key, value|
+      print_name(key, "Updating")
       system("cd #{key}; git checkout master; git pull")
     end
     vimdoctags
