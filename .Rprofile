@@ -6,3 +6,4 @@ if (interactive()) {
                 tab.width = 4)
     })
 }
+tau <- 2*pi

@@ -57,7 +57,7 @@ syn keyword rConditional if else
 syn keyword rRepeat      for in repeat while
 
 " Constant
-syn keyword rConstant LETTERS letters month.ab month.name pi
+syn keyword rConstant LETTERS letters month.ab month.name pi tau
 syn keyword rConstant NULL
 syn keyword rBoolean  FALSE TRUE
 syn keyword rNumber   NA
