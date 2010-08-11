@@ -461,7 +461,7 @@ if exists(':command') == 2
   endif
 
   " Save using sudo
-  if executable('sudo') && executable('dd')
+  if executable('sudo') && executable('tee')
     command! SUwrite
           \ write !sudo tee %
   endif
