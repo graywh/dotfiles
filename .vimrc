@@ -513,7 +513,13 @@ endif
 " Keymap {{{1
 " Disable F1 for help {{{2
 map  <F1> <Nop>
+map  <A-F1> <Nop>
+map  <C-F1> <Nop>
 imap <F1> <Nop>
+imap <S-F1> <Nop>
+imap <A-F1> <Nop>
+imap <C-F1> <Nop>
+
 
 " make Q like before {{{2
 map Q gq
