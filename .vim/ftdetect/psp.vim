@@ -1,2 +1,2 @@
-  " Python Server Pages
-  autocmd! BufNewFile,BufRead *.psp setfiletype psp
+" Python Server Pages
+autocmd! BufNewFile,BufRead *.psp setfiletype psp
