@@ -40,12 +40,12 @@ XTerm*vt100.visualBellDelay: 0
 XTerm*vt100.translations: #override \n\
     ~Ctrl ~Meta ~Shift <Key>Tab: string(0x09) \n\
     ~Ctrl ~Meta  Shift <Key>Tab: string(0x1b) string("[Z") \n\
-    ~Ctrl  Meta ~Shift <Key>Tab: string(0x1b) string("[27;3;9~") \n\
-    ~Ctrl  Meta  Shift <Key>Tab: string(0x1b) string("[27;4;9~") \n\
-     Ctrl ~Meta ~Shift <Key>Tab: string(0x1b) string("[27;5;9~") \n\
-     Ctrl ~Meta  Shift <Key>Tab: string(0x1b) string("[27;6;9~") \n\
-     Ctrl  Meta ~Shift <Key>Tab: string(0x1b) string("[27;7;9~") \n\
-     Ctrl  Meta  Shift <Key>Tab: string(0x1b) string("[27;8;9~")
+    ~Ctrl  Meta ~Shift <Key>Tab: string(0x1b) string("[9;3~") \n\
+    ~Ctrl  Meta  Shift <Key>Tab: string(0x1b) string("[9;4~") \n\
+     Ctrl ~Meta ~Shift <Key>Tab: string(0x1b) string("[9;5~") \n\
+     Ctrl ~Meta  Shift <Key>Tab: string(0x1b) string("[9;6~") \n\
+     Ctrl  Meta ~Shift <Key>Tab: string(0x1b) string("[9;7~") \n\
+     Ctrl  Meta  Shift <Key>Tab: string(0x1b) string("[9;8~")
 ! use btn1 instead of wheel for click-hold scrolling
 XTerm*vt100.scrollbar.translations: #override \n\
     <Btn1Down>: StartScroll(Continuous) MoveThumb() NotifyThumb() \n\

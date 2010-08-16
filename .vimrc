@@ -452,7 +452,7 @@ if exists(':command') == 2
   " Remove trailing space
   command! -range=% UnTrail
         \ silent! unlet b:statusline_trailing_space_warning |
-        \ keepjumps <line1>,<line2>substitute/\s\+$//
+        \ keepjumps <line1>,<line2>substitute/\s\+$//e
 
   " Shift the position under the cursor to column N
   if has('ex_extra')
@@ -463,7 +463,8 @@ if exists(':command') == 2
   " Save using sudo
   if executable('sudo') && executable('tee')
     command! SUwrite
-          \ write !sudo tee %
+          \ execute 'write !sudo tee %' |
+          \ setlocal nomodified
   endif
 
   " D'oh
@@ -570,6 +571,9 @@ endif
 " Command-line navigation {{{2
 cnoremap <C-h> <Left>
 cnoremap <C-f> <Right>
+
+" Command-line window {{{2
+cnoremap <C-o> <C-f>
 
 " Arrow keys for window movement {{{2
 nnoremap <silent> <Left>  <C-w>h
