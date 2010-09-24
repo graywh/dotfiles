@@ -1,3 +1,5 @@
+finish
+
 if &cp || exists('g:terminalkeys2_loaded') || has('gui_running')
   finish
 endif

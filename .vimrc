@@ -80,7 +80,7 @@ set formatoptions+=l            " Don't break lines that are already long
 set formatoptions+=1            " Break before 1-letter words
 
 if exists('&formatlistpat')
-  set formatlistpat=^\\s*\\(\\d\\+\\\|\\*\\\|-\\\|•\\)[\\]:.)}\\t\ ]\\s*
+  set formatlistpat=^\\s*\\(\\d\\+\\\|\\*\\\|-\\\|∙\\\|•\\\|∘\\\|·\\)[]:.)}\\t\ ]\\s*
 endif
 
 " Tabs, Indents {{{2
@@ -152,7 +152,7 @@ set wrap                        " Wrap long lines
 
 set listchars=
 if has('multi_byte') && (&tenc =~? '^u\(tf\|cs\)' || (! strlen(&tenc) && &enc =~? '^u\(tf\|cs\)')) && (v:version >= 602 || v:version == 601 && has('patch469'))
-  "set listchars+=eol:§
+  "set listchars+=eol:↵
   set listchars+=tab:»·
   if v:version >= 700
     set listchars+=nbsp:+
@@ -631,9 +631,5 @@ endif
 " Change to different capitalization {{{2
 " under_score_case to camelCase
 "nnoremap <Leader>sc ciw<C-r>=substitute(@", '_\(\w\)', '\u\1', 'g')<CR><Esc>
-" under_score_case to PascalCase
-"nnoremap <Leader>sp ciw<C-r>=substitute(@", '_\(\w\)', '\u\1', 'g')<CR><Esc>bgUl
-" PascalCase to under_score_case
-"nnoremap <Leader>cs ciw<C-r>=substitute(@", '\l\zs\(\u\)', '_\l\1', 'g')<CR><Esc>bgul
-" PascalCase to UNDER_SCORE_CASE
-"nnoremap <Leader>cu ciw<C-r>=substitute(@", '\l\zs\ze\u', '_', 'g')<CR><Esc>bgUiw
+" camelCase to under_score_case
+"nnoremap <Leader>cs ciw<C-r>=substitute(@", '\l\zs\(\u\)', '_\l\1', 'g')<CR><Esc>

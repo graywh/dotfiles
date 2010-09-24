@@ -19,16 +19,17 @@ augroup filetypedetect
   endfunc
 
   " R
-  autocmd! BufNewFile,BufRead *.[rRsS] setfiletype r
-  autocmd! BufNewFile,BufRead *.[rR]history setfiletype r
+  autocmd BufNewFile,BufRead *.[rRsS] setfiletype r
+  autocmd BufRead *.[rRsS] echom '*.[rRsS]'
+  autocmd BufNewFile,BufRead *.[rR]history setfiletype r
 
   " Mutt config
-  autocmd! BufNewFile,BufRead $HOME/.mutt/* call s:StarSetf('muttrc')
+  autocmd BufNewFile,BufRead $HOME/.mutt/* call s:StarSetf('muttrc')
 
   " tmux config
-  autocmd! BufNewFile,BufRead $HOME/.tmux.conf setfiletype tmux
+  autocmd BufNewFile,BufRead $HOME/.tmux.conf setfiletype tmux
 
   " Apache conf.d
-  autocmd! BufNewFile,BufRead /etc/apache2/conf.d* call s:StarSetf('apache')
+  autocmd BufNewFile,BufRead /etc/apache2/conf.d* call s:StarSetf('apache')
 
 augroup END
