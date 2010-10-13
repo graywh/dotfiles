@@ -12,9 +12,9 @@ Files:
   .zsh/functions/_tmux:          http://zsh.cvs.sourceforge.net/viewvc/*checkout*/zsh/zsh/Completion/Unix/Command/_tmux
 
 Bundles:
-  .vim/bundles/brew:        git://github.com/graywh/brew.git
+  .vim/bundles/brew:        git://github.com/graywh/vim-brew.git
   .vim/bundles/colorchart:  git://github.com/godlygeek/colorchart.git
-  .vim/bundles/colorindent: git://github.com/graywh/colorindent.git
+  .vim/bundles/colorindent: git://github.com/graywh/vim-colorindent.git
   .vim/bundles/csapprox:    git://github.com/godlygeek/csapprox.git
   .vim/bundles/git:         git://github.com/tpope/vim-git.git
   .vim/bundles/haml:        git://github.com/tpope/vim-haml.git
@@ -23,7 +23,7 @@ Bundles:
   .vim/bundles/space:       git://github.com/spiiph/vim-space.git
   .vim/bundles/speeddating: git://github.com/tpope/vim-speeddating.git
   .vim/bundles/surround:    git://github.com/tpope/vim-surround.git
-  .vim/bundles/tabular:     git://github.com/godlygeek/vim-tabular.git
+  .vim/bundles/tabular:     git://github.com/godlygeek/tabular.git
 
 # '<,'>Tab /:\zs /l0
 # vim: isk+=46-47
