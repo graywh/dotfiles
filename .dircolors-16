@@ -73,12 +73,14 @@ EXEC 92
 # to colorize below. Put the extension, a space, and the color init string.
 # (and any comments you want to add after a '#')
 # If you use DOS-style suffixes, you may want to uncomment the following:
-#.cmd 92 # executables (bright green)
+# executables (bright green)
+#.cmd 92
 #.exe 92
 #.com 92
 #.btm 92
 #.bat 92
-.tar 91 # archives or compressed (bright red)
+# archives or compressed (bright red)
+.tar 91
 .tgz 91
 .arj 91
 .taz 91
