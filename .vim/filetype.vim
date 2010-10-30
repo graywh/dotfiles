@@ -20,7 +20,6 @@ augroup filetypedetect
 
   " R
   autocmd BufNewFile,BufRead *.[rRsS] setfiletype r
-  autocmd BufRead *.[rRsS] echom '*.[rRsS]'
   autocmd BufNewFile,BufRead *.[rR]history setfiletype r
 
   " Mutt config
