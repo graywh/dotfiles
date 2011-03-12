@@ -10,70 +10,80 @@ set cpo&vim
 
 com! -nargs=* Man call s:ManPageView(<q-args>)
 
-function! s:GetArticle(topic)
-  let file = (split(system("man -w ".a:topic." 2>/dev/null"), '\n') + [""])[0]
-  let basename = substitute(file, '.*/', '', '')
-  return matchlist(basename, '\(.\{-}\)\.\([^.]*\)\(\.gz\)\=$')[1:2]
-endfunction
-
 " Get result of "man | col" as a List
 function! s:ReadManPage(topic)
-  " MAN_KEEP_FORMATTING:
-  " man-db 2.5.0 feature to disable stripping format with `col -p -b -x'.
-  " We want to strip these characters ourself if at all possible, because
-  " the bsdutils currently available on linux ships a `col' that isn't
-  " multibyte aware, and can delete half of a multibyte character when
-  " removing backspaces from the file.  Doesn't expand right, either.
-  " Note: This should have no effect on non-Linux systems.
+ " MAN_KEEP_FORMATTING:
+ " man-db 2.5.0 feature to disable stripping format with `col -p -b -x'.
+ " We want to strip these characters ourself if at all possible, because
+ " the bsdutils currently available on linux ships a `col' that isn't
+ " multibyte aware, and can delete half of a multibyte character when
+ " removing backspaces from the file.  Doesn't expand right, either.
+ " Note: This should have no effect on non-Linux systems.
 
-  let cmdline = 'env MAN_KEEP_FORMATTING=1 '
-  if exists('g:fit_manpages_to_window') && g:fit_manpages_to_window
-    let cmdline .= printf('COLUMNS=%d MANWIDTH=%d ', winwidth(0), winwidth(0))
-  endif
-  let cmdline .= 'man -Pcat ' . a:topic
-  let cmdline .= ' | col'
+ let cmdline = 'env MAN_KEEP_FORMATTING=1 MANPAGER=cat PAGER=cat '
+ if exists('g:fit_manpages_to_window') && g:fit_manpages_to_window
+   let cmdline .= printf('COLUMNS=%d MANWIDTH=%d ', winwidth(0), winwidth(0))
+ endif
+ let cmdline .= 'man ' . a:topic
+ let cmdline .= ' | col'
 
-  " See if 'col' accepts the '-p' switch
-  call system('col -p', 'foo')
-  if v:shell_error == 0
-    let cmdline .= ' -p'
-  endif
+ " See if 'col' accepts the '-p' switch
+ call system('col -p', 'foo')
+ if v:shell_error == 0
+   let cmdline .= ' -p'
+ endif
 
-  " Call man
-  let rv = split(system(cmdline), '\n')
+ " Call man
+ let rv = split(system(cmdline), '\n')
 
-  " Remove ^H ourself (col can't be trusted to do it on Linux)
-  for i in range(len(rv))
-    while rv[i] =~ '\%x08'
-      let rv[i] = substitute(rv[i], '^[[:backspace:]]*', '', '')
-      let rv[i] = substitute(rv[i], '[^[:backspace:]][[:backspace:]]', '', 'g')
-    endwhile
-  endfor
+ " Remove ^H ourself (col can't be trusted to do it on Linux)
+ for i in range(len(rv))
+   while rv[i] =~ '\%x08'
+     let rv[i] = substitute(rv[i], '^[[:backspace:]]*', '', '')
+     let rv[i] = substitute(rv[i], '[^[:backspace:]][[:backspace:]]', '', 'g')
+   endwhile
+ endfor
 
-  return rv
+ return rv
 endfunction
 
 function! s:ManPageView(topic)
-  new
-  let article = s:GetArticle(a:topic)
-  if article == []
-    echohl ErrorMsg
-    echomsg "No article found matching \"" . a:topic . "\""
-    echohl None
-    return
-  endif
-  exe 'sil! file!' escape(article[0].'('.article[1].')', ' \')
-  setlocal noswapfile
+ let page = s:ReadManPage(a:topic)
 
-  let page = s:ReadManPage(a:topic)
+ if len(page) < 3
+   echohl ErrorMsg
+   echomsg "No article found matching \"" . a:topic . "\""
+   echohl None
+   return
+ endif
 
-  call setline(1, page)
+ new
+ setlocal noswapfile
 
-  " Remove any tabs from the man output
-  setlocal tabstop=8
-  sil retab
+ call setline(1, page)
 
-  setlocal ro nomod noma bh=wipe ft=man nolist nonu nowrap bt=nofile
+ " Remove any tabs from the man output
+ setlocal tabstop=8
+ sil retab
+
+ setlocal ro nomod noma bh=wipe ft=man nolist nonu nowrap bt=nofile
+
+ let bufname=''
+ if getline(nextnonblank(1)) =~ ')\s*$'
+     let bufname = getline(nextnonblank(1))
+     let bufname = substitute(bufname, '.\{-}\(\S\+\s*([^)]*)\)\s*$', '\1', '')
+ endif
+
+ if !empty(bufname)
+     exe 'sil! file! ' . bufname
+ else
+     try
+         exe 'sil! file! ' . fnameescape(a:topic)
+     catch
+         exe 'sil! file! ' . escape(a:topic)
+     endtry
+ endif
+
 endfunction
 
 let &cpo = s:keepcpo
