@@ -101,8 +101,10 @@ hi Error                guifg=#FFFFFF   guibg=#FF5F5F
 hi Todo                 guifg=#0000D7   guibg=#FFFF5F
 
 " Custom {{{2
-hi colorIndentLevel1                    guibg=#121212
-hi colorIndentLevel2                    guibg=#262626
+hi colorIndent1                         guibg=#121212
+hi colorIndent2                         guibg=#262626
+hi IndentGuidesOdd                      guibg=#121212
+hi IndentGuidesEven                     guibg=#262626
 " mail {{{3
 hi mailQuoted1          guifg=#AFAFD7   guibg=#303030
 hi mailQuoted2          guifg=#D7AFAF   guibg=#303030
@@ -182,8 +184,10 @@ hi Error                ctermfg=White           ctermbg=Red
 hi Todo                 ctermfg=DarkBlue        ctermbg=Yellow
 
 " Custom {{{2
-hi colorIndentLevel1                            ctermbg=Black
-hi colorIndentLevel2                            ctermbg=DarkGray
+hi colorIndent1                                 ctermbg=Black
+hi colorIndent2                                 ctermbg=DarkGray
+hi IndentGuidesOdd                              ctermbg=Black
+hi IndentGuidesEven                             ctermbg=DarkGray
 " mail {{{3
 hi mailQuoted1          ctermfg=DarkBlue
 hi mailQuoted2          ctermfg=DarkRed
