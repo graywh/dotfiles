@@ -10,3 +10,5 @@ Rnavcommand support     features/support          -glob=*
 Rnavcommand specsupport spec/support              -glob=**/*
 
 command! -bang -buffer RRake Rake<bang> -
+command! -buffer WA windo A
+command! -buffer WR windo R

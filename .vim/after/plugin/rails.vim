@@ -20,10 +20,13 @@ if has('autocmd')
       autocmd GUIEnter * call <SID>rails_gui_init()
     endif
 
-    autocmd User Rails/README silent! Rlcd
+    autocmd User Rails silent! Rlcd
 
     autocmd User Rails.migration* nnoremap <silent> <buffer> <C-Left>  :A<CR>
     autocmd User Rails.migration* nnoremap <silent> <buffer> <C-Right> :R<CR>
+
+    autocmd User Rails.spec* nnoremap <silent> <buffer> <Leader>R :.Rake<CR>
+    autocmd User Rails.cucumber-feature* nnoremap <silent> <buffer> <Leader>R :.Rake<CR>
 
     autocmd User Rails.view.\(partial.\)\=\(erb\|haml\)*
           \ syntax keyword erubyRailsHelperMethod error_messages submit contained containedin=@erubyRailsRegions
