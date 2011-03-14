@@ -80,7 +80,7 @@ namespace :bundle do
     projects = filter(Yobj['Bundles'], args.pattern)
     projects.each do |key, value|
       print_name(key, "Updating")
-      system("cd #{key}; git checkout master; git pull")
+      system("cd #{key} && git checkout master && git pull")
     end
     vimdoctags
   end
