@@ -463,7 +463,7 @@ if exists(':command') == 2
   " Save using sudo
   if executable('sudo') && executable('tee')
     command! SUwrite
-          \ execute 'write !sudo tee %' |
+          \ execute 'write !sudo tee % >/dev/null' |
           \ setlocal nomodified
   endif
 
