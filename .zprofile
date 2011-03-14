@@ -1,17 +1,9 @@
 # Path {{{1
-typeset -U path
-
 if [[ -d ${HOME}'/bin' ]]; then
     path=($path ${HOME}'/bin')
 fi
 
-if [[ -d '/opt/local' ]]; then
-    path=('/opt/local/sbin' '/opt/local/bin' $path)
-fi
-
-if [[ -d '/var/lib/gems' ]]; then
-    path=(/var/lib/gems/*/bin $path)
-fi
+typeset -U path
 # }}}1
 
 export EDITOR=vim
@@ -38,5 +30,6 @@ if [[ ${OSTYPE} == darwin* ]]; then
     # upper = bold  | | | | | | | | | | ,- DIR_WO_STICKY
     export LSCOLORS=ExGxFxdaCxdadahbadheec
 fi
+# }}}1
 
-# vim: fdm=marker fen
+# vim: fdm=marker

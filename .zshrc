@@ -6,27 +6,28 @@ autoload zsh/terminfo
 
 # Options {{{1
 # Changing directories {{{2
-setopt    autopushd
-setopt    pushdignoredups
+setopt   autopushd
+setopt   pushdignoredups
 # Completion {{{2
 setopt noalwayslastprompt
 #setopt noautolist
 setopt noautomenu
-setopt    autonamedirs
-setopt    listpacked
+setopt noautonamedirs
+setopt   listpacked
 # Expansion and globbing {{{2
 setopt nomarkdirs
 setopt nonomatch
 # History {{{2
-setopt    histignoredups
-setopt    histreduceblanks
-setopt    sharehistory
+setopt   histignoredups
+setopt   histreduceblanks
+setopt   sharehistory
 # Job control {{{2
 setopt nohup
-setopt    longlistjobs
+setopt   longlistjobs
 # Prompting {{{2
-setopt    promptsubst
+setopt   promptsubst
 # Zle {{{2
+[[ $TERM == 'dumb' ]] && setopt nozle
 setopt nobeep
 
 # Variables {{{1
@@ -49,10 +50,6 @@ fi
 autoload -U compinit
 compinit
 
-#if zstyle -t ":completion:${curcontext}:hosts" use-ssh-config; then
-#    [[ -r ~/.ssh/config ]] && _cache_hosts+=(${=${${(M)${(f)"$(<~/.ssh/config)"}:#Host*}#Host }:#*\**})
-#fi
-
 # Complete uppercase when lowercase was typed
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # allows lower->upper
 #zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # adds upper->lower
@@ -65,6 +62,10 @@ zstyle ':completion:*' list-prompt '%S%L -- More --%s'
 
 # Warn when nothing found
 zstyle ':completion:*:warnings' format '%BNo matches for: %d%b'
+
+# Complete hosts from ssh_config
+zstyle ':completion:*:hosts' use-ssh-config on
+zstyle '*:my-accounts' users-hosts rails@cbc biostat@cbc
 
 # Keybindings {{{1
 bindkey -v

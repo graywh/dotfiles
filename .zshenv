@@ -11,4 +11,5 @@ if [[ ${TERM} != screen* ]]; then
     unset TMUX
 fi
 
-# vim: fdm=marker fen
+# }}}1
+# vim: fdm=marker

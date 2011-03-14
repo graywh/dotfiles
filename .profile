@@ -7,15 +7,6 @@ tty -s && stty erase 
 if [ -d "${HOME}/bin" ]; then
     PATH="${PATH}:${HOME}/bin"
 fi
-if [ -d "/opt/local/bin" ]; then
-    PATH="/opt/local/bin:${PATH}"
-fi
-if [ -d "/opt/local/sbin" ]; then
-    PATH="/opt/local/sbin:${PATH}"
-fi
-if [ -d "/var/lib/gems/1.8/bin" ]; then
-    PATH="/var/lib/gems/1.8/bin:${PATH}"
-fi
 
 export PATH
 #}}}2
@@ -40,8 +31,5 @@ if [ "${OSTYPE}" == darwin* ]; then
     #LSCOLORS=ExFxCxDxBxegedabagacad
     #export LSCOLORS
 fi
-#}}}2
-
 #}}}1
-
 # vim: fdm=marker
