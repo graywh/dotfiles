@@ -22,6 +22,6 @@ setlocal noswapfile
 "nohlsearch                     " Unhighlight previous search
 " Key mappings {{{1
 nnoremap <buffer> <unique> <silent> K :Man <C-r><C-w><CR>
-vnoremap <buffer> <unique> <silent> K y:Man <C-r>"<CR>
+xnoremap <buffer> <unique> <silent> K y:Man <C-r>"<CR>
 nnoremap <buffer> <unique> q :q<CR>
 " }}}1

@@ -14,7 +14,7 @@ function! s:VSetSearch(bound)
   let @@ = temp
 endfunction
 
-vnoremap <silent> * :<C-u>call <SID>VSetSearch(1)<CR>/<CR>
-vnoremap <silent> # :<C-u>call <SID>VSetSearch(1)<CR>?<CR>
-vnoremap <silent> g* :<C-u>call <SID>VSetSearch(0)<CR>/<CR>
-vnoremap <silent> g# :<C-u>call <SID>VSetSearch(0)<CR>?<CR>
+xnoremap <silent> * :<C-u>call <SID>VSetSearch(1)<CR>/<CR>
+xnoremap <silent> # :<C-u>call <SID>VSetSearch(1)<CR>?<CR>
+xnoremap <silent> g* :<C-u>call <SID>VSetSearch(0)<CR>/<CR>
+xnoremap <silent> g# :<C-u>call <SID>VSetSearch(0)<CR>?<CR>

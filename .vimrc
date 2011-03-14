@@ -523,7 +523,7 @@ imap <C-F1> <Nop>
 
 
 " make Q like before {{{2
-map Q gq
+noremap Q gq
 
 " swap ' and ` {{{2
 noremap ' `
@@ -532,7 +532,7 @@ noremap g' g`
 noremap g` g'
 
 " make Y like D & C {{{2
-map Y y$
+noremap Y y$
 
 " Search highlight {{{2
 if has('extra_search')
@@ -560,12 +560,12 @@ nnoremap <silent> <F8> :call ShowSynIDs()<CR>
 " User commands
 if exists(':UnTrail') == 2
   nnoremap <silent> <leader>ut :UnTrail<CR>
-  vnoremap <silent> <leader>ut :UnTrail<CR>
+  xnoremap <silent> <leader>ut :UnTrail<CR>
 endif
 
 if exists(':ReTab') == 2
   nnoremap <silent> <leader>rt :ReTab<CR>
-  vnoremap <silent> <leader>rt :ReTab<CR>
+  xnoremap <silent> <leader>rt :ReTab<CR>
 endif
 
 " Command-line navigation {{{2
