@@ -216,6 +216,11 @@ endif
 " Plugins {{{1
 if exists(':runtime') == 2 && &loadplugins
   runtime! macros/matchit.vim
+  sunmap %
+  sunmap g%
+  sunmap [%
+  sunmap ]%
+  sunmap a%
 endif
 
 " Options {{{2
@@ -241,6 +246,8 @@ if exists(':let') == 2
   let g:rails_gnu_screen = 0
 
   "let ruby_fold = 1
+
+  let g:space_disable_select_mode = 1
 
   let g:sql_type_default = 'mysql'
 
@@ -386,28 +393,45 @@ if exists(':function') == 2
       let b:my_visual_navigation_maps=1
       echomsg 'Enabled visual navigation'
       setlocal wrap
-      silent! noremap <buffer> <unique> 0 g0
-      silent! noremap <buffer> <unique> <Home> g<Home>
-      silent! noremap <buffer> <unique> ^ g^
-      silent! noremap <buffer> <unique> $ g$
-      silent! noremap <buffer> <unique> <End> g<End>
-      silent! noremap <buffer> <unique> k gk
-      silent! noremap <buffer> <unique> <Down> g<Down>
-      silent! noremap <buffer> <unique> j gj
+      silent! nnoremap <buffer> <unique> 0 g0
+      silent! vnoremap <buffer> <unique> 0 g0
+      silent! nnoremap <buffer> <unique> <Home> g<Home>
+      silent! vnoremap <buffer> <unique> <Home> g<Home>
+      silent! nnoremap <buffer> <unique> ^ g^
+      silent! vnoremap <buffer> <unique> ^ g^
+      silent! nnoremap <buffer> <unique> $ g$
+      silent! vnoremap <buffer> <unique> $ g$
+      silent! nnoremap <buffer> <unique> <End> g<End>
+      silent! vnoremap <buffer> <unique> <End> g<End>
+      silent! nnoremap <buffer> <unique> k gk
+      silent! vnoremap <buffer> <unique> k gk
+      silent! nnoremap <buffer> <unique> <Down> g<Down>
+      silent! vnoremap <buffer> <unique> <Down> g<Down>
+      silent! nnoremap <buffer> <unique> j gj
+      silent! vnoremap <buffer> <unique> j gj
       silent! noremap <buffer> <unique> <Up> g<Up>
     else
       unlet g:my_visual_navigation_maps
       echomsg 'Disabled visual navigation'
       setlocal wrap<
-      silent! unmap <buffer> 0
-      silent! unmap <buffer> <Home>
-      silent! unmap <buffer> ^
-      silent! unmap <buffer> $
-      silent! unmap <buffer> <End>
-      silent! unmap <buffer> k
-      silent! unmap <buffer> <Down>
-      silent! unmap <buffer> j
-      silent! unmap <buffer> <Up>
+      silent! nunmap <buffer> 0
+      silent! vunmap <buffer> 0
+      silent! nunmap <buffer> <Home>
+      silent! vunmap <buffer> <Home>
+      silent! nunmap <buffer> ^
+      silent! vunmap <buffer> ^
+      silent! nunmap <buffer> $
+      silent! vunmap <buffer> $
+      silent! nunmap <buffer> <End>
+      silent! vunmap <buffer> <End>
+      silent! nunmap <buffer> k
+      silent! vunmap <buffer> k
+      silent! nunmap <buffer> <Down>
+      silent! vunmap <buffer> <Down>
+      silent! nunmap <buffer> j
+      silent! vunmap <buffer> j
+      silent! nunmap <buffer> <Up>
+      silent! vunmap <buffer> <Up>
     endif
   endfunction
 
@@ -513,9 +537,9 @@ endif
 
 " Keymap {{{1
 " Disable F1 for help {{{2
-map  <F1> <Nop>
-map  <A-F1> <Nop>
-map  <C-F1> <Nop>
+nmap  <F1> <Nop>
+nmap  <A-F1> <Nop>
+nmap  <C-F1> <Nop>
 imap <F1> <Nop>
 imap <S-F1> <Nop>
 imap <A-F1> <Nop>
@@ -523,16 +547,22 @@ imap <C-F1> <Nop>
 
 
 " make Q like before {{{2
-noremap Q gq
+nnoremap Q gq
+vnoremap Q gq
 
 " swap ' and ` {{{2
-noremap ' `
-noremap ` '
-noremap g' g`
-noremap g` g'
+nnoremap ' `
+vnoremap ' `
+nnoremap ` '
+vnoremap ` '
+nnoremap g' g`
+vnoremap g' g`
+nnoremap g` g'
+vnoremap g` g'
 
 " make Y like D & C {{{2
-noremap Y y$
+nnoremap Y y$
+vnoremap Y y$
 
 " Search highlight {{{2
 if has('extra_search')
