@@ -27,7 +27,6 @@ setopt   longlistjobs
 # Prompting {{{2
 setopt   promptsubst
 # Zle {{{2
-[[ $TERM == 'dumb' ]] && setopt nozle
 setopt nobeep
 
 # Variables {{{1
@@ -98,6 +97,7 @@ bindkey "^A" expand-word
 #bindkey "\e[Z" reverse-menu-complete
 # Misc {{{2
 bindkey "^J" self-insert-unmeta
+[[ $TERM == 'dumb' ]] && bindkey "^J" accept-line
 bindkey "^O" push-input
 bindkey "^T" get-line
 bindkey "^Y" undo
@@ -134,7 +134,7 @@ fi
 # Set a fancy prompt {{{1
 # Color definitions {{{2
 None="%{$terminfo[sgr0]%}"
-if (( $terminfo[colors] >= 16 )); then
+if (( terminfo[colors] >= 16 )); then
     # For 16+ color term {{{
     Black="%{$(tput setaf 0)%}"
     DarkGray="%{$(tput setaf 8)%}"
@@ -169,7 +169,7 @@ if (( $terminfo[colors] >= 16 )); then
     CyanBg="%{$(tput setab 14)%}"
     DarkCyanBg="%{$(tput setab 6)%}"
     # }}}
-elif (( $terminfo[colors] == 8)); then
+elif (( terminfo[colors] == 8)); then
     # For 8 color term {{{
     Black="%{$(tput setaf 0)%}"
     DarkGray="%{$(tput setaf 0;tput bold)%}"
