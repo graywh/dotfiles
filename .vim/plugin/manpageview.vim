@@ -8,7 +8,7 @@ let g:loaded_manpageview = "v17g"
 let s:keepcpo            = &cpo
 set cpo&vim
 
-com! -nargs=* Man call s:ManPageView(<q-args>)
+com! -bar -nargs=* Man call s:ManPageView(<q-args>)
 
 " Get result of "man | col" as a List
 function! s:ReadManPage(topic)

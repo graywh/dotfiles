@@ -1,9 +1,9 @@
 function vimh {
-    vim -c "help $1" -c "only"
+    vim -c "help $1 | only | bd#"
 }
 
 function man {
-    vim -c "Man $1 $2" -c "only" -c "bd#"
+    vim -c "Man $* | only | bd#"
 }
 
 function loop {
