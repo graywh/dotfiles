@@ -389,49 +389,30 @@ if exists(':function') == 2
   endfunction
 
   function! VisualNavigation() " {{{2
-    if !exists('g:my_visual_navigation_maps')
+    let mds = ['n', 'o', 'x']
+    let keys = ['0', '^', '$', '<Home>', '<End>', 'k', 'j', '<Up>', '<Down>']
+    if !exists('b:my_visual_navigation_maps')
       let b:my_visual_navigation_maps=1
       echomsg 'Enabled visual navigation'
       setlocal wrap
-      silent! nnoremap <buffer> <unique> 0 g0
-      silent! vnoremap <buffer> <unique> 0 g0
-      silent! nnoremap <buffer> <unique> <Home> g<Home>
-      silent! vnoremap <buffer> <unique> <Home> g<Home>
-      silent! nnoremap <buffer> <unique> ^ g^
-      silent! vnoremap <buffer> <unique> ^ g^
-      silent! nnoremap <buffer> <unique> $ g$
-      silent! vnoremap <buffer> <unique> $ g$
-      silent! nnoremap <buffer> <unique> <End> g<End>
-      silent! vnoremap <buffer> <unique> <End> g<End>
-      silent! nnoremap <buffer> <unique> k gk
-      silent! vnoremap <buffer> <unique> k gk
-      silent! nnoremap <buffer> <unique> <Down> g<Down>
-      silent! vnoremap <buffer> <unique> <Down> g<Down>
-      silent! nnoremap <buffer> <unique> j gj
-      silent! vnoremap <buffer> <unique> j gj
-      silent! noremap <buffer> <unique> <Up> g<Up>
+      for key in keys
+        for md in mds
+          if mapcheck(key, md) == ''
+            exec 'silent '.md.'noremap <buffer> <unique> '.key.' g'.key
+          endif
+        endfor
+      endfor
     else
-      unlet g:my_visual_navigation_maps
+      unlet b:my_visual_navigation_maps
       echomsg 'Disabled visual navigation'
       setlocal wrap<
-      silent! nunmap <buffer> 0
-      silent! vunmap <buffer> 0
-      silent! nunmap <buffer> <Home>
-      silent! vunmap <buffer> <Home>
-      silent! nunmap <buffer> ^
-      silent! vunmap <buffer> ^
-      silent! nunmap <buffer> $
-      silent! vunmap <buffer> $
-      silent! nunmap <buffer> <End>
-      silent! vunmap <buffer> <End>
-      silent! nunmap <buffer> k
-      silent! vunmap <buffer> k
-      silent! nunmap <buffer> <Down>
-      silent! vunmap <buffer> <Down>
-      silent! nunmap <buffer> j
-      silent! vunmap <buffer> j
-      silent! nunmap <buffer> <Up>
-      silent! vunmap <buffer> <Up>
+      for key in keys
+        for md in mds
+          if mapcheck(key, md) == 'g'.key
+            exec 'silent '.md.'unmap <buffer> '.key
+          endif
+        endfor
+      endfor
     endif
   endfunction
 
@@ -548,21 +529,21 @@ imap <C-F1> <Nop>
 
 " make Q like before {{{2
 nnoremap Q gq
-vnoremap Q gq
+xnoremap Q gq
 
 " swap ' and ` {{{2
-nnoremap ' `
-vnoremap ' `
-nnoremap ` '
-vnoremap ` '
-nnoremap g' g`
-vnoremap g' g`
-nnoremap g` g'
-vnoremap g` g'
+noremap ' `
+sunmap '
+noremap ` '
+sunmap `
+noremap g' g`
+sunmap g'
+noremap g` g'
+sunmap g`
 
 " make Y like D & C {{{2
 nnoremap Y y$
-vnoremap Y y$
+xnoremap Y y$
 
 " Search highlight {{{2
 if has('extra_search')
