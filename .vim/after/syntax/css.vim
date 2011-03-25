@@ -1,5 +1,5 @@
 " The CSS syntax file *should* do this
-setlocal iskeyword+=45
+setlocal iskeyword+=45-46
 
 " My CSS3 additions
 
