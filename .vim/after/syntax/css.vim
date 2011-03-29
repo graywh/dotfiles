@@ -1,6 +1,3 @@
-" The CSS syntax file *should* do this
-setlocal iskeyword+=45-46
-
 " My CSS3 additions
 
 syn match cssFontProp contained /\<font\(-\(family\|style\|variant\|weight\|size\(-adjust\)\=\|stretch\)\>\)\=/
