@@ -103,6 +103,7 @@ set wildmode=longest:full,full  " Complete longest, tab through matches
 " Suffixes that get lower priority when doing tab completion for filenames.
 " These are files we are not likely to want to edit or read.
 set suffixes=.bak,~,.swp,.swo,.o,.d,.info,.aux,.log,.dvi,.pdf,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.pyc,.pyd,.dll
+set cedit=<C-o>
 
 " Encoding {{{2
 if has('multi_byte') && &encoding !~? '^u\(tf\|cs\)'
@@ -582,9 +583,6 @@ endif
 " Command-line navigation {{{2
 cnoremap <C-h> <Left>
 cnoremap <C-f> <Right>
-
-" Command-line window {{{2
-cnoremap <C-o> <C-f>
 
 " Arrow keys for window movement {{{2
 nnoremap <silent> <Left>  <C-w>h
