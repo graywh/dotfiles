@@ -493,7 +493,7 @@ set statusline+=%{&eol?'':'[noeol]'}                    " &noeol
 set statusline+=%*                      " End of warnings section
 set statusline+=%=\                     " Separate left from right
 "set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\      " Current highlight group
-"set statusline+=%b,0x%-8B\             " Current character in decimal and hex representation
+set statusline+=%b,0x%-8B\              " Current character in decimal and hex representation
 set statusline+=%-12(%l,%c%V%)\ %P      " Current line and column, file percentage (set 'ruler')
 
 " Autocommands {{{1
@@ -517,7 +517,7 @@ if has('autocmd')
   augroup END
 endif
 
-" Keymap {{{1
+" Keymaps {{{1
 " Disable F1 for help {{{2
 nmap  <F1> <Nop>
 nmap  <A-F1> <Nop>
@@ -530,6 +530,7 @@ imap <C-F1> <Nop>
 
 " make Q like before {{{2
 nnoremap Q gq
+nnoremap QQ gqgq
 xnoremap Q gq
 
 " swap ' and ` {{{2
@@ -609,6 +610,11 @@ if has('eval')
     execute "nnoremap <silent> Z".k." :windo normal z".k."<CR>"
   endfor
 endif
+
+" Select last changed text {{{2
+nnoremap <leader>v `[v`]
+nnoremap <leader>V `[V`]
+nnoremap <leader><C-v> `[<C-v>`]
 
 " Terminal Stuff {{{1
 "map <C-@> <C-space>
