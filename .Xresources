@@ -46,11 +46,13 @@ XTerm*vt100.translations: #override \n\
      Ctrl ~Meta ~Shift <Key>Tab: string(0x1b) string("[9;5~") \n\
      Ctrl ~Meta  Shift <Key>Tab: string(0x1b) string("[9;6~") \n\
      Ctrl  Meta ~Shift <Key>Tab: string(0x1b) string("[9;7~") \n\
-     Ctrl  Meta  Shift <Key>Tab: string(0x1b) string("[9;8~")
+     Ctrl  Meta  Shift <Key>Tab: string(0x1b) string("[9;8~") \n\
+
 ! use btn1 instead of wheel for click-hold scrolling
 XTerm*vt100.scrollbar.translations: #override \n\
     <Btn1Down>: StartScroll(Continuous) MoveThumb() NotifyThumb() \n\
-    <Btn1Motion>: MoveThumb() NotifyThumb()
+    <Btn1Motion>: MoveThumb() NotifyThumb() \n\
+
 ! --- colors {{{3
 XTerm*vt100.background: rgb:14/14/14
 XTerm*vt100.foreground: rgb:D7/D7/D7
