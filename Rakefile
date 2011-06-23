@@ -25,7 +25,7 @@ def git_master(&block)
 end
 
 def vimdoctags
-  puts("updating vim help tags")
+  print_text("Updating vim help tags", :color => 6)
   system("vim --noplugin -c 'call pathogen#helptags()' -c 'q'")
 end
 
@@ -40,14 +40,15 @@ def filter(hash, pattern)
 end
 
 def download(url, file)
-  puts("downloading #{file}")
+  print_text("Downloading #{file}", :color => 6)
   system("wget #{url} -O #{file}")
 end
 
-def print_name(text, action)
-  system("tput setaf 2")
-  puts("*** #{action} #{text}")
-  system("tput sgr0")
+def print_text(text, args={})
+  color = args[:color]
+  system("tput setaf #{color}") if color
+  puts(text)
+  system("tput sgr0") if color
 end
 
 desc "Update master and rebase"
@@ -69,7 +70,7 @@ namespace :bundle do
   desc "Initialize bundles"
   task :init do
     Yobj['Bundles'].each do |key, value|
-      print_name(key, "Initializing")
+      print_text("*** Initializing #{key}", :color => 2)
       system("git clone #{value} #{key}") unless File.exists?(key)
     end
     vimdoctags
@@ -79,10 +80,18 @@ namespace :bundle do
   task :update, :pattern do |t, args|
     projects = filter(Yobj['Bundles'], args.pattern)
     projects.each do |key, value|
-      print_name(key, "Updating")
+      print_text("*** Updating #{key}", :color => 2)
       system("cd #{key} && git checkout master && git pull")
     end
     vimdoctags
+  end
+
+  desc "List bundles"
+  task :list, :pattern do |t, args|
+    projects = filter(Yobj['Bundles'], args.pattern)
+    projects.each do |key, value|
+      print_text("#{key} => #{value}")
+    end
   end
 end
 
