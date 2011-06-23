@@ -105,9 +105,9 @@ set wildmode=longest:full,full  " Complete longest, tab through matches
 set suffixes=.bak,~,.swp,.swo,.o,.d,.info,.aux,.log,.dvi,.pdf,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.pyc,.pyd,.dll
 
 " Encoding {{{2
-if has('multi_byte') && &enc !~? '^u\(tf\|cs\)'
-  if !strlen(&tenc) && exists(':let') == 2
-    let &tenc = &enc
+if has('multi_byte') && &encoding !~? '^u\(tf\|cs\)'
+  if !strlen(&termencoding) && exists(':let') == 2
+    let &termencoding = &encoding
   endif
   set encoding=utf-8
 endif
@@ -151,7 +151,7 @@ endif
 set wrap                        " Wrap long lines
 
 set listchars=
-if has('multi_byte') && (&tenc =~? '^u\(tf\|cs\)' || (! strlen(&tenc) && &enc =~? '^u\(tf\|cs\)')) && (v:version >= 602 || v:version == 601 && has('patch469'))
+if has('multi_byte') && (&termencoding =~? '^u\(tf\|cs\)' || (! strlen(&termencoding) && &encoding =~? '^u\(tf\|cs\)')) && (v:version >= 602 || v:version == 601 && has('patch469'))
   "set listchars+=eol:↵
   set listchars+=tab:»·
   if v:version >= 700
@@ -297,7 +297,7 @@ if exists(':function') == 2
     else
       let nuw = &numberwidth
     endif
-    let n = winwidth(0) - &fdc - nuw - strlen(lines)
+    let n = winwidth(0) - &foldcolumn - nuw - strlen(lines)
     let text = text[:min([strlen(text), n])]
     if text[-1:] != ' '
       if strlen(text) < n
@@ -346,7 +346,7 @@ if exists(':function') == 2
   endfunction
 
   function! StatusLineTabWarning() " {{{2
-    " return '[&et]' if &et is set wrong
+    " return '[&et]' if &expandtab is set wrong
     " return '[mixed-indenting]' if spaces and tabs are used to indent
     " return an empty string if everything is fine
     if !exists('b:statusline_tab_warning')
@@ -357,7 +357,7 @@ if exists(':function') == 2
         let spaces = search('^ ', 'nw') != 0
         if tabs && spaces
           let b:statusline_tab_warning = '[mixed-indenting]'
-        elseif (spaces && !&et) || (tabs && &et)
+        elseif (spaces && !&expandtab) || (tabs && &expandtab)
           let b:statusline_tab_warning = '[&et]'
         else
           let b:statusline_tab_warning = ''
@@ -368,8 +368,8 @@ if exists(':function') == 2
   endfunction
 
   function! StatusLineEncodingBombWarning() " {{{2
-    if &fenc !~ '^$\|utf-8' || &bomb
-      return '[' . &fenc . (&bomb ? '-bom' : '') . ']'
+    if &fileencoding !~ '^$\|utf-8' || &bomb
+      return '[' . &fileencoding . (&bomb ? '-bom' : '') . ']'
     else
       return ''
     endif
@@ -449,9 +449,9 @@ if exists(':command') == 2
   if has('ex_extra')
     command! -bang -range=% ReTab
           \ silent! unlet b:statusline_tab_warning |
-          \ let ts=&l:ts | let &l:ts=&sw |
+          \ let ts=&l:tabstop | let &l:tabstop=&shiftwidth |
           \ <line1>,<line2>retab<bang> |
-          \ let &l:ts=ts | unlet ts
+          \ let &l:tabstop=ts | unlet ts
   endif
 
   " Remove trailing space
