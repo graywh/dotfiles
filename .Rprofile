@@ -7,3 +7,6 @@ if (interactive()) {
     })
 }
 tau <- 2*pi
+'%nin%' <- function(x, y) { !(x %in% y) }
+'%xin%' <- function(x, y) { x[which(x %in% y)] }
+na.rm <- function(x) { x[!is.na(x)] }
