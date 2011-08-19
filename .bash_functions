@@ -10,6 +10,16 @@ function vimh {
     vim -c "help $1 | only"
 }
 
+function man {
+    vim -c "Man $* | only | bd#"
+}
+
+function loop {
+    while true; do
+        $*
+    done
+}
+
 # calc shortcut {{{1
 if [[ -x $(which bc) ]]; then
     function calc {

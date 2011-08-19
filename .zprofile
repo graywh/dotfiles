@@ -8,10 +8,7 @@ typeset -U path
 
 export EDITOR=vim
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
-
-if [[ -f ${HOME}"/.pythonrc.py" ]]; then
-    export PYTHONSTARTUP=${HOME}'/.pythonrc.py'
-fi
+export PYTHONSTARTUP=${HOME}'/.pythonrc.py'
 
 # Mac OS X {{{1
 if [[ ${OSTYPE} == darwin* ]]; then
