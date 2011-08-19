@@ -8,6 +8,10 @@ if [ -d "${HOME}/bin" ]; then
     PATH="${PATH}:${HOME}/bin"
 fi
 
+if [ -d "${HOME}/.rbenv/shims" ]; then
+    PATH="${HOME}/.rbenv/shims:$PATH"
+fi
+
 export PATH
 #}}}2
 

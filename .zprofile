@@ -3,6 +3,10 @@ if [[ -d ${HOME}'/bin' ]]; then
     path=($path ${HOME}'/bin')
 fi
 
+if [[ -d ${HOME}'/.rbenv/shims' ]]; then
+    path=(${HOME}'/.rbenv/shims' $path)
+fi
+
 typeset -U path
 # }}}1
 
