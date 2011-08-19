@@ -152,7 +152,7 @@ function prompt_command { #{{{2
     # If this is an xterm set the title to user@host:dir
     case ${TERM} in
     xterm*|gnome*|konsole*|putty*|screen*)
-        echo -ne "\e]0;${USER}@${HOSTNAME}: ${PWD}\a"
+        echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\a"
         ;;
     esac
     # If this is tmux or screen, print a bel
@@ -160,7 +160,7 @@ function prompt_command { #{{{2
         echo -ne "\a"
     fi
     #if [[ "${TERM}" == screen* ]]; then
-    #    echo -ne "\ek\e\\"
+    #    echo -ne "\033k\033\\"
     #fi
 }
 

@@ -78,17 +78,17 @@ __git_ps1 () { # copied from bash_completion.d/git {{{2
 
 # xterm title shortcut {{{1
 function __xtermicontitle {
-    echo -ne "\e]0;${1}\a"
+    echo -ne "\033]0;${1}\a"
 }
 function __xtermicon {
-    echo -ne "\e]1;${1}\a"
+    echo -ne "\033]1;${1}\a"
 }
 function __xtermtitle {
-    echo -ne "\e]2;${1}\a"
+    echo -ne "\033]2;${1}\a"
 }
 
 function __screentitle {
-    echo -ne "\ek${1}\e\\"
+    echo -ne "\033k${1}\033\\"
 }
 
 # moin current revision {{{1
