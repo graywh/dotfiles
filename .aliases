@@ -16,6 +16,12 @@ function __ls() {
     (cd ${dir} && eval ${1})
 }
 
+alias grep='grep --color=auto'
+prefix=(e f z ze zf bz)
+for p in $prefix; do
+    eval "alias ${p}grep='${p}grep --color=auto'"
+done
+
 alias XtermIrssi="xterm -T irssi -geometry 100x25 -fs 9 -e \"screen -c ${HOME}/.screenrc-irssi\""
 alias XtermIrssiR="xterm -T irssi -geometry 100x25 -fs 9 -e \"screen -r irssi\""
 alias XtermIrssiX="xterm -T irssi -geometry 100x25 -fs 9 -e \"screen -x irssi\""

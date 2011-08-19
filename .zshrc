@@ -284,6 +284,14 @@ function preexec { #{{{2
 
 # Enable color support of ls and others {{{1
 if [[ ${TERM} != "dumb" ]]; then
+    case ${OSTYPE} in
+        darwin*)
+            alias ls="ls -FG"
+            ;;
+        *)
+            alias ls="ls -F --color=auto"
+            ;;
+    esac
     if [[ -x /usr/bin/dircolors ]]; then
         if [[ -f ${HOME}"/.dircolors-"$terminfo[colors] ]]; then
             eval $(dircolors -b ${HOME}/.dircolors-$terminfo[colors])
@@ -291,11 +299,6 @@ if [[ ${TERM} != "dumb" ]]; then
             eval $(dircolors -b ${HOME}/.dircolors)
         fi
         zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-        alias ls="ls -F --color=auto"
-        alias grep="grep --color=auto"
-        alias egrep="egrep --color=auto"
-    elif [[ ${OSTYPE} == darwin* ]]; then
-        alias ls="ls -FG"
     fi
 fi
 

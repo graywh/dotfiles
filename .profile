@@ -26,10 +26,20 @@ export PYTHONSTARTUP
 # Mac OS X options {{{2
 if [ "${OSTYPE}" == darwin* ]; then
     # turn on colors
-    CLICOLOR=1
     export CLICOLOR
-    #LSCOLORS=ExFxCxDxBxegedabagacad
-    #export LSCOLORS
+    # 0 a - black   , -------------------- DIR
+    # 1 b - red     | ,------------------- SYM_LINK
+    # 2 c - green   | | ,----------------- SOCKET
+    # 3 d - yellow  | | | ,--------------- PIPE
+    # 4 e - blue    | | | | ,------------- EXE
+    # 5 f - magenta | | | | | ,----------- BLOCK_SP
+    # 6 g - cyan    | | | | | | ,--------- CHAR_SP
+    # 7 h - gray    | | | | | | | ,------- EXE_SUID
+    #   x - default | | | | | | | | ,----- EXE_GUID
+    # fore/back     | | | | | | | | | ,--- DIR_STICKY
+    # upper = bold  | | | | | | | | | | ,- DIR_WO_STICKY
+    LSCOLORS=ExGxFxdaCxdadahbadheec
+    export LSCOLORS
 fi
 #}}}1
 # vim: fdm=marker
