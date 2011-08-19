@@ -1,11 +1,5 @@
 #!bash
 
-if [[ ! -x $(which sudoedit) ]]; then
-    function sudoedit {
-        sudo -e $*
-    }
-fi
-
 function vimh {
     vim -c "help $1 | only"
 }
