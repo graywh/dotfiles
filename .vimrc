@@ -191,6 +191,10 @@ set viminfo+=h                  " Don't restore the hlsearch highlighting
 " Reading, Writing {{{2
 set modeline                    " Let files set their own options
 set fileformats=unix,mac,dos    " End-of-line character
+if exists('&undofile')
+  set undofile                  " Keep undo files
+  set undolevels=1000           " Keep plenty of undos
+endif
 
 " Diff mode {{{2
 if exists('&diffopt')

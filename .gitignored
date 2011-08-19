@@ -5,6 +5,7 @@ tags
 
 # Vim
 *.sw[op]
+*.un~
 Session.vim
 
 # Zsh
