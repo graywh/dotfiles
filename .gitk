@@ -8,6 +8,7 @@ set maxwidth 16
 set cmitmode patch
 set wrapcomment none
 set autoselect 1
+set autosellen 40
 set showneartags 1
 set hideremotes 0
 set showlocalchanges 1
