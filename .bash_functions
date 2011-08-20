@@ -24,7 +24,7 @@ fi
 # git ps1 stuff {{{1
 function ___git_branch { # [defunct] {{{2
     local base_dir=$(git rev-parse --show-cdup 2>/dev/null) || return 1
-    local ref=$(git-symbolic-ref -q HEAD || git-name-rev --name-only HEAD 2>/dev/null)
+    local ref=$(git symbolic-ref -q HEAD || git name-rev --name-only HEAD 2>/dev/null)
     ref=${ref#refs/heads/}
     echo " ${ref}"
 }

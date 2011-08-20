@@ -1,3 +1,19 @@
+# Variables {{{1
+mailpath=/var/spool/mail/`whoami`?'You have mail in \$_'
+WORDCHARS=${WORDCHARS:s#/#}
+
+# History {{{2
+HISTFILE=~/.zsh_history
+SAVEHIST=10000
+HISTSIZE=10000
+
+# Function path {{{2
+typeset -U fpath
+
+if [[ -d ${HOME}'/.zsh/functions' ]]; then
+    fpath=(${HOME}'/.zsh/functions' $fpath)
+fi
+
 # Terminal stuff {{{1
 if [[ ${COLORTERM} == "gnome-terminal" ]]; then
     TERM="gnome-256color"

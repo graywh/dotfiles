@@ -28,7 +28,7 @@ shopt -s checkwinsize
 # append to the history file
 shopt -s histappend
 # don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
+HISTCONTROL=ignoredups
 
 # Set a fancy prompt {{{1
 # Color definitions {{{2

@@ -1,4 +1,6 @@
 # Path {{{1
+typeset -U path
+
 if [[ -d ${HOME}'/bin' ]]; then
     path=($path ${HOME}'/bin')
 fi
@@ -6,8 +8,6 @@ fi
 if [[ -d ${HOME}'/.rbenv/shims' ]]; then
     path=(${HOME}'/.rbenv/shims' $path)
 fi
-
-typeset -U path
 # }}}1
 
 export EDITOR=vim
