@@ -1,7 +1,6 @@
 Files:
   .vim/autoload/pathogen.vim:    http://github.com/tpope/vim-pathogen/raw/master/autoload/pathogen.vim
   .vim/plugin/BufGrep.vim:       http://git.jamessan.com/?p=etc/vim.git;a=blob_plain;f=plugin/BufGrep.vim;hb=HEAD
-  .vim/plugin/gist1.vim:         http://github.com/mattn/gist-vim/raw/master/gist.vim
   .vim/plugin/manpageview1.vim:  http://github.com/godlygeek/vim-files/raw/master/plugin/manpageview.vim
   .vim/plugin/terminalkeys1.vim: http://github.com/godlygeek/vim-files/raw/master/plugin/terminalkeys.vim
   .vim/plugin/vsearch.vim:       http://github.com/godlygeek/vim-files/raw/master/plugin/vsearch.vim
@@ -17,6 +16,7 @@ Bundles:
   .vim/bundles/colorindent: https://github.com/graywh/vim-colorindent.git
   .vim/bundles/csapprox:    https://github.com/godlygeek/csapprox.git
   .vim/bundles/fugitive:    https://github.com/tpope/vim-fugitive.git
+  .vim/bundles/gist:        https://github.com/mattn/gist-vim.git
   .vim/bundles/git:         https://github.com/tpope/vim-git.git
   .vim/bundles/haml:        https://github.com/tpope/vim-haml.git
   .vim/bundles/rails:       https://github.com/tpope/vim-rails.git
