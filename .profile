@@ -30,6 +30,7 @@ export PYTHONSTARTUP
 # Mac OS X options {{{2
 if [ "${OSTYPE}" == darwin* ]; then
     # turn on colors
+    CLICOLOR=1
     export CLICOLOR
     # 0 a - black   , -------------------- DIR
     # 1 b - red     | ,------------------- SYM_LINK
