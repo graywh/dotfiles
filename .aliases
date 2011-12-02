@@ -31,3 +31,7 @@ alias IrssiX='resize -s 25 100;screen -x irssi'
 alias Rcheck='R CMD check'
 alias Rinstall='R CMD INSTALL'
 alias Rbuild='R CMD build'
+
+if [[ -x $(which xdg-open) ]]; then
+    alias open=xdg-open
+fi
