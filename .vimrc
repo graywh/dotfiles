@@ -638,10 +638,16 @@ if &term !~? '^\v(linux|cons|vt)' && ! strlen(&t_ts) && ! strlen(&t_fs)
   let &t_IE="\x7"
 endif
 
-" change the xterm cursor color for insert mode {{{2
+" change the xterm cursor for insert mode {{{2
 if &term =~? '^xterm' && exists('&t_SI') && &t_Co > 1
-  let &t_SI="\<Esc>]12;purple\x7"
-  let &t_EI="\<Esc>]12;green\x7"
+  "let &t_SI=''
+  "let &t_EI=''
+  " color
+  "let &t_SI.="\<Esc>]12;purple\x7"
+  "let &t_EI.="\<Esc>]112\x7"
+  " shape
+  "let &t_SI.="\<Esc>[4 q"
+  "let &t_EI.="\<Esc>[2 q"
 endif
 
 " Collected Tips {{{1
