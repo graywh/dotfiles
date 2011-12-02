@@ -5,20 +5,20 @@ if [[ ! -x $(which sudoedit) ]]; then
 fi
 
 #alias sudo="sudo"       # so aliases get expanded before using sudo
+
+case ${OSTYPE} in
+    'darwin'*)
+        alias ls='ls -FG'
+        ;;
+    *)
+        alias ls='ls -F --color=auto'
+        ;;
+esac
 alias la="ls -A"
 alias ll="ls -hl"
 alias lla="ll -A"
-alias l.="__ls 'ls -d .*'"
-alias ll.="__ls 'ls -dhl .*'"
-
-function __ls() {
-    local dir
-    dir=${PWD}
-    if [[ -n "${2}" ]]; then
-        dir=${2}
-    fi
-    (cd ${dir} && eval ${1})
-}
+alias l.="__ls 'ls -d' '.*'"
+alias ll.="__ls 'ls -dhl' '.*'"
 
 alias grep='grep --color=auto'
 prefix=(e f z ze zf bz)

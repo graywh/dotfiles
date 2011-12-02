@@ -1,4 +1,7 @@
 #!bash
+if [[ -f ~/.functions ]]; then
+    source ~/.functions
+fi
 
 function vimh {
     vim -c "help $1 | only"

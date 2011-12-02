@@ -1,3 +1,29 @@
+if [[ -f ~/.functions ]]; then
+    source ~/.functions
+fi
+
+# better ls'ing of hidden files
+function __ls() {
+    if (( $# > 3 )); then
+        print "${argv[3]}:"
+        __ls_helper "${1}" "${2}" ${argv[3]}
+        for arg in ${argv[4,$#]}; do
+            print
+            print "${arg}:"
+            __ls_helper "${1}" "${2}" "${arg}"
+        done
+    else
+        __ls_helper "${1}" "${2}" "${3:-$PWD}"
+    fi
+}
+
+function __ls_helper() {
+    eval "args=(${3}/${2}(.N))"
+    if (( ${#args} > 0 )); then
+        (cd ${3} && eval "${1} ${2}")
+    fi
+}
+
 function vimh {
     vim -c "help $1 | only | bd#"
 }

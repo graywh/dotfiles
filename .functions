@@ -1,0 +1,20 @@
+function __ls {
+    if (( $# > 3 )); then
+        echo "${argv[3]}:"
+        __ls_helper "${1}" "${2}" ${argv[3]}
+        for arg in ${argv[4,$#]}; do
+            echo
+            echo "${arg}:"
+            __ls_helper "${1}" "${2}" "${arg}"
+        done
+    else
+        __ls_helper "${1}" "${2}" "${3:-$PWD}"
+    fi
+}
+
+function __ls_helper {
+    eval "args=${3}/${2}"
+    if (( ${#args[@]} > 2 )); then
+        (cd ${3} && eval "${1} ${2}")
+    fi
+}

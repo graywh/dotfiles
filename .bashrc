@@ -168,14 +168,6 @@ PROMPT_COMMAND=prompt_command
 
 # Enable color support of ls and others {{{1
 if [[ "${TERM}" != "dumb" ]]; then
-    case ${OSTYPE} in
-        darwin*)
-            alias ls='ls -FG'
-            ;;
-        *)
-            alias ls='ls -F --color=auto'
-            ;;
-    esac
     if [[ -x /usr/bin/dircolors ]]; then
         if [[ -f "${HOME}/.dircolors-${COLORS}" ]]; then
             eval $(dircolors -b ${HOME}/.dircolors-${COLORS})
