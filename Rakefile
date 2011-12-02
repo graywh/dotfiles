@@ -102,4 +102,11 @@ namespace :file do
       download(value, key)
     end
   end
+
+  desc "List files"
+  task :list, :pattern do |t, args|
+    filter(Yobj['Files'], args.pattern) do |key, value|
+      print_text("#{key} => #{value}")
+    end
+  end
 end
