@@ -169,21 +169,21 @@ PROMPT_COMMAND=prompt_command
 # Enable color support of ls and others {{{1
 if [[ "${TERM}" != "dumb" ]]; then
     if [[ -x /usr/bin/dircolors ]]; then
-        if [[ -f "${HOME}/.dircolors-${COLORS}" ]]; then
-            eval $(dircolors -b ${HOME}/.dircolors-${COLORS})
+        if [[ -f "~/.dircolors-${COLORS}" ]]; then
+            eval $(dircolors -b ~/.dircolors-${COLORS})
         else
-            eval $(dircolors -b ${HOME}/.dircolors)
+            eval $(dircolors -b ~/.dircolors)
         fi
     fi
 fi
 
 # Load other configurations {{{1
-if [[ -f "${HOME}/.aliases" ]]; then
-    source "${HOME}/.aliases"
+if [[ -f ~/.aliases ]]; then
+    source ~/.aliases
 fi
 
-if [[ -f "${HOME}/.bash_functions" ]]; then
-    source "${HOME}/.bash_functions"
+if [[ -f ~/.bash_functions ]]; then
+    source ~/.bash_functions
 fi
 
 # enable programmable completion features

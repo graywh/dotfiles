@@ -269,22 +269,22 @@ function preexec { #{{{2
 # Enable color support of ls and others {{{1
 if [[ ${TERM} != "dumb" ]]; then
     if [[ -x /usr/bin/dircolors ]]; then
-        if [[ -f ${HOME}"/.dircolors-"$terminfo[colors] ]]; then
-            eval $(dircolors -b ${HOME}/.dircolors-$terminfo[colors])
+        if [[ -f ~/.dircolors-"$terminfo[colors] ]]; then
+            eval $(dircolors -b ~/.dircolors-$terminfo[colors])
         else
-            eval $(dircolors -b ${HOME}/.dircolors)
+            eval $(dircolors -b ~/.dircolors)
         fi
         zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
     fi
 fi
 
 # Load other configurations {{{1
-if [[ -f ${HOME}"/.aliases" ]]; then
-    source ${HOME}"/.aliases"
+if [[ -f ~/.aliases ]]; then
+    source ~/.aliases
 fi
 
-if [[ -f ${HOME}"/.zsh_functions" ]]; then
-    source ${HOME}"/.zsh_functions"
+if [[ -f ~/.zsh_functions ]]; then
+    source ~/.zsh_functions
 fi
 
 # vim: fdm=marker fen

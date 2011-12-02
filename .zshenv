@@ -10,8 +10,8 @@ HISTSIZE=10000
 # Function path {{{2
 typeset -U fpath
 
-if [[ -d ${HOME}'/.zsh/functions' ]]; then
-    fpath=(${HOME}'/.zsh/functions' $fpath)
+if [[ -d ~/.zsh/functions ]]; then
+    fpath=(~/.zsh/functions $fpath)
 fi
 
 # Terminal stuff {{{1

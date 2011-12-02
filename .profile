@@ -4,12 +4,12 @@ tty -s && stty erase 
 
 # Environment {{{1
 # Path {{{2
-if [ -d "${HOME}/bin" ]; then
-    PATH="${PATH}:${HOME}/bin"
+if [ -d ~/bin ]; then
+    PATH=${PATH}:~/bin
 fi
 
-if [ -d "${HOME}/.rbenv/shims" ]; then
-    PATH="${HOME}/.rbenv/shims:${PATH}"
+if [ -d ~/.rbenv/shims ]; then
+    PATH=~/.rbenv/shims:${PATH}
 fi
 
 export PATH
@@ -24,7 +24,7 @@ export EDITOR
 MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
 export MANPAGER
 
-PYTHONSTARTUP=${HOME}/.pythonrc.py
+PYTHONSTARTUP=~/.pythonrc.py
 export PYTHONSTARTUP
 
 GREP_OPTIONS='--color=auto --binary-files=without-match'

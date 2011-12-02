@@ -1,18 +1,13 @@
-# Path {{{1
 typeset -U path
 
-if [[ -d ${HOME}'/bin' ]]; then
-    path=($path ${HOME}'/bin')
+# include .profile if it exists
+if [[ -f ~/.profile ]]; then
+    emulate sh -c '. ~/.profile'
 fi
-
-if [[ -d ${HOME}'/.rbenv/shims' ]]; then
-    path=(${HOME}'/.rbenv/shims' $path)
-fi
-# }}}1
 
 export EDITOR=vim
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
-export PYTHONSTARTUP=${HOME}'/.pythonrc.py'
+export PYTHONSTARTUP='~/.pythonrc.py'
 
 # Mac OS X {{{1
 if [[ ${OSTYPE} == darwin* ]]; then

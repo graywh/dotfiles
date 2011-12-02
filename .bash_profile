@@ -6,13 +6,13 @@
 #umask 022
 
 # include .profile if it exists
-if [[ -f ${HOME}/.profile ]]; then
-    source ${HOME}/.profile
+if [[ -f ~/.profile ]]; then
+    source ~/.profile
 fi
 
 # include .bashrc if it exists
-if [[ -f ${HOME}/.bashrc ]]; then
-    source ${HOME}/.bashrc
+if [[ -f ~/.bashrc ]]; then
+    source ~/.bashrc
 fi
 
 # vim: fdm=marker
