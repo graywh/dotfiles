@@ -9,6 +9,8 @@
 	pick = cherry-pick
 	log1 = log --pretty=oneline --abbrev-commit
 	diffi = diff --ignore-all-space
+[branch]
+	autosetupmerge = true
 [color]
 	diff = false
 	pager = false
@@ -18,6 +20,7 @@
 	pager = view -
 	excludesfile = ~/.gitignored
 [pager]
+	stash = false
 	status = false
 [status]
 	relativePaths = true
