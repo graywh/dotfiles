@@ -302,7 +302,7 @@ if exists(':function') == 2
     else
       let nuw = &numberwidth
     endif
-    let n = winwidth(0) - &foldcolumn - nuw - strlen(lines)
+    let n = winwidth(winnr()) - &foldcolumn - nuw - strlen(lines)
     let text = text[:min([strlen(text), n])]
     if text[-1:] != ' '
       if strlen(text) < n
