@@ -1,5 +1,5 @@
 # Variables {{{1
-mailpath=/var/spool/mail/`whoami`?'You have mail in \$_'
+mailpath=/var/spool/mail/$(whoami)?'You have mail in $_'
 WORDCHARS=${WORDCHARS:s#/#}
 
 # History {{{2
@@ -15,9 +15,8 @@ if [[ -d ~/.zsh/functions ]]; then
 fi
 
 # Terminal stuff {{{1
-if [[ ${COLORTERM} == "gnome-terminal" ]]; then
-    TERM="gnome-256color"
-    unset COLORTERM
+if [[ ${COLORTERM} == 'gnome-terminal' ]]; then
+    TERM=gnome-256color
 fi
 
 # Don't let these variables be propogated {{{1

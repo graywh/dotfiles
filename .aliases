@@ -4,7 +4,7 @@ if [[ ! -x $(which sudoedit) ]]; then
     alias sudoedit='sudo -e'
 fi
 
-#alias sudo="sudo"       # so aliases get expanded before using sudo
+#alias sudo='sudo'       # so aliases get expanded before using sudo
 
 case ${OSTYPE} in
     'darwin'*)
@@ -14,19 +14,19 @@ case ${OSTYPE} in
         alias ls='ls -F --color=auto'
         ;;
 esac
-alias la="ls -A"
-alias ll="ls -hl"
-alias lla="ll -A"
+alias la='ls -A'
+alias ll='ls -hl'
+alias lla='ll -A'
 alias l.="__ls 'ls -d' '.*'"
 alias ll.="__ls 'ls -dhl' '.*'"
 
-alias XtermIrssi="xterm -T irssi -geometry 100x25 -fs 9 -e \"screen -c ~/.screenrc-irssi\""
-alias XtermIrssiR="xterm -T irssi -geometry 100x25 -fs 9 -e \"screen -r irssi\""
-alias XtermIrssiX="xterm -T irssi -geometry 100x25 -fs 9 -e \"screen -x irssi\""
-alias Irssi="resize -s 25 100;screen -c ~/.screenrc-irssi"
-alias IrssiR="resize -s 25 100;screen -r irssi"
-alias IrssiX="resize -s 25 100;screen -x irssi"
+alias XtermIrssi="xterm -T irssi -geometry 100x25 -fs 9 -e 'screen -c ~/.screenrc-irssi'"
+alias XtermIrssiR="xterm -T irssi -geometry 100x25 -fs 9 -e 'screen -r irssi'"
+alias XtermIrssiX="xterm -T irssi -geometry 100x25 -fs 9 -e 'screen -x irssi'"
+alias Irssi='resize -s 25 100;screen -c ~/.screenrc-irssi'
+alias IrssiR='resize -s 25 100;screen -r irssi'
+alias IrssiX='resize -s 25 100;screen -x irssi'
 
-alias Rcheck="R CMD check"
-alias Rinstall="R CMD INSTALL"
-alias Rbuild="R CMD build"
+alias Rcheck='R CMD check'
+alias Rinstall='R CMD INSTALL'
+alias Rbuild='R CMD build'

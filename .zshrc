@@ -34,31 +34,31 @@ autoload -U compinit
 compinit
 
 # Complete uppercase when lowercase was typed
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # allows lower->upper
+zstyle :completion:* matcher-list 'm:{a-z-}={A-Z_}' # allows lower->upper
 #zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # adds upper->lower
 
 # Better handling of rake tasks
-zstyle ':completion:*' matcher-list 'r:|[:]=*'
+zstyle :completion:* matcher-list 'r:|[:]=*'
 
 # Page long lists
-zstyle ':completion:*' list-prompt '%S%L -- More --%s'
+zstyle :completion:* list-prompt '%S%L -- More --%s'
 
 # Warn when nothing found
-zstyle ':completion:*:warnings' format '%BNo matches for: %d%b'
+zstyle :completion:*:warnings format '%BNo matches for: %d%b'
 
 # Complete hosts from ssh_config
-zstyle ':completion:*:hosts' use-ssh-config on
-zstyle '*:my-accounts' users-hosts rails@cbc biostat@cbc
+zstyle :completion:*:hosts use-ssh-config on
+zstyle *:my-accounts users-hosts rails@cbc biostat@cbc
 
 # Keybindings {{{1
 bindkey -v
 # Navigation {{{2
 bindkey "\e[1~" beginning-of-line
 bindkey "\e[H" beginning-of-line
-bindkey "^B" beginning-of-line
+bindkey '^B' beginning-of-line
 bindkey "\e[4~" end-of-line
 bindkey "\e[F" end-of-line
-bindkey "^E" end-of-line
+bindkey '^E' end-of-line
 bindkey "\e[1;2D" backward-word
 bindkey "\e[1;5D" vi-backward-blank-word
 bindkey "\e[1;2C" forward-word
@@ -66,59 +66,59 @@ bindkey "\e[1;5C" vi-forward-blank-word
 # History {{{2
 #bindkey "\e[5;5~" beginning-of-history
 #bindkey "\e[6;5~" end-of-history
-bindkey "^P" history-beginning-search-backward
-bindkey "^N" history-beginning-search-forward
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
 # Editing {{{2
 bindkey "\e[2~" vi-quoted-insert
 bindkey "\e[3~" delete-char
-bindkey "^K" kill-line
-bindkey "^U" backward-kill-line
-bindkey "^?" backward-delete-char
-bindkey "^W" backward-kill-word
+bindkey '^K' kill-line
+bindkey '^U' backward-kill-line
+bindkey '^?' backward-delete-char
+bindkey '^W' backward-kill-word
 # Completion {{{2
-bindkey "^I" complete-word
-bindkey "^A" expand-word
+bindkey '^I' complete-word
+bindkey '^A' expand-word
 #bindkey "\e[Z" reverse-menu-complete
 # Misc {{{2
-bindkey "^J" self-insert-unmeta
-[[ $TERM == 'dumb' ]] && bindkey "^J" accept-line
-bindkey "^O" push-input
-bindkey "^T" get-line
-bindkey "^Y" undo
+bindkey '^J' self-insert-unmeta
+[[ ${TERM} == 'dumb' ]] && bindkey '^J' accept-line # for vim
+bindkey '^O' push-input
+bindkey '^T' get-line
+bindkey '^Y' undo
 
 # From Debian/Ubuntu {{{3
-if [[ "$TERM" != emacs ]]; then
-    [[ -z "$terminfo[kdch1]" ]] || bindkey -M emacs "$terminfo[kdch1]" delete-char
-    [[ -z "$terminfo[khome]" ]] || bindkey -M emacs "$terminfo[khome]" beginning-of-line
-    [[ -z "$terminfo[kend]" ]] || bindkey -M emacs "$terminfo[kend]" end-of-line
-    [[ -z "$terminfo[kich1]" ]] || bindkey -M emacs "$terminfo[kich1]" overwrite-mode
-    [[ -z "$terminfo[kdch1]" ]] || bindkey -M vicmd "$terminfo[kdch1]" vi-delete-char
-    [[ -z "$terminfo[khome]" ]] || bindkey -M vicmd "$terminfo[khome]" vi-beginning-of-line
-    [[ -z "$terminfo[kend]" ]] || bindkey -M vicmd "$terminfo[kend]" vi-end-of-line
-    [[ -z "$terminfo[kich1]" ]] || bindkey -M vicmd "$terminfo[kich1]" overwrite-mode
+if [[ ${TERM} != 'emacs' ]]; then
+    [[ -z ${terminfo[kdch1]} ]] || bindkey -M emacs ${terminfo[kdch1]} delete-char
+    [[ -z ${terminfo[khome]} ]] || bindkey -M emacs ${terminfo[khome]} beginning-of-line
+    [[ -z ${terminfo[kend]} ]] || bindkey -M emacs ${terminfo[kend]} end-of-line
+    [[ -z ${terminfo[kich1]} ]] || bindkey -M emacs ${terminfo[kich1]} overwrite-mode
+    [[ -z ${terminfo[kdch1]} ]] || bindkey -M vicmd ${terminfo[kdch1]} vi-delete-char
+    [[ -z ${terminfo[khome]} ]] || bindkey -M vicmd ${terminfo[khome]} vi-beginning-of-line
+    [[ -z ${terminfo[kend]} ]] || bindkey -M vicmd ${terminfo[kend]} vi-end-of-line
+    [[ -z ${terminfo[kich1]} ]] || bindkey -M vicmd ${terminfo[kich1]} overwrite-mode
 
-    [[ -z "$terminfo[cuu1]" ]] || bindkey -M viins "$terminfo[cuu1]" vi-up-line-or-history
-    [[ -z "$terminfo[cuf1]" ]] || bindkey -M viins "$terminfo[cuf1]" vi-forward-char
-    [[ -z "$terminfo[kcuu1]" ]] || bindkey -M viins "$terminfo[kcuu1]" vi-up-line-or-history
-    [[ -z "$terminfo[kcud1]" ]] || bindkey -M viins "$terminfo[kcud1]" vi-down-line-or-history
-    [[ -z "$terminfo[kcuf1]" ]] || bindkey -M viins "$terminfo[kcuf1]" vi-forward-char
-    [[ -z "$terminfo[kcub1]" ]] || bindkey -M viins "$terminfo[kcub1]" vi-backward-char
+    [[ -z ${terminfo[cuu1]} ]] || bindkey -M viins ${terminfo[cuu1]} vi-up-line-or-history
+    [[ -z ${terminfo[cuf1]} ]] || bindkey -M viins ${terminfo[cuf1]} vi-forward-char
+    [[ -z ${terminfo[kcuu1]} ]] || bindkey -M viins ${terminfo[kcuu1]} vi-up-line-or-history
+    [[ -z ${terminfo[kcud1]} ]] || bindkey -M viins ${terminfo[kcud1]} vi-down-line-or-history
+    [[ -z ${terminfo[kcuf1]} ]] || bindkey -M viins ${terminfo[kcuf1]} vi-forward-char
+    [[ -z ${terminfo[kcub1]} ]] || bindkey -M viins ${terminfo[kcub1]} vi-backward-char
 
     # ncurses fogyatekos
-    [[ "$terminfo[kcuu1]" == "\eO"* ]] && bindkey -M viins "${terminfo[kcuu1]/O/[}" vi-up-line-or-history
-    [[ "$terminfo[kcud1]" == "\eO"* ]] && bindkey -M viins "${terminfo[kcud1]/O/[}" vi-down-line-or-history
-    [[ "$terminfo[kcuf1]" == "\eO"* ]] && bindkey -M viins "${terminfo[kcuf1]/O/[}" vi-forward-char
-    [[ "$terminfo[kcub1]" == "\eO"* ]] && bindkey -M viins "${terminfo[kcub1]/O/[}" vi-backward-char
-    [[ "$terminfo[khome]" == "\eO"* ]] && bindkey -M viins "${terminfo[khome]/O/[}" beginning-of-line
-    [[ "$terminfo[kend]" == "\eO"* ]] && bindkey -M viins "${terminfo[kend]/O/[}" end-of-line
-    [[ "$terminfo[khome]" == "\eO"* ]] && bindkey -M emacs "${terminfo[khome]/O/[}" beginning-of-line
-    [[ "$terminfo[kend]" == "\eO"* ]] && bindkey -M emacs "${terminfo[kend]/O/[}" end-of-line
+    [[ ${terminfo[kcuu1]} == "\eO"* ]] && bindkey -M viins ${terminfo[kcuu1]/O/[} vi-up-line-or-history
+    [[ ${terminfo[kcud1]} == "\eO"* ]] && bindkey -M viins ${terminfo[kcud1]/O/[} vi-down-line-or-history
+    [[ ${terminfo[kcuf1]} == "\eO"* ]] && bindkey -M viins ${terminfo[kcuf1]/O/[} vi-forward-char
+    [[ ${terminfo[kcub1]} == "\eO"* ]] && bindkey -M viins ${terminfo[kcub1]/O/[} vi-backward-char
+    [[ ${terminfo[khome]} == "\eO"* ]] && bindkey -M viins ${terminfo[khome]/O/[} beginning-of-line
+    [[ ${terminfo[kend]} == "\eO"* ]] && bindkey -M viins ${terminfo[kend]/O/[} end-of-line
+    [[ ${terminfo[khome]} == "\eO"* ]] && bindkey -M emacs ${terminfo[khome]/O/[} beginning-of-line
+    [[ ${terminfo[kend]} == "\eO"* ]] && bindkey -M emacs ${terminfo[kend]/O/[} end-of-line
 fi
 
 # Set a fancy prompt {{{1
 # Color definitions {{{2
-None="%{$terminfo[sgr0]%}"
-if (( terminfo[colors] >= 16 )); then
+None="%{${terminfo[sgr0]}%}"
+if (( ${terminfo[colors]} >= 16 )); then
     # For 16+ color term {{{
     Black="%{$(tput setaf 0)%}"
     DarkGray="%{$(tput setaf 8)%}"
@@ -153,7 +153,7 @@ if (( terminfo[colors] >= 16 )); then
     CyanBg="%{$(tput setab 14)%}"
     DarkCyanBg="%{$(tput setab 6)%}"
     # }}}
-elif (( terminfo[colors] == 8)); then
+elif (( ${terminfo[colors]} == 8 )); then
     # For 8 color term {{{
     Black="%{$(tput setaf 0)%}"
     DarkGray="%{$(tput setaf 0;tput bold)%}"
@@ -228,30 +228,30 @@ fi
 #}}}2
 # VCS Info {{{2
 #autoload -Uz vcs_info && vcs_info
-#zstyle ':vcs_info:*' enable svn git hg
-#zstyle ':vcs_info:*' check-for-changes false
-#zstyle ':vcs_info:*' stagedstr "${Green}+${None}"
-#zstyle ':vcs_info:*' unstagedstr "${Red}!${None}"
-#zstyle ':vcs_info:*' actionformats " ${Yellow}%b%c%u${Yellow}|%a"
-#zstyle ':vcs_info:*' formats " ${Yellow}%b%c%u"
-#zstyle ':vcs_info:*' branchformat "%b:%r"
-#zstyle ':vcs_info:*:*:graywh' disable-patterns "$HOME(/*)"
+#zstyle :vcs_info:* enable svn git hg
+#zstyle :vcs_info:* check-for-changes false
+#zstyle :vcs_info:* stagedstr "${Green}+${None}"
+#zstyle :vcs_info:* unstagedstr "${Red}!${None}"
+#zstyle :vcs_info:* actionformats " ${Yellow}%b%c%u${Yellow}|%a"
+#zstyle :vcs_info:* formats " ${Yellow}%b%c%u"
+#zstyle :vcs_info:* branchformat "%b:%r"
+#zstyle :vcs_info:*:*:graywh disable-patterns "~(/*)"
 # }}}2
-#PS1=${None}'('${Blue}'%?'${None}')--('${Cyan}'%*'${None}')--('${Green}'%n'${None}'@'${Magenta}'%m'${None}')--('${Red}'%~'${None}'$vcs_info_msg_0_'${None}')'${None}"
-PS1=${None}'('${Blue}'%?'${None}')--('${Cyan}'%*'${None}')--('${Green}'%n'${None}'@'${Magenta}'%m'${None}')--('${Red}'%~'${None}${Yellow}'$(___git_ps1)'${None}')'${None}"
-"'%# '
+#PS1="${None}(${Blue}%?${None})--(${Cyan}%*${None})--(${Green}%n${None}@${Magenta}%m${None})--(${Red}%~${None}\$vcs_info_msg_0_${None})
+PS1="${None}(${Blue}%?${None})--(${Cyan}%*${None})--(${Green}%n${None}@${Magenta}%m${None})--(${Red}%~${Yellow}\$(___git_ps1)${None})
+%# "
 
 # Functions {{{1
 function precmd { #{{{2
     #vcs_info
     # If this is an xterm-alike set the title to user@host:dir
     case ${TERM} in
-        xterm*|gnome*|konsole*|putty*|screen*)
+        (xterm*|gnome*|konsole*|putty*|screen*)
             print -Pn "\e]0;%n@%m: %~\a"
         ;;
     esac
     # If this is tmux or screen, print a bel
-    if [[ ${TERM} == screen* && ( -n "${TMUX}" || -n "${STY}" ) ]]; then
+    if [[ ${TERM} == screen* && ( -n ${TMUX} || -n ${STY} ) ]]; then
         print -n "\a"
     fi
     #if [[ ${TERM} == screen* ]]; then
@@ -260,7 +260,7 @@ function precmd { #{{{2
 }
 function preexec { #{{{2
     #case ${TERM} in
-    #    screen*)
+    #    (screen*)
     #        print -Pn "\ek$1\e\\"
     #    ;;
     #esac
@@ -269,10 +269,10 @@ function preexec { #{{{2
 # Enable color support of ls and others {{{1
 if [[ ${TERM} != "dumb" ]]; then
     if [[ -x /usr/bin/dircolors ]]; then
-        if [[ -f ~/.dircolors-"$terminfo[colors] ]]; then
-            eval $(dircolors -b ~/.dircolors-$terminfo[colors])
+        if [[ -f ~/.dircolors-${terminfo[colors]} ]]; then
+            eval "$(dircolors -b ~/.dircolors-${terminfo[colors]})"
         else
-            eval $(dircolors -b ~/.dircolors)
+            eval "$(dircolors -b ~/.dircolors)"
         fi
         zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
     fi

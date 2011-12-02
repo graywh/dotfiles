@@ -1,21 +1,20 @@
 # If not running interactively, don't do anything
 # Important for ssh+svn support
-if [[ -z "${PS1}" ]]; then
+if [[ -z ${PS1} ]]; then
     return
 fi
 
 # Terminal stuff {{{1
-if [[ "${COLORTERM}" == "gnome-terminal" ]]; then
-    export TERM="gnome-256color"
-    unset COLORTERM
+if [[ ${COLORTERM} == 'gnome-terminal' && ${TERM} == 'xterm' ]]; then
+    TERM=gnome-256color
 fi
 
-if [[ "${TERM}" != screen* ]]; then
+if [[ ${TERM} != screen* ]]; then
     unset STY
     unset TMUX
 fi
 
-#if [[ -n "${STY}" ]]; then
+#if [[ -n ${STY} ]]; then
 #    screen -X "shelltitle '% |zsh:'"
 #fi
 
@@ -144,22 +143,22 @@ else
     # }}}
 fi
 #}}}2
-PS1=${None}'('${Blue}'$?'${None}')--('${Cyan}'\t'${None}')--('${Green}'\u'${None}'@'${Magenta}'\h'${None}')--('${Red}'\w'${None}${Yellow}'$(___git_ps1)'${None}')\n\$ '
+PS1="${None}(${Blue}\$?${None})--(${Cyan}\t${None})--(${Green}\u${None}@${Magenta}\h${None})--(${Red}\w${None}${Yellow}\$(___git_ps1)${None})\n\$ "
 
 # a function to put the current time in the top-right corner of the terminal
 # and change the title of the terminal
 function prompt_command { #{{{2
     # If this is an xterm set the title to user@host:dir
     case ${TERM} in
-    xterm*|gnome*|konsole*|putty*|screen*)
+    (xterm*|gnome*|konsole*|putty*|screen*)
         echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\a"
         ;;
     esac
     # If this is tmux or screen, print a bel
-    if [[ ${TERM} == screen* && ( -n "${TMUX}" || -n "${STY}" ) ]]; then
+    if [[ ${TERM} == screen* && ( -n ${TMUX} || -n ${STY} ) ]]; then
         echo -ne "\a"
     fi
-    #if [[ "${TERM}" == screen* ]]; then
+    #if [[ ${TERM} == screen* ]]; then
     #    echo -ne "\033k\033\\"
     #fi
 }
@@ -169,10 +168,10 @@ PROMPT_COMMAND=prompt_command
 # Enable color support of ls and others {{{1
 if [[ "${TERM}" != "dumb" ]]; then
     if [[ -x /usr/bin/dircolors ]]; then
-        if [[ -f "~/.dircolors-${COLORS}" ]]; then
-            eval $(dircolors -b ~/.dircolors-${COLORS})
+        if [[ -f ~/.dircolors-${COLORS} ]]; then
+            eval "$(dircolors -b ~/.dircolors-${COLORS})"
         else
-            eval $(dircolors -b ~/.dircolors)
+            eval "$(dircolors -b ~/.dircolors)"
         fi
     fi
 fi
@@ -187,8 +186,8 @@ if [[ -f ~/.bash_functions ]]; then
 fi
 
 # enable programmable completion features
-if [[ -f "/etc/bash_completion" ]]; then
-    source "/etc/bash_completion"
+if [[ -f /etc/bash_completion ]]; then
+    source /etc/bash_completion
 fi
 
 # vim: fdm=marker
