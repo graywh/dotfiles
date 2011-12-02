@@ -4,7 +4,7 @@
 [alias]
 	co = checkout
 	ci = commit
-	st = status
+	st = status -s
 	br = branch
 	pick = cherry-pick
 	log1 = log --pretty=oneline --abbrev-commit
