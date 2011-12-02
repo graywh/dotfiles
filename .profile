@@ -27,6 +27,9 @@ export MANPAGER
 PYTHONSTARTUP=${HOME}/.pythonrc.py
 export PYTHONSTARTUP
 
+GREP_OPTIONS='--color=auto --binary-files=without-match'
+export GREP_OPTIONS
+
 # Mac OS X options {{{2
 if [ "${OSTYPE}" == darwin* ]; then
     # turn on colors
