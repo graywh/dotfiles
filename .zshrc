@@ -1,3 +1,5 @@
+[[ -o nointeractive ]] && return
+
 #if [[ -n ${STY} ]]; then
 #    screen -X "shelltitle '% |zsh:'"
 #fi
@@ -247,7 +249,7 @@ function precmd { #{{{2
     # If this is an xterm-alike set the title to user@host:dir
     case ${TERM} in
         (xterm*|gnome*|konsole*|putty*|screen*)
-            print -Pn "\e]0;%n@%m: %~\a"
+            __xtermicontitle '%n@%m: %~'
         ;;
     esac
     # If this is tmux or screen, print a bel
@@ -255,27 +257,25 @@ function precmd { #{{{2
         print -n "\a"
     fi
     #if [[ ${TERM} == screen* ]]; then
-    #    print -Pn "\ek\e\\"
+    #    __screentitle
     #fi
 }
 function preexec { #{{{2
     #case ${TERM} in
     #    (screen*)
-    #        print -Pn "\ek$1\e\\"
+    #        __screentitle '$1'
     #    ;;
     #esac
 }
 
 # Enable color support of ls and others {{{1
-if [[ ${TERM} != "dumb" ]]; then
-    if [[ -x /usr/bin/dircolors ]]; then
-        if [[ -f ~/.dircolors-${terminfo[colors]} ]]; then
-            eval "$(dircolors -b ~/.dircolors-${terminfo[colors]})"
-        else
-            eval "$(dircolors -b ~/.dircolors)"
-        fi
-        zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+if [[ -x $(which dircolors) ]]; then
+    if [[ -f ~/.dircolors-${terminfo[colors]} ]]; then
+        eval "$(dircolors -b ~/.dircolors-${terminfo[colors]})"
+    else
+        eval "$(dircolors -b ~/.dircolors)"
     fi
+    zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 fi
 
 # Load other configurations {{{1
@@ -287,4 +287,5 @@ if [[ -f ~/.zsh_functions ]]; then
     source ~/.zsh_functions
 fi
 
+# }}}1
 # vim: fdm=marker fen

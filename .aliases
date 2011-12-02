@@ -1,4 +1,5 @@
 #!zsh
+# zsh and bash compatible
 
 if [[ ! -x $(which sudoedit) ]]; then
     alias sudoedit='sudo -e'
