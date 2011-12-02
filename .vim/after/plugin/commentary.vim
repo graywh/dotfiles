@@ -1,4 +1,4 @@
-if !exists("g:loaded_surround") || !g:loaded_surround || &cp
+if !exists("g:loaded_commentary") || !g:loaded_commentary || &cp
   finish
 endif
 
