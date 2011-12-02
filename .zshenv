@@ -1,4 +1,6 @@
 # Variables {{{1
+typeset -aU path # b/c GDM uses .profile instead of .zprofile
+
 mailpath=/var/spool/mail/$(whoami)?'You have mail in $_'
 WORDCHARS=${WORDCHARS:s#/#}
 export EDITOR=vim
@@ -30,7 +32,7 @@ SAVEHIST=10000
 HISTSIZE=10000
 
 # Function path {{{2
-typeset -U fpath
+typeset -aU fpath
 
 if [[ -d ~/.zsh/functions ]]; then
     fpath=(~/.zsh/functions $fpath)
