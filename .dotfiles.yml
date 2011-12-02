@@ -12,6 +12,7 @@ Files:
 
 Bundles:
   .vim/bundles/brew:        https://github.com/graywh/vim-brew.git
+  .vim/bundles/bundler:     https://github.com/tpope/vim-bundler.git
   .vim/bundles/colorchart:  https://github.com/godlygeek/colorchart.git
   .vim/bundles/colorindent: https://github.com/graywh/vim-colorindent.git
   .vim/bundles/commentary:  https://github.com/tpope/vim-commentary.git
