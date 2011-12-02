@@ -17,10 +17,10 @@ set keymap vi-insert
 "\C-e": end-of-line
 #"\e[2~": quoted-insert
 "\e[3~": delete-char
-"\e[A": history-search-backward
 "\C-p": history-search-backward
-"\e[B": history-search-forward
 "\C-n": history-search-forward
+"\e[A": previous-history
+"\e[B": next-history
 "\e[C": forward-char
 "\e[D": backward-char
 "\C-k": kill-line
