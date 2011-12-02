@@ -2,7 +2,8 @@
 typeset -aU path # b/c GDM uses .profile instead of .zprofile
 
 mailpath=/var/spool/mail/$(whoami)?'You have mail in $_'
-WORDCHARS=${WORDCHARS:s#/#}
+WORDCHARS='*?_-.~=&;!#$%^<>'
+
 export EDITOR=vim
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
 export PYTHONSTARTUP=~/.pythonrc.py
