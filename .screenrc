@@ -22,8 +22,8 @@ vbell_msg "  VBELL  "
 
 # CAPTION {{{1
 caption always
-caption string "%{= kK}[%L=%-Lw%50L>%{r}(%{w}%n%f*%t%{r})%{K}%+Lw%-019<%L=                                                                                                                                                                                                         ][%D %d %M %0c]%>%<"
-#caption string "%{= kK}[%L=%=%-Lw%>%40=%{r}(%{w}%n*%f%t%{r})%{K}%+Lw%L<%-019=][%D %d %M %0c]"
+caption string "%{= kK}[ %L=%-Lw%50L>%{w}%n%f*%t%{K}%+Lw%-019<%L=                                                                                                                                                                                                         ][%D %d %M %0c]%>%<"
+#caption string "%{= kK}[%L=%=%-Lw%>%40=%{w}%n*%f%t%{K}%+Lw%L<%-019=][%D %d %M %0c]"
 
 # viking's
 #caption string "%{= kg}[ %{G}%H %{g}] %L=%=%{w}%-Lw%L>%45=%{r}(%{W}%n*%f%t%{r})%{w}%+Lw%-016= %{g}[ %{B}%m/%d %{W}%0c %{g}]"
