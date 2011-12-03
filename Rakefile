@@ -72,8 +72,10 @@ namespace :bundle do
   desc "Initialize bundles"
   task :init, :pattern do |t, args|
     filter(Yobj['Bundles'], args.pattern) do |key, value|
-      print_text("*** Initializing #{key}", :color => 2)
-      system("git clone #{value} #{key}") unless File.exists?(key)
+      unless File.exists?(key)
+        print_text("*** Initializing #{key}", :color => 2)
+        system("git clone #{value} #{key}")
+      end
     end
     vimdoctags
   end
