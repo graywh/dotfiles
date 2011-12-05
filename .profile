@@ -1,7 +1,3 @@
-# Terminal Stuff {{{1
-# use ^? for backspace
-tty -s && stty erase 
-
 # Environment {{{1
 # Path {{{2
 if [ -d ~/bin ]; then
