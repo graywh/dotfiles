@@ -95,8 +95,9 @@ function __git_ps1 { # {{{2
             branch=$(cut -c1-7 $git_dir/HEAD)...
     fi
 
+    format=$1
     branch=${branch#refs/heads/}
-    printf ${1:=' %s'} "${branch}${action}"
+    printf ${format:=' %s'} "${branch}${action}"
 }
 
 # moin current revision {{{1
