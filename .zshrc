@@ -240,8 +240,11 @@ fi
 #zstyle :vcs_info:*:*:graywh disable-patterns "~(/*)"
 # }}}2
 #PS1="${None}(${Blue}%?${None})--(${Cyan}%*${None})--(${Green}%n${None}@${Magenta}%m${None})--(${Red}%~${None}\$vcs_info_msg_0_${None})
-PS1="${None}(${Blue}%?${None})--(${Cyan}%*${None})--(${Green}%n${None}@${Magenta}%m${None})--(${Red}%~${Yellow}\$(___git_ps1)${None})
+big_ps1="${None}(${Blue}%?${None})--(${Cyan}%*${None})--(${Green}%n${None}@${Magenta}%m${None})--(${Red}%~${Yellow}\$(___git_ps1)${None})
 %# "
+
+small_ps1="${NONE}%~ %# "
+PS1=${big_ps1}
 
 # Functions {{{1
 function precmd { #{{{2
