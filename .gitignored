@@ -19,3 +19,6 @@ Session.vim
 
 # KDE
 .directory
+
+# Rubygems
+mkmf.log
