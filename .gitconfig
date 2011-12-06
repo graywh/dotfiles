@@ -6,6 +6,7 @@
 	ci = commit
 	st = status -sb
 	br = branch
+	sl = stash list --no-pager
 	pick = cherry-pick
 	log1 = log --pretty=oneline --abbrev-commit
 	diffi = diff --ignore-all-space
@@ -20,8 +21,9 @@
 	pager = view -
 	excludesfile = ~/.gitignored
 [pager]
-	stash = false
 	status = false
+[push]
+	default = matching
 [status]
 	relativePaths = true
 [diff]
@@ -38,8 +40,6 @@
 	fontdiff = -family \"DejaVu Sans Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 	spellingdictionary = none
 	editor = gvim
-[push]
-	default = matching
 [cola]
 	fontdiff = DejaVu Sans Mono,10,-1,5,50,0,0,0,0,0
 	fontui = DejaVu Sans,11,-1,5,50,0,0,0,0,0

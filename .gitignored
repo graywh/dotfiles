@@ -4,8 +4,9 @@ tags
 .svn/
 
 # Vim
-*.sw[op]
-*.un~
+.sw?
+.*.sw?
+.*.un~
 Session.vim
 
 # Zsh
