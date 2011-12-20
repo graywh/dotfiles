@@ -143,10 +143,10 @@ else
     # }}}
 fi
 #}}}2
-big_ps1="${None}(${Blue}\$?${None})--(${Cyan}\t${None})--(${Green}\u${None}@${Magenta}\h${None})--(${Red}\w${Yellow}\$(___git_ps1)${None})\n\\$ "
+my_big_ps1="${None}(${Blue}\$?${None})--(${Cyan}\t${None})--(${Green}\u${None}@${Magenta}\h${None})--(${Red}\w${Yellow}\$(___git_ps1)${None})\n\\$ "
 
-small_ps1="${NONE}\w \\$ "
-PS1=${big_ps1}
+my_small_ps1="${NONE}\w \\$ "
+PS1=${my_big_ps1}
 
 # a function to put the current time in the top-right corner of the terminal
 # and change the title of the terminal
