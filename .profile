@@ -26,6 +26,13 @@ export PYTHONSTARTUP
 GREP_OPTIONS='--color=auto --binary-files=without-match'
 export GREP_OPTIONS
 
+GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWDIRTYSTATE
+GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWSTASHSTATE
+GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWUNTRACKEDFILES
+
 # Mac OS X options {{{2
 if [ "${OSTYPE}" == darwin* ]; then
     # turn on colors

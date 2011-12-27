@@ -143,7 +143,7 @@ else
     # }}}
 fi
 #}}}2
-my_big_ps1="${None}(${Blue}\$?${None})--(${Cyan}\t${None})--(${Green}\u${None}@${Magenta}\h${None})--(${Red}\w${Yellow}\$(___git_ps1)${None})\n\\$ "
+my_big_ps1="${None}(${Blue}\$?${None})--(${Cyan}\t${None})--(${Green}\u${None}@${Magenta}\h${None})--(${Red}\w${Yellow}\$(___git_ps1 ' %s')${None})\n\\$ "
 
 my_small_ps1="${NONE}\w \\$ "
 PS1=${my_big_ps1}

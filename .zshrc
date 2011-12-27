@@ -240,7 +240,7 @@ fi
 #zstyle :vcs_info:*:*:graywh disable-patterns "~(/*)"
 # }}}2
 #PS1="${None}(${Blue}%?${None})--(${Cyan}%*${None})--(${Green}%n${None}@${Magenta}%m${None})--(${Red}%~${None}\$vcs_info_msg_0_${None})
-my_big_ps1="${None}(${Blue}%?${None})--(${Cyan}%*${None})--(${Green}%n${None}@${Magenta}%m${None})--(${Red}%~${Yellow}\$(___git_ps1)${None})
+my_big_ps1="${None}(${Blue}%?${None})--(${Cyan}%*${None})--(${Green}%n${None}@${Magenta}%m${None})--(${Red}%~${Yellow}\$(___git_ps1 ' %s')${None})
 %# "
 
 my_small_ps1="${NONE}%~ %# "

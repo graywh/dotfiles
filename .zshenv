@@ -9,6 +9,10 @@ export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
 export PYTHONSTARTUP=~/.pythonrc.py
 export GREP_OPTIONS='--color=auto --binary-files=without-match'
 
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+
 # Mac OS X {{{2
 if [[ ${OSTYPE} == darwin* ]]; then
     # turn on colors
