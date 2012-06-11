@@ -19,8 +19,8 @@ augroup filetypedetect
   endfunc
 
   " R
-  autocmd BufNewFile,BufRead *.[rRsS] setfiletype r
-  autocmd BufNewFile,BufRead *.[rR]history setfiletype r
+  autocmd BufNewFile,BufRead *.r,*.R,*.s,*.S setfiletype r
+  autocmd BufNewFile,BufRead *.rhistory,*.Rhistory setfiletype r
 
   " Mutt config
   autocmd BufNewFile,BufRead $HOME/.mutt/* call s:StarSetf('muttrc')

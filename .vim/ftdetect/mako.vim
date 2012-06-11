@@ -1,2 +1,2 @@
 " Mako
-autocmd! BufNewFile,BufRead *.mako setfiletype mako
+autocmd BufNewFile,BufRead *.mako setfiletype mako

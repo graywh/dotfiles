@@ -1,2 +1,2 @@
 " XUL
-autocmd! BufNewFile,BufRead *.xul setfiletype xul
+autocmd BufNewFile,BufRead *.xul setfiletype xul
