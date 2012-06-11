@@ -6,7 +6,7 @@
 	ci = commit
 	st = status -sb
 	br = branch
-	sl = stash list --no-pager
+	sl = !git stash list | cat
 	pick = cherry-pick
 	log1 = log --pretty=oneline --abbrev-commit
 	diffi = diff --ignore-all-space
