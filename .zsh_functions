@@ -18,9 +18,9 @@ function __ls() {
 }
 
 function __ls_helper() {
-    eval "args=(${3}/${2}(.N))"
+    eval "args=(${3}/${2}(N))"
     if (( ${#args} > 0 )); then
-        (cd ${3} && eval "${1} ${2}")
+        (cd ${3} && eval "ls ${1} ${2}")
     fi
 }
 

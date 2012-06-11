@@ -18,8 +18,8 @@ esac
 alias la='ls -A'
 alias ll='ls -hl'
 alias lla='ll -A'
-alias l.="__ls 'ls -d' '.*'"
-alias ll.="__ls 'ls -dhl' '.*'"
+alias l.="__ls -d '.*'"
+alias ll.="__ls -dhl '.*'"
 
 alias XtermIrssi="xterm -T irssi -geometry 100x25 -fs 9 -e 'screen -c ~/.screenrc-irssi'"
 alias XtermIrssiR="xterm -T irssi -geometry 100x25 -fs 9 -e 'screen -r irssi'"
