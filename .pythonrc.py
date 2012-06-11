@@ -9,6 +9,9 @@ for path in paths:
     if os.path.exists(path) and os.path.isdir(path):
         sys.path.append(path)
 
+del path
+del paths
+
 try:
     from base import *
 except ImportError:
