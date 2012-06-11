@@ -9,7 +9,7 @@ if [ -d ~/.rbenv/shims ]; then
 fi
 
 export PATH
-#}}}2
+# }}}2
 
 MAILPATH="/var/spool/mail/`whoami`?\"You have mail\""
 export MAILPATH
@@ -52,5 +52,5 @@ if [ "${OSTYPE}" == darwin* ]; then
     LSCOLORS=ExGxFxdaCxdadahbadheec
     export LSCOLORS
 fi
-#}}}1
+# }}}1
 # vim: fdm=marker

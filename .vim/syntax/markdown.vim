@@ -35,7 +35,7 @@ syn spell toplevel
 syn case ignore
 syn sync linebreaks=1
 
-"additions to HTML groups
+" additions to HTML groups
 syn region htmlBold     start=/\\\@<!\(^\|\A\)\@=\*\@<!\*\*\*\@!/     end=/\\\@<!\*\@<!\*\*\*\@!\($\|\A\)\@=/   contains=@Spell,htmlItalic
 syn region htmlItalic   start=/\\\@<!\(^\|\A\)\@=\*\@<!\*\*\@!/       end=/\\\@<!\*\@<!\*\*\@!\($\|\A\)\@=/      contains=htmlBold,@Spell
 syn region htmlBold     start=/\\\@<!\(^\|\A\)\@=_\@<!___\@!/         end=/\\\@<!_\@<!___\@!\($\|\A\)\@=/       contains=htmlItalic,@Spell
@@ -54,7 +54,7 @@ syn region markdownLinkTitle matchgroup=markdownDelimiter start=+"+     end=+"+ 
 syn region markdownLinkTitle matchgroup=markdownDelimiter start=+'+     end=+'+  contained
 syn region markdownLinkTitle matchgroup=markdownDelimiter start=+(+     end=+)+  contained
 
-"define Markdown groups
+" define Markdown groups
 syn match  markdownLineContinue ".$" contained
 syn match  markdownRule      /^\s*\*\s\{0,1}\*\s\{0,1}\*$/
 syn match  markdownRule      /^\s*-\s\{0,1}-\s\{0,1}-$/
@@ -71,7 +71,7 @@ syn region markdownBlockquote start=/^\s*>/             end=/$/          contain
 syn region markdownCode      start="<pre[^>]*>"         end="</pre>"     fold
 syn region markdownCode      start="<code[^>]*>"        end="</code>"    fold
 
-"HTML headings
+" HTML headings
 syn region htmlH1       start="^\s*#"                   end="\($\|#\+\)" contains=@Spell
 syn region htmlH2       start="^\s*##"                  end="\($\|#\+\)" contains=@Spell
 syn region htmlH3       start="^\s*###"                 end="\($\|#\+\)" contains=@Spell
@@ -81,7 +81,7 @@ syn region htmlH6       start="^\s*######"              end="\($\|#\+\)" contain
 syn match  htmlH1       /^.\+\n=\+$/ contains=@Spell
 syn match  htmlH2       /^.\+\n-\+$/ contains=@Spell
 
-"highlighting for Markdown groups
+" highlighting for Markdown groups
 HtmlHiLink markdownString        String
 HtmlHiLink markdownCode          String
 HtmlHiLink markdownBlockquote    Comment

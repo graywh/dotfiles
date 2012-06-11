@@ -15,7 +15,7 @@ set keymap vi-insert
 "\e[4~": end-of-line
 "\e[F": end-of-line
 "\C-e": end-of-line
-#"\e[2~": quoted-insert
+# "\e[2~": quoted-insert
 "\e[3~": delete-char
 "\C-p": history-search-backward
 "\C-n": history-search-forward

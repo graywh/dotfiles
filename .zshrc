@@ -1,8 +1,8 @@
 [[ -o nointeractive ]] && return
 
-#if [[ -n ${STY} ]]; then
-#    screen -X "shelltitle '% |zsh:'"
-#fi
+# if [[ -n ${STY} ]]; then
+#     screen -X "shelltitle '% |zsh:'"
+# fi
 
 autoload zsh/terminfo
 
@@ -12,7 +12,7 @@ setopt   autopushd
 setopt   pushdignoredups
 # Completion {{{2
 setopt noalwayslastprompt
-#setopt noautolist
+# setopt noautolist
 setopt noautomenu
 setopt noautonamedirs
 setopt   listpacked
@@ -37,7 +37,7 @@ compinit
 
 # Complete uppercase when lowercase was typed
 zstyle :completion:* matcher-list 'm:{a-z-}={A-Z_}' # allows lower->upper
-#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # adds upper->lower
+# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # adds upper->lower
 
 # Better handling of rake tasks
 zstyle :completion:* matcher-list 'r:|[:]=*'
@@ -66,8 +66,8 @@ bindkey "\e[1;5D" vi-backward-blank-word
 bindkey "\e[1;2C" forward-word
 bindkey "\e[1;5C" vi-forward-blank-word
 # History {{{2
-#bindkey "\e[5;5~" beginning-of-history
-#bindkey "\e[6;5~" end-of-history
+# bindkey "\e[5;5~" beginning-of-history
+# bindkey "\e[6;5~" end-of-history
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 # Editing {{{2
@@ -80,7 +80,7 @@ bindkey '^W' backward-kill-word
 # Completion {{{2
 bindkey '^I' complete-word
 bindkey '^A' expand-word
-#bindkey "\e[Z" reverse-menu-complete
+# bindkey "\e[Z" reverse-menu-complete
 # Misc {{{2
 bindkey '^J' self-insert-unmeta
 [[ ${TERM} == 'dumb' ]] && bindkey '^J' accept-line # for vim
@@ -227,19 +227,19 @@ else
     None=""
     # }}}
 fi
-#}}}2
-# VCS Info {{{2
-#autoload -Uz vcs_info && vcs_info
-#zstyle :vcs_info:* enable svn git hg
-#zstyle :vcs_info:* check-for-changes false
-#zstyle :vcs_info:* stagedstr "${Green}+${None}"
-#zstyle :vcs_info:* unstagedstr "${Red}!${None}"
-#zstyle :vcs_info:* actionformats " ${Yellow}%b%c%u${Yellow}|%a"
-#zstyle :vcs_info:* formats " ${Yellow}%b%c%u"
-#zstyle :vcs_info:* branchformat "%b:%r"
-#zstyle :vcs_info:*:*:graywh disable-patterns "~(/*)"
 # }}}2
-#PS1="${None}(${Blue}%?${None})--(${Cyan}%*${None})--(${Green}%n${None}@${Magenta}%m${None})--(${Red}%~${None}\$vcs_info_msg_0_${None})
+# VCS Info {{{2
+# autoload -Uz vcs_info && vcs_info
+# zstyle :vcs_info:* enable svn git hg
+# zstyle :vcs_info:* check-for-changes false
+# zstyle :vcs_info:* stagedstr "${Green}+${None}"
+# zstyle :vcs_info:* unstagedstr "${Red}!${None}"
+# zstyle :vcs_info:* actionformats " ${Yellow}%b%c%u${Yellow}|%a"
+# zstyle :vcs_info:* formats " ${Yellow}%b%c%u"
+# zstyle :vcs_info:* branchformat "%b:%r"
+# zstyle :vcs_info:*:*:graywh disable-patterns "~(/*)"
+# }}}2
+# PS1="${None}(${Blue}%?${None})--(${Cyan}%*${None})--(${Green}%n${None}@${Magenta}%m${None})--(${Red}%~${None}\$vcs_info_msg_0_${None})
 my_big_ps1="${None}(${Blue}%?${None})--(${Cyan}%*${None})--(${Green}%n${None}@${Magenta}%m${None})--(${Red}%~${Yellow}\$(___git_ps1 ' %s')${None})
 %# "
 
@@ -248,7 +248,7 @@ PS1=${my_big_ps1}
 
 # Functions {{{1
 function precmd { #{{{2
-    #vcs_info
+    # vcs_info
     # If this is an xterm-alike set the title to user@host:dir
     case ${TERM} in
         (xterm*|gnome*|konsole*|putty*|screen*)
@@ -259,16 +259,16 @@ function precmd { #{{{2
     if [[ ${TERM} == screen* && ( -n ${TMUX} || -n ${STY} ) ]]; then
         print -n "\a"
     fi
-    #if [[ ${TERM} == screen* ]]; then
-    #    __screentitle
-    #fi
+    # if [[ ${TERM} == screen* ]]; then
+    #     __screentitle
+    # fi
 }
 function preexec { #{{{2
-    #case ${TERM} in
-    #    (screen*)
-    #        __screentitle '$1'
-    #    ;;
-    #esac
+    # case ${TERM} in
+    #     (screen*)
+    #         __screentitle '$1'
+    #     ;;
+    # esac
 }
 
 # Enable color support of ls and others {{{1

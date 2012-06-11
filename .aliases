@@ -5,7 +5,7 @@ if [[ ! -x $(which sudoedit) ]]; then
     alias sudoedit='sudo -e'
 fi
 
-#alias sudo='sudo'       # so aliases get expanded before using sudo
+# alias sudo='sudo'       # so aliases get expanded before using sudo
 
 case ${OSTYPE} in
     'darwin'*)

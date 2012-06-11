@@ -42,8 +42,8 @@ syn keyword pspDirArg contained imports extends method isThreadSafe formatter
 syn keyword pspDirArg contained isInstanceSafe indentType indentSpaces gobbleWhitespace
 syn region pspCommand start=/<psp:/ start=/<\/psp:/ keepend end=/>/ end=/\/>/ contains=htmlString,pspCommandName,pspCommandArg
 " Do it right at some point...
-"syn region pspInclude start=/<psp:include/ start=/<\/psp:/ keepend end=/>/ end=/\/>/ contains=path
-"syn region pspInsert start=/<psp:insert/ start=/<\/psp:/ keepend end=/>/ end=/\/>/ contains=file
+" syn region pspInclude start=/<psp:include/ start=/<\/psp:/ keepend end=/>/ end=/\/>/ contains=path
+" syn region pspInsert start=/<psp:insert/ start=/<\/psp:/ keepend end=/>/ end=/\/>/ contains=file
 
 syn keyword pspCommandName contained include insert method
 syn keyword pspCommandArg contained path file

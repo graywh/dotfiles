@@ -14,9 +14,9 @@ if [[ ${TERM} != screen* ]]; then
     unset TMUX
 fi
 
-#if [[ -n ${STY} ]]; then
-#    screen -X "shelltitle '% |zsh:'"
-#fi
+# if [[ -n ${STY} ]]; then
+#     screen -X "shelltitle '% |zsh:'"
+# fi
 
 # Bash Options {{{1
 
@@ -142,7 +142,7 @@ else
     None=""
     # }}}
 fi
-#}}}2
+# }}}2
 my_big_ps1="${None}(${Blue}\$?${None})--(${Cyan}\t${None})--(${Green}\u${None}@${Magenta}\h${None})--(${Red}\w${Yellow}\$(___git_ps1 ' %s')${None})\n\\$ "
 
 my_small_ps1="${NONE}\w \\$ "
@@ -161,9 +161,9 @@ function prompt_command { #{{{2
     if [[ ${TERM} == screen* && ( -n ${TMUX} || -n ${STY} ) ]]; then
         echo -ne "\a"
     fi
-    #if [[ ${TERM} == screen* ]]; then
-    #    __screentitle
-    #fi
+    # if [[ ${TERM} == screen* ]]; then
+    #     __screentitle
+    # fi
 }
 
 PROMPT_COMMAND=prompt_command

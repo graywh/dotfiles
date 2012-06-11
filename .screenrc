@@ -14,7 +14,7 @@ hardstatus message
 hardstatus string "%?%h%:%t%?"
 nethack off # don't show stupid messages
 shell zsh
-#shelltitle '% |zsh:'
+# shelltitle '% |zsh:'
 startup_message off # no startup message
 term "screen-256color"
 vbell off # don't use visual bell
@@ -23,17 +23,17 @@ vbell_msg "  VBELL  "
 # CAPTION {{{1
 caption always
 caption string "%{= kK}[ %L=%-Lw%50L>%{w}%n%f*%t%{K}%+Lw%-019<%L=                                                                                                                                                                                                         ][%D %d %M %0c]%>%<"
-#caption string "%{= kK}[%L=%=%-Lw%>%40=%{w}%n*%f%t%{K}%+Lw%L<%-019=][%D %d %M %0c]"
+# caption string "%{= kK}[%L=%=%-Lw%>%40=%{w}%n*%f%t%{K}%+Lw%L<%-019=][%D %d %M %0c]"
 
 # viking's
-#caption string "%{= kg}[ %{G}%H %{g}] %L=%=%{w}%-Lw%L>%45=%{r}(%{W}%n*%f%t%{r})%{w}%+Lw%-016= %{g}[ %{B}%m/%d %{W}%0c %{g}]"
+# caption string "%{= kg}[ %{G}%H %{g}] %L=%=%{w}%-Lw%L>%45=%{r}(%{W}%n*%f%t%{r})%{w}%+Lw%-016= %{g}[ %{B}%m/%d %{W}%0c %{g}]"
 
 # other caption attempts
-#caption string "%{= Km}%-Lw%{= KW}%50>%n%f* %t%{= Km}%+Lw%< %{= KG}%-=%D %d %M %Y %c%{-}"
-#caption string "%{= kw}%+30= %L>%-w%{r}(%{W}%n*%f%t%{r})%{w} %+w%L>%-20= %{g}[ %{B}%m/%d %{W}%c %{g}]"
+# caption string "%{= Km}%-Lw%{= KW}%50>%n%f* %t%{= Km}%+Lw%< %{= KG}%-=%D %d %M %Y %c%{-}"
+# caption string "%{= kw}%+30= %L>%-w%{r}(%{W}%n*%f%t%{r})%{w} %+w%L>%-20= %{g}[ %{B}%m/%d %{W}%c %{g}]"
 
 # http://osdir.com/ml/gnu.screen/2002-09/msg00071.html
-#caption string "%{= kK}-(%H)--[%L=%-Lw%50L>%n%f*%t%+Lw%-026<]%L=-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------(%D %d %M %Y %0c)-%>%<"
+# caption string "%{= kK}-(%H)--[%L=%-Lw%50L>%n%f*%t%+Lw%-026<]%L=-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------(%D %d %M %Y %0c)-%>%<"
 
 # KEY BINDINGS {{{1
 bind \\
@@ -69,6 +69,6 @@ termcapinfo xterm*|linux*|rxvt*|Eterm* OP
 termcapinfo screen*|xterm*|konsole*|gnome*|putty* "hs:ts=\E]2;:fs=\007:ds=\E]2;\007"
 
 # tell screen how to set colors. AB = background, AF = foreground
-#termcapinfo screen*|xterm*|konsole*|gnome*|putty* "Co#256:AB=\E[48;5;%p1%dm:AF=\E[38;5;%p1%dm"
+# termcapinfo screen*|xterm*|konsole*|gnome*|putty* "Co#256:AB=\E[48;5;%p1%dm:AF=\E[38;5;%p1%dm"
 
 # vim: fdm=marker

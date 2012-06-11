@@ -3,7 +3,7 @@
 # the files are located in the bash-doc package.
 
 # the default umask is set in /etc/login.defs
-#umask 022
+# umask 022
 
 # include .profile if it exists
 if [[ -f ~/.profile ]]; then

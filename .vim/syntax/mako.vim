@@ -20,11 +20,11 @@ if !exists("main_syntax")
   let main_syntax = "html"
 endif
 
-"Source the html syntax file
+" Source the html syntax file
 ru! syntax/html.vim
 unlet b:current_syntax
 
-"Put the python syntax file in @pythonTop
+" Put the python syntax file in @pythonTop
 syn include @pythonTop syntax/python.vim
 
 " End keywords

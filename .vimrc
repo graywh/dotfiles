@@ -2,7 +2,7 @@
 " Author: Will Gray <graywh@gmail.com>
 
 " Options {{{1
-"set all&                       " Set everything to the default
+" set all&                        " Set everything to the default
 set nocompatible                " Vim is better than Vi
 
 " Path Munging {{{2
@@ -153,7 +153,7 @@ set wrap                        " Wrap long lines
 
 set listchars=
 if has('multi_byte') && (&termencoding =~? '^u\(tf\|cs\)' || (! strlen(&termencoding) && &encoding =~? '^u\(tf\|cs\)')) && (v:version >= 602 || v:version == 601 && has('patch469'))
-  "set listchars+=eol:↵
+  " set listchars+=eol:↵
   set listchars+=tab:»·
   if v:version >= 700
     set listchars+=nbsp:+
@@ -164,7 +164,7 @@ if has('multi_byte') && (&termencoding =~? '^u\(tf\|cs\)' || (! strlen(&termenco
 else
   if v:version < 603
     " :print may behave badly with this disabled
-    "set listchars+=eol:$
+    " set listchars+=eol:$
   endif
   set listchars+=tab:>-
   if v:version >= 700
@@ -250,7 +250,7 @@ if exists(':let') == 2
 
   let g:rails_gnu_screen = 0
 
-  "let ruby_fold = 1
+  " let ruby_fold = 1
 
   let g:space_disable_select_mode = 1
 
@@ -282,14 +282,14 @@ if exists(':function') == 2
     let suba = substitute(suba, '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
     let suba = substitute(suba, '\s*$', '', '')
     let subb = getline(v:foldend)
-    "let subb = substitute(subb, '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
-    "let subb = substitute(subb, '^\s*', '', '')
-    "let subb = substitute(subb, '\s*$', '', '')
+    " let subb = substitute(subb, '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
+    " let subb = substitute(subb, '^\s*', '', '')
+    " let subb = substitute(subb, '\s*$', '', '')
     let lines = v:foldend - v:foldstart + 1
     let text = suba
-    "if lines > 1 && strlen(subb) > 0
-    "let text .= ' ... '.subb
-    "endif
+    " if lines > 1 && strlen(subb) > 0
+    "   let text .= ' ... '.subb
+    " endif
     let fillchar = matchstr(&fillchars, 'fold:.')
     if strlen(fillchar) > 0
       let fillchar = fillchar[-1:]
@@ -397,7 +397,7 @@ if exists(':function') == 2
     let mds = ['n', 'o', 'x']
     let keys = ['0', '^', '$', '<Home>', '<End>', 'k', 'j', '<Up>', '<Down>']
     if !exists('b:my_visual_navigation_maps')
-      let b:my_visual_navigation_maps=1
+      let b:my_visual_navigation_maps = 1
       echomsg 'Enabled visual navigation'
       setlocal wrap
       for key in keys
@@ -496,7 +496,7 @@ set statusline+=%{StatusLineEncodingBombWarning()}      " &fileencoding, &bomb
 set statusline+=%{&eol?'':'[noeol]'}                    " &noeol
 set statusline+=%*                      " End of warnings section
 set statusline+=%=\                     " Separate left from right
-"set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\      " Current highlight group
+" set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\      " Current highlight group
 set statusline+=%b,0x%-8B\              " Current character in decimal and hex representation
 set statusline+=%-12(%l,%c%V%)\ %P      " Current line and column, file percentage (set 'ruler')
 
@@ -558,9 +558,9 @@ if has('extra_search')
 endif
 
 " Autocomplete {{{2
-"if exists('*pumvisible')
-"inoremap <expr> <C-space> pumvisible() \|\| &omnifunc == '' ? "\<C-n>" : "\<C-x>\<C-o>"
-"endif
+" if exists('*pumvisible')
+"   inoremap <expr> <C-space> pumvisible() \|\| &omnifunc == '' ? "\<C-n>" : "\<C-x>\<C-o>"
+" endif
 
 " Add new line indented here {{{2
 if has('ex_extra')
@@ -621,8 +621,8 @@ nnoremap <leader>V `[V`]
 nnoremap <leader><C-v> `[<C-v>`]
 
 " Terminal Stuff {{{1
-"map <C-@> <C-space>
-"map! <C-@> <C-space>
+" map <C-@> <C-space>
+" map! <C-@> <C-space>
 
 " XXX Fix vim bug when exiting alt screen {{{2
 if exists('&t_te') && exists('&t_op')
@@ -640,21 +640,21 @@ endif
 
 " change the xterm cursor for insert mode {{{2
 if &term =~? '^xterm' && exists('&t_SI') && &t_Co > 1
-  "let &t_SI=''
-  "let &t_EI=''
+  " let &t_SI=''
+  " let &t_EI=''
   " color
-  "let &t_SI.="\<Esc>]12;purple\x7"
-  "let &t_EI.="\<Esc>]112\x7"
+  " let &t_SI.="\<Esc>]12;purple\x7"
+  " let &t_EI.="\<Esc>]112\x7"
   " shape
-  "let &t_SI.="\<Esc>[4 q"
-  "let &t_EI.="\<Esc>[2 q"
+  " let &t_SI.="\<Esc>[4 q"
+  " let &t_EI.="\<Esc>[2 q"
 endif
 
 " Collected Tips {{{1
-""%substitute/\(\d\d\)\(:\d\d\)\{1,2} \(AM\|PM\)/\=(submatch(3) == 'PM' && submatch(1) < 12 ? submatch(1)+12 : submatch(3) == 'AM' && submatch(1) == 12 ? '00' : submatch(1)).submatch(2)/
+" :%substitute/\(\d\d\)\(:\d\d\)\{1,2} \(AM\|PM\)/\=(submatch(3) == 'PM' && submatch(1) < 12 ? submatch(1)+12 : submatch(3) == 'AM' && submatch(1) == 12 ? '00' : submatch(1)).submatch(2)/
 
 " Change to different capitalization {{{2
 " under_score_case to camelCase
-"nnoremap <Leader>sc ciw<C-r>=substitute(@", '_\(\w\)', '\u\1', 'g')<CR><Esc>
+" nnoremap <Leader>sc ciw<C-r>=substitute(@", '_\(\w\)', '\u\1', 'g')<CR><Esc>
 " camelCase to under_score_case
-"nnoremap <Leader>cs ciw<C-r>=substitute(@", '\l\zs\(\u\)', '_\l\1', 'g')<CR><Esc>
+" nnoremap <Leader>cs ciw<C-r>=substitute(@", '\l\zs\(\u\)', '_\l\1', 'g')<CR><Esc>

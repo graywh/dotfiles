@@ -5,7 +5,7 @@ function! s:VSetSearch(bound)
   norm! gvy
   let @/ = substitute(escape(@@, '\'), '\n', '\\n', 'g')
   " Use this line instead of the above to match matches spanning across lines
-  "let @/ = substitute(escape(@@, '\'), '\_s\+', '\\_s\\+', 'g')
+  " let @/ = substitute(escape(@@, '\'), '\_s\+', '\\_s\\+', 'g')
   if a:bound
     let @/ = '\<' . @/ . '\>'
   endif

@@ -41,13 +41,13 @@ nmap <X2Mouse> <C-I>
 nmap <X1Mouse> <C-O>
 
 " Shift-arrow visual/display navigation {{{2
-"noremap  <S-Up>   g<Up>
-"noremap  <S-Down> g<Down>
-"inoremap <S-Up>   <C-O>g<Up>
-"inoremap <S-Down> <C-O>g<Down>
+" noremap  <S-Up>   g<Up>
+" noremap  <S-Down> g<Down>
+" inoremap <S-Up>   <C-O>g<Up>
+" inoremap <S-Down> <C-O>g<Down>
 
 " Shift-home/end visual/display navigation {{{2
-"noremap  <S-Home> g<Home>
-"noremap  <S-End>  g<End>
-"inoremap <S-Home> <C-O>g<Home>
-"inoremap <S-End>  <C-O>g<End>
+" noremap  <S-Home> g<Home>
+" noremap  <S-End>  g<End>
+" inoremap <S-Home> <C-O>g<Home>
+" inoremap <S-End>  <C-O>g<End>
