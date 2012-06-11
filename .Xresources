@@ -42,12 +42,12 @@ XTerm*vt100.visualBellDelay: 0
 XTerm*vt100.translations: #override \n\
     ~Ctrl ~Meta ~Shift <Key>Tab: string(0x09) \n\
     ~Ctrl ~Meta  Shift <Key>Tab: string(0x1b) string("[Z") \n\
-    ~Ctrl  Meta ~Shift <Key>Tab: string(0x1b) string("[9;3~") \n\
-    ~Ctrl  Meta  Shift <Key>Tab: string(0x1b) string("[9;4~") \n\
-     Ctrl ~Meta ~Shift <Key>Tab: string(0x1b) string("[9;5~") \n\
-     Ctrl ~Meta  Shift <Key>Tab: string(0x1b) string("[9;6~") \n\
-     Ctrl  Meta ~Shift <Key>Tab: string(0x1b) string("[9;7~") \n\
-     Ctrl  Meta  Shift <Key>Tab: string(0x1b) string("[9;8~") \n\
+    ~Ctrl  Meta ~Shift <Key>Tab: string(0x1b) string("[9;3u") \n\
+    ~Ctrl  Meta  Shift <Key>Tab: string(0x1b) string("[9;4u") \n\
+     Ctrl ~Meta ~Shift <Key>Tab: string(0x1b) string("[9;5u") \n\
+     Ctrl ~Meta  Shift <Key>Tab: string(0x1b) string("[9;6u") \n\
+     Ctrl  Meta ~Shift <Key>Tab: string(0x1b) string("[9;7u") \n\
+     Ctrl  Meta  Shift <Key>Tab: string(0x1b) string("[9;8u") \n\
      Ctrl ~Meta ~Shift <Key>=: larger-vt-font() \n\
      Ctrl ~Meta ~Shift <Key>-: smaller-vt-font() \n\
 
