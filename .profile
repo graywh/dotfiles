@@ -4,10 +4,6 @@ if [ -d ~/bin ]; then
     PATH=${PATH}:~/bin
 fi
 
-if [ -d ~/.rbenv/shims ]; then
-    PATH=~/.rbenv/shims:${PATH}
-fi
-
 export PATH
 # }}}2
 
