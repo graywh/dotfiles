@@ -35,3 +35,7 @@ alias Rbuild='R CMD build'
 if [[ -x $(which xdg-open) ]]; then
     alias open=xdg-open
 fi
+
+if [[ -n $TMUX ]]; then
+    alias Railslog="tmux neww -ad 'tail -f log/development.log'"
+fi
