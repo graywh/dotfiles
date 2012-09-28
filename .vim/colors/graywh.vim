@@ -33,6 +33,7 @@ hi! link VertSplit StatusLineNC
 
 " For GUI {{{1
 hi Normal               guifg=#D7D7D7   guibg=#1C1C1C
+hi Conceal              guifg=fg        guibg=bg
 
 " Vim {{{2
 hi SpecialKey           guifg=#4E4E4E   guibg=bg        gui=none
@@ -79,6 +80,7 @@ hi TabLine              guifg=bg        guibg=fg        gui=none
 hi TabLineSel           guifg=fg        guibg=bg        gui=bold
 hi TabLineFill          guifg=fg        guibg=bg        gui=reverse
 hi CursorLine                           guibg=#303030
+hi CursorLineNr         guifg=#FFFFAF   guibg=#303030
 hi Cursor               guifg=bg        guibg=fg
 
 " Syntax {{{2
