@@ -2619,7 +2619,7 @@ _git-pack-refs () {
 _git-prune () {
   _arguments -S \
     '(-n --dry-run)'{-n,--dry-run}'[do not remove anything; just report what would be removed]' \
-    '(-v --verbose)'{-v,--rerbose}'[report all removed objects]' \
+    '(-v --verbose)'{-v,--verbose}'[report all removed objects]' \
     '--expire[only expire loose objects older than given date]: :__git_datetimes' \
     '*:: :__git_heads'
 }
@@ -3636,7 +3636,7 @@ _git-index-pack () {
     '--stdin[read pack from stdin and instead write to specified file]' \
     $stdin_opts \
     '--strict[die if the pack contains broken objects or links]' \
-    ':pack file:_files -g "*.pack"'
+    ':pack file:_files -g "*.pack(-.)"'
 }
 
 (( $+functions[_git-merge-file] )) ||
@@ -4075,7 +4075,7 @@ _git-pack-redundant () {
     '(:)--all[process all packs]' \
     '--alt-odb[do not require objects to be present in local packs]' \
     '--verbose[output some statistics to standard error]' \
-    '(--all)*::packs:_files -g "*.pack"'
+    '(--all)*::packs:_files -g "*.pack(-.)"'
 }
 
 (( $+functions[_git-rev-list] )) ||
@@ -5444,39 +5444,6 @@ __git_tree_files () {
 
 # Repository Argument Types
 
-# _remote_files
-_remote_files_git () {
-  # FIXME: these should be imported from _ssh
-  # TODO: this should take -/ to only get directories
-  # There should be coloring based on all the different ls -F classifiers.
-  local expl rempat remfiles remdispf remdispd args suf ret=1
-
-  if zstyle -T ":completion:${curcontext}:files" remote-access; then
-    zparseopts -D -E -a args p: 1 2 4 6 F:
-    if [[ -z $QIPREFIX ]]
-    then rempat="${PREFIX%%[^./][^/]#}\*"
-    else rempat="${(q)PREFIX%%[^./][^/]#}\*"
-    fi
-    remfiles=(${(M)${(f)"$(_call_program files ssh $args -a -x ${IPREFIX%:} ls -d1FL "$rempat" 2>/dev/null)"}%%[^/]#(|/)})
-    compset -P '*/'
-    compset -S '/*' || suf='remote file'
-
-    remdispd=(${(M)remfiles:#*/})
-
-    _tags files
-    while _tags; do
-      while _next_label files expl ${suf:-remote directory}; do
-	compadd ${suf:+-S/} "$@" "$expl[@]" -d remdispd \
-	    ${(q)remdispd%/} && ret=0
-      done
-      (( ret )) || return 0
-    done
-    return ret
-  else
-    _message -e remote-files 'remote file'
-  fi
-}
-
 (( $+functions[__git_remote_repositories] )) ||
 __git_remote_repositories () {
   local service
@@ -5484,7 +5451,7 @@ __git_remote_repositories () {
   service= _ssh
 
   if compset -P '*:'; then
-    _remote_files_git
+    _remote_files --no-files -- ssh
   else
     _ssh_hosts -S:
   fi
