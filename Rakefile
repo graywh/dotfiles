@@ -83,8 +83,12 @@ namespace :bundle do
   desc "Update bundles"
   task :update, :pattern do |t, args|
     filter(Yobj['Bundles'], args.pattern) do |key, value|
-      print_text("*** Updating #{key}", :color => 2)
-      system("cd #{key} && git checkout master && git pull")
+      if Dir.exists?(key)
+        print_text("*** Updating #{key}", :color => 2)
+        system("cd #{key} && git checkout master && git pull")
+      else
+        print_text("*** Bundle #{key} not initialized", :color => 1)
+      end
     end
     vimdoctags
   end
