@@ -53,18 +53,26 @@ zstyle :completion:*:hosts use-ssh-config on
 zstyle *:my-accounts users-hosts rails@cbc biostat@cbc
 
 # Keybindings {{{1
-bindkey -v
+bindkey -e
 # Navigation {{{2
-bindkey "\e[1~" beginning-of-line
-bindkey "\e[H" beginning-of-line
-bindkey '^B' beginning-of-line
-bindkey "\e[4~" end-of-line
-bindkey "\e[F" end-of-line
-bindkey '^E' end-of-line
+# line
+bindkey "\e[1~" vi-beginning-of-line
+bindkey "\e[H" vi-beginning-of-line
+bindkey '^A' vi-beginning-of-line
+bindkey "\e[4~" vi-end-of-line
+bindkey "\e[F" vi-end-of-line
+bindkey '^E' vi-end-of-line
+# word
 bindkey "\e[1;2D" backward-word
+bindkey "\e[1;9D" backward-word
 bindkey "\e[1;5D" vi-backward-blank-word
 bindkey "\e[1;2C" forward-word
+bindkey "\e[1;9C" forward-word
 bindkey "\e[1;5C" vi-forward-blank-word
+# char
+# bindkey "^B" backward-char
+bindkey "^H" backward-char
+# bindkey "^F" forward-char
 # History {{{2
 # bindkey "\e[5;5~" beginning-of-history
 # bindkey "\e[6;5~" end-of-history
@@ -73,13 +81,12 @@ bindkey '^N' history-beginning-search-forward
 # Editing {{{2
 bindkey "\e[2~" vi-quoted-insert
 bindkey "\e[3~" delete-char
-bindkey '^K' kill-line
+# bindkey '^K' kill-line
 bindkey '^U' backward-kill-line
-bindkey '^?' backward-delete-char
-bindkey '^W' backward-kill-word
+# bindkey '^W' backward-kill-word
+# bindkey '^?' backward-delete-char
 # Completion {{{2
-bindkey '^I' complete-word
-bindkey '^A' expand-word
+bindkey '^I' expand-or-complete
 # bindkey "\e[Z" reverse-menu-complete
 # Misc {{{2
 bindkey '^J' self-insert-unmeta

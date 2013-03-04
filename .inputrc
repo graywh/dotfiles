@@ -6,25 +6,34 @@ set mark-symlinked-directories on
 set horizontal-scroll-mode on
 set bind-tty-special-chars off
 set bell-style none
-set editing-mode vi
-set keymap vi-insert
 
+# set keymap vi-insert
+# line
 "\e[1~": beginning-of-line
 "\e[H": beginning-of-line
-"\C-b": beginning-of-line
+"\C-a": beginning-of-line
 "\e[4~": end-of-line
 "\e[F": end-of-line
 "\C-e": end-of-line
-# "\e[2~": quoted-insert
+"\C-k": kill-line
+"\C-u": unix-line-discard
+# word
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+"\e\C-?": unix-word-rubout
+"\C-w": backward-kill-word
+# character
+"\e[C": forward-char
+"\C-f": forward-char
+"\e[D": backward-char
+"\C-h": backward-char
 "\e[3~": delete-char
+# history
 "\C-p": history-search-backward
 "\C-n": history-search-forward
 "\e[A": previous-history
 "\e[B": next-history
-"\e[C": forward-char
-"\e[D": backward-char
-"\C-k": kill-line
-"\C-u": unix-line-discard
-"\C-w": unix-filename-rubout
-"\e[1;5D": backward-word
-"\e[1;5C": forward-word
+# misc
+# "\e[2~": quoted-insert
+
+# set editing-mode vi

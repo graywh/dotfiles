@@ -586,6 +586,11 @@ if exists(':ReTab') == 2
 endif
 
 " Command-line navigation {{{2
+cnoremap <C-a> <Home>
+
+cnoremap <C-x> <C-a>
+
+cnoremap <C-b> <Left>
 cnoremap <C-h> <Left>
 cnoremap <C-f> <Right>
 
