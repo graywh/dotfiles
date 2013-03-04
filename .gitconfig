@@ -1,6 +1,8 @@
 [user]
 	name = Will Gray
 	email = graywh@gmail.com
+[advice]
+	statusHints = false
 [alias]
 	co = checkout
 	ci = commit
