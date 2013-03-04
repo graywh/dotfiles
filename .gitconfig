@@ -9,7 +9,11 @@
 	sl = !git stash list | cat
 	pick = cherry-pick
 	log1 = log --pretty=oneline --abbrev-commit
+	logg = log --pretty=oneline --abbrev-commit --graph
+	diffc = diff --cached
 	diffi = diff --ignore-all-space
+	diffic = diff --cached --ignore-all-space
+	diffci = diff --cached --ignore-all-space
 [branch]
 	autosetupmerge = true
 [color]
