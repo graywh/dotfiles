@@ -51,3 +51,7 @@ nmap <X1Mouse> <C-O>
 " noremap  <S-End>  g<End>
 " inoremap <S-Home> <C-O>g<Home>
 " inoremap <S-End>  <C-O>g<End>
+
+" Hold shift for horizontal scrolling {{{2
+noremap <S-ScrollWheelUp> <ScrollWheelLeft>
+noremap <S-ScrollWheelDown> <ScrollWheelRight>
