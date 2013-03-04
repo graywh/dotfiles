@@ -25,3 +25,5 @@ nnoremap <buffer> <unique> <silent> K :Man <C-r><C-w><CR>
 xnoremap <buffer> <unique> <silent> K y:Man <C-r>"<CR>
 nnoremap <buffer> <unique> q :q<CR>
 " }}}1
+
+let b:undo_ftplugin = 'setl fdc< list< nu< wrap< isk< bh< bt< ro< ma< mod< swf<'

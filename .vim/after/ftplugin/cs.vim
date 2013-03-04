@@ -11,3 +11,5 @@ endfunction
 
 setlocal foldmethod=expr
 setlocal foldexpr=CsharpRegionFoldExpr(v:lnum)
+
+let b:undo_ftplugin = 'setl fdm< fde<'
