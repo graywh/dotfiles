@@ -2,22 +2,18 @@
 " Maintainer:   Will Gray <graywh@gmail.com>
 " GetLatestVimScripts: 2616 1 :AutoInstall: graywh.vim
 "
-" For best results on 88/256-color terminals, I recommend CSApprox.vim by
+" For use in 88/256-color terminals, I recommend CSApprox.vim by
 " godlygeek.
+"
+" All colors based on what's available in a standard 256-color xterm.
+" 216-color cube levels:
+"    0 95 135 175 215 255
+"   00 5F  87  AF  D7  FF
+" grayscale: (0..23) * 10 + 8
+"    8 12 1C 26 30 3A 44 4E 58 62 6C 76
+"   80 8A 94 9E A8 B2 BC C6 D0 DA E4 EE
 
-" Favorite colors {{{1
-"                Light                           Dark
-"       Black    5F5F5F 236  8   1E1E1E 234      000000  16 0
-"       Red      FFD7D7 224      FF8787 210  9   D70000 160 1
-"       Green    D7FFD7 194      87FF87 120 10   00D700  40 2
-"       Yellow   FFFFD7 230      FFFF87 228 11   D7D700 184 3
-"       Blue     AFD7FF 153      87AFFF 111 12   005FD7  68 4
-"       Magenta  FFD7FF 225      FF87FF 213 13   D700D7 164 5
-"       Cyan     D7FFFF 195      87FFFF 123 14   00D7D7  44 6
-"       Gray     FFFFFF 231 15                   D7D7D7 251 7
-" }}}1
-
-" First remove all existing highlighting.
+" First, reset highlighting back to default.
 set background=dark
 hi clear
 if exists("syntax_on")
@@ -27,13 +23,13 @@ endif
 let colors_name = "graywh"
 
 " Links {{{1
-hi! link Character String
-hi! link CursorColumn CursorLine
 hi! link VertSplit StatusLineNC
+hi! link Conceal SpecialKey
+hi! link CursorColumn CursorLine
+hi! link Character String
 
 " For GUI {{{1
 hi Normal               guifg=#D7D7D7   guibg=#1C1C1C
-hi Conceal              guifg=fg        guibg=bg
 
 " Vim {{{2
 hi SpecialKey           guifg=#4E4E4E   guibg=bg        gui=none
@@ -44,7 +40,8 @@ hi IncSearch                                            gui=reverse
 hi Search                               guibg=#FFFF00
 hi MoreMsg              guifg=#5FAF87                   gui=bold
 hi ModeMsg                                              gui=bold
-hi LineNr               guifg=#D7D7AF   guibg=#262626
+hi LineNr               guifg=#87875F   guibg=#262626
+hi CursorLineNr         guifg=#AFAF87   guibg=#262626
 hi Question             guifg=#5FFF5F                   gui=bold
 hi StatusLine                                           gui=reverse,bold
 hi StatusLineNC                                         gui=reverse
@@ -53,8 +50,8 @@ hi Visual                               guibg=NONE      gui=reverse
 hi VisualNOS                                            gui=bold,underline
 hi WarningMsg           guifg=#D7D700
 hi WildMenu             guifg=bg        guibg=#D7D700
-hi Folded               guifg=#FFD7FF   guibg=#444444   gui=italic
-hi FoldColumn           guifg=#87FFFF   guibg=#444444
+hi Folded               guifg=#AF87AF   guibg=#303030   gui=italic
+hi FoldColumn           guifg=#5F8787   guibg=#303030
 
 if v:version >= 600
   hi DiffAdd                            guibg=#123012
@@ -63,7 +60,7 @@ if v:version >= 600
   hi DiffText                           guibg=#303012   gui=none
 endif
 
-hi SignColumn           guifg=#FFFF87   guibg=#444444
+hi SignColumn                           guibg=#303030
 
 if v:version >= 700
   hi SpellBad                                           gui=undercurl           guisp=#FF0000
@@ -80,7 +77,6 @@ hi TabLine              guifg=bg        guibg=fg        gui=none
 hi TabLineSel           guifg=fg        guibg=bg        gui=bold
 hi TabLineFill          guifg=fg        guibg=bg        gui=reverse
 hi CursorLine                           guibg=#303030
-hi CursorLineNr         guifg=#FFFFAF   guibg=#303030
 hi Cursor               guifg=bg        guibg=fg
 
 " Syntax {{{2
@@ -127,18 +123,18 @@ hi IncSearch                                                            cterm=re
 hi Search                                       ctermbg=Yellow
 hi MoreMsg              ctermfg=Green
 hi ModeMsg                                                              cterm=bold
-hi LineNr               ctermfg=Yellow
+hi LineNr               ctermfg=DarkYellow
+hi CursorLineNr         ctermfg=Yellow
 hi Question             ctermfg=Green
 hi StatusLine                                                           cterm=reverse,bold
 hi StatusLineNC                                                         cterm=reverse
-hi VertSplit                                                            cterm=reverse
 hi Title                ctermfg=Magenta
 hi Visual                                       ctermbg=NONE            cterm=reverse
 hi VisualNOS                                                            cterm=underline
 hi WarningMsg           ctermfg=DarkYellow
 hi WildMenu             ctermfg=bg              ctermbg=Yellow
-hi Folded               ctermfg=Magenta         ctermbg=bg
-hi FoldColumn           ctermfg=Cyan            ctermbg=bg
+hi Folded               ctermfg=DarkMagenta     ctermbg=bg
+hi FoldColumn           ctermfg=DarkCyan        ctermbg=bg
 
 if v:version >= 600
   hi DiffAdd              ctermfg=Black           ctermbg=DarkGreen
