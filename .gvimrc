@@ -35,6 +35,15 @@ if has('gui_macvim')
   set fuoptions=maxvert,maxhorz " Full-screen mode uses the full screen
 endif
 
+" Plugins {{{1
+if exists(':let') == 2
+
+  let g:color_indent_size = 0
+  hi link colorIndentOdd NONE
+  ColorIndentEnable
+
+endif
+
 " Keymap {{{1
 " Mouse back/forward {{{2
 nmap <X2Mouse> <C-I>

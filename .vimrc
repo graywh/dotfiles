@@ -235,6 +235,11 @@ if exists(':let') == 2
   let g:colorchart_angle = { 88: 0, 256: 4 }
   let g:colorchart_chart = { 88: "ribbon" }
 
+  if &t_Co < 256 && !has('gui_running')
+    let g:color_indent_size = 1
+    hi! link colorIndentOdd colorIndentEven
+  endif
+
   let g:fit_manpages_to_window = 1      " Let man format manpages to fit the window
 
   let g:liquid_highlight_types = ["html","erb=eruby","html+erb=eruby.html", "ruby"]
