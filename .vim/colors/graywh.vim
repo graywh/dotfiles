@@ -52,23 +52,15 @@ hi WarningMsg           guifg=#D7D700
 hi WildMenu             guifg=bg        guibg=#D7D700
 hi Folded               guifg=#AF87AF   guibg=#303030   gui=italic
 hi FoldColumn           guifg=#5F8787   guibg=#303030
-
-if v:version >= 600
-  hi DiffAdd                            guibg=#123012
-  hi DiffChange                         guibg=#121230
-  hi DiffDelete         guifg=fg        guibg=#301212   gui=none
-  hi DiffText                           guibg=#303012   gui=none
-endif
-
+hi DiffAdd                              guibg=#123012
+hi DiffChange                           guibg=#121230
+hi DiffDelete           guifg=fg        guibg=#301212   gui=none
+hi DiffText                             guibg=#303012   gui=none
 hi SignColumn                           guibg=#303030
-
-if v:version >= 700
-  hi SpellBad                                           gui=undercurl           guisp=#FF0000
-  hi SpellCap                                           gui=undercurl           guisp=#0000FF
-  hi SpellRare                                          gui=undercurl           guisp=#FF00FF
-  hi SpellLocal                                         gui=undercurl           guisp=#00FFFF
-endif
-
+hi SpellBad                                             gui=undercurl           guisp=#FF0000
+hi SpellCap                                             gui=undercurl           guisp=#0000FF
+hi SpellRare                                            gui=undercurl           guisp=#FF00FF
+hi SpellLocal                                           gui=undercurl           guisp=#00FFFF
 hi Pmenu                guifg=fg        guibg=#D787D7
 hi PmenuSel             guifg=fg        guibg=#878787
 hi PmenuSbar            guifg=fg        guibg=#878787
@@ -135,23 +127,15 @@ hi WarningMsg           ctermfg=DarkYellow
 hi WildMenu             ctermfg=bg              ctermbg=Yellow
 hi Folded               ctermfg=DarkMagenta     ctermbg=bg
 hi FoldColumn           ctermfg=DarkCyan        ctermbg=bg
-
-if v:version >= 600
-  hi DiffAdd              ctermfg=Black           ctermbg=DarkGreen
-  hi DiffChange                                   ctermbg=DarkBlue
-  hi DiffDelete           ctermfg=Black           ctermbg=DarkRed
-  hi DiffText             ctermfg=Black           ctermbg=DarkYellow      cterm=none
-endif
-
+hi DiffAdd              ctermfg=Black           ctermbg=DarkGreen
+hi DiffChange                                   ctermbg=DarkBlue
+hi DiffDelete           ctermfg=Black           ctermbg=DarkRed
+hi DiffText             ctermfg=Black           ctermbg=DarkYellow      cterm=none
 hi SignColumn           ctermfg=Yellow          ctermbg=bg
-
-if v:version >= 700
-  hi SpellBad                                     ctermbg=DarkRed         cterm=underline
-  hi SpellCap                                     ctermbg=DarkBlue        cterm=underline
-  hi SpellRare                                    ctermbg=DarkMagenta     cterm=underline
-  hi SpellLocal                                   ctermbg=DarkCyan        cterm=underline
-endif
-
+hi SpellBad                                     ctermbg=DarkRed         cterm=underline
+hi SpellCap                                     ctermbg=DarkBlue        cterm=underline
+hi SpellRare                                    ctermbg=DarkMagenta     cterm=underline
+hi SpellLocal                                   ctermbg=DarkCyan        cterm=underline
 hi Pmenu                ctermfg=fg              ctermbg=DarkMagenta
 hi PmenuSel             ctermfg=fg              ctermbg=DarkGray
 hi PmenuSbar            ctermfg=fg              ctermbg=DarkGray
@@ -194,9 +178,11 @@ hi mailSignature        ctermfg=DarkGray
 
 " 8-color terminal extras {{{2
 if &t_Co == 8
-  hi Identifier                                                           cterm=bold
+  hi Identifier                                                         cterm=bold
 endif
 
 " CSApprox config {{{1
-let g:CSApprox_hook_graywh_post = ['hi Visual          ctermbg=NONE ctermfg=NONE cterm=reverse',
-                                 \ 'hi IncSearch       ctermbg=NONE ctermfg=NONE cterm=reverse' ]
+let g:CSApprox_hook_graywh_post = [
+      \ 'hi Visual          ctermbg=NONE ctermfg=NONE cterm=reverse',
+      \ 'hi IncSearch       ctermbg=NONE ctermfg=NONE cterm=reverse'
+      \ ]
