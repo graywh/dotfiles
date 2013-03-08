@@ -21,6 +21,8 @@ alias lla='ll -A'
 alias l.="__ls -d '.*'"
 alias ll.="__ls -dhl '.*'"
 
+alias grep='grep --color=auto --line-number --binary-files=without-match'
+
 alias XtermIrssi="xterm -T irssi -geometry 100x25 -fs 9 -e 'screen -c ~/.screenrc-irssi'"
 alias XtermIrssiR="xterm -T irssi -geometry 100x25 -fs 9 -e 'screen -r irssi'"
 alias XtermIrssiX="xterm -T irssi -geometry 100x25 -fs 9 -e 'screen -x irssi'"

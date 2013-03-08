@@ -7,7 +7,7 @@ WORDCHARS='*?_-.~=&;!#$%^<>'
 export EDITOR=vim
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
 export PYTHONSTARTUP=~/.pythonrc.py
-export GREP_OPTIONS='--color=auto --binary-files=without-match'
+# export GREP_OPTIONS='--color=auto --line-number --binary-files=without-match'
 
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1

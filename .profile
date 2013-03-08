@@ -19,8 +19,8 @@ export MANPAGER
 PYTHONSTARTUP=~/.pythonrc.py
 export PYTHONSTARTUP
 
-GREP_OPTIONS='--color=auto --binary-files=without-match'
-export GREP_OPTIONS
+# GREP_OPTIONS='--color=auto --line-number --binary-files=without-match'
+# export GREP_OPTIONS
 
 GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWDIRTYSTATE
