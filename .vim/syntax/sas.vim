@@ -141,33 +141,20 @@ syn keyword sasUnderscore _NULL_ _NUMERIC_ _N_ _USER_ _WEBOUT_
 
 " End of SAS Functions
 
-"  For version 5.7 and earlier: only when not done already
-"  For version 5.8 and later: only when an item doesn't have highlighting yet
-if version >= 508 || !exists("did_sas_syntax_inits")
-  if version < 508
-    let did_sas_syntax_inits = 1
-    command -nargs=+ HiLink hi link <args>
-  else
-    command -nargs=+ HiLink hi def link <args>
-  endif
-
-  HiLink  sasComment      Comment
-  HiLink  sasConditional  Conditional
-  HiLink  sasStep         Keyword
-  HiLink  sasFunction     Function
-  HiLink  sasMacro        Macro
-  HiLink  sasMacroVar     Identifier
-  HiLink  sasNumber       Number
-  HiLink  sasStatement    Keyword
-  HiLink  sasString       String
-  HiLink  sasProc         Keyword
-  HiLink  sasTodo         Todo
-  HiLink  sasErrMsg       Error
-  HiLink  sasWarnMsg      Todo
-  HiLink  sasLogMsg       Debug
-  HiLink  sasCards        Type
-  HiLink  sasUnderscore   Special
-  HiLink  sasStringDelim  Special
-
-  delcommand HiLink
-endif
+hi def link  sasComment      Comment
+hi def link  sasConditional  Conditional
+hi def link  sasStep         Keyword
+hi def link  sasFunction     Function
+hi def link  sasMacro        Macro
+hi def link  sasMacroVar     Identifier
+hi def link  sasNumber       Number
+hi def link  sasStatement    Keyword
+hi def link  sasString       String
+hi def link  sasProc         Keyword
+hi def link  sasTodo         Todo
+hi def link  sasErrMsg       Error
+hi def link  sasWarnMsg      Todo
+hi def link  sasLogMsg       Debug
+hi def link  sasCards        Type
+hi def link  sasUnderscore   Special
+hi def link  sasStringDelim  Special

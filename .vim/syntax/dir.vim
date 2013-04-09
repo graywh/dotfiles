@@ -38,19 +38,11 @@ syntax match dirComment "#.*$" display contains=dirTodo
 syntax keyword dirTodo TODO contained
 
 " Highlight group linking {{{1
-if version <= 508
-  command -nargs=+ HiLink hi link <args>
-else
-  command -nargs=+ HiLink hi def link <args>
-endif
-
-HiLink dirMarkup Operator
-HiLink dirDirectory Type
-HiLink dirFile Function
-HiLink dirComment Comment
-HiLink dirTodo Todo
-
-delcommand HiLink
+hi def link dirMarkup Operator
+hi def link dirDirectory Type
+hi def link dirFile Function
+hi def link dirComment Comment
+hi def link dirTodo Todo
 
 " Folding {{{1
 setlocal foldexpr=GetDirLevel(v:lnum)

@@ -28,22 +28,11 @@ syntax region  irssiNotice	start='\*\{3}' end=':' contained
 syntax cluster irssiItems	contains=irssiNickRegion,irssiAction,irssiMsg,irssiNotice
 syntax cluster irssiNicks	contains=irssiNick
 
-if version >= 508 || !exists("did_irssilog_syntax_inits")
-  if version < 508
-    let did_irssilog_syntax_inits = 1
-    command -nargs=+ HiLink hi link <args>
-  else
-    command -nargs=+ HiLink hi def link <args>
-  endif
-
-  HiLink irssiLogMsg PreProc
-  HiLink irssiTimestamp Number
-  HiLink irssiAction Type
-  HiLink irssiMsg Identifier
-  HiLink irssiNotice PreProc
-
-  delcommand HiLink
-endif
+hi def link irssiLogMsg PreProc
+hi def link irssiTimestamp Number
+hi def link irssiAction Type
+hi def link irssiMsg Identifier
+hi def link irssiNotice PreProc
 
 if filereadable($HOME . '/.irssi/saved_colors') && !exists("irssilog_no_saved_nick_colors")
 
