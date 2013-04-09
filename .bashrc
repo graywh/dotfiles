@@ -191,4 +191,5 @@ if [[ -f /etc/bash_completion ]]; then
     source /etc/bash_completion
 fi
 
-# vim: fdm=marker
+# }}}1
+# vim: fdm=marker fen

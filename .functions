@@ -117,4 +117,4 @@ function __screentitle {
 }
 
 # }}}1
-# vim: ft=zsh fdm=marker
+# vim: ft=zsh fdm=marker fen
