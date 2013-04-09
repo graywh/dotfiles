@@ -39,7 +39,8 @@ XTerm*vt100.utf8: 1
 XTerm*vt100.visualBell: true
 XTerm*vt100.visualBellDelay: 0
 ! --- keybindings {{{3
-! modified tab key
+! modified keys: string(0x1b) string("[<unicode code-point>;<modifier>u")
+! tab = 9, enter = 13, space = 32
 XTerm*vt100.translations: #override \n\
     ~Ctrl ~Meta ~Shift <Key>Tab: string(0x09) \n\
     ~Ctrl ~Meta  Shift <Key>Tab: string(0x1b) string("[Z") \n\
