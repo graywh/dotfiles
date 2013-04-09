@@ -121,7 +121,7 @@ hi Question             ctermfg=Green
 hi StatusLine                                                           cterm=reverse,bold
 hi StatusLineNC                                                         cterm=reverse
 hi Title                ctermfg=Magenta
-hi Visual                                       ctermbg=NONE            cterm=reverse
+hi Visual                                       ctermbg=bg              cterm=reverse
 hi VisualNOS                                                            cterm=underline
 hi WarningMsg           ctermfg=DarkYellow
 hi WildMenu             ctermfg=bg              ctermbg=Yellow
@@ -131,7 +131,7 @@ hi DiffAdd              ctermfg=Black           ctermbg=DarkGreen
 hi DiffChange                                   ctermbg=DarkBlue
 hi DiffDelete           ctermfg=Black           ctermbg=DarkRed
 hi DiffText             ctermfg=Black           ctermbg=DarkYellow      cterm=none
-hi SignColumn           ctermfg=Yellow          ctermbg=bg
+hi SignColumn                                   ctermbg=bg
 hi SpellBad                                     ctermbg=DarkRed         cterm=underline
 hi SpellCap                                     ctermbg=DarkBlue        cterm=underline
 hi SpellRare                                    ctermbg=DarkMagenta     cterm=underline
@@ -140,10 +140,10 @@ hi Pmenu                ctermfg=fg              ctermbg=DarkMagenta
 hi PmenuSel             ctermfg=fg              ctermbg=DarkGray
 hi PmenuSbar            ctermfg=fg              ctermbg=DarkGray
 hi PmenuThumb                                                           cterm=reverse
-hi TabLine              ctermfg=bg              ctermbg=fg              cterm=none
+hi TabLine              ctermfg=bg              ctermbg=fg
 hi TabLineSel                                                           cterm=bold
 hi TabLineFill                                                          cterm=reverse
-hi CursorLine                                   ctermbg=DarkGray
+hi CursorLine                                   ctermbg=DarkGray        cterm=none
 
 " Syntax {{{2
 hi MatchParen                                   ctermbg=DarkCyan
@@ -179,6 +179,8 @@ hi mailSignature        ctermfg=DarkGray
 " 8-color terminal extras {{{2
 if &t_Co == 8
   hi Identifier                                                         cterm=bold
+  hi CursorLine                                 ctermbg=NONE            cterm=underline
+  hi! link CursorColumn NONE
 endif
 
 " CSApprox config {{{1
