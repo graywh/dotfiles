@@ -58,25 +58,25 @@ XTerm*vt100.scrollbar.translations: #override \n\
     <Btn1Motion>: MoveThumb() NotifyThumb() \n\
 
 ! --- colors {{{3
-XTerm*vt100.background: rgb:14/14/14
-XTerm*vt100.foreground: rgb:D7/D7/D7
-XTerm*vt100.cursorColor: rgb:5F/FF/5F
-XTerm*vt100.color0: rgb:00/00/00
-XTerm*vt100.color1: rgb:D7/00/00
-XTerm*vt100.color2: rgb:00/D7/00
-XTerm*vt100.color3: rgb:D7/D7/00
-XTerm*vt100.color4: rgb:00/5F/D7
-XTerm*vt100.color5: rgb:D7/00/D7
-XTerm*vt100.color6: rgb:00/D7/D7
-XTerm*vt100.color7: rgb:D7/D7/D7
-XTerm*vt100.color8: rgb:87/87/87
-XTerm*vt100.color9: rgb:FF/87/87
-XTerm*vt100.color10: rgb:87/FF/87
-XTerm*vt100.color11: rgb:FF/FF/87
-XTerm*vt100.color12: rgb:87/AF/FF
-XTerm*vt100.color13: rgb:ff/87/FF
-XTerm*vt100.color14: rgb:87/FF/FF
-XTerm*vt100.color15: rgb:FF/FF/FF
+XTerm*vt100.background: #141414
+XTerm*vt100.foreground: #D7D7D7
+XTerm*vt100.cursorColor: #5FFF5F
+XTerm*vt100.color0: #000000
+XTerm*vt100.color1: #D70000
+XTerm*vt100.color2: #00D700
+XTerm*vt100.color3: #D7D700
+XTerm*vt100.color4: #005FD7
+XTerm*vt100.color5: #D700D7
+XTerm*vt100.color6: #00D7D7
+XTerm*vt100.color7: #D7D7D7
+XTerm*vt100.color8: #878787
+XTerm*vt100.color9: #FF8787
+XTerm*vt100.color10: #87FF87
+XTerm*vt100.color11: #FFFF87
+XTerm*vt100.color12: #87AFFF
+XTerm*vt100.color13: #FF87FF
+XTerm*vt100.color14: #87FFFF
+XTerm*vt100.color15: #FFFFFF
 ! }}}1
 
 ! vim: fdm=marker
