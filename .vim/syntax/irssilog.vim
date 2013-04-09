@@ -23,7 +23,7 @@ syntax match   irssiNick	'[ @~&+]\=\<\k*\>' contained
 
 syntax match   irssiAction	'\* \k* ' contained
 syntax region  irssiMsg		start='-!-' end='$' contained
-syntax region  irssiNotice	start='\*\{3}' end=':' contained
+syntax region  irssiNotice	start='\*\{3}' end='$' contained
 
 syntax cluster irssiItems	contains=irssiNickRegion,irssiAction,irssiMsg,irssiNotice
 syntax cluster irssiNicks	contains=irssiNick

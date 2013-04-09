@@ -83,6 +83,7 @@ syn keyword tmuxOptsSetw window-status-bell-bg window-status-bell-fg
 syn keyword tmuxOptsSetw window-status-content-bg window-status-content-fg
 syn keyword tmuxOptsSetw window-status-activity-bg window-status-activity-fg
 syn keyword tmuxOptsSetw window-status-content-attr window-status-activity-attr
+syn keyword tmuxOptsSetw renumber-windows
 
 syn keyword tmuxTodo FIXME NOTE TODO XXX contained
 

@@ -1,5 +1,5 @@
 setlocal formatoptions+=t
-setlocal textwidth=70
+setlocal textwidth=72
 setlocal foldenable
 setlocal foldlevel=1
 

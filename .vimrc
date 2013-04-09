@@ -37,19 +37,12 @@ set ttimeoutlen=100             " Keycodes shouldn't take long
 
 " Terminal {{{2
 set title                       " Let Vim decide
+let &titleold=$USER.'@'.$HOST.': '.$PWD"
 set icon                        " Let Vim decide
 set ttyscroll=5                 " Redraw when scrolling a long ways
-if &term =~? '^\(xterm\|putty\|konsole\|gnome\)' " xterm and 'clones'
-  let &t_RV="\<Esc>[>c"         " Let Vim check for xterm-compatibility
-  set ttyfast                   " Because no one should have to suffer
-  set ttymouse=xterm2           " Assume xterm mouse support
-endif
-if &term =~? '^screen'  " screen and tmux
-  set ttyfast                   " Because no one should have to suffer
-  if  exists("$STY")    " only screen
-    set ttymouse=xterm2         " Assume xterm mouse support
-  endif
-endif
+let &t_RV="\<Esc>[>c"           " Let Vim check for xterm-compatibility
+set ttyfast                     " Because no one should have to suffer
+set ttymouse=xterm2             " Assume xterm mouse support
 
 " Navigation {{{2
 set nostartofline               " Avoid moving the cursor when moving around
@@ -78,6 +71,7 @@ set formatoptions+=n            " Recognize numbered lists
 set formatoptions+=2            " Use indent from 2nd line of a paragraph
 set formatoptions+=l            " Don't break lines that are already long
 set formatoptions+=1            " Break before 1-letter words
+set formatoptions+=j            " Remove comment leader when joining lines
 
 if exists('&formatlistpat')
   set formatlistpat=^\\s*\\(\\d\\+\\\|\\*\\\|-\\\|∙\\\|•\\\|∘\\\|·\\)[]:.)}\\t\ ]\\s*
@@ -141,7 +135,7 @@ endif
 if has('folding')
   set nofoldenable              " Disable folds by default
   set foldmethod=syntax         " Fold by syntax
-  set foldminlines=0            " Allow folding single lines
+  " set foldminlines=0            " Allow folding single lines
 endif
 set linebreak                   " Don't wrap words
 set list                        " Add visual clues (disables 'linebreak')
@@ -190,6 +184,7 @@ set viminfo+=h                  " Don't restore the hlsearch highlighting
 
 " Reading, Writing {{{2
 set modeline                    " Let files set their own options
+set modelines&
 set fileformats=unix,mac,dos    " End-of-line character
 if exists('&undofile')
   set undofile                  " Keep undo files
@@ -208,10 +203,6 @@ endif
 
 " Other {{{2
 set winaltkeys=no               " Don't use ALT to access the menu
-
-if has('unix')
-  let &grepprg='grep -nrI --exclude-dir=.svn --exclude-dir=.git $* /dev/null'
-endif
 
 " Colors {{{2
 if exists(':colorscheme') == 2
@@ -256,10 +247,16 @@ if exists(':let') == 2
   let g:rails_gnu_screen = 0
 
   " let ruby_fold = 1
+  let ruby_no_expensive = 1
 
   let g:space_disable_select_mode = 1
+  let g:space_no_character_movements = 1
+  let g:space_no_search = 1
+  let g:space_no_jump = 1
 
   let g:sql_type_default = 'mysql'
+
+  let g:surround_indent = 1
 
   let g:tex_flavor = 'pdflatex'         " Use pdflatex as the tex compiler
 
@@ -284,10 +281,10 @@ if exists(':function') == 2
 
   function! MyFoldText() " {{{2
     let suba = getline(v:foldstart)
-    let suba = substitute(suba, '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
+    let suba = substitute(suba, '{{{\d\=\|}}}\d\=', '', 'g')
     let suba = substitute(suba, '\s*$', '', '')
-    let subb = getline(v:foldend)
-    " let subb = substitute(subb, '/\*\|\*/\|{{{\d\=\|}}}\d\=', '', 'g')
+    " let subb = getline(v:foldend)
+    " let subb = substitute(subb, '{{{\d\=\|}}}\d\=', '', 'g')
     " let subb = substitute(subb, '^\s*', '', '')
     " let subb = substitute(subb, '\s*$', '', '')
     let lines = v:foldend - v:foldstart + 1
@@ -295,10 +292,8 @@ if exists(':function') == 2
     " if lines > 1 && strlen(subb) > 0
     "   let text .= ' ... '.subb
     " endif
-    let fillchar = matchstr(&fillchars, 'fold:.')
-    if strlen(fillchar) > 0
-      let fillchar = fillchar[-1:]
-    else
+    let fillchar = matchstr(&fillchars, 'fold:\zs.')
+    if strlen(fillchar) == 0
       let fillchar = '-'
     endif
     let lines = repeat(fillchar, 4).' ' . lines . ' lines '.repeat(fillchar, 3)
@@ -316,7 +311,7 @@ if exists(':function') == 2
         let text = substitute(text, '\s*.$', '', '')
       endif
     endif
-    let text .= repeat('-', n - strlen(text))
+    let text .= repeat(fillchar, n - strlen(text))
     let text .= lines
     return text
   endfunction
@@ -392,9 +387,10 @@ if exists(':function') == 2
   endif
 
   function! ShowSynIDs() " {{{2
-    let hi = synIDattr(synID(line('.'),col('.'),1),'name')
+    let id = synID(line('.'),col('.'),1)
+    let hi = synIDattr(id,'name')
     let trans = synIDattr(synID(line('.'),col('.'),0),'name')
-    let lo = synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')
+    let lo = synIDattr(synIDtrans(id),'name')
     echo 'hi<' . hi . '> trans<' . trans . '> lo<' . lo . '>'
   endfunction
 
@@ -467,7 +463,9 @@ if exists(':command') == 2
   " Remove trailing space
   command! -range=% UnTrail
         \ silent! unlet b:statusline_trailing_space_warning |
-        \ keepjumps <line1>,<line2>substitute/\s\+$//e
+        \ let temp = @@ |
+        \ keepjumps <line1>,<line2>substitute/\s\+$//e |
+        \ let @@ = temp
 
   " Shift the position under the cursor to column N
   if has('ex_extra')
@@ -477,9 +475,10 @@ if exists(':command') == 2
 
   " Save using sudo
   if executable('sudo') && executable('tee')
-    command! SUwrite
+    command! -bar SUwrite
+          \ setlocal nomodified |
           \ execute 'write !sudo tee % >/dev/null' |
-          \ setlocal nomodified
+          \ let &l:modified = v:shell_error
   endif
 
   " D'oh
@@ -528,9 +527,9 @@ endif
 
 " Keymaps {{{1
 " Disable F1 for help {{{2
-nmap  <F1> <Nop>
-nmap  <A-F1> <Nop>
-nmap  <C-F1> <Nop>
+nmap <F1> <Nop>
+nmap <A-F1> <Nop>
+nmap <C-F1> <Nop>
 imap <F1> <Nop>
 imap <S-F1> <Nop>
 imap <A-F1> <Nop>
@@ -577,7 +576,9 @@ endif
 if exists('*ShowSynStack')
   nnoremap <silent> <F7> :call ShowSynStack()<CR>
 endif
-nnoremap <silent> <F8> :call ShowSynIDs()<CR>
+if exists('*ShowSynIDs')
+  nnoremap <silent> <F8> :call ShowSynIDs()<CR>
+endif
 
 " User commands
 if exists(':UnTrail') == 2
@@ -598,6 +599,12 @@ cnoremap <C-x> <C-a>
 cnoremap <C-b> <Left>
 cnoremap <C-h> <Left>
 cnoremap <C-f> <Right>
+
+" Command-line completion {{{2
+cnoremap <expr> <C-p> wildmenumode() ? "\<C-p>" : "\<Up>"
+cnoremap <expr> <C-n> wildmenumode() ? "\<C-n>" : "\<Down>"
+cnoremap <Up> <C-p>
+cnoremap <Down> <C-n>
 
 " Arrow keys for window movement {{{2
 nnoremap <silent> <Left>  <C-w>h
