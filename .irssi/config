@@ -44,6 +44,9 @@ aliases = {
   EXEMPTLIST = "mode $C +e";
   UNBIND = "bind -delete";
   NS = "msg nickserv";
+  CS = "msg chanserv";
+  OP = "msg chanserv op $C";
+  DEOP = "msg chanserv deop $C";
   MONITOR = "quote monitor $-";
   DOESNTWORK = "say vimgor, tell $0 doesn't work";
 };
