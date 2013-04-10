@@ -48,8 +48,8 @@ if has('autocmd')
 
     autocmd User Rails
           \   if rails#buffer().relative() =~# '^db/migrate/.*.rb$'
-          \ |   nnoremap <silent> <buffer> <C-Left>  :R<CR>
-          \ |   nnoremap <silent> <buffer> <C-Right> :A<CR>
+          \ |   nnoremap <silent> <buffer> <C-Left>  :1R<CR>
+          \ |   nnoremap <silent> <buffer> <C-Right> :$R<CR>
           \ | endif
 
     autocmd User Rails
