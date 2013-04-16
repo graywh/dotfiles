@@ -25,7 +25,8 @@
 [core]
 	editor = vim
 	pager = view -
-	excludesfile = ~/.gitignored
+	excludesfile = ~/.config/git/ignore
+	attributesfile = ~/.config/git/attributes
 [pager]
 	status = false
 [push]
@@ -35,7 +36,7 @@
 [diff]
 	renames = copy
 [diff "ruby"]
-	funcname = ^\\s*\\(\\(class\\|module\\|def\\|describe\\) .*\\)
+	funcname = ^\\s*\\(\\(class\\|module\\|def\\|describe\\|context\\) .*\\)
 [diff "python"]
 	funcname = ^\\s*\\(\\(class\\|def\\) .*\\)
 [diff "vim"]
