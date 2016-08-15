@@ -29,9 +29,9 @@ function __ls {
 }
 
 function __ls_helper {
-    eval "args=(${3}/${2})"
+    eval "args=(\"${3}\"/${2})"
     if (( ${#args[@]} > 2 )); then
-        (cd ${3} && eval "ls ${1} ${2}")
+        (cd "${3}" && eval "ls ${1} ${2}")
     fi
 }
 
