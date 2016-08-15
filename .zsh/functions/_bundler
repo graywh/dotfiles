@@ -8,7 +8,7 @@ _arguments -C -A "-v" -A "--version" \
 	'*:: :->args' && ret=0
 
 case $state in
-	cmds)
+	(cmds)
 		_values "bundle command" \
 			"install[Install the gems specified by the Gemfile or Gemfile.lock]" \
 			"update[Update dependencies to their latest versions]" \
@@ -23,20 +23,47 @@ case $state in
 			"viz[Generate a visual representation of your dependencies]" \
 			"init[Generate a simple Gemfile, placed in the current directory]" \
 			"gem[Create a simple gem, suitable for development with bundler]" \
-			"help[Describe available tasks or one specific task]"
+			"help[Describe available tasks or one specific task]" \
+			"platform[Displays platform compatibility information]" \
+			"outdated[Show all of the outdated gems in the current bundle]"
 		ret=0
 		;;
-	args)
+	(args)
 		case $line[1] in
-			help)
-				_values 'commands' 'install update package exec config check list show console open viz init gem help' && ret=0
+			(help)
+				_arguments \
+					'(--no-color)--no-color[disable colorization in output]' \
+					'(-V --verbose)'{-V,--verbose}'[enable verbose output mode]'
+				_values 'commands' 'install' 'update' 'package' 'exec' 'config' 'check' 'list' 'show' 'console' 'open' 'viz' 'init' 'gem' 'help' 'platform' 'outdated'
+				ret=0
 				;;
-			install)
+			(check)
+				_arguments \
+					'(--gemfile)--gemfile=-[use the specified gemfile instead of Gemfile]:gemfile:_files' \
+					'(--path)--path=-[specify a different path than the system default]:path:_files' \
+					'(--dry-run)--dry-run[lock the Gemfile]' \
+					'(--no-color)--no-color[disable colorization in output]' \
+					'(-V --verbose)'{-V,--verbose}'[enable verbose output mode]'
+				ret=0
+				;;
+			(exec)
+				_normal && ret=0
+				;;
+			(gem)
+				_arguments \
+					'(-b --bin)'{-b,--bin}'[generate a binary for your library]' \
+					'(-t --test)'{-t,--test}'[generate a test directory for your library]' \
+					'(-e --edit)'{-e,--edit}'=-[path to your editor]:editor:_files' \
+					'(--no-color)--no-color[disable colorization in output]' \
+					'(-V --verbose)'{-V,--verbose}'[enable verbose output mode]'
+				ret=0
+				;;
+			(install)
 				_arguments \
 					'(--no-color)--no-color[disable colorization in output]' \
 					'(--local)--local[do not attempt to connect to rubygems.org]' \
 					'(--quiet)--quiet[only output warnings and errors]' \
-					'(--gemfile)--gemfile=-[use the specified gemfile instead of Gemfile]:gemfile' \
+					'(--gemfile)--gemfile=-[use the specified gemfile instead of Gemfile]:gemfile:_files' \
 					'(--system)--system[install to the system location]' \
 					'(--deployment)--deployment[install using defaults tuned for deployment environments]' \
 					'(--frozen)--frozen[do not allow the Gemfile.lock to be updated after this install]' \
@@ -45,21 +72,58 @@ case $state in
 					'(--without)--without=-[exclude gems that are part of the specified named group]:groups'
 				ret=0
 				;;
-			exec)
-				_normal && ret=0
-				;;
-			(open|show)
+			(list|show)
+				_arguments \
+					'(- :)--paths[list the paths of all gems that are required by your Gemfile]'
 				_gems=( $(bundle show 2> /dev/null | sed -e '/^  \*/!d; s/^  \* \([^ ]*\) .*/\1/') )
 				if [[ $_gems != "" ]]; then
-					_values 'gems' $_gems && ret=0
+					_values 'gems' $_gems
 				fi
+				ret=0
 				;;
-			*)
-				_opts=(  $(bundle help $line[1] | sed -e '/^  \[-/!d; s/^  \[\(-[^=]*\)=.*/\1/') )
-				_opts+=( $(bundle help $line[1] | sed -e '/^  -/!d; s/^  \(-.\), \[\(-[^=]*\)=.*/\1 \2/') )
-				if [[ $_opts != "" ]]; then
-					_values 'options' $_opts && ret=0
+			(open)
+				_gems=( $(bundle show 2> /dev/null | sed -e '/^  \*/!d; s/^  \* \([^ ]*\) .*/\1/') )
+				if [[ $_gems != "" ]]; then
+					_values 'gems' $_gems
 				fi
+				ret=0
+				;;
+			(outdated)
+				_arguments \
+					'(--pre)--pre[check for newer pre-release gems]' \
+					'(--source)--source=-[check against a specific source]:source' \
+					'(--local)--local[do not attempt to fetch gems remotely and use the gem cache instead]' \
+					'(--no-color)--no-color[disable colorization in output]' \
+					'(-V --verbose)'{-V,--verbose}'[enable verbose output mode]'
+				_gems=( $(bundle show 2> /dev/null | sed -e '/^  \*/!d; s/^  \* \([^ ]*\) .*/\1/') )
+				if [[ $_gems != "" ]]; then
+					_values 'gems' $_gems
+				fi
+				ret=0
+				;;
+			(platform)
+				_arguments \
+					'(--ruby)--ruby[just display the ruby directive information]'
+				ret=0
+				;;
+			(update)
+				_arguments \
+					'(--source)--source=-[check against a specific source]:source'
+				_gems=( $(bundle show 2> /dev/null | sed -e '/^  \*/!d; s/^  \* \([^ ]*\) .*/\1/') )
+				if [[ $_gems != "" ]]; then
+					_values 'gems' $_gems
+				fi
+				ret=0
+				;;
+			(viz)
+				_arguments \
+					'(-f --file)'{-f,--file}'=-[the name to use for the generated file]:file:_files' \
+					'(-v --version)'{-v,--version}'[set to show each gem version]' \
+					'(-r --requirements)'{-r,--requirements}'[set to show the version of each required dependency]' \
+                                        '(-F --format)'{-F,--format}'=-[output format]:format:(png jpg svg dot)' \
+					'(--no-color)--no-color[disable colorization in output]' \
+					'(-V --verbose)'{-V,--verbose}'[enable verbose output mode]'
+				ret=0
 				;;
 		esac
 		;;

@@ -6,9 +6,9 @@ Files:
   .vim/plugin/vsearch.vim:       http://github.com/godlygeek/vim-files/raw/master/plugin/vsearch.vim
   .vim/syntax/markdown.vim:      http://github.com/plasticboy/vim-markdown/raw/master/mkd.vim
   .vim/syntax/python1.vim:       http://www.hlabs.spb.ru/vim/python.vim
-  .zsh/functions/_git:           http://zsh.cvs.sourceforge.net/viewvc/*checkout*/zsh/zsh/Completion/Unix/Command/_git
-  .zsh/functions/_rake:          http://zsh.cvs.sourceforge.net/viewvc/*checkout*/zsh/zsh/Completion/Unix/Command/_rake
-  .zsh/functions/_tmux:          http://zsh.cvs.sourceforge.net/viewvc/*checkout*/zsh/zsh/Completion/Unix/Command/_tmux
+  .zsh/functions/_git:           http://sourceforge.net/p/zsh/code/ci/master/tree/Completion/Unix/Command/_git?format=raw
+  .zsh/functions/_rake:          http://sourceforge.net/p/zsh/code/ci/master/tree/Completion/Unix/Command/_rake?format=raw
+  .zsh/functions/_tmux:          http://sourceforge.net/p/zsh/code/ci/master/tree/Completion/Unix/Command/_tmux?format=raw
 
 Bundles:
   .vim/bundles/abolish:     https://github.com/tpope/vim-abolish.git
