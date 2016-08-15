@@ -10,7 +10,7 @@ if has('win32')
   let &runtimepath = substitute(&runtimepath, '\(\~\|'.$USER.'\)/vimfiles\>', '\1/.vim', 'g')
 endif
 
-silent! call pathogen#infect('bundles')
+silent! execute pathogen#infect('bundles/{}')
 
 " Filetype {{{2
 " Enabled file type detection
