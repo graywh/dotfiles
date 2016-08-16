@@ -257,6 +257,8 @@ if exists(':let') == 2
   let g:sql_type_default = 'mysql'
 
   let g:surround_indent = 1
+  let g:surround_{char2nr('*')} = ' \r'
+  let g:surround_{char2nr('$')} = "$(\r)"
 
   let g:tex_flavor = 'pdflatex'         " Use pdflatex as the tex compiler
 
