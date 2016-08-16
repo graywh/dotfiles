@@ -540,6 +540,8 @@ imap <S-F1> <Nop>
 imap <A-F1> <Nop>
 imap <C-F1> <Nop>
 
+" Use ^L to leave insert mode {{{2
+noremap! <C-l> <Esc>
 
 " make Q like before {{{2
 nnoremap Q gq
