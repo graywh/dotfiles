@@ -1,9 +1,9 @@
-syntax match irssiHighlight "\<graywh\k*\>"
-syntax match irssiSelf "<[ @~&+]\=graywh\(_\+\||work\||mac\)>" contained
+syn match irssiHighlight "\<graywh\k*\>"
+syn match irssiSelf "<[ @~&+]\=graywh\(_\+\||work\||mac\)>" contained
 
-highlight link irssiHighlight Underlined
-highlight link irssiSelf irssiNick_graywh
-syntax cluster irssiItems add=irssiSelf
+hi link irssiHighlight Underlined
+hi link irssiSelf irssiNick_graywh
+syn cluster irssiItems add=irssiSelf
 
-highlight link irssiNickRegion Statement
-highlight link irssiTimestamp None
+hi link irssiNickRegion Statement
+hi link irssiTimestamp None

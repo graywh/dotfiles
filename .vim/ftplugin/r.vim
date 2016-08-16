@@ -4,8 +4,8 @@ endif
 
 let b:did_ftplugin = 1
 
-setlocal fo-=t fo+=croql
-setlocal comments=:# commentstring=#%s
+setlocal formatoptions-=t formatoptions+=croql
+setlocal comments=:# commentstring=#\ %s
 
 let b:match_words = &matchpairs . ',\<if\>:\<else if\>:\<else\>,\<function\>:\<return\>'
 let b:match_skip = 's:comment\|string\|character'
