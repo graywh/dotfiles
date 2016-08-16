@@ -3,6 +3,13 @@ if !exists("g:loaded_rails") || !g:loaded_rails || &cp
 endif
 
 let g:rails_projections = {
+      \ 'app/decorators/*_decorator.rb': {'command': 'decorator'},
+      \ 'app/interactors/*.rb': {
+      \   'affinity': 'model',
+      \   'command': 'interactor',
+      \   'test': [
+      \     'test/unit/%s_test.rb',
+      \     'spec/interactors/%s_spec.rb']},
       \ 'db/seeds/*.rb': {'command': 'seeds'},
       \ 'db/seeds.rb': {'command': 'seeds'}}
 
@@ -23,6 +30,9 @@ let g:rails_gem_projections = {
       \ 'conditional_validation': {
       \   'app/models/*.rb': {
       \     'keywords': 'validates_conditional'}},
+      \ 'cqs_form_helpers': {
+      \   'app/views/*': {
+      \     'keywords': 'select_with_options'}},
       \ 'cqs_validations': {
       \   'app/models/*.rb': {
       \     'keywords': 'validates_date validates_continuity_of'}},
