@@ -680,3 +680,4 @@ endif
 " nnoremap <Leader>sc ciw<C-r>=substitute(@", '_\(\w\)', '\u\1', 'g')<CR><Esc>
 " camelCase to under_score_case
 " nnoremap <Leader>cs ciw<C-r>=substitute(@", '\l\zs\(\u\)', '_\l\1', 'g')<CR><Esc>
+" }}}1

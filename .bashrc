@@ -148,14 +148,12 @@ my_big_ps1="${None}(${Blue}\$?${None})--(${Cyan}\t${None})--(${Green}\u${None}@$
 my_small_ps1="${NONE}\w \\$ "
 PS1=${my_big_ps1}
 
-# a function to put the current time in the top-right corner of the terminal
-# and change the title of the terminal
 function prompt_command { #{{{2
     # If this is an xterm set the title to user@host:dir
     case ${TERM} in
-    (xterm*|gnome*|konsole*|putty*|screen*)
-        __xtermicontitle "${USER}@${HOSTNAME}: ${PWD}"
-        ;;
+        (xterm*|gnome*|konsole*|putty*|screen*)
+            __xtermicontitle "${USER}@${HOSTNAME}: ${PWD}"
+            ;;
     esac
     # If this is tmux or screen, print a bel
     if [[ ${TERM} == screen* && ( -n ${TMUX} || -n ${STY} ) ]]; then

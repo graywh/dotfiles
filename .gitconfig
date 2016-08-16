@@ -4,19 +4,19 @@
 [advice]
 	statusHints = false
 [alias]
-	co = checkout
-	ci = commit
-	st = status -sb
 	br = branch
-	ff = merge --ff
-	sl = !git stash list | cat
-	pick = cherry-pick
-	log1 = log --pretty=oneline --abbrev-commit
-	logg = log --pretty=oneline --abbrev-commit --graph
+	ci = commit
+	co = checkout
 	diffc = diff --cached
+	diffci = diff --cached --ignore-all-space
 	diffi = diff --ignore-all-space
 	diffic = diff --cached --ignore-all-space
-	diffci = diff --cached --ignore-all-space
+	ff = merge --ff-only
+	log1 = log --oneline
+	logg = log --oneline --graph
+	pick = cherry-pick
+	sl = !git --no-pager stash list
+	st = status -sb
 [branch]
 	autosetupmerge = true
 [color]

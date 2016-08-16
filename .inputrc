@@ -35,5 +35,6 @@ set bell-style none
 "\e[B": next-history
 # misc
 # "\e[2~": quoted-insert
+# "\e[": skip-csi-sequence
 
 # set editing-mode vi

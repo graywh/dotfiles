@@ -10,24 +10,31 @@ autoload zsh/terminfo
 # Changing directories {{{2
 setopt   autopushd
 setopt   pushdignoredups
+
 # Completion {{{2
 setopt noalwayslastprompt
+
 # setopt noautolist
 setopt noautomenu
 setopt noautonamedirs
 setopt   listpacked
+
 # Expansion and globbing {{{2
 setopt nomarkdirs
 setopt nonomatch
+
 # History {{{2
 setopt   histignoredups
 setopt   histreduceblanks
 setopt   sharehistory
+
 # Job control {{{2
 setopt nohup
 setopt   longlistjobs
+
 # Prompting {{{2
 setopt   promptsubst
+
 # Zle {{{2
 setopt nobeep
 
@@ -62,6 +69,7 @@ bindkey '^A' vi-beginning-of-line
 bindkey "\e[4~" vi-end-of-line
 bindkey "\e[F" vi-end-of-line
 bindkey '^E' vi-end-of-line
+
 # word
 bindkey "\e[1;2D" backward-word
 bindkey "\e[1;9D" backward-word
@@ -69,15 +77,18 @@ bindkey "\e[1;5D" vi-backward-blank-word
 bindkey "\e[1;2C" forward-word
 bindkey "\e[1;9C" forward-word
 bindkey "\e[1;5C" vi-forward-blank-word
+
 # char
 # bindkey "^B" backward-char
 bindkey "^H" backward-char
 # bindkey "^F" forward-char
+
 # History {{{2
 # bindkey "\e[5;5~" beginning-of-history
 # bindkey "\e[6;5~" end-of-history
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
+
 # Editing {{{2
 bindkey "\e[2~" vi-quoted-insert
 bindkey "\e[3~" delete-char
@@ -85,9 +96,11 @@ bindkey "\e[3~" delete-char
 bindkey '^U' backward-kill-line
 # bindkey '^W' backward-kill-word
 # bindkey '^?' backward-delete-char
+
 # Completion {{{2
 bindkey '^I' expand-or-complete
 # bindkey "\e[Z" reverse-menu-complete
+
 # Misc {{{2
 bindkey '^J' self-insert-unmeta
 [[ ${TERM} == 'dumb' ]] && bindkey '^J' accept-line # for vim
@@ -234,7 +247,7 @@ else
     None=""
     # }}}
 fi
-# }}}2
+
 # VCS Info {{{2
 # autoload -Uz vcs_info && vcs_info
 # zstyle :vcs_info:* enable svn git hg
@@ -255,12 +268,11 @@ PS1=${my_big_ps1}
 
 # Functions {{{1
 function precmd { #{{{2
-    # vcs_info
     # If this is an xterm-alike set the title to user@host:dir
     case ${TERM} in
         (xterm*|gnome*|konsole*|putty*|screen*)
             __xtermicontitle '%n@%m: %~'
-        ;;
+            ;;
     esac
     # If this is tmux or screen, print a bel
     if [[ ${TERM} == screen* && ( -n ${TMUX} || -n ${STY} ) ]]; then
@@ -270,6 +282,7 @@ function precmd { #{{{2
     #     __screentitle
     # fi
 }
+
 function preexec { #{{{2
     # case ${TERM} in
     #     (screen*)
