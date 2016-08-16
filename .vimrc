@@ -283,7 +283,8 @@ if exists(':function') == 2
 
   function! MyFoldText() " {{{2
     let suba = getline(v:foldstart)
-    let suba = substitute(suba, '{{{\d\=\|}}}\d\=', '', 'g')
+    let foldmarkerpat = join(map(split(&l:foldmarker,','), "v:val.'\\d\\='"), '\|')
+    let suba = substitute(suba, foldmarkerpat, '', 'g')
     let suba = substitute(suba, '\s*$', '', '')
     " let subb = getline(v:foldend)
     " let subb = substitute(subb, '{{{\d\=\|}}}\d\=', '', 'g')
@@ -317,6 +318,8 @@ if exists(':function') == 2
     let text .= lines
     return text
   endfunction
+
+  set foldtext=MyFoldText()
 
   function! MyFoldIndent() " {{{2
     let line = getline(v:lnum)
