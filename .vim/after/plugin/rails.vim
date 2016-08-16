@@ -100,21 +100,24 @@ if has('autocmd')
 
     autocmd User Rails
           \   silent! Rlcd
-          \ | silent! let &l:grepprg=substitute(&grepprg, '\$\*', '--exclude-dir=log --exclude-dir=tmp --exclude-dir=doc --exclude-dir=coverage \0', '')
-          \ | command! -buffer -bang RRake Rake<bang> -
-          \ | command! -buffer WA windo A
-          \ | command! -buffer WR windo R
-
-    autocmd User Rails
-          \   if rails#buffer().relative() =~# '^db/migrate/.*.rb$'
+          \
+          \ | exec 'command! -buffer -bang RRake Rake<bang> -'
+          \ | exec 'command! -buffer WA windo A'
+          \ | exec 'command! -buffer WR windo R'
+          \ | exec 'command! -buffer Console   Start -title=console rails console'
+          \ | exec 'command! -buffer Dbconsole Start -title=mysql rails db -p'
+          \ | exec 'command! -buffer Log       Start -title=log tail -f log/development.log'
+          \
+          \ | if rails#buffer().relative() =~# '^db/migrate/.*.rb$'
           \ |   nnoremap <silent> <buffer> <C-Left>  :1R<CR>
           \ |   nnoremap <silent> <buffer> <C-Right> :$R<CR>
           \ | endif
-
-    autocmd User Rails
-          \   if rails#buffer().relative() =~# '^spec/.*_spec.rb$\|^features/.*.feature$'
+          \
+          \ | if rails#buffer().relative() =~# '^spec/.*_spec.rb$\|^features/.*.feature$'
           \ |   nnoremap <silent> <buffer> <Leader>R :.Rake<CR>
           \ | endif
+          \
+          \ | " silent! let &l:grepprg=substitute(&grepprg, '\$\*', '--exclude-dir=log --exclude-dir=tmp --exclude-dir=doc --exclude-dir=coverage \0', '')
 
   augroup END
 endif
