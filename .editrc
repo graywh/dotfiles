@@ -1,0 +1,24 @@
+# line
+bind ^[[1~ ed-move-to-beg
+bind ^[[H ed-move-to-beg
+bind ^A ed-move-to-beg
+bind ^[[4~ ed-move-to-end
+bind ^[[F ed-move-to-end
+bind ^E ed-move-to-end
+bind ^K ed-kill-line
+bind ^U ed-start-over
+# word
+bind ^[[1;5C vi-next-word
+bind ^[[1;5D vi-prev-word
+bind ^W ed-delete-prev-word
+# character
+bind ^[[C ed-next-char
+bind ^F ed-next-char
+bind ^[[D ed-prev-char
+bind ^H ed-prev-char
+# bind ^[[3~ em-delete-next-char
+# history
+bind ^P ed-search-prev-history
+bind ^N ed-search-next-history
+bind ^[[A ed-prev-history
+bind ^[[B ed-next-history
