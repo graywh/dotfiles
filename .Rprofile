@@ -10,8 +10,6 @@ if (interactive()) {
 tau <- 2*pi
 # operators
 '%nin%' <- function(x, y) { !(x %in% y) }
-'%xin%' <- function(x, y) { x[which(x %in% y)] }
-'%xnin%' <- function(x, y) { x[which(x %nin% y)] }
 # functions
 na.rm <- function(x) { x[!is.na(x)] }
 notna <- function(x) { x & !is.na(x) }
