@@ -1,9 +1,8 @@
 Files:
   .vim/autoload/pathogen.vim:    http://github.com/tpope/vim-pathogen/raw/master/autoload/pathogen.vim
-  .vim/plugin/BufGrep.vim:       http://git.jamessan.com/?p=etc/vim.git;a=blob_plain;f=plugin/BufGrep.vim;hb=HEAD
   .vim/plugin/manpageview1.vim:  http://github.com/godlygeek/vim-files/raw/master/plugin/manpageview.vim
   .vim/plugin/terminalkeys1.vim: http://github.com/godlygeek/vim-files/raw/master/plugin/terminalkeys.vim
-  .vim/plugin/vsearch.vim:       http://github.com/godlygeek/vim-files/raw/master/plugin/vsearch.vim
+  .vim/plugin/vsearch1.vim:      http://github.com/godlygeek/vim-files/raw/master/plugin/vsearch.vim
   .vim/syntax/python1.vim:       http://www.hlabs.spb.ru/vim/python.vim
   .zsh/functions/_git:           http://sourceforge.net/p/zsh/code/ci/master/tree/Completion/Unix/Command/_git?format=raw
   .zsh/functions/_rake:          http://sourceforge.net/p/zsh/code/ci/master/tree/Completion/Unix/Command/_rake?format=raw
