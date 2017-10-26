@@ -6,6 +6,10 @@
 ! --- NetHack {{{1
 NetHack.tile_file: x11tiles
 
+! --- X {{{1
+Xft.antialias: 1
+Xft.hinting: 1
+Xft.hintstyle: hintslight
 ! --- XTerm {{{1
 XTerm.omitTranslation: fullscreen
 XTerm.termName: xterm-256color
