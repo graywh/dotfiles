@@ -9,6 +9,7 @@ elseif has('macunix')
   set guifont=DejaVu\ Sans\ Mono:h14
 else
   set guifont=DejaVu\ Sans\ Mono\ 10
+  set linespace=2
 endif
 
 " GUI Display {{{2

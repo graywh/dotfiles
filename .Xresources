@@ -31,6 +31,7 @@ XTerm*vt100.loginShell: false
 ! XTerm*vt100.modifyOtherKeys: 1
 XTerm*vt100.rightScrollBar: true
 XTerm*vt100.saveLines: 2048
+XTerm*vt100.scaleHeight: 1.05
 XTerm*vt100.scrollBar: false
 XTerm*vt100.shiftFonts: true
 XTerm*vt100.ttyModes: erase ^?
