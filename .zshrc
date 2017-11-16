@@ -59,6 +59,9 @@ zstyle :completion:*:warnings format '%BNo matches for: %d%b'
 zstyle :completion:*:hosts use-ssh-config on
 zstyle *:my-accounts users-hosts biostat@cbc rails@cbc rails@cqs rails@cqsdev rails@betrnet shiny@cqs shiny@cqsdev
 
+# Define completions for functions
+compdef gman='man'
+
 # Keybindings {{{1
 bindkey -e
 # Navigation {{{2

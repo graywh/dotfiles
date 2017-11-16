@@ -43,6 +43,11 @@ if [[ -f ~/.vim/plugin/manpageview.vim && $TERM != 'dumb' ]]; then
         [[ $# -eq 0 ]] && return 1
         vim -c "Man $* | only | bd#"
     }
+
+    function gman {
+        [[ $# -eq 0 ]] && return 1
+        gvim -c "Man $* | only | bd#"
+    }
 fi
 
 function loop {
