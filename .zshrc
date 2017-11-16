@@ -57,7 +57,7 @@ zstyle :completion:*:warnings format '%BNo matches for: %d%b'
 
 # Complete hosts from ssh_config
 zstyle :completion:*:hosts use-ssh-config on
-zstyle *:my-accounts users-hosts rails@cbc biostat@cbc
+zstyle *:my-accounts users-hosts biostat@cbc rails@cbc rails@cqs rails@cqsdev rails@betrnet shiny@cqs shiny@cqsdev
 
 # Keybindings {{{1
 bindkey -e
