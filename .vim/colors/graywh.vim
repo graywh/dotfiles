@@ -29,19 +29,19 @@ hi! link CursorColumn CursorLine
 hi! link Character String
 
 " For GUI {{{1
-hi Normal               guifg=#D7D7D7   guibg=#1C1C1C
+hi Normal               guifg=#DADADA   guibg=#262626
 
 " Vim {{{2
 hi SpecialKey           guifg=#4E4E4E   guibg=bg        gui=none
-hi NonText              guifg=#87FFFF   guibg=#262626   gui=none
+hi NonText              guifg=#87FFFF   guibg=#303030   gui=none
 hi Directory            guifg=#00AFAF
 hi ErrorMsg             guifg=#D70000   guibg=bg
 hi IncSearch                                            gui=reverse
-hi Search                               guibg=#FFFF00
+hi Search               guifg=bg        guibg=#FFFF00
 hi MoreMsg              guifg=#5FAF87                   gui=bold
 hi ModeMsg                                              gui=bold
 hi LineNr               guifg=#87875F   guibg=#262626
-hi CursorLineNr         guifg=#AFAF87   guibg=#262626
+hi CursorLineNr         guifg=#AFAF87   guibg=#3A3A3A
 hi Question             guifg=#5FFF5F                   gui=bold
 hi StatusLine                                           gui=reverse,bold
 hi StatusLineNC                                         gui=reverse
@@ -50,13 +50,13 @@ hi Visual                               guibg=NONE      gui=reverse
 hi VisualNOS                                            gui=bold,underline
 hi WarningMsg           guifg=#D7D700
 hi WildMenu             guifg=bg        guibg=#D7D700
-hi Folded               guifg=#AF87AF   guibg=#303030   gui=italic
-hi FoldColumn           guifg=#5F8787   guibg=#303030
-hi DiffAdd                              guibg=#123012
-hi DiffChange                           guibg=#121230
-hi DiffDelete           guifg=fg        guibg=#301212   gui=none
-hi DiffText                             guibg=#303012   gui=none
-hi SignColumn                           guibg=#303030
+hi Folded               guifg=#AF87AF   guibg=#3A3A3A   gui=italic
+hi FoldColumn           guifg=#5F8787   guibg=#3A3A3A
+hi DiffAdd                              guibg=#1C3A1C
+hi DiffChange                           guibg=#1C264E
+hi DiffDelete           guifg=fg        guibg=#3A1C1C   gui=none
+hi DiffText                             guibg=#4E4E1C   gui=none
+hi SignColumn           guifg=#5FD7D7   guibg=#303030
 hi SpellBad                                             gui=undercurl           guisp=#FF0000
 hi SpellCap                                             gui=undercurl           guisp=#0000FF
 hi SpellRare                                            gui=undercurl           guisp=#FF00FF
@@ -68,7 +68,8 @@ hi PmenuThumb                                           gui=reverse
 hi TabLine              guifg=bg        guibg=fg        gui=none
 hi TabLineSel           guifg=fg        guibg=bg        gui=bold
 hi TabLineFill          guifg=fg        guibg=bg        gui=reverse
-hi CursorLine                           guibg=#303030
+hi ColorColumn                          guibg=#870000
+hi CursorLine                           guibg=#3A3A3A
 hi Cursor               guifg=bg        guibg=fg
 
 " Syntax {{{2
@@ -91,15 +92,15 @@ hi Error                guifg=#FFFFFF   guibg=#FF5F5F
 hi Todo                 guifg=#0000D7   guibg=#FFFF5F
 
 " Custom {{{2
-hi colorIndentOdd                       guibg=#121212
-hi colorIndentEven                      guibg=#262626
+hi colorIndentOdd                       guibg=#262626
+hi colorIndentEven                      guibg=#3A3A3A
 " mail {{{3
-hi mailQuoted1          guifg=#AFAFD7   guibg=#303030
-hi mailQuoted2          guifg=#D7AFAF   guibg=#303030
-hi mailQuoted3          guifg=#AFD7AF   guibg=#303030
-hi mailQuoted4          guifg=#D7AFD7   guibg=#303030
-hi mailQuoted5          guifg=#AFD7D7   guibg=#303030
-hi mailQuoted6          guifg=#D7D7AF   guibg=#303030
+hi mailQuoted1          guifg=#AFAFD7   guibg=#444444
+hi mailQuoted2          guifg=#D7AFAF   guibg=#444444
+hi mailQuoted3          guifg=#AFD7AF   guibg=#444444
+hi mailQuoted4          guifg=#D7AFD7   guibg=#444444
+hi mailQuoted5          guifg=#AFD7D7   guibg=#444444
+hi mailQuoted6          guifg=#D7D7AF   guibg=#444444
 hi mailEmail            guifg=#5F87FF                   gui=underline
 hi mailSignature        guifg=#8A8A8A
 

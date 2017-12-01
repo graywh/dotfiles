@@ -64,8 +64,8 @@ XTerm*vt100.scrollbar.translations: #override \n\
     <Btn1Motion>: MoveThumb() NotifyThumb() \n\
 
 ! --- colors {{{3
-XTerm*vt100.background: #141414
-XTerm*vt100.foreground: #D7D7D7
+XTerm*vt100.background: #262626
+XTerm*vt100.foreground: #DADADA
 XTerm*vt100.cursorColor: #5FFF5F
 XTerm*vt100.color0: #000000
 XTerm*vt100.color1: #D70000
@@ -85,6 +85,27 @@ XTerm*vt100.color14: #87FFFF
 XTerm*vt100.color15: #FFFFFF
 
 ! --- URxvt {{{1
+
+! --- colors {{{3
+URxvt.background: #262626
+URxvt.foreground: #DADADA
+URxvt.cursorColor: #5FFF5F
+URxvt.color0: #000000
+URxvt.color1: #D70000
+URxvt.color2: #00D700
+URxvt.color3: #D7D700
+URxvt.color4: #005FD7
+URxvt.color5: #D700D7
+URxvt.color6: #00D7D7
+URxvt.color7: #D7D7D7
+URxvt.color8: #878787
+URxvt.color9: #FF8787
+URxvt.color10: #87FF87
+URxvt.color11: #FFFF87
+URxvt.color12: #87AFFF
+URxvt.color13: #FF87FF
+URxvt.color14: #87FFFF
+URxvt.color15: #FFFFFF
 
 ! http://www.netswarm.net/misc/urxvt-xtermcompat.txt
 ! Nasty hack to act more like XTerm
