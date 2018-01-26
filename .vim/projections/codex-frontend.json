@@ -1,0 +1,55 @@
+{
+  "app/scripts/app.js": {
+    "type": "controller"
+  },
+  "app/common/*/controller.js": {
+    "alternate": "test/spec/controllers/{}.js",
+    "type": "controller"
+  },
+  "app/common/*/controllers.js": {
+    "alternate": "test/spec/controllers/{}.js",
+    "type": "controller"
+  },
+  "app/components/*/controller.js": {
+    "alternate": "test/spec/controllers/{}.js",
+    "type": "controller"
+  },
+  "app/components/*/controllers.js": {
+    "alternate": "test/spec/controllers/{}.js",
+    "type": "controller"
+  },
+  "app/scripts/controllers/*.js": {
+    "alternate": "test/spec/controllers/{}.js",
+    "type": "controller"
+  },
+  "app/scripts/directives/*.js": {
+    "type": "directive"
+  },
+  "app/components/*/directives.js": {
+    "type": "directive"
+  },
+  "app/scripts/providers/*.js": {
+    "type": "provider"
+  },
+  "app/scripts/*.js": {
+    "type": "script"
+  },
+  "app/index.html": {
+    "type": "layout"
+  },
+  "app/common/*.html": {
+    "type": "view"
+  },
+  "app/components/*.html": {
+    "type": "view"
+  },
+  "app/views/*.html": {
+    "type": "view"
+  },
+  "app/styles/*.css": {
+    "type": "stylesheet"
+  },
+  "app/styles/*.scss": {
+    "type": "stylesheet"
+  },
+}
