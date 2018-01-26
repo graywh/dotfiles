@@ -1,3 +1,11 @@
+function Sweave {
+    R CMD Sweave $*
+}
+
+function knit {
+    R --no-save --no-restore -e "require(knitr); knit('$1')"
+}
+
 if type rbenv >/dev/null 2>&1; then
     function rbenv {
         typeset command
