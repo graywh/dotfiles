@@ -144,6 +144,9 @@ if exists('&numberwidth')
   set numberwidth=4
 endif
 set wrap                        " Wrap long lines
+set breakindent                 " Indent wrapped lines
+set breakindentopt=min:30,sbr   " Add some space to wrapped lines, put 'sbr' next to line numbers
+set showbreak=↳                 " Wrapped line indicator
 
 set listchars=
 if has('multi_byte') && (&termencoding =~? '^u\(tf\|cs\)' || (! strlen(&termencoding) && &encoding =~? '^u\(tf\|cs\)')) && (v:version >= 602 || v:version == 601 && has('patch469'))
