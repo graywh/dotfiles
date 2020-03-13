@@ -3,6 +3,7 @@
 if (interactive()) {
     local({
         options(editor = 'vim',
+                stringsAsFactors = FALSE,
                 tab.width = 3)
     })
 }
