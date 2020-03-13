@@ -4,7 +4,6 @@
 !/menu.vim
 !/scripts.vim
 !/autoload/
-!/bundles/
 !/colors/
 /colors/*
 !/colors/*.vim
