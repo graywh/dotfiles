@@ -52,4 +52,22 @@
   "app/styles/*.scss": {
     "type": "stylesheet"
   },
+  "schema/collections/*/_children.json": {
+    "type": "collection"
+  },
+  "schema/collections/*/_notifications.json": {
+    "type": "notifications"
+  },
+  "schema/collections/*/_permissions.json": {
+    "type": "permissions"
+  },
+  "schema/collections/*/_validations.json": {
+    "type": "validations"
+  },
+  "schema/collections/*/_warnings.json": {
+    "type": "warnings"
+  },
+  "schema/collections/*/_zoptions.json": {
+    "type": "options"
+  },
 }

@@ -1,0 +1,74 @@
+{
+  "src/app/*/index.ts": {
+    "type": "barrel"
+  },
+  "src/app/app.module.ts": {
+    "type": "module"
+  },
+  "src/app/*.module.ts": {
+    "type": "module"
+  },
+  "src/app/app.routing.ts": {
+    "type": "route"
+  },
+  "src/app/*.routing.ts": {
+    "type": "route"
+  },
+  "src/app/*.component.ts": {
+    "type": "component",
+    "alternate": "src/app/{}.component.spec.ts"
+  },
+  "src/app/*.component.html": {
+    "type": "view",
+    "alternate": "src/app/{}.component.css"
+  },
+  "src/app/*.component.css": {
+    "type": "stylesheet",
+    "alternate": "src/app/*.component.html"
+  },
+  "src/app/*.service.ts": {
+    "type": "service",
+    "alternate": "src/app/{}.service.spec.ts"
+  },
+  "src/app/*.directive.ts": {
+    "type": "directive",
+    "alternate": "src/app/{}.directive.spec.ts"
+  },
+  "src/app/*.interceptor.ts": {
+    "type": "interceptor",
+    "alternate": "src/app/{}.interceptor.spec.ts"
+  },
+  "src/app/*.guard.ts": {
+    "type": "guard",
+    "alternate": "src/app/{}.guard.spec.ts"
+  },
+  "src/app/*.pipe.ts": {
+    "type": "pipe",
+    "alternate": "src/app/{}.pipe.spec.ts"
+  },
+  "src/app/*.spec.ts": {
+    "type": "spec",
+    "alternate": "src/app/{}.ts"
+  },
+  "src/environment.ts": {
+    "type": "environment"
+  },
+  "src/environment.*.ts": {
+    "type": "environment"
+  },
+  "src/assets/styles/*.css": {
+    "type": "stylesheet"
+  },
+  "src/assets/styles/*.less": {
+    "type": "stylesheet"
+  },
+  "src/assets/styles/*.sass": {
+    "type": "stylesheet"
+  },
+  "src/assets/styles/*.scss": {
+    "type": "stylesheet"
+  },
+  "src/app/*.ts": {
+    "type": "ng"
+  },
+}
