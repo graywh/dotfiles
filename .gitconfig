@@ -8,19 +8,23 @@
 	ci = commit
 	co = checkout
 	diffc = diff --cached
-	diffci = diff --cached --ignore-all-space
-	diffi = diff --ignore-all-space
-	diffic = diff --cached --ignore-all-space
+	diffci = diff --cached --ignore-all-space --ignore-space-change
+	diffi = diff --ignore-all-space --ignore-space-change
+	diffic = diff --cached --ignore-all-space --ignore-space-change
 	ff = merge --ff-only
+	; lg = log --pretty=format:'%C(auto cyan)%h %C(auto red)%cr %C(auto magenta)%an %C(auto reset)%s %C(auto yellow)%d'
+	lg = log --oneline --reverse
 	log1 = log --oneline
+	logd = log --decorate
 	logg = log --oneline --graph
 	pick = cherry-pick
-	sl = !git --no-pager stash list
+	sl = stash list --format='%gd (%cr): %gs'
 	st = status -sb
+	stu = status -sb -uno
 [branch]
 	autosetupmerge = true
 [color]
-	diff = false
+	; diff = false
 	pager = false
 	ui = auto
 [core]
@@ -28,20 +32,30 @@
 	pager = view -
 	excludesfile = ~/.config/git/ignore
 	attributesfile = ~/.config/git/attributes
+[format]
+	pretty = medium
 [pager]
 	status = false
+	branch = false
+	tag = false
+	sl = false
+	lg = false
 [push]
-	default = matching
+	default = simple
+[fetch]
+	prune = true
 [status]
 	relativePaths = true
 [diff]
 	renames = copy
-[diff "ruby"]
-	funcname = ^\\s*\\(\\(class\\|module\\|def\\|describe\\|context\\) .*\\)
-[diff "python"]
-	funcname = ^\\s*\\(\\(class\\|def\\) .*\\)
+; [diff "ruby"]
+; 	xfuncname = ^\\s*\\(\\(class\\|module\\|def\\|describe\\|context\\) .*\\)
+; [diff "python"]
+; 	xfuncname = ^\\s*\\(\\(class\\|def\\) .*\\)
 [diff "vim"]
-	function = ^\\s*\\(function .*\\)
+	xfuncname = ^\\s*\\(function .*\\)
+[diff "js"]
+	xfuncname = \\(^\\|=\\)\\s*function .*
 [web]
 	browser = sensible-browser
 [gui]
