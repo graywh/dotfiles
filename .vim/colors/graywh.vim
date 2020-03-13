@@ -83,7 +83,7 @@ hi Identifier           guifg=#AFFFFF
 hi Function             guifg=#AFD7FF
 hi Statement            guifg=#87AFFF                   gui=none
 hi Operator             guifg=#FFAF87
-hi PreProc              guifg=#5FFFFF                   gui=none
+hi PreProc              guifg=#AFFFFF                   gui=none
 hi Type                 guifg=#FFFFAF                   gui=none
 hi Special              guifg=#FF5F5F
 hi Underlined           guifg=#AFAFFF                   gui=underline
