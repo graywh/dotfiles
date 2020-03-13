@@ -53,19 +53,7 @@ def print_text(text, args={})
   system("tput sgr0") if color
 end
 
-desc "Update master and rebase"
-task :update do
-  git_master do
-    system("git pull")
-  end
-end
-
-desc "Cherry pick commits for master"
-task :cherry, :rev do |t, args|
-  raise "no revision" unless args.rev
-  git_master do
-    system("git cherry-pick #{args.rev}")
-  end
+task :default do
 end
 
 namespace :bundle do
