@@ -10,6 +10,8 @@ let g:rails_projections = {
       \   'test': [
       \     'test/unit/%s_test.rb',
       \     'spec/interactors/%s_spec.rb']},
+      \ 'app/lib/*.rb': {'command': 'lib'},
+      \ 'script/*.rb': {'command': 'script'},
       \ 'db/seeds/*.rb': {'command': 'seeds'},
       \ 'db/seeds.rb': {'command': 'seeds'}}
 
@@ -46,7 +48,7 @@ let g:rails_gem_projections = {
       \ 'devise': {
       \   'app/models/*.rb': {
       \     'keywords': 'devise'}},
-      \ 'factory_girl': {
+      \ 'factory_bot': {
       \   'spec/factories.rb': {
       \     'command': 'factory'},
       \   'spec/factories/*_factory.rb': {
@@ -99,9 +101,7 @@ if has('autocmd')
           \ | end
 
     autocmd User Rails
-          \   silent! Rlcd
-          \
-          \ | exec 'command! -buffer -bang RRake Rake<bang> -'
+          \   exec 'command! -buffer -bang RRake Rake<bang> -'
           \ | exec 'command! -buffer WA windo A'
           \ | exec 'command! -buffer WR windo R'
           \ | exec 'command! -buffer Console   Start -title=console rails console'
