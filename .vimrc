@@ -442,6 +442,22 @@ if exists(':function') == 2
     %substitute/\<gui\(fg\|bg\|sp\)=#\zs\(\x\{6}\)/\=printf('%06X', 16777215 - str2nr(submatch(2), 16))/g
   endfunction
 
+  function! SudoWrite() "{{{2
+    let l:sudowrite_modified = &l:modified
+    setlocal nomodified
+    let l:sudo = 'sudo'
+    if has('gui_running')
+      if has('macunix')
+        let l:sudo = 'security execute-with-privileges'
+      " elseif has('unix') && executable('gksudo')
+      "   let l:sudo = 'gksudo'
+      endif
+    endif
+    execute 'write !'.l:sudo.' tee >/dev/null %'
+    let &l:modified = l:sudowrite_modified && v:shell_error
+    unlet l:sudowrite_modified
+  endfunction
+
 endif
 
 " Commands {{{1
@@ -478,10 +494,7 @@ if exists(':command') == 2
 
   " Save using sudo
   if executable('sudo') && executable('tee')
-    command! -bar SUwrite
-          \ setlocal nomodified |
-          \ execute 'write !sudo tee % >/dev/null' |
-          \ let &l:modified = v:shell_error
+    command! -bar SUwrite call SudoWrite()
   endif
 
   " D'oh
