@@ -215,11 +215,6 @@ endif
 " Plugins {{{1
 if exists(':runtime') == 2 && &loadplugins
   runtime! macros/matchit.vim
-  sunmap %
-  sunmap g%
-  sunmap [%
-  sunmap ]%
-  sunmap a%
 endif
 
 " Options {{{2
@@ -564,7 +559,6 @@ sunmap g`
 
 " make Y like D & C {{{2
 nnoremap Y y$
-xnoremap Y y$
 
 " Search highlight {{{2
 if has('extra_search')
