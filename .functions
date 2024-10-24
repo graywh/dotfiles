@@ -22,6 +22,11 @@ if type rbenv >/dev/null 2>&1; then
     }
 fi
 
+function ssh-fix {
+    eval $(tmux showenv -s SSH_AUTH_SOCK)
+    eval $(tmux showenv -s SSH_AGENT_PID)
+}
+
 function __ls {
     if (( $# > 3 )); then
         echo "${argv[3]}:"
