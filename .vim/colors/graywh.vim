@@ -40,7 +40,7 @@ hi IncSearch                                            gui=reverse
 hi Search               guifg=bg        guibg=#FFFF00
 hi MoreMsg              guifg=#5FAF87                   gui=bold
 hi ModeMsg                                              gui=bold
-hi LineNr               guifg=#87875F   guibg=#262626
+hi LineNr               guifg=#87875F   guibg=#303030
 hi CursorLineNr         guifg=#AFAF87   guibg=#3A3A3A
 hi Question             guifg=#5FFF5F                   gui=bold
 hi StatusLine                                           gui=reverse,bold
@@ -92,8 +92,8 @@ hi Error                guifg=#FFFFFF   guibg=#FF5F5F
 hi Todo                 guifg=#0000D7   guibg=#FFFF5F
 
 " Custom {{{2
-hi colorIndentOdd                       guibg=#262626
-hi colorIndentEven                      guibg=#3A3A3A
+hi colorIndentOdd                       guibg=#202020
+hi colorIndentEven                      guibg=#303030
 " mail {{{3
 hi mailQuoted1          guifg=#AFAFD7   guibg=#444444
 hi mailQuoted2          guifg=#D7AFAF   guibg=#444444
