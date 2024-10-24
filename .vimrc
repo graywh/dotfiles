@@ -1,3 +1,12 @@
+" let g:color_indent_start = 2
+" let g:color_indent_size = 1
+" let g:color_indent_loaded = 0
+" let g:indent_guides_auto_colors = 0
+" let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guides_guide_size = 1
+" hi! link IndentGuidesOdd colorIndentOdd
+" hi! link IndentGuidesEven colorIndentEven
+
 " vimrc
 " Author: Will Gray <graywh@gmail.com>
 
@@ -220,6 +229,8 @@ endif
 " Options {{{2
 if exists(':let') == 2
 
+  let g:angular_cli_use_dispatch = 1
+
   let g:colorchart_origin = { 88: 0, 256: 7 }
   let g:colorchart_angle = { 88: 0, 256: 4 }
   let g:colorchart_chart = { 88: "ribbon" }
@@ -230,6 +241,11 @@ if exists(':let') == 2
   endif
 
   let g:fit_manpages_to_window = 1      " Let man format manpages to fit the window
+
+  let g:html_indent_inctags = "body,head,tbody,p,li"
+  let g:html_indent_script1 = "inc"
+  let g:html_indent_style1 = "inc"
+  let g:html_wrong_comments = 1
 
   let g:liquid_highlight_types = ["html","erb=eruby","html+erb=eruby.html", "ruby"]
 
@@ -246,6 +262,13 @@ if exists(':let') == 2
 
   " let ruby_fold = 1
   let ruby_no_expensive = 1
+
+  let g:solarized_bold = 0
+  let g:solarized_underline = 0
+  let g:solarized_italic = 0
+  let g:solarized_termcolors = &t_Co
+  let g:solarized_contrast = "high"
+  let g:CSApprox_hook_solarized_pre = 'hi _FakeGroup ctermbg=256'
 
   let g:space_disable_select_mode = 1
   let g:space_no_character_movements = 1

@@ -43,6 +43,9 @@ if exists(':let') == 2
   hi link colorIndentOdd NONE
   ColorIndentEnable
 
+  let g:solarized_bold = 1
+  let g:solarized_italic = 1
+
 endif
 
 " Keymap {{{1
