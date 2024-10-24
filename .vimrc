@@ -471,13 +471,11 @@ if exists(':command') == 2
         \ only | diffoff | set fdc<
 
   " Replace tabs with 'shiftwidth' spaces
-  if has('ex_extra')
-    command! -bang -range=% ReTab
-          \ silent! unlet b:statusline_tab_warning |
-          \ let ts=&l:tabstop | let &l:tabstop=&shiftwidth |
-          \ <line1>,<line2>retab<bang> |
-          \ let &l:tabstop=ts | unlet ts
-  endif
+  command! -bang -range=% ReTab
+        \ silent! unlet b:statusline_tab_warning |
+        \ let ts=&l:tabstop | let &l:tabstop=&shiftwidth |
+        \ <line1>,<line2>retab<bang> |
+        \ let &l:tabstop=ts | unlet ts
 
   " Remove trailing space
   command! -range=% UnTrail
@@ -487,10 +485,8 @@ if exists(':command') == 2
         \ let @@ = temp
 
   " Shift the position under the cursor to column N
-  if has('ex_extra')
-    command! -nargs=1 Shift
-          \ execute 'normal '.(<args>-col('.')).'i '
-  endif
+  command! -nargs=1 Shift
+        \ execute 'normal '.(<args>-col('.')).'i '
 
   " Save using sudo
   if executable('sudo') && executable('tee')
@@ -585,10 +581,8 @@ endif
 " endif
 
 " Add new line indented here {{{2
-if has('ex_extra')
-  nnoremap <silent> <Leader>o :let ospaces=virtcol('.')-1<CR>o<Esc>:execute 'normal '.ospaces.'i '<CR>:.retab!<CR>A
-  nnoremap <silent> <Leader>O :let ospaces=virtcol('.')-1<CR>O<Esc>:execute 'normal '.ospaces.'i '<CR>:.retab!<CR>A
-endif
+nnoremap <silent> <Leader>o :let ospaces=virtcol('.')-1<CR>o<Esc>:execute 'normal '.ospaces.'i '<CR>:.retab!<CR>A
+nnoremap <silent> <Leader>O :let ospaces=virtcol('.')-1<CR>O<Esc>:execute 'normal '.ospaces.'i '<CR>:.retab!<CR>A
 
 " Show the syntax highlighting groups for the item under the cursor {{{2
 if exists('*ShowSynStack')
@@ -644,11 +638,9 @@ map <C-_> <Nop>
 map! <C-_> <Nop>
 
 " Folding {{{2
-if has('eval')
-  for k in ['i', 'm', 'M', 'n', 'N', 'r', 'R', 'v', 'x', 'X']
-    execute "nnoremap <silent> Z".k." :windo normal z".k."<CR>"
-  endfor
-endif
+for k in ['i', 'm', 'M', 'n', 'N', 'r', 'R', 'v', 'x', 'X']
+  execute "nnoremap <silent> Z".k." :windo normal z".k."<CR>"
+endfor
 
 " Select last changed text {{{2
 nnoremap <leader>v `[v`]
