@@ -60,7 +60,7 @@ namespace :bundle do
   desc "Initialize bundles"
   task :init, :pattern do |t, args|
     filter(Yobj['Bundles'], args.pattern) do |key, value|
-      unless File.exists?(key)
+      unless File.exist?(key)
         print_text("*** Initializing #{key}", :color => 2)
         system("git clone #{value} #{key}")
       end
@@ -71,7 +71,7 @@ namespace :bundle do
   desc "Update bundles"
   task :update, :pattern do |t, args|
     filter(Yobj['Bundles'], args.pattern) do |key, value|
-      if Dir.exists?(key)
+      if Dir.exist?(key)
         print_text("*** Updating #{key}", :color => 2)
         system("cd #{key} && git checkout master && git pull")
       else
